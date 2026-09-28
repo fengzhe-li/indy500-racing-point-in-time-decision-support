@@ -1,0 +1,52 @@
+diagnostic,value,note,n_teams,n_cars,n_drivers,n_attempts,n_informative_cars
+pearson_track_vs_time,0.38218690730405647,,7,21,21,41,16
+spearman_track_vs_time,0.24449776416560262,,7,21,21,41,16
+pearson_ambient_vs_time,0.948420382831099,,7,21,21,41,16
+spearman_ambient_vs_time,0.954541989263928,,7,21,21,41,16
+pearson_track_vs_ambient,0.5415234632269077,,7,21,21,41,16
+spearman_track_vs_ambient,0.3179211206395082,,7,21,21,41,16
+distinct_track_values,35.0,,7,21,21,41,16
+track_min,34.36641975308642,,7,21,21,41,16
+track_max,44.076279629629624,,7,21,21,41,16
+track_range,9.709859876543206,,7,21,21,41,16
+within_car_track_sd_median,2.134714342749451,cars with >=2 rows: 16,7,21,21,41,16
+within_car_track_sd_min,0.5256727838187663,,7,21,21,41,16
+within_car_track_range_median,3.018941975308639,,7,21,21,41,16
+within_car_track_range_min,0.7434135802469157,,7,21,21,41,16
+within_team_track_sd_median,2.460882331897571,,7,21,21,41,16
+within_team_track_range_median,6.9058820987654315,,7,21,21,41,16
+share_of_track_variance_within_car,0.4584147028471276,,7,21,21,41,16
+distinct_ambient_values,23.0,,7,21,21,41,16
+ambient_min,19.68320987654321,,7,21,21,41,16
+ambient_max,23.198379629629628,,7,21,21,41,16
+ambient_range,3.5151697530864183,,7,21,21,41,16
+within_car_ambient_sd_median,1.1785113019775775,cars with >=2 rows: 16,7,21,21,41,16
+within_car_ambient_sd_min,0.08333384361983762,,7,21,21,41,16
+within_car_ambient_range_median,1.7838401234567893,,7,21,21,41,16
+within_car_ambient_range_min,0.11785185185185298,,7,21,21,41,16
+within_team_ambient_sd_median,1.1038588311737088,,7,21,21,41,16
+within_team_ambient_range_median,2.7777777777777786,,7,21,21,41,16
+share_of_ambient_variance_within_car,0.6312435089970722,,7,21,21,41,16
+distinct_time_values,41.0,,7,21,21,41,16
+time_min,0.0,,7,21,21,41,16
+time_max,388.95215,,7,21,21,41,16
+time_range,388.95215,,7,21,21,41,16
+within_car_time_sd_median,144.6455461557274,cars with >=2 rows: 16,7,21,21,41,16
+within_car_time_sd_min,96.4483160787863,,7,21,21,41,16
+within_car_time_range_median,239.67442499999999,,7,21,21,41,16
+within_car_time_range_min,136.39851666666667,,7,21,21,41,16
+within_team_time_sd_median,135.26545049764962,,7,21,21,41,16
+within_team_time_range_median,322.49608333333333,,7,21,21,41,16
+share_of_time_variance_within_car,0.7132742451260279,,7,21,21,41,16
+eta2_time_on_car,0.2867257548739721,car/time confounding,7,21,21,41,16
+eta2_time_on_team,0.07122258018991283,team/time confounding,7,21,21,41,16
+within_vif_M2_track,1.153442480620636,within-car demeaned design; >=10 flags weak identification,7,21,21,41,16
+within_vif_M2_ambient,1.1534424806206358,within-car demeaned design; >=10 flags weak identification,7,21,21,41,16
+within_vif_M3_time,23.152396550293417,within-car demeaned design; >=10 flags weak identification,7,21,21,41,16
+within_vif_M3_track,1.7489854412107002,within-car demeaned design; >=10 flags weak identification,7,21,21,41,16
+within_vif_M3_ambient,25.487234656263414,within-car demeaned design; >=10 flags weak identification,7,21,21,41,16
+within_vif_M1_time,1.0,within-car demeaned design; >=10 flags weak identification,7,21,21,41,16
+within_condition_number_M3_standardised,10.159883967345568,,7,21,21,41,16
+within_car_pearson_track_vs_time,0.21353954678948775,after removing car means,7,21,21,41,16
+within_car_pearson_ambient_vs_time,0.9666990680403341,after removing car means,7,21,21,41,16
+within_car_pearson_track_vs_ambient,0.36473281148739667,after removing car means,7,21,21,41,16

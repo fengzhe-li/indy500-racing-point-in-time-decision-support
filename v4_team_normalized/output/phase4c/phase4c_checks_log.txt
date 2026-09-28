@@ -1,0 +1,21 @@
+PASS  only 2025 is used                                                                        
+PASS  no frozen 2020-2024 transition attempt included                                          
+PASS  source attempt speeds unchanged (vs Phase 3 join)                                        
+PASS  source attempt speeds unchanged (vs R6 official parse)                                   
+PASS  source weather unchanged (track, ambient vs Phase 3 join)                                
+PASS  car/team mapping equals accepted V4 registry                                             
+PASS  no technical-partnership entry in primary analysis                                       
+PASS  no missing weather imputed (P_wx = P_all complete cases; dropped rows truly missing)     1 row(s) excluded for missing weather
+PASS  wind excluded from all models                                                            
+PASS  solar not fabricated (all 2025 solar missing; never used)                                
+PASS  FE and within-transformation slopes reconcile (<1e-8)                                    max diff 2.2e-13
+PASS  LOTO populations correct                                                                 
+PASS  LOCO populations correct                                                                 
+PASS  model failures preserved (redundant M4 NOT_ESTIMABLE row; MX2 non-convergence recorded)  
+PASS  M4 reparameterisation reproduces M2                                                      
+PASS  pre-specification committed before results and unchanged since                           spec commit 3e3d2a7
+PASS  frozen R5.2 manifest hashes exact                                                        
+PASS  frozen R6 manifest hashes exact                                                          
+PASS  nothing outside v4_team_normalized/ changed (V2/V3/paper untouched)                      
+
+19/19 checks passed
