@@ -18,7 +18,13 @@ An additive extension. The frozen V2/V3 system (same-car core, future-state mode
 ```bash
 python3 v4_team_normalized/scripts/v4_parse_entry_lists.py     # needs pdftotext (poppler)
 python3 v4_team_normalized/scripts/v4_build_team_registry.py
+# Phase 3 (descriptive candidate construction; no model fitting)
+python3 v4_team_normalized/scripts/v4_phase3_candidates.py
+python3 v4_team_normalized/scripts/v4_phase3_reports.py
+python3 v4_team_normalized/scripts/v4_phase3_checks.py       # 26 consistency checks, exits non-zero on failure
 ```
+
+Phase 1–2 decisions accepted: #98 Andretti Herta is in the Andretti primary teammate group, and the four technical partnerships stay out of the primary layer (they remain in the registry for a later AFFILIATED sensitivity analysis). Phase 3 outputs are in `output/phase3/`.
 
 ## Layout
 
@@ -26,5 +32,6 @@ python3 v4_team_normalized/scripts/v4_build_team_registry.py
 - `manual/v4_team_mapping_rules.csv`: explicit exact-label → canonical-team rules with sources (the only place team identity is decided)
 - `scripts/`: parser and registry/audit builder
 - `output/`: registry, audit, pair changes, affiliation links, API anomalies, report
+- `output/phase3/`: attempt join, teammate attempt-pair candidates, nearest-teammate view, comparability tables, reports, diagnostic figures
 
 See `output/v4_team_normalization_report.md` for findings and the modelling gate.
