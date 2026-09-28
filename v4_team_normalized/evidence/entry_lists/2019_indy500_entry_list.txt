@@ -1,0 +1,49 @@
+                                                        NTT INDYCAR SERIES
+                                  103rd RUNNING OF THE INDIANAPOLIS 500 PRESENTED BY GAINBRIDGE
+                                                                          Indianapolis Motor Speedway
+                                                                                        May 26, 2019
+
+
+     Car Driver                    Hometown                            Car Name                                        Engine                    Entrant
+1     2   Josef Newgarden          Nashville, Tennessee                Shell V-Power Nitro Plus Team Penske            Chevrolet                 Team Penske
+2     3   Helio Castroneves (W)    Sao Paulo, Brazil                   Pennzoil Team Penske                            Chevrolet                 Team Penske
+3     4   Matheus Leist            Novo Hamburgo, Brazil               ABC Supply AJ Foyt Racing                       Chevrolet                 A.J. Foyt Enterprises
+4     5   James Hinchcliffe        Toronto, Canada                     Arrow Schmidt Peterson Motorsports              Honda                     Arrow Schmidt Peterson Motorsports
+5     7   Marcus Ericsson (R)      Kumla, Sweden                       Arrow Schmidt Peterson Motorsports              Honda                     Arrow Schmidt Peterson Motorsports
+6     9   Scott Dixon (W)          Auckland, New Zealand               PNC Bank Chip Ganassi Racing                    Honda                     Chip Ganassi Racing
+7    10 Felix Rosenqvist (R)       Värnamo, Sweden                     NTT DATA Chip Ganassi Racing                    Honda                     Chip Ganassi Racing
+8    12 Will Power (W)             Toowoomba, Australia                Verizon 5G Team Penske                          Chevrolet                 Team Penske
+9    14 Tony Kanaan (W)            Salvador, Brazil                    ABC Supply AJ Foyt Racing                       Chevrolet                 A.J. Foyt Enterprises
+10   15 Graham Rahal               New Albany, Ohio                    United Rentals                                  Honda                     Rahal Letterman Lanigan Racing
+11   18 Sebastien Bourdais         Le Mans, France                     SealMaster                                      Honda                     Dale Coyne Racing with Vasser-Sullivan
+12   19 Santino Ferrucci (R)       Woodbury, Connecticut               Cly-Del Manufacturing                           Honda                     Dale Coyne Racing
+13   20 Ed Carpenter               Indianapolis, Indiana               Preferred Freezer Services                      Chevrolet                 Ed Carpenter Racing
+14   21 Spencer Pigot              Orlando, Florida                    Ed Carpenter Racing                             Chevrolet                 Ed Carpenter Racing
+15   22 Simon Pagenaud             Montmorillon, France                Menards Team Penske                             Chevrolet                 Team Penske
+16   23 Charlie Kimball            Camarillo, California               Fiasp Carlin                                    Chevrolet                 Carlin
+17   24 Sage Karam                 Nazareth, Pennsylvania              DRR WIX Filters                                 Chevrolet                 Dreyer & Reinbold Racing
+18   25 Conor Daly                 Noblesville, Indiana                United States Air Force                         Honda                     Andretti Autosport
+19   26 Zach Veach                 Stockdale, Ohio                     Gainbridge                                      Honda                     Andretti Autosport
+20   27 Alexander Rossi (W)        Nevada City, California             NAPA AUTO PARTS                                 Honda                     Andretti Autosport
+21   28 Ryan Hunter-Reay (W)       Fort Lauderdale, Florida            DHL                                             Honda                     Andretti Autosport
+22   30 Takuma Sato (W)            Tokyo, Japan                        Mi-Jack / Panasonic                             Honda                     Rahal Letterman Lanigan Racing
+23   31 Patricio O'Ward (R)        Monterrey, Mexico                   Carlin                                          Chevrolet                 Carlin
+24   32 Kyle Kaiser                Santa Clara, California             Juncos Racing                                   Chevrolet                 Juncos Racing
+25   33 James Davison              Melbourne, Australia                Dale Coyne with Byrd and Belardi                Honda                     Dale Coyne Racing with Byrd and Belardi
+26   39 Pippa Mann                 Ipswich, England                    Driven2SaveLives                                Chevrolet                 Clauson-Marshall Racing
+27   42 Jordan King (R)            Warwick, England                    Rahal Letterman Lanigan Racing                  Honda                     Rahal Letterman Lanigan Racing
+28   48 JR Hildebrand              Sausalito, California               DRR Salesforce                                  Chevrolet                 Dreyer & Reinbold Racing
+29   59 Max Chilton                Reigate, England                    Gallagher Carlin                                Chevrolet                 Carlin
+30   60 Jack Harvey                Bassingham, England                 AutoNation / SiriusXM                           Honda                     Meyer Shank Racing
+31   63 Ed Jones                   Dubai, United Arab Emirates         Ed Carpenter Racing Scuderia Corsa              Chevrolet                 Ed Carpenter Racing
+32   66 Fernando Alonso            Oviedo, Spain                       McLaren Racing                                  Chevrolet                 McLaren Racing
+33   77 Oriol Servia               Pals, Spain                         MotoGator Team Stange w/ Arrow SPM              Honda                     MotoGator Team Stange Racing w/ Arrow SPM
+34   81 Ben Hanley (R)             Manchester, England                 10 Star DragonSpeed                             Chevrolet                 DragonSpeed
+35   88 Colton Herta (R)           Valencia, California                Harding Steinbrenner Racing                     Honda                     Harding Steinbrenner Racing
+36   98 Marco Andretti             Nazareth, Pennsylvania              U.S. Concrete / Curb                            Honda                     Andretti Herta with Marco & Curb-Agajanian
+
+
+                                                 All cars use the Dallara IR-18 Indy car with Chevrolet or Honda engines and Firestone tires.
+                                                    (R) – Denotes Indy 500 Rookie of the Year candidate; (W) - Denotes Indianapolis 500 winner
+                                                                                         Issued:5/13/2019
+

@@ -1,0 +1,45 @@
+                     NTT INDYCAR SERIES
+                     107TH RUNNING OF THE INDIANAPOLIS 500
+                     Indianapolis Motor Speedway - Indianapolis, Indiana
+                     May 28, 2023
+     CAR DRIVER                       HOMETOWN                         CAR NAME                                          TEAM                                         ENGINE
+ 1     2   Josef Newgarden            Nashville, Tennessee             Shell Powering Progress Team Penske               Team Penske                                  Chevrolet
+ 2     3   Scott McLaughlin           Christchurch, New Zealand        Pennzoil Team Penske                              Team Penske                                  Chevrolet
+ 3     5   Pato O'Ward                Monterrey, Mexico                Arrow McLaren                                     Arrow McLaren                                Chevrolet
+ 4    06   Helio Castroneves (W)      Sao Paulo, Brazil                AutoNation/SiriusXM                               Meyer Shank Racing                           Honda
+ 5     6   Felix Rosenqvist           Värnamo, Sweden                  Arrow McLaren                                     Arrow McLaren                                Chevrolet
+ 6     7   Alexander Rossi (W)        Nevada City, California          Arrow McLaren                                     Arrow McLaren                                Chevrolet
+ 7     8   Marcus Ericsson (W)        Kumla, Sweden                    Huski Ice Spritz                                  Chip Ganassi Racing                          Honda
+ 8     9   Scott Dixon (W)            Auckland, New Zealand            PNC Bank Chip Ganassi Racing                      Chip Ganassi Racing                          Honda
+ 9    10   Alex Palou                 Barcelona, Spain                 The American Legion                               Chip Ganassi Racing                          Honda
+10    11   Takuma Sato (W)            Tokyo, Japan                     Deloitte                                          Chip Ganassi Racing                          Honda
+11    12   Will Power (W)             Toowoomba, Australia             Verizon Team Penske                               Team Penske                                  Chevrolet
+12    14   Santino Ferrucci           Woodbury, Connecticut            Homes For Our Troops                              A.J. Foyt Enterprises                        Chevrolet
+13    15   Graham Rahal               New Albany, Ohio                 United Rentals                                    Rahal Letterman Lanigan Racing               Honda
+14    18   David Malukas              Chicago, Illinois                HMD Trucking                                      Dale Coyne Racing with HMD                   Honda
+15    20   Conor Daly                 Noblesville, Indiana             Bitnile.com                                       Ed Carpenter Racing                          Chevrolet
+16    21   Rinus VeeKay               Hoofddorp, Netherlands           Bitnile.com                                       Ed Carpenter Racing                          Chevrolet
+17    23   Ryan Hunter-Reay (W)       Fort Lauderdale, Florida         Dreyer & Reinbold Racing                          Dreyer & Reinbold Racing                     Chevrolet
+18    24   Stefan Wilson              Sheffield, England               DRR Cusick CareKeepers                            Dreyer & Reinbold Racing                     Chevrolet
+19    26   Colton Herta               Valencia, California             Gainbridge                                        Andretti Autosport w/ Curb-Agajanian         Honda
+20    27   Kyle Kirkwood              Jupiter, Florida                 AutoNation                                        Andretti Autosport                           Honda
+21    28   Romain Grosjean            Geneva, Switzerland              DHL                                               Andretti Autosport                           Honda
+22    29   Devlin DeFrancesco         Toronto, Canada                  Sodexo                                            Andretti Steinbrenner Autosport              Honda
+23    30   Jack Harvey                Bassingham, England              Kustom Entertainment                              Rahal Letterman Lanigan Racing               Honda
+24    33   Ed Carpenter               Indianapolis, Indiana            Bitnile.com                                       Ed Carpenter Racing                          Chevrolet
+25    44   Katherine Legge            Guildford, England               Hendrickson                                       Rahal Letterman Lanigan Racing               Honda
+26    45   Christian Lundgaard        Hedensted, Denmark               Hy-Vee                                            Rahal Letterman Lanigan Racing               Honda
+27    50   RC Enerson (R)             New Port Richey, Florida         Abel Motorsports                                  Abel Motorsports                             Chevrolet
+28    51   Sting Ray Robb (R)         Payette, Idaho                   biohaven                                          Dale Coyne Racing with RWR                   Honda
+29    55   Benjamin Pedersen (R)      Copenhagen, Denmark              AJ FOYT RACING / SEXTON PROPERTIES                A.J. Foyt Enterprises                        Chevrolet
+30    60   Simon Pagenaud (W)         Montmorillon, France             AutoNation/SiriusXM                               Meyer Shank Racing                           Honda
+31    66   Tony Kanaan (W)            Salvador, Brazil                 Arrow McLaren                                     Arrow McLaren                                Chevrolet
+32    77   Callum Ilott               Cambridge, England               Juncos Hollinger Racing                           Juncos Hollinger Racing                      Chevrolet
+33    78   Agustín Canapino (R)       Arrecifes, Argentina             Juncos Hollinger Racing                           Juncos Hollinger Racing                      Chevrolet
+34    98   Marco Andretti             Nazareth, Pennsylvania           KULR / Curb                                       Andretti Herta w/ Marco & Curb-Agajanian     Honda
+
+
+All cars use fourth-generation NTT INDYCAR SERIES chassis (Dallara IR12) with universal IR-18 aerodynamic bodywork, Chevrolet or Honda engines and Firestone tires.
+(R) - Denotes Indianapolis 500 Rookie of the Year candidate | (W) - Denotes Indianapolis 500 Winner
+Issued: 5/15/2023
+

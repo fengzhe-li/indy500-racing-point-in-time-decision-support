@@ -1,0 +1,9 @@
+year,team_a,team_b,relationship_type,confidence,cars_a,cars_b,cross_pairs,notes
+2018,MEYER_SHANK_RACING,ARROW_MCLAREN_SPM,TECHNICAL_PARTNERSHIP,MEDIUM,60,5|6|7,3,MSR ran #60 with SPM technical partnership (official entry label 'Meyer Shank Racing with SPM').
+2019,MEYER_SHANK_RACING,ARROW_MCLAREN_SPM,TECHNICAL_PARTNERSHIP,MEDIUM,60,5|7|77,3,"Reported as Arrow SPM's partnership with MSR for 2019 Indy 500 (motorsportweek.com 2019-05-13, secondary)."
+2019,HARDING_STEINBRENNER_RACING,ANDRETTI,TECHNICAL_PARTNERSHIP,MEDIUM,88,25|26|27|28|98,5,Andretti Technologies engineering support to HSR through 2019 (INDYCAR/Andretti press).
+2019,MCLAREN_RACING_2019,CARLIN,TECHNICAL_PARTNERSHIP,MEDIUM,66,23|31|59,3,McLaren's 2019 Alonso entry ran with Carlin support (secondary; not verified against a primary document here).
+2020,MEYER_SHANK_RACING,ANDRETTI,TECHNICAL_PARTNERSHIP,MEDIUM,60,26|27|28|29|88|98,6,"MSR-Andretti data-sharing alliance ~1.5 years old as of 2021-06-29 (Autosport, secondary)."
+2021,MEYER_SHANK_RACING,ANDRETTI,TECHNICAL_PARTNERSHIP,MEDIUM,06|60,25|26|27|28|29|98,12,"MSR-Andretti data-sharing alliance active (Autosport 2021-06-29, secondary)."
+2022,MEYER_SHANK_RACING,ANDRETTI,UNCERTAIN,LOW,06|60,26|27|28|29|98,10,Continuation of MSR-Andretti alliance into 2022 not verified.
+2021,PARETTA_AUTOSPORT,TEAM_PENSKE,TECHNICAL_PARTNERSHIP,MEDIUM,16,12|2|22|3,4,Team Penske technical partnership (INDYCAR 2021-01-19; RACER 2021-01-19).
