@@ -26,6 +26,10 @@ python3 v4_team_normalized/scripts/v4_phase3_checks.py       # 26 consistency ch
 python3 v4_team_normalized/scripts/v4_phase4a_matching.py
 python3 v4_team_normalized/scripts/v4_phase4a_reports.py
 python3 v4_team_normalized/scripts/v4_phase4a_checks.py      # 28 checks
+# Phase 4B (team-year chronological timelines; exploratory, no model fitted)
+python3 v4_team_normalized/scripts/v4_phase4b_timelines.py
+python3 v4_team_normalized/scripts/v4_phase4b_reports.py
+python3 v4_team_normalized/scripts/v4_phase4b_checks.py      # 23 checks
 ```
 
 Phase 1–2 decisions accepted: #98 Andretti Herta is in the Andretti primary teammate group, and the four technical partnerships stay out of the primary layer (they remain in the registry for a later AFFILIATED sensitivity analysis). Phase 3 outputs are in `output/phase3/`.
@@ -36,6 +40,7 @@ Phase 1–2 decisions accepted: #98 Andretti Herta is in the Andretti primary te
 - `manual/v4_team_mapping_rules.csv`: explicit exact-label → canonical-team rules with sources (the only place team identity is decided)
 - `scripts/`: parser and registry/audit builder
 - `output/`: registry, audit, pair changes, affiliation links, API anomalies, report
+- `output/phase4b/`: team-year timelines, car baselines, sampling/consecutive/confounding/weather audits, frozen-core context, timeline and summary figures, reports
 - `output/phase4a/`: frozen-transition anchors, endpoint teammate candidates, matched controls by strategy/window/direction, PIT view, dependence audit, reports, figures
 - `output/phase3/`: attempt join, teammate attempt-pair candidates, nearest-teammate view, comparability tables, reports, diagnostic figures
 
