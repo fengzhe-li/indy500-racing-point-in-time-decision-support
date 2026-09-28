@@ -1,0 +1,101 @@
+year,era,official_session_id,official_session_name,normalized_category,state_class,lap_level_session_key,T_lap_timestamps,identity_match_share,multi_car_teams,same_team_pairs_le5,teams_with_same_team_overlap_le5,weather_observed_in_span,P_provenance,quality_tier,tier_reason,lap_data_shared_by_n_official_segments
+2018,ERA_A_PRE_AEROSCREEN,5225,Race,RACE,RACE_STATE_CONFOUNDED,5225,False,1.0,10.0,51813.0,10.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2018,ERA_A_PRE_AEROSCREEN,5325,Final Practice,CARB_DAY,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5325,False,1.0,10.0,4475.0,10.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2018,ERA_A_PRE_AEROSCREEN,5326,Practice 8,POST_QUALIFYING_PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5326,False,1.0,9.0,11253.0,9.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2018,ERA_A_PRE_AEROSCREEN,5323,Qualifications - Fast 9,QUALIFYING_OTHER,SOLO_RUN_FORMAT,5323,False,1.0,2.0,6.0,1.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2018,ERA_A_PRE_AEROSCREEN,5322,Qualifications - Positions 10-33,QUALIFYING_OTHER,SOLO_RUN_FORMAT,2018|2018-05-20|QUALIFYING_OTHER|5322+5323,False,1.0,2.0,20.0,2.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2018,ERA_A_PRE_AEROSCREEN,5324,Practice 7,QUALIFYING_WEEKEND_PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5324,False,1.0,7.0,525.0,6.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2018,ERA_A_PRE_AEROSCREEN,5320,Qualifications - Day 1,QUALIFYING_DAY1,SOLO_RUN_FORMAT,5320,False,1.0,7.0,20.0,2.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2018,ERA_A_PRE_AEROSCREEN,5321,Practice 6,QUALIFYING_WEEKEND_PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5321,False,1.0,3.0,13.0,2.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2018,ERA_A_PRE_AEROSCREEN,5319,Practice 5,FAST_FRIDAY,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5319,False,1.0,10.0,637.0,10.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2018,ERA_A_PRE_AEROSCREEN,5318,Practice 4,PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5318,False,1.0,10.0,7569.0,10.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2018,ERA_A_PRE_AEROSCREEN,5317,Practice 3,PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5317,False,1.0,10.0,13806.0,10.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2018,ERA_A_PRE_AEROSCREEN,5316,Practice 2,PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5316,False,1.0,10.0,5323.0,9.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2018,ERA_A_PRE_AEROSCREEN,5315,Practice 1,PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5315,False,1.0,6.0,729.0,6.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2019,ERA_A_PRE_AEROSCREEN,5473,Race,RACE,RACE_STATE_CONFOUNDED,5473,False,1.0,9.0,62086.0,9.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2019,ERA_A_PRE_AEROSCREEN,5558,Practice Final,CARB_DAY,OPEN_TRACK_UNOBSERVED_RUN_PLAN,,False,,,,,True,,D,not T / not I / <2 multi-car teams / aggregate,0
+2019,ERA_A_PRE_AEROSCREEN,5557,Practice 8,POST_QUALIFYING_PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,,False,,,,,True,,D,not T / not I / <2 multi-car teams / aggregate,0
+2019,ERA_A_PRE_AEROSCREEN,5556,Qualifications - Fast 9,QUALIFYING_OTHER,SOLO_RUN_FORMAT,2019|2019-05-19|QUALIFYING_OTHER|5555+5556,False,1.0,3.0,33.0,3.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,2
+2019,ERA_A_PRE_AEROSCREEN,5555,Qualifications - Positions 31-33,QUALIFYING_OTHER,SOLO_RUN_FORMAT,2019|2019-05-19|QUALIFYING_OTHER|5555+5556,False,1.0,3.0,33.0,3.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,2
+2019,ERA_A_PRE_AEROSCREEN,5564,Practice 6,QUALIFYING_WEEKEND_PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5564,False,1.0,1.0,28.0,1.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2019,ERA_A_PRE_AEROSCREEN,5565,Qualifications - Day 1,QUALIFYING_DAY1,SOLO_RUN_FORMAT,5565,False,1.0,10.0,164.0,4.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2019,ERA_A_PRE_AEROSCREEN,5563,Practice 5,QUALIFYING_WEEKEND_PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5563,False,1.0,1.0,0.0,0.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2019,ERA_A_PRE_AEROSCREEN,5562,Practice 4,FAST_FRIDAY,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5562,False,1.0,10.0,554.0,9.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2019,ERA_A_PRE_AEROSCREEN,5561,Practice 3,PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5561,False,1.0,10.0,2530.0,10.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2019,ERA_A_PRE_AEROSCREEN,5560,Practice 2,PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5560,False,1.0,10.0,7468.0,10.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2019,ERA_A_PRE_AEROSCREEN,5559,Practice 1,PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5559,False,1.0,10.0,5013.0,10.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2020,ERA_B_REFERENCE,5777,Race,RACE,RACE_STATE_CONFOUNDED,5777,False,1.0,9.0,44016.0,9.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2020,ERA_B_REFERENCE,5776,Final Practice (Carb Day),CARB_DAY,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5776,False,1.0,9.0,11791.0,9.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2020,ERA_B_REFERENCE,5775,Practice 6,QUALIFYING_WEEKEND_PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5775,False,1.0,9.0,10064.0,9.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2020,ERA_B_REFERENCE,5774,Qualifications (Fast 9),QUALIFYING_OTHER,SOLO_RUN_FORMAT,5774,False,1.0,2.0,27.0,2.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2020,ERA_B_REFERENCE,5772,Practice 5,QUALIFYING_WEEKEND_PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5772,False,1.0,1.0,3.0,1.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2020,ERA_B_REFERENCE,5771,Qualifications (Day 1),QUALIFYING_DAY1,SOLO_RUN_FORMAT,5771,False,1.0,4.0,272.0,4.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2020,ERA_B_REFERENCE,5770,Practice 4,QUALIFYING_WEEKEND_PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5770,False,1.0,9.0,81.0,5.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2020,ERA_B_REFERENCE,5767,Practice 3 (Fast Friday),FAST_FRIDAY,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5767,False,1.0,9.0,847.0,9.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2020,ERA_B_REFERENCE,5769,Practice 2,PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5769,False,1.0,9.0,14363.0,9.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2020,ERA_B_REFERENCE,5768,Practice 1,PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5768,False,1.0,9.0,7924.0,9.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2021,ERA_B_REFERENCE,5807,Race,RACE,RACE_STATE_CONFOUNDED,5807,False,1.0,9.0,75279.0,9.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2021,ERA_B_REFERENCE,5841,Final Practice (Carb Day),CARB_DAY,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5841,False,1.0,9.0,12138.0,9.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2021,ERA_B_REFERENCE,5849,Practice 8,QUALIFYING_WEEKEND_PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5849,False,1.0,9.0,10289.0,9.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2021,ERA_B_REFERENCE,5848,Qualifications - Fast 9,QUALIFYING_OTHER,SOLO_RUN_FORMAT,2021|2021-05-23|QUALIFYING_OTHER|5847+5848,False,1.0,3.0,10.0,1.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,2
+2021,ERA_B_REFERENCE,5847,Qualifications - Last Row,QUALIFYING_OTHER,SOLO_RUN_FORMAT,2021|2021-05-23|QUALIFYING_OTHER|5847+5848,False,1.0,3.0,10.0,1.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,2
+2021,ERA_B_REFERENCE,5839,Practice 7,QUALIFYING_WEEKEND_PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5839,False,1.0,0.0,0.0,0.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2021,ERA_B_REFERENCE,5838,Qualifications - Day 1,QUALIFYING_DAY1,SOLO_RUN_FORMAT,5838,False,1.0,7.0,2.0,1.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2021,ERA_B_REFERENCE,5840,Practice 6,QUALIFYING_WEEKEND_PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5840,False,1.0,2.0,43.0,2.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2021,ERA_B_REFERENCE,5846,Practice 5,FAST_FRIDAY,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5846,False,1.0,9.0,646.0,9.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2021,ERA_B_REFERENCE,5845,Practice 4,PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5845,False,1.0,9.0,9273.0,9.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2021,ERA_B_REFERENCE,5844,Practice 3,PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5844,False,1.0,9.0,12554.0,9.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2021,ERA_B_REFERENCE,5843,Practice 2,PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5843,False,1.0,9.0,9163.0,9.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2021,ERA_B_REFERENCE,5842,Practice 1,PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,5842,False,1.0,7.0,534.0,7.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2022,ERA_B_REFERENCE,5909,Race,RACE,RACE_STATE_CONFOUNDED,,False,,,,,True,,D,not T / not I / <2 multi-car teams / aggregate,0
+2022,ERA_B_REFERENCE,6039,Practice 9 (Carb Day),CARB_DAY,OPEN_TRACK_UNOBSERVED_RUN_PLAN,,False,,,,,True,,D,not T / not I / <2 multi-car teams / aggregate,0
+2022,ERA_B_REFERENCE,6038,Practice 8,POST_QUALIFYING_PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,,False,,,,,True,,D,not T / not I / <2 multi-car teams / aggregate,0
+2022,ERA_B_REFERENCE,6037,Qualifications - Firestone Fast 6,QUALIFYING_OTHER,SOLO_RUN_FORMAT,,False,,,,,False,,D,not T / not I / <2 multi-car teams / aggregate,0
+2022,ERA_B_REFERENCE,6036,Qualifications - Top 12,QUALIFYING_OTHER,SOLO_RUN_FORMAT,,False,,,,,False,,D,not T / not I / <2 multi-car teams / aggregate,0
+2022,ERA_B_REFERENCE,6034,Practice 7,QUALIFYING_WEEKEND_PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,,False,,,,,False,,D,not T / not I / <2 multi-car teams / aggregate,0
+2022,ERA_B_REFERENCE,6033,Qualifications - Day 1,QUALIFYING_DAY1,SOLO_RUN_FORMAT,,False,,,,,True,,D,not T / not I / <2 multi-car teams / aggregate,0
+2022,ERA_B_REFERENCE,6032,Practice 6,QUALIFYING_WEEKEND_PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,,False,,,,,True,,D,not T / not I / <2 multi-car teams / aggregate,0
+2022,ERA_B_REFERENCE,6031,Practice 5 (Fast Friday),FAST_FRIDAY,OPEN_TRACK_UNOBSERVED_RUN_PLAN,,False,,,,,True,,D,not T / not I / <2 multi-car teams / aggregate,0
+2022,ERA_B_REFERENCE,6030,Practice 4,PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,,False,,,,,True,,D,not T / not I / <2 multi-car teams / aggregate,0
+2022,ERA_B_REFERENCE,6028,Practice 2 (All Cars),PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,,False,,,,,True,,D,not T / not I / <2 multi-car teams / aggregate,0
+2022,ERA_B_REFERENCE,6027,Practice 1 (Oval Veterans),PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,,False,,,,,True,,D,not T / not I / <2 multi-car teams / aggregate,0
+2023,ERA_B_REFERENCE,6135,Race,RACE,RACE_STATE_CONFOUNDED,6135,True,1.0,11.0,1846.0,11.0,True,True,C,race state confounded; limitations: none,1
+2023,ERA_B_REFERENCE,6208,Final Practice,CARB_DAY,OPEN_TRACK_UNOBSERVED_RUN_PLAN,6208,True,1.0,11.0,12346.0,11.0,True,True,B,limitation: state_open_track,1
+2023,ERA_B_REFERENCE,6207,Practice 8,POST_QUALIFYING_PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,6207,True,1.0,11.0,8861.0,11.0,True,True,B,limitation: state_open_track,1
+2023,ERA_B_REFERENCE,6206,Qualifications - Firestone Fast 6,QUALIFYING_OTHER,SOLO_RUN_FORMAT,2023|2023-05-21|QUALIFYING_OTHER|6204+6205+6206,True,1.0,4.0,13.0,3.0,True,True,B,limitation: O,3
+2023,ERA_B_REFERENCE,6205,Qualifications - Last Chance,QUALIFYING_OTHER,SOLO_RUN_FORMAT,2023|2023-05-21|QUALIFYING_OTHER|6204+6205+6206,True,1.0,4.0,13.0,3.0,True,True,B,limitation: O,3
+2023,ERA_B_REFERENCE,6204,Qualifications - Top-12,QUALIFYING_OTHER,SOLO_RUN_FORMAT,2023|2023-05-21|QUALIFYING_OTHER|6204+6205+6206,True,1.0,4.0,13.0,3.0,True,True,B,limitation: O,3
+2023,ERA_B_REFERENCE,6203,Practice 7,QUALIFYING_WEEKEND_PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,6203,True,1.0,4.0,172.0,3.0,True,True,B,limitation: state_open_track,1
+2023,ERA_B_REFERENCE,6202,Qualifications - Day 1,QUALIFYING_DAY1,SOLO_RUN_FORMAT,6202,True,1.0,11.0,61.0,11.0,True,True,A,all criteria met,1
+2023,ERA_B_REFERENCE,6201,Practice 6,QUALIFYING_WEEKEND_PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,6201,True,1.0,2.0,9.0,2.0,True,True,C,"limitations: state_open_track,M,O",1
+2023,ERA_B_REFERENCE,6200,Practice 5,FAST_FRIDAY,OPEN_TRACK_UNOBSERVED_RUN_PLAN,6200,True,1.0,11.0,220.0,8.0,True,True,B,limitation: state_open_track,1
+2023,ERA_B_REFERENCE,6199,Practice 4,PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,6199,True,1.0,11.0,12198.0,11.0,True,True,B,limitation: state_open_track,1
+2023,ERA_B_REFERENCE,6198,Practice 3,PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,6198,True,1.0,11.0,14812.0,11.0,True,True,B,limitation: state_open_track,1
+2024,ERA_B_REFERENCE,6309,Race,RACE,RACE_STATE_CONFOUNDED,6309,True,1.0,10.0,66253.0,10.0,True,True,C,race state confounded; limitations: none,1
+2024,ERA_B_REFERENCE,6388,Final Practice (Carb Day),CARB_DAY,OPEN_TRACK_UNOBSERVED_RUN_PLAN,6388,True,1.0,10.0,17765.0,10.0,True,True,B,limitation: state_open_track,1
+2024,ERA_B_REFERENCE,6387,Practice 8,POST_QUALIFYING_PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,6387,True,1.0,10.0,14577.0,10.0,True,True,B,limitation: state_open_track,1
+2024,ERA_B_REFERENCE,6386,Qualifications - Firestone Fast 6,QUALIFYING_OTHER,SOLO_RUN_FORMAT,6386,True,1.0,3.0,21.0,2.0,True,True,B,limitation: O,1
+2024,ERA_B_REFERENCE,6385,Qualifications - Last Chance,QUALIFYING_OTHER,SOLO_RUN_FORMAT,,False,,,,,True,,D,not T / not I / <2 multi-car teams / aggregate,0
+2024,ERA_B_REFERENCE,6384,Qualifications - Top-12,QUALIFYING_OTHER,SOLO_RUN_FORMAT,6384,True,1.0,2.0,12.0,1.0,True,True,C,"limitations: M,O",1
+2024,ERA_B_REFERENCE,6383,Practice 7,QUALIFYING_WEEKEND_PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,6383,True,1.0,5.0,26.0,2.0,True,True,C,"limitations: state_open_track,O",1
+2024,ERA_B_REFERENCE,6382,Qualifications - Day 1,QUALIFYING_DAY1,SOLO_RUN_FORMAT,6382,True,1.0,9.0,35.0,3.0,True,True,A,all criteria met,1
+2024,ERA_B_REFERENCE,6381,Practice 6,QUALIFYING_WEEKEND_PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,6381,True,1.0,1.0,17.0,1.0,True,True,D,not T / not I / <2 multi-car teams / aggregate,1
+2024,ERA_B_REFERENCE,6380,Practice 5,FAST_FRIDAY,OPEN_TRACK_UNOBSERVED_RUN_PLAN,6380,True,1.0,8.0,203.0,6.0,True,True,B,limitation: state_open_track,1
+2024,ERA_B_REFERENCE,6379,Practice 4,PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,,False,,,,,True,,D,not T / not I / <2 multi-car teams / aggregate,0
+2024,ERA_B_REFERENCE,6378,Practice 3,PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,6378,True,1.0,11.0,10855.0,11.0,True,True,B,limitation: state_open_track,1
+2024,ERA_B_REFERENCE,6375,Practice 1,PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,6375,True,1.0,7.0,754.0,7.0,True,True,B,limitation: state_open_track,1
+2025,ERA_C_HYBRID,6460,Race,RACE,RACE_STATE_CONFOUNDED,6460,True,1.0,11.0,46872.0,11.0,True,True,C,race state confounded; limitations: none,1
+2025,ERA_C_HYBRID,6662,Final Practice (Carb Day),CARB_DAY,OPEN_TRACK_UNOBSERVED_RUN_PLAN,6662,True,1.0,11.0,9200.0,11.0,True,True,B,limitation: state_open_track,1
+2025,ERA_C_HYBRID,6663,Practice 8,POST_QUALIFYING_PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,6663,True,1.0,11.0,8500.0,11.0,True,True,B,limitation: state_open_track,1
+2025,ERA_C_HYBRID,6617,Combined Qualifications,AGGREGATE_RESULT,NOT_A_SESSION,,False,,,,,True,,D,not T / not I / <2 multi-car teams / aggregate,0
+2025,ERA_C_HYBRID,6660,Qualifications - Firestone Fast 6,QUALIFYING_OTHER,SOLO_RUN_FORMAT,6660,True,1.0,3.0,17.0,2.0,True,True,B,limitation: O,1
+2025,ERA_C_HYBRID,6659,Qualifications - Last Chance,QUALIFYING_OTHER,SOLO_RUN_FORMAT,6659,True,1.0,2.0,0.0,0.0,True,True,C,"limitations: M,O",1
+2025,ERA_C_HYBRID,6658,Qualifications - Top-12,QUALIFYING_OTHER,SOLO_RUN_FORMAT,,False,,,,,True,,D,not T / not I / <2 multi-car teams / aggregate,0
+2025,ERA_C_HYBRID,6661,Practice 7,QUALIFYING_WEEKEND_PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,6661,True,1.0,3.0,36.0,3.0,True,True,B,limitation: state_open_track,1
+2025,ERA_C_HYBRID,6656,Qualifications - Day 1,QUALIFYING_DAY1,SOLO_RUN_FORMAT,6656,True,1.0,12.0,30.0,3.0,True,True,A,all criteria met,1
+2025,ERA_C_HYBRID,6657,Practice 6,QUALIFYING_WEEKEND_PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,6657,True,1.0,8.0,68.0,5.0,True,True,B,limitation: state_open_track,1
+2025,ERA_C_HYBRID,6655,Practice 5,FAST_FRIDAY,OPEN_TRACK_UNOBSERVED_RUN_PLAN,6655,True,1.0,12.0,94.0,8.0,True,True,B,limitation: state_open_track,1
+2025,ERA_C_HYBRID,6654,Practice 4,PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,6654,True,1.0,12.0,6999.0,12.0,True,True,B,limitation: state_open_track,1
+2025,ERA_C_HYBRID,6653,Practice 3,PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,6653,True,1.0,12.0,2304.0,12.0,True,True,B,limitation: state_open_track,1
+2025,ERA_C_HYBRID,6651,Practice 1,PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,6651,True,1.0,12.0,2198.0,11.0,True,True,B,limitation: state_open_track,1
+2023,ERA_B_REFERENCE,,(not in official list) Practice 1,PRACTICE,OPEN_TRACK_UNOBSERVED_RUN_PLAN,2023|2023-05-16|PRACTICE|T71_ONLY:Practice 1,False,0.0,0.0,0.0,0.0,False,False,D,not T / not I / <2 multi-car teams / aggregate,1

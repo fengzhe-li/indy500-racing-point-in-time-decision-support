@@ -1,0 +1,16 @@
+era,design,feasibility,evidence
+ERA_B_REFERENCE,DESIGN_1_evidence_hierarchy,FEASIBLE NOW,Tier A/B sessions with all_three: 15 over 2 year(s); 2023-2024 only (2020-2021 need replay ZIPs; 2022 needs official PDFs)
+ERA_B_REFERENCE,DESIGN_2_within_team_relative,FEASIBLE NOW,Tier A/B sessions with >=50% multi-car-team laps having a LOO team reference within ±5 min: 10; 2023-2024 only (2020-2021 need replay ZIPs; 2022 needs official PDFs)
+ERA_B_REFERENCE,DESIGN_3_cross_session_persistence,FEASIBLE WITH ADDITIONAL DATA,share of primary-layer cars with valid laps in >=3 categories (Tier A/B/C sessions only): 0.40; official-record linkage >=3 categories: 0.98
+ERA_B_REFERENCE,DESIGN_4_within_team_dispersion,FEASIBLE NOW,Tier A/B sessions with >=3 multi-car teams: 15; 2023-2024 only (2020-2021 need replay ZIPs; 2022 needs official PDFs)
+ERA_B_REFERENCE,DESIGN_5_race_teammate_pace,WEAK / HIGH-CONFOUNDING,lap-level race sessions: 4 (tiers: C/D; race is at best Tier C by rule; fuel/tyre/traffic unobserved)
+ERA_C_HYBRID,DESIGN_1_evidence_hierarchy,FEASIBLE WITH ADDITIONAL DATA,"Tier A/B sessions with all_three: 10 over 1 year(s); only one in-scope year of this regime (2026 same-regime sessions exist in the Timing71 listing, outside Phase 4E scope)"
+ERA_C_HYBRID,DESIGN_2_within_team_relative,FEASIBLE WITH ADDITIONAL DATA,"Tier A/B sessions with >=50% multi-car-team laps having a LOO team reference within ±5 min: 5; only one in-scope year of this regime (2026 same-regime sessions exist in the Timing71 listing, outside Phase 4E scope)"
+ERA_C_HYBRID,DESIGN_3_cross_session_persistence,FEASIBLE NOW,share of primary-layer cars with valid laps in >=3 categories (Tier A/B/C sessions only): 1.00; official-record linkage >=3 categories: 0.97
+ERA_C_HYBRID,DESIGN_4_within_team_dispersion,FEASIBLE NOW,"Tier A/B sessions with >=3 multi-car teams: 10; only one in-scope year of this regime (2026 same-regime sessions exist in the Timing71 listing, outside Phase 4E scope)"
+ERA_C_HYBRID,DESIGN_5_race_teammate_pace,WEAK / HIGH-CONFOUNDING,lap-level race sessions: 1 (tiers: C; race is at best Tier C by rule; fuel/tyre/traffic unobserved)
+ERA_A_PRE_AEROSCREEN,DESIGN_1_evidence_hierarchy,FEASIBLE WITH ADDITIONAL DATA,Tier A/B sessions with all_three: 0 over 0 year(s); 2018-2019 sessions are Tier D (no observed lap timestamps) - replay ZIPs would supply them
+ERA_A_PRE_AEROSCREEN,DESIGN_2_within_team_relative,FEASIBLE WITH ADDITIONAL DATA,Tier A/B sessions with >=50% multi-car-team laps having a LOO team reference within ±5 min: 0; 2018-2019 sessions are Tier D (no observed lap timestamps) - replay ZIPs would supply them
+ERA_A_PRE_AEROSCREEN,DESIGN_3_cross_session_persistence,FEASIBLE WITH ADDITIONAL DATA,share of primary-layer cars with valid laps in >=3 categories (Tier A/B/C sessions only): 0.00; official-record linkage >=3 categories: 0.94
+ERA_A_PRE_AEROSCREEN,DESIGN_4_within_team_dispersion,FEASIBLE WITH ADDITIONAL DATA,Tier A/B sessions with >=3 multi-car teams: 0; 2018-2019 sessions are Tier D (no observed lap timestamps) - replay ZIPs would supply them
+ERA_A_PRE_AEROSCREEN,DESIGN_5_race_teammate_pace,WEAK / HIGH-CONFOUNDING,lap-level race sessions: 2 (tiers: D; race is at best Tier C by rule; fuel/tyre/traffic unobserved)
