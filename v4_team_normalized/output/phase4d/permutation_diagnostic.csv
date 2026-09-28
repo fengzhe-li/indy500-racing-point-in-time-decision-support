@@ -1,0 +1,4 @@
+statistic,observed,perm_median,perm_p05,perm_p95,observed_percentile,meaningful,note,n_permutations,seed,eligible_transitions
+T1_sign_agree,0.5,0.5384615384615384,0.2,0.8333333333333334,48.949999999999996,True,percentile = % of shuffles with T1 <= observed (higher = stronger same-team agreement),2000,20260928,40
+T2_median_abs_diff,0.33161935275582044,0.5424790464164599,0.1985407002207964,1.3183536051764846,79.3,True,percentile = % of shuffles with T2 >= observed (higher = same-team closer than shuffled),2000,20260928,40
+T3_n_defined,12.0,9.0,5.0,14.0,,True,transitions with defined S6,2000,20260928,40

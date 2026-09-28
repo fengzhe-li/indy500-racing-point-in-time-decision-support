@@ -34,6 +34,10 @@ python3 v4_team_normalized/scripts/v4_phase4b_checks.py      # 23 checks
 python3 v4_team_normalized/scripts/v4_phase4c_panel.py       # ~2 min (cluster bootstraps)
 (cd v4_team_normalized/scripts && python3 v4_phase4c_reports.py)
 python3 v4_team_normalized/scripts/v4_phase4c_checks.py      # 19 checks
+# Phase 4D (latent team-state feasibility audit; no latent model fitted)
+python3 v4_team_normalized/scripts/v4_phase4d_feasibility.py
+python3 v4_team_normalized/scripts/v4_phase4d_reports.py
+python3 v4_team_normalized/scripts/v4_phase4d_checks.py      # 25 checks
 ```
 
 Phase 1–2 decisions accepted: #98 Andretti Herta is in the Andretti primary teammate group, and the four technical partnerships stay out of the primary layer (they remain in the registry for a later AFFILIATED sensitivity analysis). Phase 3 outputs are in `output/phase3/`.
@@ -44,6 +48,7 @@ Phase 1–2 decisions accepted: #98 Andretti Herta is in the Andretti primary te
 - `manual/v4_team_mapping_rules.csv`: explicit exact-label → canonical-team rules with sources (the only place team identity is decided)
 - `scripts/`: parser and registry/audit builder
 - `output/`: registry, audit, pair changes, affiliation links, API anomalies, report
+- `output/phase4d/`: identifiability spec (committed before computation), transition team context, teammate observations with independence labels, structural categories, context summaries, residual alignment, placebo (empty by rule), permutation diagnostic, large-residual cases, 2025 extension, reports, figures
 - `output/phase4c/`: pre-specification (committed before fitting), 2025 population, identifiability diagnostics, FE / within / mixed / LOTO / LOCO / strategy results, case evaluation, reports, figures
 - `output/phase4b/`: team-year timelines, car baselines, sampling/consecutive/confounding/weather audits, frozen-core context, timeline and summary figures, reports
 - `output/phase4a/`: frozen-transition anchors, endpoint teammate candidates, matched controls by strategy/window/direction, PIT view, dependence audit, reports, figures

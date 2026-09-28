@@ -1,0 +1,5 @@
+case,satisfied,detail,headline_by_precedence_C_D_B_A
+C,True,category A at ±30 = 0; dominated by frozen reuse = 12/12,C
+D,False,placebo not identifiable (no transition with both same-team and unrelated context),C
+B,False,category A = 0; permutation T1 percentile = 48.9,C
+A,False,not met,C
