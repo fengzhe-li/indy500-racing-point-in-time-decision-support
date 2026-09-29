@@ -59,6 +59,11 @@ python3 v4_team_normalized/scripts/v4_phase4h_checks.py      # 23 checks
 python3 v4_team_normalized/scripts/v4_phase4i_support.py
 python3 v4_team_normalized/scripts/v4_phase4i_reports.py
 python3 v4_team_normalized/scripts/v4_phase4i_checks.py      # 22 checks
+# Phase 4J (FINAL pre-registered hierarchy; spec 28af221 committed before any result; closes the V4 hierarchy sequence)
+python3 v4_team_normalized/scripts/v4_phase4j_verify_inputs.py   # pre-result verification (no D)
+python3 v4_team_normalized/scripts/v4_phase4j_hierarchy.py
+python3 v4_team_normalized/scripts/v4_phase4j_reports.py
+python3 v4_team_normalized/scripts/v4_phase4j_checks.py      # 26 checks
 ```
 
 Phase 1–2 decisions accepted: #98 Andretti Herta is in the Andretti primary teammate group, and the four technical partnerships stay out of the primary layer (they remain in the registry for a later AFFILIATED sensitivity analysis). Phase 3 outputs are in `output/phase3/`.
@@ -69,6 +74,7 @@ Phase 1–2 decisions accepted: #98 Andretti Herta is in the Andretti primary te
 - `manual/v4_team_mapping_rules.csv`: explicit exact-label → canonical-team rules with sources (the only place team identity is decided)
 - `scripts/`: parser and registry/audit builder
 - `output/`: registry, audit, pair changes, affiliation links, API anomalies, report
+- `output/phase4j/`: FINAL pre-registered hierarchy spec (28af221) + input verification + freeze record, primary Tier 1 common support, same-car / same-team / different-team candidate and context-aggregate tables, session-level hierarchy, contrasts, LOSO/LOTO, Tier 2 sensitivity, 2025 replication, performance-scale context, case evaluation, reports, figures
 - `output/phase4i/`: pre-specified support-audit spec (committed before counts) + Phase 4A-4H freeze record, eligible observations (Tier 1 A / Tier 2 A+B), tier support, same-car / same-team / different-team candidate support, common support by session and block, adjacency support and balance feasibility, reuse/dependence, era coverage, measurement-scale reference, case evaluation, reports, figures
 - `output/phase4h/`: pre-specified validity spec (committed before classification) + Phase 4F/4G freeze record, qualifying performance reference (official-anchored / inferred attempts), practice lap inventory, speed distributions, stint sequence audit, run-state classification and rule audit, qualifying calibration, Phase 4F/4G population and adjacency run-state audits, validity summary, case evaluation, reports, figures
 - `output/phase4g/`: pre-specified diagnostic spec (committed before computation) + Phase 4F freeze record, primary control reconstruction, timing-sequence adjacency pairs, adjacency distributions, D by adjacency stratum, negative/positive block diagnostics, control reuse, design-population comparison, year/session adjacency, sequence completeness, future-evidence feasibility, case evaluation, reports, figures

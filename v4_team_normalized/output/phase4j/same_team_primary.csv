@@ -1,0 +1,30 @@
+analysis,item,value
+PRIMARY_TIER1_2023_2024,same-team oriented contexts (all),92
+PRIMARY_TIER1_2023_2024,same-team contexts in strict common support,53
+PRIMARY_TIER1_2023_2024,contexts with >=3 admissible candidates (descriptive),17
+PRIMARY_TIER1_2023_2024,contexts SAME_UPDATE: all / in support,10 / 0
+PRIMARY_TIER1_2023_2024,contexts CONSECUTIVE: all / in support,14 / 6
+PRIMARY_TIER1_2023_2024,contexts BETWEEN_1_2: all / in support,7 / 2
+PRIMARY_TIER1_2023_2024,contexts BETWEEN_3_5: all / in support,12 / 4
+PRIMARY_TIER1_2023_2024,contexts BETWEEN_GT5: all / in support,49 / 41
+PRIMARY_TIER1_2023_2024,distinct unordered teammate pairs in support,26
+PRIMARY_TIER1_2023_2024,cars in support contexts,37
+PRIMARY_TIER1_2023_2024,teams in support contexts,9
+PRIMARY_TIER1_2023_2024,team-years in support,13
+PRIMARY_TIER1_2023_2024,sessions with support contexts,6
+PRIMARY_TIER1_2023_2024,blocks with support contexts,20
+PRIMARY_TIER1_2023_2024,max single-team share of support contexts,0.3584905660377358
+PRIMARY_TIER1_2023_2024,max single-session share of support contexts,0.37735849056603776
+PRIMARY_TIER1_2023_2024,same-team time separation median (s),103.68849992752075
+PRIMARY_TIER1_2023_2024,max reuse of one target car-block across support contexts,3
+PRIMARY_TIER1_2023_2024,"different-team candidate pairs (all contexts, before aggregation)",340
+PRIMARY_TIER1_2023_2024,admissible different-team candidates in support contexts (before aggregation),117
+PRIMARY_TIER1_2023_2024,distinct admissible candidate car-blocks,66
+PRIMARY_TIER1_2023_2024,admissible candidate teams,11
+PRIMARY_TIER1_2023_2024,admissible candidate time separation median (s),103.62849998474121
+PRIMARY_TIER1_2023_2024,same-car local pairs,92
+PRIMARY_TIER1_2023_2024,same-car cars,54
+PRIMARY_TIER1_2023_2024,same-car sessions,8
+PRIMARY_TIER1_2023_2024,same-car time separation median (s),82.19050014019012
+PRIMARY_TIER1_2023_2024,same-car time separation IQR (s),81.0-102.0
+PRIMARY_TIER1_2023_2024,same-car max car-block reuse,2
