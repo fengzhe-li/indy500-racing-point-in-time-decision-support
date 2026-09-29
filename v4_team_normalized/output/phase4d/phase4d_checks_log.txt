@@ -1,0 +1,27 @@
+PASS  41 anchors, frozen order                                                
+PASS  observed delta == frozen                                                
+PASS  expected delta == frozen LOYO prediction                                
+PASS  target residual == frozen residual_loyo_raw                             
+PASS  teammate obs never the target car                                       
+PASS  teammate obs same year and canonical team                               
+PASS  no technical-partnership / non-primary observations                     
+PASS  primary analysis restricted to 2020-2024                                
+PASS  MOVEs are exactly consecutive timed-complete pairs per car              
+PASS  previous_attempt_delta = current − previous                             
+PASS  physics adjustment applies frozen coefficients exactly                  
+PASS  no missing independence label                                           
+PASS  RECIPROCAL iff MOVE pair is a frozen transition                         
+PASS  LEVEL FROZEN_CORE_ENDPOINT iff attempt is a frozen endpoint             
+PASS  categories follow pre-declared rules (±30)                              
+PASS  C/D always labelled INSUFFICIENT                                        
+PASS  alignment never uses causal labels                                      
+PASS  permutation observed T3 == transitions with defined same-team S6 (±30)  
+PASS  permutation observed T1 reproduced                                      
+PASS  2025 extension contains only 2025 and is labelled not pooled            
+PASS  identifiability spec committed before results and unchanged             7a817ae
+PASS  Phase 4C outputs unchanged since their commit                           218a4dc
+PASS  frozen R5.2 manifest hashes exact                                       
+PASS  frozen R6 manifest hashes exact                                         
+PASS  nothing outside v4_team_normalized/ changed                             
+
+25/25 checks passed

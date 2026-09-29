@@ -1,0 +1,23 @@
+PASS  long: exactly the Phase 3 primary-layer attempts 2018-2025  
+PASS  long: raw speed preserved  
+PASS  long: track temp preserved  
+PASS  long: eras never mixed within a year  
+PASS  long: performance timeline = timed & complete  
+PASS  long: team_timeline_order is chronological  
+PASS  centering: within-car mean of speed_minus_car_mean == 0  
+PASS  centering: raw = centered + car mean  
+PASS  centering: undefined off the performance timeline  
+PASS  centering: single-attempt cars flagged uninformative  
+PASS  consecutive: count = sum(n-1) per team-year  164 vs 164
+PASS  consecutive: delta_time >= 0  
+PASS  consecutive: pairs never cross team-years  
+PASS  consecutive: SAME_CAR label correct  
+PASS  sampling: same + switch = n-1  
+PASS  sampling: team-year count  
+PASS  confounding: eta2 in [0,1]  
+PASS  frozen: 41 transitions represented  
+PASS  frozen: flagged attempts == frozen endpoints present in the primary layer  73 flagged; 2 endpoints outside layer (technical partnership)
+PASS  frozen: every R5.2 manifest file hash matches  
+PASS  figures: raw and centered timeline per eligible team-year  
+PASS  figures: 7 cross-team summaries  
+PASS  git: nothing outside v4_team_normalized/ changed vs freeze tag  

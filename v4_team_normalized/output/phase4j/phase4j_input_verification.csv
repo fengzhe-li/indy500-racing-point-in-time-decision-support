@@ -1,0 +1,17 @@
+item,value
+branch,v4-team-normalized-evidence
+commit,12a660d
+frozen_files,419
+phase4f_case,D
+phase4g_case,A
+phase4h_case,D
+phase4i_case,B
+TIER1_STRICT_eligible_laps_match,True
+TIER1_STRICT_within_block_pairs_match,True
+TIER1_STRICT_same_car_pairs_match,True
+TIER2_EXTENDED_eligible_laps_match,True
+TIER2_EXTENDED_within_block_pairs_match,True
+TIER2_EXTENDED_same_car_pairs_match,True
+final_v2_v3_hashes_exact,True
+paper_and_outside_v4_unchanged,True
+phase4i_eligibility_reproduced,True

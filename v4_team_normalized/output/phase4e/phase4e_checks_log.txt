@@ -1,0 +1,22 @@
+PASS  years restricted to 2018-2025                                                                       
+PASS  accepted V4 registry reused (team = registry team for every matched car)                            
+PASS  technical partnerships excluded from primary teammate layer                                         
+PASS  raw official identities preserved (official names + raw Timing71 team strings kept)                 
+PASS  no fuzzy joins accepted (only exact / T-backup-with-surname / 06-6 variant)                         {'EXACT_CAR', 'BACKUP_T_CAR'}
+PASS  no model fitted / no coefficient estimated (no fitting calls in Phase 4E code)                      
+PASS  no Phase 4C file changes                                                                            
+PASS  no Phase 4D file changes                                                                            
+PASS  frozen manifests hash exactly (R5.2 + R6)                                                           
+PASS  no missing weather imputed (MISSING wherever no PTSC in span/date)                                  
+PASS  2025/all wind labelled unit-unverified, never numeric-joined                                        
+PASS  raw observation counts distinguished from effective-information proxies                             
+PASS  race never mixed with other categories (every table row has a single category; race keys disjoint)  
+PASS  official session names + categories preserved for every official session                            
+PASS  source provenance retained (every retrieved file: URL + SHA-256 matches bytes on disk)              
+PASS  opportunity counts reproducible (independent recount, largest observed session, w=1/5/30)           6309
+PASS  quality tiers reproduce from pre-declared rules                                                     
+PASS  tier spec committed before results and unchanged                                                    d2d65e4
+PASS  PTSC extraction reproduces frozen R6 canonical values (2019, 2025)                                  
+PASS  no frozen V2/V3 changes; nothing outside v4_team_normalized/ changed                                
+
+20/20 checks passed

@@ -1,0 +1,321 @@
+session_key,cars,identity_match_share,unmatched_cars,technical_partnership_valid_laps,level,year,car,driver,team_raw,join_status,join_method,canonical_engineering_team,raw_entry_name,relationship_type,primary_layer,technical_partnership_only,registry_car,registry_driver,driver_matches_registry,engineering_preparation_entity
+2018|2018-05-20|QUALIFYING_OTHER|5322+5323,9.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+2019|2019-05-19|QUALIFYING_OTHER|5555+5556,15.0,1.0,,8.0,SESSION,,,,,,,,,,,,,,,
+2021|2021-05-23|QUALIFYING_OTHER|5847+5848,14.0,1.0,,4.0,SESSION,,,,,,,,,,,,,,,
+2023|2023-05-16|PRACTICE|T71_ONLY:Practice 1,0.0,0.0,,0.0,SESSION,,,,,,,,,,,,,,,
+2023|2023-05-21|QUALIFYING_OTHER|6204+6205+6206,16.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+5225,33.0,1.0,,141.0,SESSION,,,,,,,,,,,,,,,
+5315,22.0,1.0,,24.0,SESSION,,,,,,,,,,,,,,,
+5316,34.0,1.0,,50.0,SESSION,,,,,,,,,,,,,,,
+5317,35.0,1.0,,81.0,SESSION,,,,,,,,,,,,,,,
+5318,35.0,1.0,,65.0,SESSION,,,,,,,,,,,,,,,
+5319,35.0,1.0,,12.0,SESSION,,,,,,,,,,,,,,,
+5320,24.0,1.0,,2.0,SESSION,,,,,,,,,,,,,,,
+5321,10.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+5323,9.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+5324,24.0,1.0,,2.0,SESSION,,,,,,,,,,,,,,,
+5325,33.0,1.0,,26.0,SESSION,,,,,,,,,,,,,,,
+5326,32.0,1.0,,66.0,SESSION,,,,,,,,,,,,,,,
+5473,33.0,1.0,,2.0,SESSION,,,,,,,,,,,,,,,
+5559,36.0,1.0,,76.0,SESSION,,,,,,,,,,,,,,,
+5560,36.0,1.0,,103.0,SESSION,,,,,,,,,,,,,,,
+5561,35.0,1.0,,48.0,SESSION,,,,,,,,,,,,,,,
+5562,35.0,1.0,,64.0,SESSION,,,,,,,,,,,,,,,
+5563,6.0,1.0,,9.0,SESSION,,,,,,,,,,,,,,,
+5564,5.0,1.0,,1.0,SESSION,,,,,,,,,,,,,,,
+5565,34.0,1.0,,50.0,SESSION,,,,,,,,,,,,,,,
+5767,33.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+5768,32.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+5769,32.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+5770,33.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+5771,16.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+5772,2.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+5774,9.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+5775,32.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+5776,33.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+5777,32.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+5807,33.0,1.0,,158.0,SESSION,,,,,,,,,,,,,,,
+5838,19.0,1.0,,8.0,SESSION,,,,,,,,,,,,,,,
+5839,6.0,1.0,,4.0,SESSION,,,,,,,,,,,,,,,
+5840,9.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+5841,33.0,1.0,,50.0,SESSION,,,,,,,,,,,,,,,
+5842,29.0,1.0,,6.0,SESSION,,,,,,,,,,,,,,,
+5843,35.0,1.0,,54.0,SESSION,,,,,,,,,,,,,,,
+5844,34.0,1.0,,98.0,SESSION,,,,,,,,,,,,,,,
+5845,35.0,1.0,,51.0,SESSION,,,,,,,,,,,,,,,
+5846,35.0,1.0,,18.0,SESSION,,,,,,,,,,,,,,,
+5849,33.0,1.0,,26.0,SESSION,,,,,,,,,,,,,,,
+6135,33.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6198,34.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6199,34.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6200,34.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6201,7.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6202,34.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6203,15.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6207,33.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6208,33.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6309,29.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6375,24.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6378,34.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6380,27.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6381,5.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6382,27.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6383,15.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6384,12.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6386,10.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6387,33.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6388,33.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6460,31.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6651,34.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6653,34.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6654,34.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6655,33.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6656,34.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6657,23.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6659,9.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6660,10.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6661,11.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6662,33.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+6663,33.0,1.0,,0.0,SESSION,,,,,,,,,,,,,,,
+,,,,,CAR,2020.0,29,James Hinchcliffe,,MATCHED,EXACT_CAR,ANDRETTI,Andretti Autosport,FULL_TEAM_ENTRY,True,False,29,James Hinchcliffe,True,ANDRETTI
+,,,,,CAR,2020.0,3,Helio Castroneves,,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,3,Helio Castroneves,True,TEAM_PENSKE
+,,,,,CAR,2020.0,66,Fernando Alonso,,MATCHED,EXACT_CAR,ARROW_MCLAREN_SPM,Arrow McLaren SP,FULL_TEAM_ENTRY,True,False,66,Fernando Alonso,True,ARROW_MCLAREN_SPM
+,,,,,CAR,2020.0,51,James Davison,,MATCHED,EXACT_CAR,DALE_COYNE_RACING,"Dale Coyne Racing w/ Rick Ware Racing, Byrd & Belardi",JOINT_ENTRY,True,False,51,James Davison,True,DALE_COYNE_RACING
+,,,,,CAR,2020.0,4,Charlie Kimball,,MATCHED,EXACT_CAR,AJ_FOYT,A.J. Foyt Enterprises,FULL_TEAM_ENTRY,True,False,4,Charlie Kimball,True,AJ_FOYT
+,,,,,CAR,2020.0,59,Max Chilton,,MATCHED,EXACT_CAR,CARLIN,Carlin,FULL_TEAM_ENTRY,True,False,59,Max Chilton,True,CARLIN
+,,,,,CAR,2020.0,41,Dalton Kellett,,MATCHED,EXACT_CAR,AJ_FOYT,A. J. Foyt Enterprises,FULL_TEAM_ENTRY,True,False,41,Dalton Kellett,True,AJ_FOYT
+,,,,,CAR,2020.0,14,Tony Kanaan,,MATCHED,EXACT_CAR,AJ_FOYT,A.J. Foyt Enterprises,FULL_TEAM_ENTRY,True,False,14,Tony Kanaan,True,AJ_FOYT
+,,,,,CAR,2020.0,22,Simon Pagenaud,,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,22,Simon Pagenaud,True,TEAM_PENSKE
+,,,,,CAR,2020.0,27,Alexander Rossi,,MATCHED,EXACT_CAR,ANDRETTI,Andretti Autosport,FULL_TEAM_ENTRY,True,False,27,Alexander Rossi,True,ANDRETTI
+,,,,,CAR,2020.0,15,Graham Rahal,,MATCHED,EXACT_CAR,RAHAL_LETTERMAN_LANIGAN,Rahal Letterman Lanigan Racing,FULL_TEAM_ENTRY,True,False,15,Graham Rahal,True,RAHAL_LETTERMAN_LANIGAN
+,,,,,CAR,2020.0,81,Ben Hanley,,MATCHED,EXACT_CAR,DRAGONSPEED,DragonSpeed USA,FULL_TEAM_ENTRY,True,False,81,Ben Hanley,True,DRAGONSPEED
+,,,,,CAR,2020.0,55,Alex Palou,,MATCHED,EXACT_CAR,DALE_COYNE_RACING,Dale Coyne Racing with Team Goh,JOINT_ENTRY,True,False,55,Alex Palou,True,DALE_COYNE_RACING
+,,,,,CAR,2020.0,24,Sage Karam,,MATCHED,EXACT_CAR,DREYER_REINBOLD_RACING,Dreyer & Reinbold Racing,FULL_TEAM_ENTRY,True,False,24,Sage Karam,True,DREYER_REINBOLD_RACING
+,,,,,CAR,2020.0,67,JR Hildebrand,,MATCHED,EXACT_CAR,DREYER_REINBOLD_RACING,Dreyer & Reinbold Racing,FULL_TEAM_ENTRY,True,False,67,JR Hildebrand,True,DREYER_REINBOLD_RACING
+,,,,,CAR,2020.0,10,Felix Rosenqvist,,MATCHED,EXACT_CAR,CHIP_GANASSI_RACING,Chip Ganassi Racing,FULL_TEAM_ENTRY,True,False,10,Felix Rosenqvist,True,CHIP_GANASSI_RACING
+,,,,,CAR,2020.0,1,Josef Newgarden,,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,1,Josef Newgarden,True,TEAM_PENSKE
+,,,,,CAR,2020.0,5,Pato O'Ward,,MATCHED,EXACT_CAR,ARROW_MCLAREN_SPM,Arrow McLaren SP,FULL_TEAM_ENTRY,True,False,5,Pato O'Ward,True,ARROW_MCLAREN_SPM
+,,,,,CAR,2020.0,20,Ed Carpenter,,MATCHED,EXACT_CAR,ED_CARPENTER_RACING,Ed Carpenter Racing,FULL_TEAM_ENTRY,True,False,20,Ed Carpenter,True,ED_CARPENTER_RACING
+,,,,,CAR,2020.0,88,Colton Herta,,MATCHED,EXACT_CAR,ANDRETTI,Andretti Harding Steinbrenner Autosport,JOINT_ENTRY,True,False,88,Colton Herta,True,ANDRETTI
+,,,,,CAR,2020.0,45,Spencer Pigot,,MATCHED,EXACT_CAR,RAHAL_LETTERMAN_LANIGAN,RLL with Citrone/Buhl Autosport,JOINT_ENTRY,True,False,45,Spencer Pigot,True,RAHAL_LETTERMAN_LANIGAN
+,,,,,CAR,2020.0,60,Jack Harvey,,MATCHED,EXACT_CAR,MEYER_SHANK_RACING,Meyer Shank Racing,FULL_TEAM_ENTRY,True,False,60,Jack Harvey,True,MEYER_SHANK_RACING
+,,,,,CAR,2020.0,7,Oliver Askew,,MATCHED,EXACT_CAR,ARROW_MCLAREN_SPM,Arrow McLaren SP,FULL_TEAM_ENTRY,True,False,7,Oliver Askew,True,ARROW_MCLAREN_SPM
+,,,,,CAR,2020.0,18,Santino Ferrucci,,MATCHED,EXACT_CAR,DALE_COYNE_RACING,Dale Coyne Racing with Vasser Sullivan,JOINT_ENTRY,True,False,18,Santino Ferrucci,True,DALE_COYNE_RACING
+,,,,,CAR,2020.0,12,Will Power,,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,12,Will Power,True,TEAM_PENSKE
+,,,,,CAR,2020.0,26,Zach Veach,,MATCHED,EXACT_CAR,ANDRETTI,Andretti Autosport,FULL_TEAM_ENTRY,True,False,26,Zach Veach,True,ANDRETTI
+,,,,,CAR,2020.0,47,Conor Daly,,MATCHED,EXACT_CAR,ED_CARPENTER_RACING,Ed Carpenter Racing,FULL_TEAM_ENTRY,True,False,47,Conor Daly,True,ED_CARPENTER_RACING
+,,,,,CAR,2020.0,9,Scott Dixon,,MATCHED,EXACT_CAR,CHIP_GANASSI_RACING,Chip Ganassi Racing,FULL_TEAM_ENTRY,True,False,9,Scott Dixon,True,CHIP_GANASSI_RACING
+,,,,,CAR,2020.0,30,Takuma Sato,,MATCHED,EXACT_CAR,RAHAL_LETTERMAN_LANIGAN,Rahal Letterman Lanigan Racing,FULL_TEAM_ENTRY,True,False,30,Takuma Sato,True,RAHAL_LETTERMAN_LANIGAN
+,,,,,CAR,2020.0,98,Marco Andretti,,MATCHED,EXACT_CAR,ANDRETTI,Andretti Herta Autosport w/ Marco & Curb-Agajanian,JOINT_ENTRY,True,False,98,Marco Andretti,True,ANDRETTI
+,,,,,CAR,2020.0,28,Ryan Hunter-Reay,,MATCHED,EXACT_CAR,ANDRETTI,Andretti Autosport,FULL_TEAM_ENTRY,True,False,28,Ryan Hunter-Reay,True,ANDRETTI
+,,,,,CAR,2020.0,21,Rinus VeeKay,,MATCHED,EXACT_CAR,ED_CARPENTER_RACING,Ed Carpenter Racing,FULL_TEAM_ENTRY,True,False,21,Rinus VeeKay,True,ED_CARPENTER_RACING
+,,,,,CAR,2018.0,10,Ed Jones,,MATCHED,EXACT_CAR,CHIP_GANASSI_RACING,Chip Ganassi Racing,FULL_TEAM_ENTRY,True,False,10,Ed Jones,True,CHIP_GANASSI_RACING
+,,,,,CAR,2018.0,13,Danica Patrick,,MATCHED,EXACT_CAR,ED_CARPENTER_RACING,Ed Carpenter Racing,FULL_TEAM_ENTRY,True,False,13,Danica Patrick,True,ED_CARPENTER_RACING
+,,,,,CAR,2018.0,59,Max Chilton,,MATCHED,EXACT_CAR,CARLIN,Carlin,FULL_TEAM_ENTRY,True,False,59,Max Chilton,True,CARLIN
+,,,,,CAR,2018.0,98,Marco Andretti,,MATCHED,EXACT_CAR,ANDRETTI,Andretti Herta Autosport with Curb-Agajanian,JOINT_ENTRY,True,False,98,Marco Andretti,True,ANDRETTI
+,,,,,CAR,2018.0,12,Will Power,,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,12,Will Power,True,TEAM_PENSKE
+,,,,,CAR,2018.0,4,Matheus Leist,,MATCHED,EXACT_CAR,AJ_FOYT,A.J. Foyt Enterprises,FULL_TEAM_ENTRY,True,False,4,Matheus Leist,True,AJ_FOYT
+,,,,,CAR,2018.0,7,Jay Howard,,MATCHED,EXACT_CAR,ARROW_MCLAREN_SPM,SPM / AFS Racing,JOINT_ENTRY,True,False,7,Jay Howard,True,ARROW_MCLAREN_SPM
+,,,,,CAR,2018.0,3,Helio Castroneves,,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,3,Helio Castroneves,True,TEAM_PENSKE
+,,,,,CAR,2018.0,6,Robert Wickens,,MATCHED,EXACT_CAR,ARROW_MCLAREN_SPM,Schmidt Peterson Motorsports,FULL_TEAM_ENTRY,True,False,6,Robert Wickens,True,ARROW_MCLAREN_SPM
+,,,,,CAR,2018.0,9,Scott Dixon,,MATCHED,EXACT_CAR,CHIP_GANASSI_RACING,Chip Ganassi Racing,FULL_TEAM_ENTRY,True,False,9,Scott Dixon,True,CHIP_GANASSI_RACING
+,,,,,CAR,2018.0,19,Zachary Claman De Melo,,MATCHED,EXACT_CAR,DALE_COYNE_RACING,Dale Coyne Racing,FULL_TEAM_ENTRY,True,False,19,Zachary Claman De Melo,True,DALE_COYNE_RACING
+,,,,,CAR,2018.0,30,Takuma Sato,,MATCHED,EXACT_CAR,RAHAL_LETTERMAN_LANIGAN,Rahal Letterman Lanigan Racing,FULL_TEAM_ENTRY,True,False,30,Takuma Sato,True,RAHAL_LETTERMAN_LANIGAN
+,,,,,CAR,2018.0,32,Kyle Kaiser,,MATCHED,EXACT_CAR,JUNCOS_HOLLINGER_RACING,Juncos Racing,FULL_TEAM_ENTRY,True,False,32,Kyle Kaiser,True,JUNCOS_HOLLINGER_RACING
+,,,,,CAR,2018.0,18,Sebastien Bourdais,,MATCHED,EXACT_CAR,DALE_COYNE_RACING,Dale Coyne Racing with Vasser-Sullivan,JOINT_ENTRY,True,False,18,Sebastien Bourdais,True,DALE_COYNE_RACING
+,,,,,CAR,2018.0,15,Graham Rahal,,MATCHED,EXACT_CAR,RAHAL_LETTERMAN_LANIGAN,Rahal Letterman Lanigan Racing,FULL_TEAM_ENTRY,True,False,15,Graham Rahal,True,RAHAL_LETTERMAN_LANIGAN
+,,,,,CAR,2018.0,14,Tony Kanaan,,MATCHED,EXACT_CAR,AJ_FOYT,A.J. Foyt Enterprises,FULL_TEAM_ENTRY,True,False,14,Tony Kanaan,True,AJ_FOYT
+,,,,,CAR,2018.0,17,Conor Daly,,MATCHED,EXACT_CAR,DALE_COYNE_RACING,Dale Coyne Racing dba Thom Burns Racing,JOINT_ENTRY,True,False,17,Conor Daly,True,DALE_COYNE_RACING
+,,,,,CAR,2018.0,33,James Davison,,MATCHED,EXACT_CAR,AJ_FOYT,Foyt with Byrd / Hollinger / Belardi,JOINT_ENTRY,True,False,33,James Davison,True,AJ_FOYT
+,,,,,CAR,2018.0,1,Josef Newgarden,,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,1,Josef Newgarden,True,TEAM_PENSKE
+,,,,,CAR,2018.0,25,Stefan Wilson,,MATCHED,EXACT_CAR,ANDRETTI,Andretti Autosport,FULL_TEAM_ENTRY,True,False,25,Stefan Wilson,True,ANDRETTI
+,,,,,CAR,2018.0,24,Sage Karam,,MATCHED,EXACT_CAR,DREYER_REINBOLD_RACING,Dreyer & Reinbold Racing,FULL_TEAM_ENTRY,True,False,24,Sage Karam,True,DREYER_REINBOLD_RACING
+,,,,,CAR,2018.0,27,Alexander Rossi,,MATCHED,EXACT_CAR,ANDRETTI,Andretti Autosport,FULL_TEAM_ENTRY,True,False,27,Alexander Rossi,True,ANDRETTI
+,,,,,CAR,2018.0,20,Ed Carpenter,,MATCHED,EXACT_CAR,ED_CARPENTER_RACING,Ed Carpenter Racing,FULL_TEAM_ENTRY,True,False,20,Ed Carpenter,True,ED_CARPENTER_RACING
+,,,,,CAR,2018.0,26,Zach Veach,,MATCHED,EXACT_CAR,ANDRETTI,Andretti Autosport,FULL_TEAM_ENTRY,True,False,26,Zach Veach,True,ANDRETTI
+,,,,,CAR,2018.0,88,Gabby Chaves,,MATCHED,EXACT_CAR,HARDING_RACING,Harding Racing,FULL_TEAM_ENTRY,True,False,88,Gabby Chaves,True,HARDING_RACING
+,,,,,CAR,2018.0,60,Jack Harvey,,MATCHED,EXACT_CAR,MEYER_SHANK_RACING,Meyer Shank Racing with SPM,TECHNICAL_PARTNERSHIP,False,True,60,Jack Harvey,True,MEYER_SHANK_RACING
+,,,,,CAR,2018.0,64,Oriol Servia,,MATCHED,EXACT_CAR,RAHAL_LETTERMAN_LANIGAN,Scuderia Corsa with RLL,JOINT_ENTRY,True,False,64,Oriol Servia,True,RAHAL_LETTERMAN_LANIGAN
+,,,,,CAR,2018.0,66,JR Hildebrand,,MATCHED,EXACT_CAR,DREYER_REINBOLD_RACING,Dreyer & Reinbold Racing,FULL_TEAM_ENTRY,True,False,66,JR Hildebrand,True,DREYER_REINBOLD_RACING
+,,,,,CAR,2018.0,29,Carlos Munoz,,MATCHED,EXACT_CAR,ANDRETTI,Andretti Autosport,FULL_TEAM_ENTRY,True,False,29,Carlos Munoz,True,ANDRETTI
+,,,,,CAR,2018.0,28,Ryan Hunter-Reay,,MATCHED,EXACT_CAR,ANDRETTI,Andretti Autosport,FULL_TEAM_ENTRY,True,False,28,Ryan Hunter-Reay,True,ANDRETTI
+,,,,,CAR,2018.0,21,Spencer Pigot,,MATCHED,EXACT_CAR,ED_CARPENTER_RACING,Ed Carpenter Racing,FULL_TEAM_ENTRY,True,False,21,Spencer Pigot,True,ED_CARPENTER_RACING
+,,,,,CAR,2018.0,22,Simon Pagenaud,,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,22,Simon Pagenaud,True,TEAM_PENSKE
+,,,,,CAR,2018.0,23,Charlie Kimball,,MATCHED,EXACT_CAR,CARLIN,Carlin,FULL_TEAM_ENTRY,True,False,23,Charlie Kimball,True,CARLIN
+,,,,,CAR,2020.0,8,Marcus Ericsson,,MATCHED,EXACT_CAR,CHIP_GANASSI_RACING,Chip Ganassi Racing,FULL_TEAM_ENTRY,True,False,8,Marcus Ericsson,True,CHIP_GANASSI_RACING
+,,,,,CAR,2025.0,6,Nolan Siegel,Arrow McLaren,MATCHED,EXACT_CAR,ARROW_MCLAREN_SPM,Arrow McLaren,FULL_TEAM_ENTRY,True,False,6,Nolan Siegel,True,ARROW_MCLAREN_SPM
+,,,,,CAR,2025.0,17,Kyle Larson,Arrow McLaren,MATCHED,EXACT_CAR,ARROW_MCLAREN_SPM,Arrow McLaren,FULL_TEAM_ENTRY,True,False,17,Kyle Larson,True,ARROW_MCLAREN_SPM
+,,,,,CAR,2025.0,18,Rinus Veekay,Dale Coyne Racing,MATCHED,EXACT_CAR,DALE_COYNE_RACING,Dale Coyne Racing,FULL_TEAM_ENTRY,True,False,18,Rinus VeeKay,True,DALE_COYNE_RACING
+,,,,,CAR,2025.0,14,Santino Ferrucci,A.J. Foyt Enterprises,MATCHED,EXACT_CAR,AJ_FOYT,A.J. Foyt Enterprises,FULL_TEAM_ENTRY,True,False,14,Santino Ferrucci,True,AJ_FOYT
+,,,,,CAR,2025.0,15,Graham Rahal,Rahal Letterman Lanigan Racing,MATCHED,EXACT_CAR,RAHAL_LETTERMAN_LANIGAN,Rahal Letterman Lanigan Racing,FULL_TEAM_ENTRY,True,False,15,Graham Rahal,True,RAHAL_LETTERMAN_LANIGAN
+,,,,,CAR,2025.0,20,Alexander Rossi,Ed Carpenter Racing,MATCHED,EXACT_CAR,ED_CARPENTER_RACING,Ed Carpenter Racing,FULL_TEAM_ENTRY,True,False,20,Alexander Rossi,True,ED_CARPENTER_RACING
+,,,,,CAR,2025.0,21,Christian Rasmussen,Ed Carpenter Racing,MATCHED,EXACT_CAR,ED_CARPENTER_RACING,Ed Carpenter Racing,FULL_TEAM_ENTRY,True,False,21,Christian Rasmussen,True,ED_CARPENTER_RACING
+,,,,,CAR,2025.0,23,Ryan Hunter-Reay,Dreyer & Reinbold Racing,MATCHED,EXACT_CAR,DREYER_REINBOLD_RACING,DRR-Cusick Motorsports,JOINT_ENTRY,True,False,23,Ryan Hunter-Reay,True,DREYER_REINBOLD_RACING
+,,,,,CAR,2025.0,24,Jack Harvey,Dreyer & Reinbold Racing,MATCHED,EXACT_CAR,DREYER_REINBOLD_RACING,DRR-Cusick Motorsports,JOINT_ENTRY,True,False,24,Jack Harvey,True,DREYER_REINBOLD_RACING
+,,,,,CAR,2025.0,5,Pato O'Ward,Arrow McLaren,MATCHED,EXACT_CAR,ARROW_MCLAREN_SPM,Arrow McLaren,FULL_TEAM_ENTRY,True,False,5,Pato O'Ward,True,ARROW_MCLAREN_SPM
+,,,,,CAR,2025.0,7,Christian Lundgaard,Arrow McLaren,MATCHED,EXACT_CAR,ARROW_MCLAREN_SPM,Arrow McLaren,FULL_TEAM_ENTRY,True,False,7,Christian Lundgaard,True,ARROW_MCLAREN_SPM
+,,,,,CAR,2025.0,4,David Malukas,A.J. Foyt Enterprises,MATCHED,EXACT_CAR,AJ_FOYT,A.J. Foyt Enterprises,FULL_TEAM_ENTRY,True,False,4,David Malukas,True,AJ_FOYT
+,,,,,CAR,2025.0,2,Josef Newgarden,Team Penske,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,2,Josef Newgarden,True,TEAM_PENSKE
+,,,,,CAR,2025.0,3,Scott McLaughlin,Team Penske,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,3,Scott McLaughlin,True,TEAM_PENSKE
+,,,,,CAR,2025.0,10,Alex Palou,Chip Ganassi Racing,MATCHED,EXACT_CAR,CHIP_GANASSI_RACING,Chip Ganassi Racing,FULL_TEAM_ENTRY,True,False,10,Alex Palou,True,CHIP_GANASSI_RACING
+,,,,,CAR,2025.0,12,Will Power,Team Penske,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,12,Will Power,True,TEAM_PENSKE
+,,,,,CAR,2025.0,9,Scott Dixon,Chip Ganassi Racing,MATCHED,EXACT_CAR,CHIP_GANASSI_RACING,Chip Ganassi Racing,FULL_TEAM_ENTRY,True,False,9,Scott Dixon,True,CHIP_GANASSI_RACING
+,,,,,CAR,2025.0,8,Kyffin Simpson,Chip Ganassi Racing,MATCHED,EXACT_CAR,CHIP_GANASSI_RACING,Chip Ganassi Racing,FULL_TEAM_ENTRY,True,False,8,Kyffin Simpson,True,CHIP_GANASSI_RACING
+,,,,,CAR,2025.0,76,Conor Daly,Juncos Racing,MATCHED,EXACT_CAR,JUNCOS_HOLLINGER_RACING,Juncos Hollinger Racing,FULL_TEAM_ENTRY,True,False,76,Conor Daly,True,JUNCOS_HOLLINGER_RACING
+,,,,,CAR,2025.0,77,Sting Ray Robb,Juncos Racing,MATCHED,EXACT_CAR,JUNCOS_HOLLINGER_RACING,Juncos Hollinger Racing,FULL_TEAM_ENTRY,True,False,77,Sting Ray Robb,True,JUNCOS_HOLLINGER_RACING
+,,,,,CAR,2025.0,83,Robert Shwartzman,Prema Racing,MATCHED,EXACT_CAR,PREMA_RACING,PREMA Racing,FULL_TEAM_ENTRY,True,False,83,Robert Shwartzman,True,PREMA_RACING
+,,,,,CAR,2025.0,66,Marcus Armstrong,Meyer Shank Racing,MATCHED,EXACT_CAR,MEYER_SHANK_RACING,Meyer Shank Racing w/ Curb-Agajanian,JOINT_ENTRY,True,False,66,Marcus Armstrong,True,MEYER_SHANK_RACING
+,,,,,CAR,2025.0,75,Takuma Sato,Rahal Letterman Lanigan Racing,MATCHED,EXACT_CAR,RAHAL_LETTERMAN_LANIGAN,Rahal Letterman Lanigan Racing,FULL_TEAM_ENTRY,True,False,75,Takuma Sato,True,RAHAL_LETTERMAN_LANIGAN
+,,,,,CAR,2025.0,90,Callum Ilott,Prema Racing,MATCHED,EXACT_CAR,PREMA_RACING,PREMA Racing,FULL_TEAM_ENTRY,True,False,90,Callum Ilott,True,PREMA_RACING
+,,,,,CAR,2025.0,98,Marco Andretti,Andretti Global,MATCHED,EXACT_CAR,ANDRETTI,Andretti Herta w/Marco & Curb-Agajanian,JOINT_ENTRY,True,False,98,Marco Andretti,True,ANDRETTI
+,,,,,CAR,2025.0,06,Helio Castroneves,Meyer Shank Racing,MATCHED,EXACT_CAR,MEYER_SHANK_RACING,Meyer Shank Racing w/ Curb-Agajanian,JOINT_ENTRY,True,False,06,Helio Castroneves,True,MEYER_SHANK_RACING
+,,,,,CAR,2025.0,28,Marcus Ericsson,Andretti Global,MATCHED,EXACT_CAR,ANDRETTI,Andretti Global,FULL_TEAM_ENTRY,True,False,28,Marcus Ericsson,True,ANDRETTI
+,,,,,CAR,2025.0,30,Devlin DeFrancesco,Rahal Letterman Lanigan Racing,MATCHED,EXACT_CAR,RAHAL_LETTERMAN_LANIGAN,Rahal Letterman Lanigan Racing,FULL_TEAM_ENTRY,True,False,30,Devlin DeFrancesco,True,RAHAL_LETTERMAN_LANIGAN
+,,,,,CAR,2025.0,27,Kyle Kirkwood,Andretti Global,MATCHED,EXACT_CAR,ANDRETTI,Andretti Global,FULL_TEAM_ENTRY,True,False,27,Kyle Kirkwood,True,ANDRETTI
+,,,,,CAR,2025.0,26,Colton Herta,Andretti Global,MATCHED,EXACT_CAR,ANDRETTI,Andretti Global w/ Curb-Agajanian,JOINT_ENTRY,True,False,26,Colton Herta,True,ANDRETTI
+,,,,,CAR,2025.0,51,Jacob Abel,Dale Coyne Racing,MATCHED,EXACT_CAR,DALE_COYNE_RACING,Dale Coyne Racing,FULL_TEAM_ENTRY,True,False,51,Jacob Abel,True,DALE_COYNE_RACING
+,,,,,CAR,2025.0,60,Felix Rosenqvist,Meyer Shank Racing,MATCHED,EXACT_CAR,MEYER_SHANK_RACING,Meyer Shank Racing w/ Curb-Agajanian,JOINT_ENTRY,True,False,60,Felix Rosenqvist,True,MEYER_SHANK_RACING
+,,,,,CAR,2025.0,45,Louis Foster,Rahal Letterman Lanigan Racing,MATCHED,EXACT_CAR,RAHAL_LETTERMAN_LANIGAN,Rahal Letterman Lanigan Racing,FULL_TEAM_ENTRY,True,False,45,Louis Foster,True,RAHAL_LETTERMAN_LANIGAN
+,,,,,CAR,2025.0,33,Ed Carpenter,Ed Carpenter Racing,MATCHED,EXACT_CAR,ED_CARPENTER_RACING,Ed Carpenter Racing,FULL_TEAM_ENTRY,True,False,33,Ed Carpenter,True,ED_CARPENTER_RACING
+,,,,,CAR,2024.0,11,Marcus Armstrong,Chip Ganassi Racing,MATCHED,EXACT_CAR,CHIP_GANASSI_RACING,Chip Ganassi Racing,FULL_TEAM_ENTRY,True,False,11,Marcus Armstrong,True,CHIP_GANASSI_RACING
+,,,,,CAR,2024.0,12,Will Power,Team Penske,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,12,Will Power,True,TEAM_PENSKE
+,,,,,CAR,2024.0,06,Helio Castroneves,Meyer Shank Racing,MATCHED,EXACT_CAR,MEYER_SHANK_RACING,Meyer Shank Racing w/ Curb-Agajanian,JOINT_ENTRY,True,False,06,Helio Castroneves,True,MEYER_SHANK_RACING
+,,,,,CAR,2024.0,9,Scott Dixon,Chip Ganassi Racing,MATCHED,EXACT_CAR,CHIP_GANASSI_RACING,Chip Ganassi Racing,FULL_TEAM_ENTRY,True,False,9,Scott Dixon,True,CHIP_GANASSI_RACING
+,,,,,CAR,2024.0,10,Alex Palou,Chip Ganassi Racing,MATCHED,EXACT_CAR,CHIP_GANASSI_RACING,Chip Ganassi Racing,FULL_TEAM_ENTRY,True,False,10,Alex Palou,True,CHIP_GANASSI_RACING
+,,,,,CAR,2024.0,15,Graham Rahal,Rahal Letterman Lanigan Racing,MATCHED,EXACT_CAR,RAHAL_LETTERMAN_LANIGAN,Rahal Letterman Lanigan Racing,FULL_TEAM_ENTRY,True,False,15,Graham Rahal,True,RAHAL_LETTERMAN_LANIGAN
+,,,,,CAR,2024.0,17,Kyle Larson,Arrow McLaren,MATCHED,EXACT_CAR,ARROW_MCLAREN_SPM,Arrow McLaren/Rick Hendrick,JOINT_ENTRY,True,False,17,Kyle Larson,True,ARROW_MCLAREN_SPM
+,,,,,CAR,2024.0,14,Santino Ferrucci,A.J. Foyt Enterprises,MATCHED,EXACT_CAR,AJ_FOYT,A.J. Foyt Enterprises,FULL_TEAM_ENTRY,True,False,14,Santino Ferrucci,True,AJ_FOYT
+,,,,,CAR,2024.0,7,Alexander Rossi,Arrow McLaren,MATCHED,EXACT_CAR,ARROW_MCLAREN_SPM,Arrow McLaren,FULL_TEAM_ENTRY,True,False,7,Alexander Rossi,True,ARROW_MCLAREN_SPM
+,,,,,CAR,2024.0,4,Kyffin Simpson,Chip Ganassi Racing,MATCHED,EXACT_CAR,CHIP_GANASSI_RACING,Chip Ganassi Racing,FULL_TEAM_ENTRY,True,False,4,Kyffin Simpson,True,CHIP_GANASSI_RACING
+,,,,,CAR,2024.0,3,Scott McLaughlin,Team Penske,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,3,Scott McLaughlin,True,TEAM_PENSKE
+,,,,,CAR,2024.0,5,Pato O'Ward,Arrow McLaren,MATCHED,EXACT_CAR,ARROW_MCLAREN_SPM,Arrow McLaren,FULL_TEAM_ENTRY,True,False,5,Pato O'Ward,True,ARROW_MCLAREN_SPM
+,,,,,CAR,2024.0,2,Josef Newgarden,Team Penske,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,2,Josef Newgarden,True,TEAM_PENSKE
+,,,,,CAR,2024.0,8,Linus Lundqvist,Chip Ganassi Racing,MATCHED,EXACT_CAR,CHIP_GANASSI_RACING,Chip Ganassi Racing,FULL_TEAM_ENTRY,True,False,8,Linus Lundqvist,True,CHIP_GANASSI_RACING
+,,,,,CAR,2024.0,6,Callum Ilott,Arrow McLaren,MATCHED,EXACT_CAR,ARROW_MCLAREN_SPM,Arrow McLaren,FULL_TEAM_ENTRY,True,False,6,Callum Ilott,True,ARROW_MCLAREN_SPM
+,,,,,CAR,2024.0,60,Felix Rosenqvist,Meyer Shank Racing,MATCHED,EXACT_CAR,MEYER_SHANK_RACING,Meyer Shank Racing,FULL_TEAM_ENTRY,True,False,60,Felix Rosenqvist,True,MEYER_SHANK_RACING
+,,,,,CAR,2024.0,66,Tom Blomqvist,Meyer Shank Racing,MATCHED,EXACT_CAR,MEYER_SHANK_RACING,Meyer Shank Racing,FULL_TEAM_ENTRY,True,False,66,Tom Blomqvist,True,MEYER_SHANK_RACING
+,,,,,CAR,2024.0,75,Takuma Sato,Rahal Letterman Lanigan Racing,MATCHED,EXACT_CAR,RAHAL_LETTERMAN_LANIGAN,Rahal Letterman Lanigan Racing,FULL_TEAM_ENTRY,True,False,75,Takuma Sato,True,RAHAL_LETTERMAN_LANIGAN
+,,,,,CAR,2024.0,45,Christian Lundgaard,Rahal Letterman Lanigan Racing,MATCHED,EXACT_CAR,RAHAL_LETTERMAN_LANIGAN,Rahal Letterman Lanigan Racing,FULL_TEAM_ENTRY,True,False,45,Christian Lundgaard,True,RAHAL_LETTERMAN_LANIGAN
+,,,,,CAR,2024.0,41,Sting Ray Robb,A.J. Foyt Enterprises,MATCHED,EXACT_CAR,AJ_FOYT,A.J. Foyt Enterprises,FULL_TEAM_ENTRY,True,False,41,Sting Ray Robb,True,AJ_FOYT
+,,,,,CAR,2024.0,51,Katherine Legge,Dale Coyne Racing,MATCHED,EXACT_CAR,DALE_COYNE_RACING,Dale Coyne Racing with RWR,JOINT_ENTRY,True,False,51,Katherine Legge,True,DALE_COYNE_RACING
+,,,,,CAR,2024.0,77,Romain Grosjean,Juncos Racing,MATCHED,EXACT_CAR,JUNCOS_HOLLINGER_RACING,Juncos Hollinger Racing,FULL_TEAM_ENTRY,True,False,77,Romain Grosjean,True,JUNCOS_HOLLINGER_RACING
+,,,,,CAR,2024.0,78,Agustin Canapino,Juncos Racing,MATCHED,EXACT_CAR,JUNCOS_HOLLINGER_RACING,Juncos Hollinger Racing,FULL_TEAM_ENTRY,True,False,78,Agustin Canapino,True,JUNCOS_HOLLINGER_RACING
+,,,,,CAR,2024.0,98,Marco Andretti,Andretti Global,MATCHED,EXACT_CAR,ANDRETTI,Andretti Herta w/ Marco & Curb-Agajanian,JOINT_ENTRY,True,False,98,Marco Andretti,True,ANDRETTI
+,,,,,CAR,2024.0,24,Conor Daly,Dreyer & Reinbold Racing,MATCHED,EXACT_CAR,DREYER_REINBOLD_RACING,DRR-CUSICK MOTORSPORTS,JOINT_ENTRY,True,False,24,Conor Daly,True,DREYER_REINBOLD_RACING
+,,,,,CAR,2024.0,26,Colton Herta,Andretti Global,MATCHED,EXACT_CAR,ANDRETTI,Andretti Global w/ Curb-Agajanian,JOINT_ENTRY,True,False,26,Colton Herta,True,ANDRETTI
+,,,,,CAR,2024.0,23,Ryan Hunter-Reay,Dreyer & Reinbold Racing,MATCHED,EXACT_CAR,DREYER_REINBOLD_RACING,DRR-CUSICK MOTORSPORTS,JOINT_ENTRY,True,False,23,Ryan Hunter-Reay,True,DREYER_REINBOLD_RACING
+,,,,,CAR,2024.0,27,Kyle Kirkwood,Andretti Global,MATCHED,EXACT_CAR,ANDRETTI,Andretti Global,FULL_TEAM_ENTRY,True,False,27,Kyle Kirkwood,True,ANDRETTI
+,,,,,CAR,2024.0,20,Ed Carpenter,Ed Carpenter Racing,MATCHED,EXACT_CAR,ED_CARPENTER_RACING,Ed Carpenter Racing,FULL_TEAM_ENTRY,True,False,20,Ed Carpenter,True,ED_CARPENTER_RACING
+,,,,,CAR,2024.0,21,Rinus VeeKay,Ed Carpenter Racing,MATCHED,EXACT_CAR,ED_CARPENTER_RACING,Ed Carpenter Racing,FULL_TEAM_ENTRY,True,False,21,Rinus VeeKay,True,ED_CARPENTER_RACING
+,,,,,CAR,2024.0,30,Pietro Fittipaldi,Rahal Letterman Lanigan Racing,MATCHED,EXACT_CAR,RAHAL_LETTERMAN_LANIGAN,Rahal Letterman Lanigan Racing,FULL_TEAM_ENTRY,True,False,30,Pietro Fittipaldi,True,RAHAL_LETTERMAN_LANIGAN
+,,,,,CAR,2024.0,28,Marcus Ericsson,Andretti Global,MATCHED,EXACT_CAR,ANDRETTI,Andretti Global,FULL_TEAM_ENTRY,True,False,28,Marcus Ericsson,True,ANDRETTI
+,,,,,CAR,2024.0,33,Christian Rasmussen,Ed Carpenter Racing,MATCHED,EXACT_CAR,ED_CARPENTER_RACING,Ed Carpenter Racing,FULL_TEAM_ENTRY,True,False,33,Christian Rasmussen,True,ED_CARPENTER_RACING
+,,,,,CAR,2019.0,31,Patricio O'Ward,,MATCHED,EXACT_CAR,CARLIN,Carlin,FULL_TEAM_ENTRY,True,False,31,Patricio O'Ward,True,CARLIN
+,,,,,CAR,2019.0,32,Kyle Kaiser,,MATCHED,EXACT_CAR,JUNCOS_HOLLINGER_RACING,Juncos Racing,FULL_TEAM_ENTRY,True,False,32,Kyle Kaiser,True,JUNCOS_HOLLINGER_RACING
+,,,,,CAR,2019.0,19,Santino Ferrucci,,MATCHED,EXACT_CAR,DALE_COYNE_RACING,Dale Coyne Racing,FULL_TEAM_ENTRY,True,False,19,Santino Ferrucci,True,DALE_COYNE_RACING
+,,,,,CAR,2019.0,30,Takuma Sato,,MATCHED,EXACT_CAR,RAHAL_LETTERMAN_LANIGAN,Rahal Letterman Lanigan Racing,FULL_TEAM_ENTRY,True,False,30,Takuma Sato,True,RAHAL_LETTERMAN_LANIGAN
+,,,,,CAR,2019.0,42,Jordan King,,MATCHED,EXACT_CAR,RAHAL_LETTERMAN_LANIGAN,Rahal Letterman Lanigan Racing,FULL_TEAM_ENTRY,True,False,42,Jordan King,True,RAHAL_LETTERMAN_LANIGAN
+,,,,,CAR,2019.0,21,Spencer Pigot,,MATCHED,EXACT_CAR,ED_CARPENTER_RACING,Ed Carpenter Racing,FULL_TEAM_ENTRY,True,False,21,Spencer Pigot,True,ED_CARPENTER_RACING
+,,,,,CAR,2019.0,22,Simon Pagenaud,,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,22,Simon Pagenaud,True,TEAM_PENSKE
+,,,,,CAR,2019.0,23,Charlie Kimball,,MATCHED,EXACT_CAR,CARLIN,Carlin,FULL_TEAM_ENTRY,True,False,23,Charlie Kimball,True,CARLIN
+,,,,,CAR,2019.0,4,Matheus Leist,,MATCHED,EXACT_CAR,AJ_FOYT,A.J. Foyt Enterprises,FULL_TEAM_ENTRY,True,False,4,Matheus Leist,True,AJ_FOYT
+,,,,,CAR,2019.0,7,Marcus Ericsson,,MATCHED,EXACT_CAR,ARROW_MCLAREN_SPM,Arrow Schmidt Peterson Motorsports,FULL_TEAM_ENTRY,True,False,7,Marcus Ericsson,True,ARROW_MCLAREN_SPM
+,,,,,CAR,2019.0,18,Sebastien Bourdais,,MATCHED,EXACT_CAR,DALE_COYNE_RACING,Dale Coyne Racing with Vasser-Sullivan,JOINT_ENTRY,True,False,18,Sebastien Bourdais,True,DALE_COYNE_RACING
+,,,,,CAR,2019.0,12,Will Power,,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,12,Will Power,True,TEAM_PENSKE
+,,,,,CAR,2019.0,9,Scott Dixon,,MATCHED,EXACT_CAR,CHIP_GANASSI_RACING,Chip Ganassi Racing,FULL_TEAM_ENTRY,True,False,9,Scott Dixon,True,CHIP_GANASSI_RACING
+,,,,,CAR,2019.0,33,James Davison,,MATCHED,EXACT_CAR,DALE_COYNE_RACING,Dale Coyne Racing with Byrd and Belardi,JOINT_ENTRY,True,False,33,James Davison,True,DALE_COYNE_RACING
+,,,,,CAR,2019.0,3,Helio Castroneves,,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,3,Helio Castroneves,True,TEAM_PENSKE
+,,,,,CAR,2019.0,5,James Hinchcliffe,,MATCHED,EXACT_CAR,ARROW_MCLAREN_SPM,Arrow Schmidt Peterson Motorsports,FULL_TEAM_ENTRY,True,False,5,James Hinchcliffe,True,ARROW_MCLAREN_SPM
+,,,,,CAR,2019.0,2,Josef Newgarden,,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,2,Josef Newgarden,True,TEAM_PENSKE
+,,,,,CAR,2019.0,25,Conor Daly,,MATCHED,EXACT_CAR,ANDRETTI,Andretti Autosport,FULL_TEAM_ENTRY,True,False,25,Conor Daly,True,ANDRETTI
+,,,,,CAR,2019.0,20,Ed Carpenter,,MATCHED,EXACT_CAR,ED_CARPENTER_RACING,Ed Carpenter Racing,FULL_TEAM_ENTRY,True,False,20,Ed Carpenter,True,ED_CARPENTER_RACING
+,,,,,CAR,2019.0,60,Jack Harvey,,MATCHED,EXACT_CAR,MEYER_SHANK_RACING,Meyer Shank Racing,FULL_TEAM_ENTRY,True,False,60,Jack Harvey,True,MEYER_SHANK_RACING
+,,,,,CAR,2019.0,98,Marco Andretti,,MATCHED,EXACT_CAR,ANDRETTI,Andretti Herta with Marco & Curb-Agajanian,JOINT_ENTRY,True,False,98,Marco Andretti,True,ANDRETTI
+,,,,,CAR,2019.0,48,JR Hildebrand,,MATCHED,EXACT_CAR,DREYER_REINBOLD_RACING,Dreyer & Reinbold Racing,FULL_TEAM_ENTRY,True,False,48,JR Hildebrand,True,DREYER_REINBOLD_RACING
+,,,,,CAR,2019.0,28,Ryan Hunter-Reay,,MATCHED,EXACT_CAR,ANDRETTI,Andretti Autosport,FULL_TEAM_ENTRY,True,False,28,Ryan Hunter-Reay,True,ANDRETTI
+,,,,,CAR,2019.0,39,Pippa Mann,,MATCHED,EXACT_CAR,CLAUSON_MARSHALL_RACING,Clauson-Marshall Racing,FULL_TEAM_ENTRY,True,False,39,Pippa Mann,True,CLAUSON_MARSHALL_RACING
+,,,,,CAR,2019.0,66,Fernando Alonso,,MATCHED,EXACT_CAR,MCLAREN_RACING_2019,McLaren Racing,TECHNICAL_PARTNERSHIP,False,True,66,Fernando Alonso,True,MCLAREN_RACING_2019
+,,,,,CAR,2019.0,15,Graham Rahal,,MATCHED,EXACT_CAR,RAHAL_LETTERMAN_LANIGAN,Rahal Letterman Lanigan Racing,FULL_TEAM_ENTRY,True,False,15,Graham Rahal,True,RAHAL_LETTERMAN_LANIGAN
+,,,,,CAR,2019.0,63,Ed Jones,,MATCHED,EXACT_CAR,ED_CARPENTER_RACING,Ed Carpenter Racing,FULL_TEAM_ENTRY,True,False,63,Ed Jones,True,ED_CARPENTER_RACING
+,,,,,CAR,2019.0,81,Ben Hanley,,MATCHED,EXACT_CAR,DRAGONSPEED,DragonSpeed,FULL_TEAM_ENTRY,True,False,81,Ben Hanley,True,DRAGONSPEED
+,,,,,CAR,2019.0,88,Colton Herta,,MATCHED,EXACT_CAR,HARDING_STEINBRENNER_RACING,Harding Steinbrenner Racing,TECHNICAL_PARTNERSHIP,False,True,88,Colton Herta,True,HARDING_STEINBRENNER_RACING
+,,,,,CAR,2019.0,26,Zach Veach,,MATCHED,EXACT_CAR,ANDRETTI,Andretti Autosport,FULL_TEAM_ENTRY,True,False,26,Zach Veach,True,ANDRETTI
+,,,,,CAR,2019.0,59,Max Chilton,,MATCHED,EXACT_CAR,CARLIN,Carlin,FULL_TEAM_ENTRY,True,False,59,Max Chilton,True,CARLIN
+,,,,,CAR,2019.0,27,Alexander Rossi,,MATCHED,EXACT_CAR,ANDRETTI,Andretti Autosport,FULL_TEAM_ENTRY,True,False,27,Alexander Rossi,True,ANDRETTI
+,,,,,CAR,2019.0,10,Felix Rosenqvist,,MATCHED,EXACT_CAR,CHIP_GANASSI_RACING,Chip Ganassi Racing,FULL_TEAM_ENTRY,True,False,10,Felix Rosenqvist,True,CHIP_GANASSI_RACING
+,,,,,CAR,2019.0,77,Oriol Servia,,MATCHED,EXACT_CAR,ARROW_MCLAREN_SPM,MotoGator Team Stange Racing w/ Arrow SPM,JOINT_ENTRY,True,False,77,Oriol Servia,True,ARROW_MCLAREN_SPM
+,,,,,CAR,2019.0,14,Tony Kanaan,,MATCHED,EXACT_CAR,AJ_FOYT,A.J. Foyt Enterprises,FULL_TEAM_ENTRY,True,False,14,Tony Kanaan,True,AJ_FOYT
+,,,,,CAR,2019.0,24,Sage Karam,,MATCHED,EXACT_CAR,DREYER_REINBOLD_RACING,Dreyer & Reinbold Racing,FULL_TEAM_ENTRY,True,False,24,Sage Karam,True,DREYER_REINBOLD_RACING
+,,,,,CAR,2023.0,33,Ed Carpenter,Ed Carpenter Racing,MATCHED,EXACT_CAR,ED_CARPENTER_RACING,Ed Carpenter Racing,FULL_TEAM_ENTRY,True,False,33,Ed Carpenter,True,ED_CARPENTER_RACING
+,,,,,CAR,2023.0,30,Jack Harvey,Rahal Letterman Lanigan Racing,MATCHED,EXACT_CAR,RAHAL_LETTERMAN_LANIGAN,Rahal Letterman Lanigan Racing,FULL_TEAM_ENTRY,True,False,30,Jack Harvey,True,RAHAL_LETTERMAN_LANIGAN
+,,,,,CAR,2023.0,2,Josef Newgarden,Team Penske,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,2,Josef Newgarden,True,TEAM_PENSKE
+,,,,,CAR,2023.0,45,Christian Lundgaard,Rahal Letterman Lanigan Racing,MATCHED,EXACT_CAR,RAHAL_LETTERMAN_LANIGAN,Rahal Letterman Lanigan Racing,FULL_TEAM_ENTRY,True,False,45,Christian Lundgaard,True,RAHAL_LETTERMAN_LANIGAN
+,,,,,CAR,2023.0,50,RC Enerson,Abel Motorsports,MATCHED,EXACT_CAR,ABEL_MOTORSPORTS,Abel Motorsports,FULL_TEAM_ENTRY,True,False,50,RC Enerson,True,ABEL_MOTORSPORTS
+,,,,,CAR,2023.0,44,Katherine Legge,Rahal Letterman Lanigan Racing,MATCHED,EXACT_CAR,RAHAL_LETTERMAN_LANIGAN,Rahal Letterman Lanigan Racing,FULL_TEAM_ENTRY,True,False,44,Katherine Legge,True,RAHAL_LETTERMAN_LANIGAN
+,,,,,CAR,2023.0,5,Pato O'Ward,Arrow McLaren,MATCHED,EXACT_CAR,ARROW_MCLAREN_SPM,Arrow McLaren,FULL_TEAM_ENTRY,True,False,5,Pato O'Ward,True,ARROW_MCLAREN_SPM
+,,,,,CAR,2023.0,6,Felix Rosenqvist,Arrow McLaren,MATCHED,EXACT_CAR,ARROW_MCLAREN_SPM,Arrow McLaren,FULL_TEAM_ENTRY,True,False,6,Felix Rosenqvist,True,ARROW_MCLAREN_SPM
+,,,,,CAR,2023.0,7,Alexander Rossi,Arrow McLaren,MATCHED,EXACT_CAR,ARROW_MCLAREN_SPM,Arrow McLaren,FULL_TEAM_ENTRY,True,False,7,Alexander Rossi,True,ARROW_MCLAREN_SPM
+,,,,,CAR,2023.0,3,Scott McLaughlin,Team Penske,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,3,Scott McLaughlin,True,TEAM_PENSKE
+,,,,,CAR,2023.0,78,Agustin Canapino,Juncos Racing,MATCHED,EXACT_CAR,JUNCOS_HOLLINGER_RACING,Juncos Hollinger Racing,FULL_TEAM_ENTRY,True,False,78,Agustín Canapino,True,JUNCOS_HOLLINGER_RACING
+,,,,,CAR,2023.0,77,Callum Ilott,Juncos Racing,MATCHED,EXACT_CAR,JUNCOS_HOLLINGER_RACING,Juncos Hollinger Racing,FULL_TEAM_ENTRY,True,False,77,Callum Ilott,True,JUNCOS_HOLLINGER_RACING
+,,,,,CAR,2023.0,66,Tony Kanaan,Arrow McLaren,MATCHED,EXACT_CAR,ARROW_MCLAREN_SPM,Arrow McLaren,FULL_TEAM_ENTRY,True,False,66,Tony Kanaan,True,ARROW_MCLAREN_SPM
+,,,,,CAR,2023.0,06,Helio Castroneves,Michael Shank Racing,MATCHED,EXACT_CAR,MEYER_SHANK_RACING,Meyer Shank Racing,FULL_TEAM_ENTRY,True,False,06,Helio Castroneves,True,MEYER_SHANK_RACING
+,,,,,CAR,2023.0,98,Marco Andretti,Andretti Autosport,MATCHED,EXACT_CAR,ANDRETTI,Andretti Herta w/ Marco & Curb-Agajanian,JOINT_ENTRY,True,False,98,Marco Andretti,True,ANDRETTI
+,,,,,CAR,2023.0,55,Benjamin Pedersen,A.J. Foyt Enterprises,MATCHED,EXACT_CAR,AJ_FOYT,A.J. Foyt Enterprises,FULL_TEAM_ENTRY,True,False,55,Benjamin Pedersen,True,AJ_FOYT
+,,,,,CAR,2023.0,51,Sting Ray Robb,Dale Coyne Racing,MATCHED,EXACT_CAR,DALE_COYNE_RACING,Dale Coyne Racing with RWR,JOINT_ENTRY,True,False,51,Sting Ray Robb,True,DALE_COYNE_RACING
+,,,,,CAR,2023.0,60,Simon Pagenaud,Michael Shank Racing,MATCHED,EXACT_CAR,MEYER_SHANK_RACING,Meyer Shank Racing,FULL_TEAM_ENTRY,True,False,60,Simon Pagenaud,True,MEYER_SHANK_RACING
+,,,,,CAR,2023.0,11,Takuma Sato,Chip Ganassi Racing,MATCHED,EXACT_CAR,CHIP_GANASSI_RACING,Chip Ganassi Racing,FULL_TEAM_ENTRY,True,False,11,Takuma Sato,True,CHIP_GANASSI_RACING
+,,,,,CAR,2023.0,21,Rinus VeeKay,Ed Carpenter Racing,MATCHED,EXACT_CAR,ED_CARPENTER_RACING,Ed Carpenter Racing,FULL_TEAM_ENTRY,True,False,21,Rinus VeeKay,True,ED_CARPENTER_RACING
+,,,,,CAR,2023.0,23,Ryan Hunter-Reay,Dreyer & Reinbold Racing,MATCHED,EXACT_CAR,DREYER_REINBOLD_RACING,Dreyer & Reinbold Racing,FULL_TEAM_ENTRY,True,False,23,Ryan Hunter-Reay,True,DREYER_REINBOLD_RACING
+,,,,,CAR,2023.0,24,Graham Rahal,Dreyer & Reinbold Racing,MATCHED,EXACT_CAR,DREYER_REINBOLD_RACING,Dreyer & Reinbold Racing,FULL_TEAM_ENTRY,True,False,24,Stefan Wilson,True,DREYER_REINBOLD_RACING
+,,,,,CAR,2023.0,20,Conor Daly,Ed Carpenter Racing,MATCHED,EXACT_CAR,ED_CARPENTER_RACING,Ed Carpenter Racing,FULL_TEAM_ENTRY,True,False,20,Conor Daly,True,ED_CARPENTER_RACING
+,,,,,CAR,2023.0,18,David Malukas,Dale Coyne Racing,MATCHED,EXACT_CAR,DALE_COYNE_RACING,Dale Coyne Racing with HMD,JOINT_ENTRY,True,False,18,David Malukas,True,DALE_COYNE_RACING
+,,,,,CAR,2023.0,29,Devlin DeFrancesco,Andretti Autosport,MATCHED,EXACT_CAR,ANDRETTI,Andretti Steinbrenner Autosport,JOINT_ENTRY,True,False,29,Devlin DeFrancesco,True,ANDRETTI
+,,,,,CAR,2023.0,28,Romain Grosjean,Andretti Autosport,MATCHED,EXACT_CAR,ANDRETTI,Andretti Autosport,FULL_TEAM_ENTRY,True,False,28,Romain Grosjean,True,ANDRETTI
+,,,,,CAR,2023.0,27,Kyle Kirkwood,Andretti Autosport,MATCHED,EXACT_CAR,ANDRETTI,Andretti Autosport,FULL_TEAM_ENTRY,True,False,27,Kyle Kirkwood,True,ANDRETTI
+,,,,,CAR,2023.0,26,Colton Herta,Andretti Autosport,MATCHED,EXACT_CAR,ANDRETTI,Andretti Autosport w/ Curb-Agajanian,JOINT_ENTRY,True,False,26,Colton Herta,True,ANDRETTI
+,,,,,CAR,2023.0,9,Scott Dixon,Chip Ganassi Racing,MATCHED,EXACT_CAR,CHIP_GANASSI_RACING,Chip Ganassi Racing,FULL_TEAM_ENTRY,True,False,9,Scott Dixon,True,CHIP_GANASSI_RACING
+,,,,,CAR,2023.0,10,Alex Palou,Chip Ganassi Racing,MATCHED,EXACT_CAR,CHIP_GANASSI_RACING,Chip Ganassi Racing,FULL_TEAM_ENTRY,True,False,10,Alex Palou,True,CHIP_GANASSI_RACING
+,,,,,CAR,2023.0,8,Marcus Ericsson,Chip Ganassi Racing,MATCHED,EXACT_CAR,CHIP_GANASSI_RACING,Chip Ganassi Racing,FULL_TEAM_ENTRY,True,False,8,Marcus Ericsson,True,CHIP_GANASSI_RACING
+,,,,,CAR,2023.0,14,Santino Ferrucci,A.J. Foyt Enterprises,MATCHED,EXACT_CAR,AJ_FOYT,A.J. Foyt Enterprises,FULL_TEAM_ENTRY,True,False,14,Santino Ferrucci,True,AJ_FOYT
+,,,,,CAR,2023.0,12,Will Power,Team Penske,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,12,Will Power,True,TEAM_PENSKE
+,,,,,CAR,2021.0,3,Scott McLaughlin,,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,3,Scott McLaughlin,True,TEAM_PENSKE
+,,,,,CAR,2021.0,21,Rinus VeeKay,,MATCHED,EXACT_CAR,ED_CARPENTER_RACING,Ed Carpenter Racing,FULL_TEAM_ENTRY,True,False,21,Rinus VeeKay,True,ED_CARPENTER_RACING
+,,,,,CAR,2021.0,26,Colton Herta,,MATCHED,EXACT_CAR,ANDRETTI,Andretti Autosport w/ Curb-Agajanian,JOINT_ENTRY,True,False,26,Colton Herta,True,ANDRETTI
+,,,,,CAR,2021.0,20,Ed Carpenter,,MATCHED,EXACT_CAR,ED_CARPENTER_RACING,Ed Carpenter Racing,FULL_TEAM_ENTRY,True,False,20,Ed Carpenter,True,ED_CARPENTER_RACING
+,,,,,CAR,2021.0,48,Tony Kanaan,,MATCHED,EXACT_CAR,CHIP_GANASSI_RACING,Chip Ganassi Racing,FULL_TEAM_ENTRY,True,False,48,Tony Kanaan,True,CHIP_GANASSI_RACING
+,,,,,CAR,2021.0,30,Takuma Sato,,MATCHED,EXACT_CAR,RAHAL_LETTERMAN_LANIGAN,Rahal Letterman Lanigan Racing,FULL_TEAM_ENTRY,True,False,30,Takuma Sato,True,RAHAL_LETTERMAN_LANIGAN
+,,,,,CAR,2021.0,9,Scott Dixon,,MATCHED,EXACT_CAR,CHIP_GANASSI_RACING,Chip Ganassi Racing,FULL_TEAM_ENTRY,True,False,9,Scott Dixon,True,CHIP_GANASSI_RACING
+,,,,,CAR,2021.0,06,Helio Castroneves,,MATCHED,EXACT_CAR,MEYER_SHANK_RACING,Meyer Shank Racing,FULL_TEAM_ENTRY,True,False,06,Helio Castroneves,True,MEYER_SHANK_RACING
+,,,,,CAR,2021.0,8,Marcus Ericsson,,MATCHED,EXACT_CAR,CHIP_GANASSI_RACING,Chip Ganassi Racing,FULL_TEAM_ENTRY,True,False,8,Marcus Ericsson,True,CHIP_GANASSI_RACING
+,,,,,CAR,2021.0,47,Conor Daly,,MATCHED,EXACT_CAR,ED_CARPENTER_RACING,Ed Carpenter Racing,FULL_TEAM_ENTRY,True,False,47,Conor Daly,True,ED_CARPENTER_RACING
+,,,,,CAR,2021.0,10,Alex Palou,,MATCHED,EXACT_CAR,CHIP_GANASSI_RACING,Chip Ganassi Racing,FULL_TEAM_ENTRY,True,False,10,Alex Palou,True,CHIP_GANASSI_RACING
+,,,,,CAR,2021.0,28,Ryan Hunter-Reay,,MATCHED,EXACT_CAR,ANDRETTI,Andretti Autosport,FULL_TEAM_ENTRY,True,False,28,Ryan Hunter-Reay,True,ANDRETTI
+,,,,,CAR,2021.0,7,Felix Rosenqvist,,MATCHED,EXACT_CAR,ARROW_MCLAREN_SPM,Arrow McLaren SP,FULL_TEAM_ENTRY,True,False,7,Felix Rosenqvist,True,ARROW_MCLAREN_SPM
+,,,,,CAR,2021.0,29,James Hinchcliffe,,MATCHED,EXACT_CAR,ANDRETTI,Andretti Steinbrenner Autosport,JOINT_ENTRY,True,False,29,James Hinchcliffe,True,ANDRETTI
+,,,,,CAR,2021.0,15,Graham Rahal,,MATCHED,EXACT_CAR,RAHAL_LETTERMAN_LANIGAN,Rahal Letterman Lanigan Racing,FULL_TEAM_ENTRY,True,False,15,Graham Rahal,True,RAHAL_LETTERMAN_LANIGAN
+,,,,,CAR,2021.0,51,Pietro Fittipaldi,,MATCHED,EXACT_CAR,DALE_COYNE_RACING,Dale Coyne Racing with RWR,JOINT_ENTRY,True,False,51,Pietro Fittipaldi,True,DALE_COYNE_RACING
+,,,,,CAR,2021.0,27,Alexander Rossi,,MATCHED,EXACT_CAR,ANDRETTI,Andretti Autosport,FULL_TEAM_ENTRY,True,False,27,Alexander Rossi,True,ANDRETTI
+,,,,,CAR,2021.0,18,Ed Jones,,MATCHED,EXACT_CAR,DALE_COYNE_RACING,Dale Coyne Racing with Vasser Sullivan,JOINT_ENTRY,True,False,18,Ed Jones,True,DALE_COYNE_RACING
+,,,,,CAR,2021.0,59,Max Chilton,,MATCHED,EXACT_CAR,CARLIN,Carlin,FULL_TEAM_ENTRY,True,False,59,Max Chilton,True,CARLIN
+,,,,,CAR,2021.0,25,Stefan Wilson,,MATCHED,EXACT_CAR,ANDRETTI,Andretti Autosport,FULL_TEAM_ENTRY,True,False,25,Stefan Wilson,True,ANDRETTI
+,,,,,CAR,2021.0,4,Dalton Kellett,,MATCHED,EXACT_CAR,AJ_FOYT,A.J. Foyt Enterprises,FULL_TEAM_ENTRY,True,False,4,Dalton Kellett,True,AJ_FOYT
+,,,,,CAR,2021.0,24,Sage Karam,,MATCHED,EXACT_CAR,DREYER_REINBOLD_RACING,Dreyer & Reinbold Racing,FULL_TEAM_ENTRY,True,False,24,Sage Karam,True,DREYER_REINBOLD_RACING
+,,,,,CAR,2021.0,14,Sebastien Bourdais,,MATCHED,EXACT_CAR,AJ_FOYT,A.J. Foyt Enterprises,FULL_TEAM_ENTRY,True,False,14,Sebastien Bourdais,True,AJ_FOYT
+,,,,,CAR,2021.0,22,Simon Pagenaud,,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,22,Simon Pagenaud,True,TEAM_PENSKE
+,,,,,CAR,2021.0,98,Marco Andretti,,MATCHED,EXACT_CAR,ANDRETTI,Andretti Herta-Haupert w/Marco & Curb-Agajanian,JOINT_ENTRY,True,False,98,Marco Andretti,True,ANDRETTI
+,,,,,CAR,2021.0,5,Pato O'Ward,,MATCHED,EXACT_CAR,ARROW_MCLAREN_SPM,Arrow McLaren SP,FULL_TEAM_ENTRY,True,False,5,Pato O'Ward,True,ARROW_MCLAREN_SPM
+,,,,,CAR,2021.0,16,Simona De Silvestro,,MATCHED,EXACT_CAR,PARETTA_AUTOSPORT,Paretta Autosport,TECHNICAL_PARTNERSHIP,False,True,16,Simona De Silvestro,True,PARETTA_AUTOSPORT
+,,,,,CAR,2021.0,12,Will Power,,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,12,Will Power,True,TEAM_PENSKE
+,,,,,CAR,2021.0,2,Josef Newgarden,,MATCHED,EXACT_CAR,TEAM_PENSKE,Team Penske,FULL_TEAM_ENTRY,True,False,2,Josef Newgarden,True,TEAM_PENSKE
+,,,,,CAR,2021.0,1,JR Hildebrand,,MATCHED,EXACT_CAR,AJ_FOYT,A.J. Foyt Enterprises,FULL_TEAM_ENTRY,True,False,1,JR Hildebrand,True,AJ_FOYT
+,,,,,CAR,2021.0,60,Jack Harvey,,MATCHED,EXACT_CAR,MEYER_SHANK_RACING,Meyer Shank Racing,FULL_TEAM_ENTRY,True,False,60,Jack Harvey,True,MEYER_SHANK_RACING
+,,,,,CAR,2021.0,86,Juan Pablo Montoya,,MATCHED,EXACT_CAR,ARROW_MCLAREN_SPM,Arrow McLaren SP,FULL_TEAM_ENTRY,True,False,86,Juan Pablo Montoya,True,ARROW_MCLAREN_SPM
+,,,,,CAR,2021.0,45,Santino Ferrucci,,MATCHED,EXACT_CAR,RAHAL_LETTERMAN_LANIGAN,Rahal Letterman Lanigan Racing,FULL_TEAM_ENTRY,True,False,45,Santino Ferrucci,True,RAHAL_LETTERMAN_LANIGAN
+,,,,,CAR,2019.0,5T,James Hinchcliffe,,MATCHED,BACKUP_T_CAR,ARROW_MCLAREN_SPM,Arrow Schmidt Peterson Motorsports,FULL_TEAM_ENTRY,True,False,5,James Hinchcliffe,True,ARROW_MCLAREN_SPM
+,,,,,CAR,2018.0,5,James Hinchliffe,,MATCHED,EXACT_CAR,ARROW_MCLAREN_SPM,Schmidt Peterson Motorsports,FULL_TEAM_ENTRY,True,False,5,James Hinchcliffe,False,ARROW_MCLAREN_SPM
+,,,,,CAR,2018.0,63,Pippa Mann,,MATCHED,EXACT_CAR,DALE_COYNE_RACING,Dale Coyne Racing,FULL_TEAM_ENTRY,True,False,63,Pippa Mann,True,DALE_COYNE_RACING
+,,,,,CAR,2021.0,75,RC Enerson,,MATCHED,EXACT_CAR,TOP_GUN_RACING,Top Gun Racing,FULL_TEAM_ENTRY,True,False,75,RC Enerson,True,TOP_GUN_RACING
+,,,,,CAR,2021.0,11,Charlie Kimball,,MATCHED,EXACT_CAR,AJ_FOYT,A.J. Foyt Enterprises,FULL_TEAM_ENTRY,True,False,11,Charlie Kimball,True,AJ_FOYT
+,,,,,CAR,2024.0,18,Nolan Siegel,Dale Coyne Racing,MATCHED,EXACT_CAR,DALE_COYNE_RACING,Dale Coyne Racing,FULL_TEAM_ENTRY,True,False,18,Nolan Siegel,True,DALE_COYNE_RACING
+,,,,,CAR,2023.0,15,Graham Rahal,Rahal Letterman Lanigan Racing,MATCHED,EXACT_CAR,RAHAL_LETTERMAN_LANIGAN,Rahal Letterman Lanigan Racing,FULL_TEAM_ENTRY,True,False,15,Graham Rahal,True,RAHAL_LETTERMAN_LANIGAN

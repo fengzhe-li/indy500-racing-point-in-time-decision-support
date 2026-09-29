@@ -56,3 +56,23 @@ These legacy names retain the numbering used during paper production. They remai
 | [`figure12a_queue_context_performance_overlay`](figure12a_queue_context_performance_overlay.png), [`figure12b_queue_context_probability_overlay`](figure12b_queue_context_probability_overlay.png) | Externally supplied opportunity-window overlay | OPERATIONAL_CURVE_V2 | Operational illustration; not a queue prediction |
 
 Matching PDF versions preserve publication-quality export, and adjacent plotting-data CSV files retain auditable figure inputs. The obsolete duplicate with a non-semantic `_副本` suffix and the superseded standalone root architecture export were removed during the consistency audit.
+
+## V4 — Team-normalized evidence extension (frozen, additive)
+
+`V4_TEAM_NORMALIZED_FINAL` is an additive evidence extension. It leaves FINAL_V2/V3 and the paper unchanged.
+
+- **Main README visuals:** the summary graphic below and the Phase 4H run-state figure.
+- **Everything else:** the other V4 figures stay in their phase folders and are linked here.
+- **Excluded:** the Phase 4F and 4G diagnostic figures are superseded intermediate diagnostics and are intentionally not featured.
+
+| Preview | Purpose | Source analysis | Scientific status |
+|---|---|---|---|
+| [![V4 summary](portfolio/v4-control-evidence-summary.png)](portfolio/v4-control-evidence-summary.png) | Final teammate-control result. C1 (same team − same car) is robust; C2 (different team − same team) is not; the full hierarchy is not established | Phase 4J frozen outputs (drawn by `scripts/generate_v4_summary_figure.py`; nothing recomputed) | Final (presentation rendering) |
+| [![Run-state composition](../v4_team_normalized/output/phase4h/figures/fig06_run_state_by_session_category.png)](../v4_team_normalized/output/phase4h/figures/fig06_run_state_by_session_category.png) | A valid timed practice lap is not automatically a comparable performance observation | Phase 4H | Final (measurement validity) |
+| [![Tier 1 vs Tier 2](../v4_team_normalized/output/phase4j/figures/fig06_tier1_vs_tier2.png)](../v4_team_normalized/output/phase4j/figures/fig06_tier1_vs_tier2.png) | Contrasts under strict (A↔A) and extended (A/B) validity tiers | Phase 4J | Final; Tier 2 is a sensitivity analysis only |
+| [![2023–24 vs 2025](../v4_team_normalized/output/phase4j/figures/fig07_2023_24_vs_2025.png)](../v4_team_normalized/output/phase4j/figures/fig07_2023_24_vs_2025.png) | Primary 2023–24 vs separate 2025 replication | Phase 4J | Final; 2025 not pooled |
+| [![Leave-one-out](../v4_team_normalized/output/phase4j/figures/fig05_leave_one_out.png)](../v4_team_normalized/output/phase4j/figures/fig05_leave_one_out.png) | Leave-one-session and leave-one-team stability | Phase 4J | Final robustness diagnostic |
+| [![Common support](../v4_team_normalized/output/phase4i/figures/fig04_common_support_by_session.png)](../v4_team_normalized/output/phase4i/figures/fig04_common_support_by_session.png) | Three-layer support after validity filtering | Phase 4I | Final support audit |
+| [![Prediction attrition](../v4_team_normalized/output/phase4k/figures/fig01_attrition.png)](../v4_team_normalized/output/phase4k/figures/fig01_attrition.png) | Teammate-prediction feasibility attrition (113 → 8 strict events) | Phase 4K | Final feasibility audit; teammate value not prospectively identifiable, not zero |
+
+**Authoritative text:** [`phase4l_final_scientific_synthesis.md`](../v4_team_normalized/output/phase4l/phase4l_final_scientific_synthesis.md).

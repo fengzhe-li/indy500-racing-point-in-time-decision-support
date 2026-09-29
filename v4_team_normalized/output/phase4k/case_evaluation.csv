@@ -1,0 +1,14 @@
+criterion,value
+N5,8
+S5,5
+K5,6
+C5,8
+Y5,2
+MS,0.375
+MT,0.25
+MP,0.07692307692307693
+PRIMARY_FEASIBILITY_CASE,C
+spec_commit,dae6856
+phase4l_gate,NO Phase 4L
+TIER2_2023_2024_EXTENDED_label,B [secondary; never changes primary]
+TIER1_2025_SECONDARY_label,C [secondary; never changes primary]

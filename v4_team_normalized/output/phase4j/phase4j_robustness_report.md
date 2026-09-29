@@ -1,0 +1,60 @@
+# V4 Phase 4J — Robustness Report
+
+## Leave-one-session-out
+
+| analysis | dropped_session | evaluable_sessions | C1 | C2 | C3 |
+|---|---|---|---|---|---|
+| PRIMARY_TIER1_2023_2024 | 6199 | 5 | 0.925 | 0.184 | 0.774 |
+| PRIMARY_TIER1_2023_2024 | 6207 | 5 | 0.925 | 0.184 | 0.774 |
+| PRIMARY_TIER1_2023_2024 | 6208 | 5 | 0.467 | 0.213 | 0.63 |
+| PRIMARY_TIER1_2023_2024 | 6378 | 5 | 0.467 | 0.213 | 0.63 |
+| PRIMARY_TIER1_2023_2024 | 6387 | 5 | 0.925 | 0.213 | 0.774 |
+| PRIMARY_TIER1_2023_2024 | 6388 | 5 | 0.467 | 0.184 | 0.63 |
+| TIER2_SENSITIVITY_2023_2024 | 6198 | 7 | 0.348 | 0.159 | 0.607 |
+| TIER2_SENSITIVITY_2023_2024 | 6199 | 7 | 0.391 | -0.348 | 0.773 |
+| TIER2_SENSITIVITY_2023_2024 | 6207 | 7 | 0.391 | -0.348 | 0.773 |
+| TIER2_SENSITIVITY_2023_2024 | 6208 | 7 | 0.391 | 0.159 | 0.773 |
+| TIER2_SENSITIVITY_2023_2024 | 6375 | 7 | 0.348 | 0.159 | 0.607 |
+| TIER2_SENSITIVITY_2023_2024 | 6378 | 7 | 0.391 | 0.159 | 0.607 |
+| TIER2_SENSITIVITY_2023_2024 | 6387 | 7 | 0.348 | -0.348 | 0.773 |
+| TIER2_SENSITIVITY_2023_2024 | 6388 | 7 | 0.348 | -0.348 | 0.607 |
+| REPLICATION_2025_TIER1 | 6651 | 4 | 0.855 | 0.308 | 1.152 |
+| REPLICATION_2025_TIER1 | 6653 | 4 | 0.241 | 1.05 | 1.67 |
+| REPLICATION_2025_TIER1 | 6654 | 4 | 0.83 | 0.308 | 1.199 |
+| REPLICATION_2025_TIER1 | 6662 | 4 | 0.241 | 0.616 | 1.152 |
+| REPLICATION_2025_TIER1 | 6663 | 4 | 0.855 | 1.05 | 1.67 |
+
+## Leave-one-team-out (every car-block of the team removed from all layers)
+
+| analysis | dropped_team | evaluable_sessions | feasible | common_support_contexts | C1 | C2 | C3 |
+|---|---|---|---|---|---|---|---|
+| PRIMARY_TIER1_2023_2024 | AJ_FOYT | 6 | True | 49 | 0.678 | 0.148 | 0.852 |
+| PRIMARY_TIER1_2023_2024 | ANDRETTI | 6 | True | 43 | 0.521 | 0.186 | 0.563 |
+| PRIMARY_TIER1_2023_2024 | ARROW_MCLAREN_SPM | 6 | True | 41 | 0.556 | 0.187 | 0.652 |
+| PRIMARY_TIER1_2023_2024 | CHIP_GANASSI_RACING | 6 | True | 31 | 0.468 | 0.31 | 0.874 |
+| PRIMARY_TIER1_2023_2024 | ED_CARPENTER_RACING | 6 | True | 50 | 0.973 | -0.036 | 0.854 |
+| PRIMARY_TIER1_2023_2024 | JUNCOS_HOLLINGER_RACING | 6 | True | 46 | 0.829 | 0.14 | 0.673 |
+| PRIMARY_TIER1_2023_2024 | MEYER_SHANK_RACING | 6 | True | 49 | 0.703 | 0.158 | 0.897 |
+| PRIMARY_TIER1_2023_2024 | RAHAL_LETTERMAN_LANIGAN | 6 | True | 47 | 0.886 | 0.189 | 0.712 |
+| PRIMARY_TIER1_2023_2024 | TEAM_PENSKE | 6 | True | 45 | 0.64 | 0.158 | 0.741 |
+| TIER2_SENSITIVITY_2023_2024 | AJ_FOYT | 8 | True | 100 | 0.456 | -0.094 | 0.831 |
+| TIER2_SENSITIVITY_2023_2024 | ANDRETTI | 8 | True | 84 | 0.391 | 0.02 | 0.42 |
+| TIER2_SENSITIVITY_2023_2024 | ARROW_MCLAREN_SPM | 8 | True | 83 | 0.547 | -0.062 | 0.53 |
+| TIER2_SENSITIVITY_2023_2024 | CHIP_GANASSI_RACING | 8 | True | 76 | 0.221 | 0.11 | 0.544 |
+| TIER2_SENSITIVITY_2023_2024 | DALE_COYNE_RACING | 8 | True | 100 | 0.422 | -0.075 | 0.694 |
+| TIER2_SENSITIVITY_2023_2024 | ED_CARPENTER_RACING | 8 | True | 86 | 0.689 | -0.213 | 0.81 |
+| TIER2_SENSITIVITY_2023_2024 | JUNCOS_HOLLINGER_RACING | 8 | True | 96 | 0.422 | -0.13 | 0.656 |
+| TIER2_SENSITIVITY_2023_2024 | MEYER_SHANK_RACING | 8 | True | 81 | 0.379 | 0.369 | 0.959 |
+| TIER2_SENSITIVITY_2023_2024 | RAHAL_LETTERMAN_LANIGAN | 7 | True | 94 | 0.3 | 0.158 | 0.6 |
+| TIER2_SENSITIVITY_2023_2024 | TEAM_PENSKE | 8 | True | 83 | 0.676 | 0.388 | 0.722 |
+| REPLICATION_2025_TIER1 | ANDRETTI | 5 | True | 21 | 1.283 | -0.126 | 0.873 |
+| REPLICATION_2025_TIER1 | ARROW_MCLAREN_SPM | 4 | True | 20 | 0.326 | 1.082 | 1.724 |
+| REPLICATION_2025_TIER1 | CHIP_GANASSI_RACING | 3 | True | 12 | 1.399 | -0.09 | 0.912 |
+| REPLICATION_2025_TIER1 | RAHAL_LETTERMAN_LANIGAN | 4 | True | 18 | 0.925 | 0.45 | 1.244 |
+| REPLICATION_2025_TIER1 | TEAM_PENSKE | 5 | True | 22 | 1.459 | 0.921 | 1.567 |
+
+**Readings:**
+- **C1** is positive in every primary LOSO and LOTO recomputation.
+- **C2** is positive in every LOSO recomputation but negative when Ed Carpenter Racing is removed. Only 4 of 6 sessions are positive.
+- **Bootstrap:** the C2 interval spans zero.
+- These are diagnostics only. The estimator was not tuned.

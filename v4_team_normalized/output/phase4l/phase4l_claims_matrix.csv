@@ -1,0 +1,20 @@
+status,claim,evidence,source
+SUPPORTED,Historical entrant naming fragmented real engineering-team relationships,P1-2: 59 official labels -> 21 canonical teams,v4_team_normalization_report.md
+SUPPORTED,Canonical team normalization recovers those relationships,85/313 strict teammate pairs recovered,v4_team_normalization_report.md
+SUPPORTED,Old teammate grouping had high precision but incomplete recall,0 spurious pairs; 27% of true pairs missed,v4_team_normalization_report.md
+SUPPORTED,Practice provides much denser contemporaneous same-team observation than qualifying,"Phase 4E opportunity counts (raw, dependent)",phase4e/
+SUPPORTED,Raw practice laps are heterogeneous in run state,4H: 8.1% class A; 74.6% ambiguous,phase4h/case_evaluation.csv
+SUPPORTED,Exact-car control reduces observed performance dispersion relative to same-team different-car comparison (restricted final population),"4J C1 = +0.696 mph, POSITIVE_CONSISTENT",phase4j/
+SUPPORTED,The original same-car qualifying design has empirically supported methodological value,4J C1 robust; relaxing controls exposed additional heterogeneity (4B-4K),"phase4j/, phase4b-4k"
+PARTIALLY_SUPPORTED,Same-team similarity relative to different-team similarity,4J C2 = 0.199 mph but INCONSISTENT; Tier 2 -0.094; layer-median -0.134,phase4j/
+PARTIALLY_SUPPORTED,2025 cross-regime consistency,"2025 C1 = +0.266 (consistent); C2 = 0.743 with interval [-0.90, 3.07]",phase4j/
+PARTIALLY_SUPPORTED,Local contemporaneous running context is an important design variable,4G CASE A; mechanism not identified (4H),"phase4g/, phase4h/"
+NOT_ESTABLISHED,Complete same-car < same-team < different-team hierarchy,4J CASE B,phase4j/
+NOT_ESTABLISHED,Causal team effect,no causal design in V4,all
+NOT_ESTABLISHED,Latent team-state trajectory,4D CASE C (NOT IDENTIFIED),phase4d/
+NOT_ESTABLISHED,Tow / traffic / aerodynamic mechanism,timing adjacency is a proxy; not identified,"phase4g/, phase4h/"
+NOT_ESTABLISHED,Teammate incremental predictive value,4K CASE C; not tested (Phase 4L predictive experiment not justified),phase4k/
+NOT_ESTABLISHED,Deployable practice prediction,no forecast vintages; no predictive experiment,phase4k/
+NOT_ESTABLISHED,Practice-specific physical coefficients,none estimated; frozen qualifying beta not validated for practice,"phase4c/, phase4k/"
+NOT_IDENTIFIABLE,Strict point-in-time teammate predictor under current retrospective labels,F5 = 8; conservative-cutoff F5 = 0,phase4k/
+NOT_IDENTIFIABLE,Genuine forecast-conditioned practice prediction,forecast-vintage events = 0,phase4k/

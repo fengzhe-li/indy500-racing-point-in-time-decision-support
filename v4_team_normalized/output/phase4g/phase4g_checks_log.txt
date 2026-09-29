@@ -1,0 +1,27 @@
+PASS  Phase 4F files unchanged (SHA-256 vs freeze record, 35 files)                                                                      
+PASS  Phase 4F CASE D unchanged                                                                                                          
+PASS  exact Phase 4F primary population reproduced (blocks, sessions, targets)                                                           
+PASS  Phase 4F primary car-blocks recomputed identically (unchanged definitions)                                                         
+PASS  exact Phase 4F primary controls reproduced (control, D, separation)                                                                
+PASS  exact Phase 4F primary teammate comparators reproduced                                                                             
+PASS  population A pairs identical to reconstructed controls                                                                             
+PASS  adjacency counts reproduce by brute force (300-pair sample)                                                                        
+PASS  timing order chronological (per-car lap timestamps strictly increasing within each source file's stints; session sequence sorted)  stint indices are per Timing71 source file (combined multi-file qualifying key)
+PASS  same-update pairs carry no invented crossing order                                                                                 
+PASS  same-team and different-team identities reproduce from the V4 registry                                                             
+PASS  no technical partnerships in primary teammate relationships (by year|car registry relationship)                                    
+PASS  no tow / traffic-group / aerodynamic status invented in outputs                                                                    
+PASS  no new hierarchy estimator promoted (delta_block only copied verbatim from Phase 4F; no new Δ/case on the hierarchy)               
+PASS  no model fitted (no fitting calls)                                                                                                 
+PASS  no team/driver ranking produced (no rank-of-team/driver columns; team shares alphabetical)                                         
+PASS  2025 secondary never pooled with primary (role separate in every pair table)                                                       
+PASS  Phase 4F sensitivity populations reproduced (adjacent-block, reweighted, team-balanced)                                            
+PASS  no Phase 4A-4F file changes (outputs and scripts vs 81455f3)                                                                       
+PASS  FINAL_V2/V3 frozen manifests hash exactly (R5.2 + R6)                                                                              
+PASS  pre-specification committed before results (ffdfacd) and unchanged                                                                 ffdfacd
+PASS  Timing71 labelled as third-party archived live feed (never official)                                                               
+PASS  all required outputs and >=7 figures present                                                                                       
+PASS  reports contain the required no-tow statement                                                                                      
+PASS  nothing outside v4_team_normalized/ changed                                                                                        
+
+25/25 checks passed

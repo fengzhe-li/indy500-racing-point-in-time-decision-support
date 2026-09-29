@@ -2,6 +2,7 @@
 
 figures:
 	python3 scripts/generate_portfolio_figures.py
+	python3 scripts/generate_v4_summary_figure.py
 
 portfolio-check:
 	python3 scripts/validate_portfolio.py

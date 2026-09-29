@@ -1,0 +1,16 @@
+item,count
+primary laps (comparable layer),10665.0
+car-block observations,3032.0
+unique cars,68.0
+unique canonical teams,12.0
+unique sessions (independent clusters),15.0
+unique session-blocks,454.0
+eligible within-block contrast blocks,209.0
+comparisons DIFF_TEAM,1937.0
+comparisons SAME_CAR,1356.0
+comparisons SAME_TEAM,1648.0
+comparisons TEAMMATE_OF_TARGET,1937.0
+max appearances of one car across comparisons,415.0
+median appearances per car,203.5
+Phase 4E raw same-team lap pairs ±5 min in these sessions,92893.0
+car-block reuse: max comparisons involving one car-block,13.0

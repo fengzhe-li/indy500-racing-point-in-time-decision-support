@@ -1,0 +1,10 @@
+criterion,value
+delta_positive,True
+share_ge_075,False
+both_years_positive,False
+loto_all_positive,False
+broad_positive,False
+windows_ge2_positive,False
+team_advantage_consistent,False
+same_car_ordering_established,True
+CASE,D
