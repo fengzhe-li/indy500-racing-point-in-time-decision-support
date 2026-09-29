@@ -1,0 +1,7 @@
+population,cutoff,F4,F4_model_free_exact,F4_model_free_matched,F5,F5_model_free_exact,F5_model_free_matched,note
+PRIMARY_TIER1_2023_2024,CONSERVATIVE,18,12,5,0,0,0,"EXACT = no measured PTSC change within target, teammate and placebo intervals; MATCHED = identical PTSC reading pairs across all three intervals"
+PRIMARY_TIER1_2023_2024,PRIMARY,22,13,6,8,3,2,"EXACT = no measured PTSC change within target, teammate and placebo intervals; MATCHED = identical PTSC reading pairs across all three intervals"
+TIER2_2023_2024_EXTENDED,CONSERVATIVE,46,20,7,0,0,0,"EXACT = no measured PTSC change within target, teammate and placebo intervals; MATCHED = identical PTSC reading pairs across all three intervals"
+TIER2_2023_2024_EXTENDED,PRIMARY,66,20,7,36,4,1,"EXACT = no measured PTSC change within target, teammate and placebo intervals; MATCHED = identical PTSC reading pairs across all three intervals"
+TIER1_2025_SECONDARY,CONSERVATIVE,12,7,3,0,0,0,"EXACT = no measured PTSC change within target, teammate and placebo intervals; MATCHED = identical PTSC reading pairs across all three intervals"
+TIER1_2025_SECONDARY,PRIMARY,12,7,3,3,1,1,"EXACT = no measured PTSC change within target, teammate and placebo intervals; MATCHED = identical PTSC reading pairs across all three intervals"

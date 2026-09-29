@@ -1,0 +1,10 @@
+population,level,total_events,unique_future_target_outcomes,unique_target_cars,unique_teams,unique_sessions,unique_teammate_cars,unique_target_teammate_pairs,events_sharing_same_target_outcome,unique_teammate_movements,max_teammate_movement_reuse,median_teammate_movement_reuse,events_sharing_a_teammate_movement,unique_placebo_movements,max_placebo_movement_reuse,max_events_per_car_session_trajectory,median_events_per_car_session_trajectory,events_within_same_stint,mean_teammate_signals_per_event,mean_comparable_pairs_per_event
+PRIMARY_TIER1_2023_2024,F3,44,44,31,10,6,27,46,0,35,6,1.0,34,23,6,6,1.0,32,1.3636363636363635,1.0909090909090908
+PRIMARY_TIER1_2023_2024,F4,22,22,21,9,5,19,36,0,26,3,1.0,13,23,6,1,1.0,17,1.7272727272727273,2.1818181818181817
+PRIMARY_TIER1_2023_2024,F5,8,8,8,6,5,12,13,0,13,1,1.0,0,12,2,1,1.0,3,1.625,1.75
+TIER2_2023_2024_EXTENDED,F3,129,129,56,11,9,56,104,0,94,8,2.0,108,56,6,8,1.0,70,1.4883720930232558,1.310077519379845
+TIER2_2023_2024_EXTENDED,F4,66,66,38,11,8,41,74,0,63,5,2.0,52,56,6,3,1.0,33,1.7272727272727273,2.5606060606060606
+TIER2_2023_2024_EXTENDED,F5,36,36,27,9,8,29,52,0,44,4,1.0,22,41,4,2,1.0,4,1.7222222222222223,2.5
+TIER1_2025_SECONDARY,F3,35,35,21,11,6,20,26,0,27,2,1.0,20,14,2,2,1.0,28,1.0571428571428572,0.4857142857142857
+TIER1_2025_SECONDARY,F4,12,12,9,5,4,8,11,0,11,2,1.0,4,14,2,2,1.0,11,1.0833333333333333,1.4166666666666667
+TIER1_2025_SECONDARY,F5,3,3,3,3,3,3,3,0,3,1,1.0,0,4,1,1,1.0,2,1.0,1.3333333333333333

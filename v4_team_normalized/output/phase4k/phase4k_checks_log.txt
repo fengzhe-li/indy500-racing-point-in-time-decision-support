@@ -1,0 +1,27 @@
+PASS  Phase 4H class-A eligibility reproduced exactly (re-run frozen classifier)                                      
+PASS  Phase 4H thresholds unchanged                                                                                   
+PASS  Phase 4I populations unchanged (hashes)                                                                         
+PASS  Phase 4J unchanged (hashes; CASE B)                                                                             
+PASS  primary years 2023-2024 only; 2025 separate (own population/file; sessions all 2025)                            
+PASS  race excluded; no 2018-2022 classifier projection                                                               
+PASS  t0 < t1 (blocks and timestamps)                                                                                 
+PASS  s0 < s1                                                                                                         
+PASS  s1 availability < prediction_time <= t1 first eligible lap <= t1 observation time (strict information cutoff)   
+PASS  no tied/unordered observation treated as safely prior (strict < on feed-update timestamps; placebo too)         
+PASS  teammate differs from target; same canonical team                                                               
+PASS  placebo canonical team differs                                                                                  
+PASS  technical partnerships excluded from teammate relationships                                                     
+PASS  no future target speed used in event selection (no v / dv in enumeration logic beyond the recorded median)      
+PASS  no prediction error computed; no lambda fitted; no predictor ranked                                             
+PASS  no missing physical input imputed (readings are observed PTSC at/before time, age <= 15 min; F1 requires both)  
+PASS  no raw timestamp altered (t1 first / t0 availability equal raw eligible-lap timestamps)                         
+PASS  one canonical event per future target outcome (per population and cutoff)                                       
+PASS  point-in-time label confirmation reproduces (F5 t0 confirmed; conservative-cutoff F5 empty)                     
+PASS  nested populations monotone F0>=...>=F5                                                                         
+PASS  no Phase 4A-4J output/script changed (451 hashes; scripts vs 04c39f8)                                           
+PASS  FINAL_V2/V3 frozen manifests hash exactly (R5.2 + R6)                                                           
+PASS  spec committed before counts (dae6856) and unchanged                                                            
+PASS  paper unchanged; nothing outside V4 changed                                                                     
+PASS  all required outputs and >=8 figures present                                                                    
+
+25/25 checks passed
