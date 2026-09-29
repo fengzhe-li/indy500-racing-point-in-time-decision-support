@@ -6,10 +6,12 @@
 
 **Status: `FINAL_V3_FROZEN`** · **FINAL_V2 frozen scientific core** · **2020–2024 reference era** · **2025 external regime evaluation** · **Human in the loop**
 
+**+ `V4_TEAM_NORMALIZED_FINAL`** — frozen additive team-normalized evidence extension (V2/V3 unchanged)
+
 [![indy500-v3-ci](https://github.com/fengzhe-li/indy500-point-in-time-decision-support/actions/workflows/ci.yml/badge.svg)](https://github.com/fengzhe-li/indy500-point-in-time-decision-support/actions/workflows/ci.yml)
 [![repository-integrity](https://github.com/fengzhe-li/indy500-point-in-time-decision-support/actions/workflows/integrity.yml/badge.svg)](https://github.com/fengzhe-li/indy500-point-in-time-decision-support/actions/workflows/integrity.yml)
 
-[Methodology](docs/methodology.md) · [Model card](docs/model-card.md) · [Validation](docs/validation.md) · [Evidence engineering](docs/evidence-engineering.md) · [Full report](docs/paper/physics_conditioned_probabilistic_performance_inference.pdf) · [**FINAL_V3 application →**](v3_point_in_time/README.md)
+[Methodology](docs/methodology.md) · [Model card](docs/model-card.md) · [Validation](docs/validation.md) · [Evidence engineering](docs/evidence-engineering.md) · [Full report](docs/paper/physics_conditioned_probabilistic_performance_inference.pdf) · [**FINAL_V3 application →**](v3_point_in_time/README.md) · [**V4 evidence extension →**](v4_team_normalized/output/phase4l/phase4l_final_scientific_synthesis.md)
 
 </div>
 
@@ -27,6 +29,13 @@ an isolated hypothetical scenario interface, and a FastAPI + React/TypeScript ap
 Docker, CI, and health/readiness checks. The system is human-in-the-loop by design: it does **not** predict
 queue waiting time, does **not** estimate `P(H=h)`, and does **not** issue a retain/withdraw recommendation or
 claim automated pit-wall strategy optimisation, at any layer.
+
+**V4 (additive evidence extension).** `V4_TEAM_NORMALIZED_FINAL` asks whether same-team, different-car evidence
+could serve as an intermediate control layer between exact-car repeats and unrelated cars. It is a separately
+frozen methodological study: it does **not** modify the FINAL_V2 coefficients, the 41-transition same-car core, the
+V3 point-in-time inference or the paper. Its main finding is that exact-car control robustly reduces observed
+performance dispersion, while shared team identity showed no stable additional benefit. See
+[V4 — Team-normalized evidence extension](#v4--team-normalized-evidence-extension).
 
 ## The system in one screen
 
@@ -298,6 +307,59 @@ The 2019 pre-Aeroscreen and 2025 hybrid samples retain the same directional resp
 
 See [regime transfer](docs/regime-transfer.md).
 
+## V4 — Team-normalized evidence extension
+
+**Status: `V4_TEAM_NORMALIZED_FINAL` — frozen, additive.**
+
+- **Unchanged:** FINAL_V2 coefficients, the 41-transition core, V3 inference and the paper.
+- **Freeze:** separate pre-registered phases, a SHA-256 manifest of 735 files, and its own freeze tag.
+
+**Question.** Could same-team, different-car evidence be a defensible intermediate control layer between exact-car repeats and unrelated cars?
+
+**1. Team identity.**
+- **Normalisation:** 59 official entrant/team labels (2018–2025) normalise to **21 canonical engineering teams**.
+- **Old grouping:** it missed **85 of 313** true teammate relationships (27%) and created **no** false pairs. It was high precision with incomplete recall.
+
+**2. Measurement validity.**
+- A valid timed practice lap is not automatically a comparable performance observation.
+- Only **8.1%** of 2023–24 at-speed practice laps met the frozen, qualifying-calibrated Class-A performance-comparability rule.
+- Raw practice therefore cannot be treated as one homogeneous performance population.
+
+![V4 measurement validity: run-state composition of practice laps](v4_team_normalized/output/phase4h/figures/fig06_run_state_by_session_category.png)
+
+*Each bar splits one practice session type into run-state classes:*
+- *green (A): performance-comparable;*
+- *blue (B): plausibly comparable;*
+- *amber (C): ambiguous;*
+- *red (D): clearly non-comparable, e.g. pit or non-green laps;*
+- *grey (E): too little data to judge.*
+
+*Most timed laps are not clean performance measurements.*
+
+**3. Final pre-registered test (Phase 4J).**
+- **Population:** restricted to 2023–24 Class-A 5-minute car-blocks with timing-adjacency common support, over 6 independent sessions.
+- **Dispersion:** same car **0.37 mph**, same team **1.23 mph**, different team **1.09 mph**.
+- **C1 = same team − same car = +0.70 mph** [+0.09, +1.72]. **Robust:** positive in 5/6 sessions and in every leave-one-session-out and leave-one-team-out estimate.
+- **C2 = different team − same team = +0.20 mph** [−0.53, +0.53]. **Not robust:** positive in 4/6 sessions, one team removal flips its sign, and the Tier 2 sensitivity gives −0.09 mph.
+- **Conclusion:** the full *same car < same team < different team* hierarchy was **not established** (CASE B). Exact-car identity materially reduces observed dispersion in this high-confidence population. Shared team identity did not show a stable additional reduction versus different-team comparison. This is an empirical control result, not a causal team effect.
+
+![V4 control-evidence summary](figures/portfolio/v4-control-evidence-summary.png)
+
+**4. Teammate prediction (Phase 4K).**
+- Of **113** target events, only **8** strict, leakage-free teammate-assisted events survived.
+- Teammate predictive value therefore remains **prospectively unidentifiable** from the current retrospective record.
+- This is **not** evidence that teammate predictive value is zero.
+
+**What V4 adds.** Relaxing the same-car qualifying-repeat design exposed further layers of heterogeneity and non-identifiability. This supports the methodological value of exact-car control. It does not prove the V2 coefficients correct.
+
+**Read more:**
+- [Final V4 scientific synthesis](v4_team_normalized/output/phase4l/phase4l_final_scientific_synthesis.md)
+- [Claims matrix](v4_team_normalized/output/phase4l/phase4l_claims_matrix.csv)
+- [Evidence chain](v4_team_normalized/output/phase4l/phase4l_evidence_chain.md)
+- [V4 workspace README](v4_team_normalized/README.md)
+
+Lap-level V4 evidence is a third-party archived recording of the INDYCAR live timing feed (Timing71), cross-checked against official INDYCAR session records. Only 2023–2025 provide lap-level timing; 2018–2022 contribute identity and context, not equivalent lap-level evidence.
+
 ## Operational decision-support layer
 
 ![Operational performance outlook](figures/portfolio/operational-performance-outlook.png)
@@ -365,6 +427,7 @@ docs/                     technical documentation and final report
 scripts/                  presentation regeneration and integrity checks
 tests/                    pipeline and portfolio QA
 v3_point_in_time/         FINAL_V3: point-in-time replay, Scenario Mode, FastAPI + React app, Docker, CI
+v4_team_normalized/       V4 (frozen, additive): team registry, pre-registered Phases 3–4K, Phase 4L synthesis + freeze manifest
 ```
 
 For the detailed module and status inventory, open [the repository guide](docs/reproducibility.md) and [figure gallery](figures/GALLERY.md).
@@ -382,6 +445,10 @@ For the detailed module and status inventory, open [the repository guide](docs/r
 - FINAL_V3's point-in-time evidence base yields only 10 genuine candidate cases and 0 cases with formal aggregate historical-scoring support; statistically meaningful point-in-time forecast validation is not established (architecture and leakage control are demonstrated in running software; evidence volume is the limitation, not infrastructure).
 - The one near-anchor point-in-time case (2021, car 60) is illustrative only and must never be read as validation.
 - Neither FINAL_V2 nor FINAL_V3 models opportunity timing, queue state, or a retain/withdraw strategy, historically or hypothetically.
+- **V4** (additive) covers a restricted 2023–24 practice population of 6 independent sessions.
+  - Its same-team versus different-team contrast is not robust, so the full three-level hierarchy is not established.
+  - Teammate predictive value is not prospectively identifiable with current retrospective labels.
+  - Run purpose, fuel, tyres, tow and traffic are unobserved.
 
 ## Documentation
 
@@ -403,12 +470,31 @@ For the detailed module and status inventory, open [the repository guide](docs/r
 - [FINAL_V3 system specification](v3_point_in_time/output/final_documentation/FINAL_V3_SYSTEM_SPECIFICATION.md)
 - [FINAL_V3 scientific limitations](v3_point_in_time/output/final_documentation/scientific_limitations.md)
 - [FINAL_V3 QA report](v3_point_in_time/output/qa/final_v3_qa_report.md)
+- **V4 team-normalized evidence extension:**
+  - [final scientific synthesis](v4_team_normalized/output/phase4l/phase4l_final_scientific_synthesis.md)
+  - [claims matrix](v4_team_normalized/output/phase4l/phase4l_claims_matrix.csv)
+  - [evidence chain](v4_team_normalized/output/phase4l/phase4l_evidence_chain.md)
+  - [limitations](v4_team_normalized/output/phase4l/phase4l_limitations.md)
+  - [future data requirements](v4_team_normalized/output/phase4l/phase4l_future_data_requirements.md)
+  - [freeze report](v4_team_normalized/output/phase4l/v4_freeze_report.md)
+  - [workspace README](v4_team_normalized/README.md)
+
+  V4 is **not** yet part of the full research report above.
 
 ## Author and citation
 
 **Fengzhe Li** · University College London
 
-If this repository informs your work, cite the project and the versioned frozen artefacts used. The scientific core is `FINAL_V2`; the regulation-aware evidence extension is `R6_REGULATION_AWARE_EXTENSION_V1_FROZEN`; the point-in-time application layer is `FINAL_V3_FROZEN`.
+If this repository informs your work, cite the project and the versioned frozen artefacts used:
+
+| Frozen artefact | Role |
+|---|---|
+| `FINAL_V2` | scientific model |
+| `R6_REGULATION_AWARE_EXTENSION_V1_FROZEN` | regulation-aware evidence extension |
+| `FINAL_V3_FROZEN` | point-in-time application layer |
+| `V4_TEAM_NORMALIZED_FINAL` (git tag) | additive team-normalized evidence extension |
+
+The full research report describes FINAL_V2/V3 only. V4 findings are currently documented in the repository ([V4 synthesis](v4_team_normalized/output/phase4l/phase4l_final_scientific_synthesis.md)), not in the report.
 
 ## Status
 
@@ -417,3 +503,4 @@ If this repository informs your work, cite the project and the versioned frozen 
 | Scientific core | `FINAL_V2` — frozen |
 | Regulation-aware evidence extension | `R6_REGULATION_AWARE_EXTENSION_V1_FROZEN` |
 | Point-in-time application layer | `FINAL_V3_FROZEN` — 101/101 tests PASS, V2 immutability PASS, V3↔V2 behavioural regression PASS |
+| Team-normalized evidence extension | `V4_TEAM_NORMALIZED_FINAL` — frozen additive evidence extension; V2/V3 unchanged; 735-file SHA-256 manifest; Phase 4L checks 17/17 PASS |

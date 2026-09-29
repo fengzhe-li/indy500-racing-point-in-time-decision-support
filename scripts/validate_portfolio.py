@@ -67,6 +67,23 @@ def main() -> None:
     require(abs(ext["extended_validation"]["mae_mph"] - 0.49160020387931286) < 1e-12, "external MAE matches README")
     require(abs(ext["extended_validation"]["direction_accuracy"] - 0.4666666666666667) < 1e-12, "external directional accuracy matches README")
 
+    # V4 (additive, frozen): README numbers must match the frozen Phase 4J/4H/4K/registry outputs; C2 must not be presented as robust
+    v4 = ROOT / "v4_team_normalized/output"
+    hs = pd.read_csv(v4 / "phase4j/hierarchy_summary_all_analyses.csv").set_index("analysis").loc["PRIMARY_TIER1_2023_2024"]
+    require(pd.read_csv(v4 / "phase4j/case_evaluation.csv").set_index("criterion").value["PRIMARY_CASE"] == "B", "V4 Phase 4J primary case is B")
+    require(hs.C1_status == "POSITIVE_CONSISTENT" and hs.C2_status == "INCONSISTENT", "V4 C1 robust / C2 not robust in frozen source")
+    for label, val in [("0.37 mph", hs.D_same_car), ("1.23 mph", hs.D_same_team), ("1.09 mph", hs.D_diff_team), ("+0.70 mph", hs.C1), ("+0.20 mph", hs.C2)]:
+        require(f"{val:+.2f} mph" == label or f"{val:.2f} mph" == label, f"V4 value {label} matches frozen Phase 4J source")
+        require(label in readme, f"README states V4 value {label}")
+    for lo, hi, text in [(hs.C1_boot_lo, hs.C1_boot_hi, "[+0.09, +1.72]"), (hs.C2_boot_lo, hs.C2_boot_hi, "[−0.53, +0.53]")]:
+        require(f"[{lo:+.2f}, {hi:+.2f}]".replace("-", "−") == text and text in readme, f"README V4 interval {text} matches frozen source")
+    h4 = pd.read_csv(v4 / "phase4h/case_evaluation.csv").set_index("criterion").value
+    require(f"{100 * float(h4['S_A_nonD_2023_2024']):.1f}%" == "8.1%" and "**8.1%**" in readme, "V4 Class-A share matches README")
+    att = pd.read_csv(v4 / "phase4k/event_attrition.csv").query("population == 'PRIMARY_TIER1_2023_2024' and cutoff == 'PRIMARY'").set_index("level").events
+    require(int(att["F0"]) == 113 and int(att["F5"]) == 8 and "**113**" in readme and "only **8**" in readme, "V4 Phase 4K attrition matches README")
+    require("**not established**" in readme and "C2 = different team − same team = +0.20 mph** [−0.53, +0.53]. **Not robust" in readme, "README states full hierarchy not established and C2 not robust")
+    require("not** evidence that teammate predictive value is zero" in readme, "README does not present Phase 4K as zero teammate value")
+
     banned = ["predicts queue duration", "optimal wait recommendation", "autonomous race-strategy system"]
     require(not any(term in readme.lower() for term in banned), "README avoids prohibited strategy claims")
     print("\nPORTFOLIO_INTEGRITY_PASS")
