@@ -1,0 +1,93 @@
+phase,item,value,source,field
+P1-2,official_entry_list_labels,59,v4_team_normalization_report.md,§1 table
+P1-2,canonical_engineering_teams,21,v4_team_entry_registry.csv,canonical_engineering_team nunique
+P1-2,teammate_pairs_missed_by_old_grouping,85,v4_team_normalization_report.md,summary
+P1-2,strict_v4_teammate_pairs,313,v4_team_normalization_report.md,summary
+P1-2,missed_share_pct,27,v4_team_normalization_report.md,summary
+P1-2,old_grouping_spurious_pairs,0,v4_team_normalization_report.md,summary
+P1-2,technical_partnership_rows,4,v4_team_entry_registry.csv,relationship_type
+4C,CASE,B,phase4c/case_evaluation.csv,headline_by_precedence_D_B_C_A
+4D,CASE,C,phase4d/feasibility_case_evaluation.csv,headline_by_precedence_C_D_B_A
+4F,CASE,D,phase4f/case_evaluation.csv,CASE
+4F,primary_session_balanced_delta_mph,0.046,phase4f/session_balanced_results.csv,session_balanced_delta
+4F,primary_share_sessions_positive,0.5,phase4f/session_balanced_results.csv,share_sessions_positive
+4F,team_balanced_delta_mph,0.31,phase4f/session_balanced_results.csv,session_balanced_delta_team_balanced
+4G,CASE,A,phase4g/phase4g_case_evaluation.csv,CASE
+4G,primary_control_median_carblock_sep_s,3.35,phase4g/adjacency_distribution_summary.csv,carblock_sep_s_median
+4G,primary_control_share_no_intervening,0.577,phase4g/adjacency_distribution_summary.csv,share_le0_intervening
+4G,random_pool_expected_share_no_intervening,0.277,phase4g/adjacency_distribution_summary.csv,share_le0_intervening
+4G,S2_delta_D_gt5_minus_no_intervening_mph,0.975,phase4g/phase4g_case_evaluation.csv,S2_delta
+4H,CASE,D,phase4h/case_evaluation.csv,MEASUREMENT_VALIDITY_CASE
+4H,share_A_of_at_speed_2023_24_pct,8.1,phase4h/case_evaluation.csv,S_A_nonD_2023_2024
+4H,share_AB_of_at_speed_2023_24_pct,11.6,phase4h/case_evaluation.csv,S_AB_nonD_2023_2024
+4H,share_C_ambiguous_of_at_speed_2023_24_pct,74.6,phase4h/case_evaluation.csv,S_C_nonD
+4H,share_D_of_all_2023_24_practice_laps_pct,28.2,phase4h/run_state_classification.csv,share_all_D
+4H,phase4f_primary_control_pairs_both_A_pct,1.4,phase4h/phase4f_population_run_state_audit.csv,share_both_A
+4H,phase4f_primary_control_pairs_involving_ambiguous_pct,93.3,phase4h/phase4f_population_run_state_audit.csv,share_involves_C_ambiguous
+4H,C1_2024_official_qualifying_retention_A,0.917,phase4h/case_evaluation.csv,C1_2024_official_retention_A
+4I,CASE,B,phase4i/case_evaluation.csv,SUPPORT_CASE
+4I,tier1_eligible_laps,1172,phase4i/tier1_strict_support.csv,eligible_laps
+4I,tier1_eligible_carblocks,374,phase4i/tier1_strict_support.csv,eligible_carblocks
+4I,tier1_cars,68,phase4i/tier1_strict_support.csv,cars
+4I,tier1_teams,12,phase4i/tier1_strict_support.csv,teams
+4I,tier1_sessions,11,phase4i/tier1_strict_support.csv,sessions
+4I,tier1_same_team_pairs,46,phase4i/same_team_support.csv,pairs
+4I,tier1_same_team_distinct_car_pairs,33,phase4i/same_team_support.csv,independent_car_pairs
+4I,tier1_same_team_teams,9,phase4i/same_team_support.csv,distinct_teams
+4I,tier1_same_team_sessions,8,phase4i/same_team_support.csv,sessions
+4I,tier1_diff_team_candidates,422,phase4i/different_team_candidate_support.csv,pairs
+4I,tier1_sessions_all_three_layers,8,phase4i/case_evaluation.csv,M1
+4I,tier1_blocks_all_three_layers,25,phase4i/case_evaluation.csv,M3
+4J,CASE,B,phase4j/case_evaluation.csv,PRIMARY_CASE
+4J,spec_commit,28af221,phase4j/case_evaluation.csv,pre_result_spec_commit
+4J,contexts_all,92,phase4j/hierarchy_summary_all_analyses.csv,all_contexts
+4J,contexts_common_support,53,phase4j/hierarchy_summary_all_analyses.csv,common_support_contexts
+4J,teammate_pairs,26,phase4j/same_team_primary.csv,distinct unordered teammate pairs in support
+4J,cars,37,phase4j/same_team_primary.csv,cars in support contexts
+4J,teams,9,phase4j/same_team_primary.csv,teams in support contexts
+4J,blocks,20,phase4j/same_team_primary.csv,blocks with support contexts
+4J,evaluable_sessions,6,phase4j/hierarchy_summary_all_analyses.csv,evaluable_sessions
+4J,D_same_car,0.368,phase4j/hierarchy_summary_all_analyses.csv,D_same_car
+4J,D_same_team,1.226,phase4j/hierarchy_summary_all_analyses.csv,D_same_team
+4J,D_diff_team,1.093,phase4j/hierarchy_summary_all_analyses.csv,D_diff_team
+4J,C1,0.696,phase4j/hierarchy_summary_all_analyses.csv,C1
+4J,C2,0.199,phase4j/hierarchy_summary_all_analyses.csv,C2
+4J,C3,0.702,phase4j/hierarchy_summary_all_analyses.csv,C3
+4J,C1_boot_lo,0.087,phase4j/hierarchy_summary_all_analyses.csv,C1_boot_lo
+4J,C1_boot_hi,1.721,phase4j/hierarchy_summary_all_analyses.csv,C1_boot_hi
+4J,C2_boot_lo,-0.528,phase4j/hierarchy_summary_all_analyses.csv,C2_boot_lo
+4J,C2_boot_hi,0.528,phase4j/hierarchy_summary_all_analyses.csv,C2_boot_hi
+4J,C2_from_layer_medians,-0.134,phase4j/hierarchy_summary_all_analyses.csv,C2_from_layer_medians
+4J,C1_laptime_equiv_s_at_225,0.124,derived: C1/225*40 (Phase 4J spec §8),C1
+4J,C1_sessions_positive,5/6,phase4j/hierarchy_summary_all_analyses.csv,share_sessions_C1_pos
+4J,C2_sessions_positive,4/6,phase4j/hierarchy_summary_all_analyses.csv,share_sessions_C2_pos
+4J,C1_status,POSITIVE_CONSISTENT,phase4j/hierarchy_summary_all_analyses.csv,C1_status
+4J,C2_status,INCONSISTENT,phase4j/hierarchy_summary_all_analyses.csv,C2_status
+4J,C1_all_LOSO_positive,True,phase4j/leave_one_session_out.csv,C1
+4J,C1_all_LOTO_positive,True,phase4j/leave_one_team_out.csv,C1
+4J,C2_LOTO_sign_flips,1,phase4j/leave_one_team_out.csv,C2
+4J,C2_LOTO_flip_team,ED_CARPENTER_RACING,phase4j/leave_one_team_out.csv,dropped_team
+4J,tier2_C1,0.369,phase4j/hierarchy_summary_all_analyses.csv,C1
+4J,tier2_C2,-0.094,phase4j/hierarchy_summary_all_analyses.csv,C2
+4J,rep2025_C1,0.266,phase4j/hierarchy_summary_all_analyses.csv,C1
+4J,rep2025_C2,0.743,phase4j/hierarchy_summary_all_analyses.csv,C2
+4J,rep2025_C2_boot,"[-0.90, 3.07]",phase4j/hierarchy_summary_all_analyses.csv,C2_boot_lo/hi
+4K,CASE,C,phase4k/case_evaluation.csv,PRIMARY_FEASIBILITY_CASE
+4K,F0,113,phase4k/event_attrition.csv,F0 events
+4K,F1,113,phase4k/event_attrition.csv,F1 events
+4K,F2,71,phase4k/event_attrition.csv,F2 events
+4K,F3,44,phase4k/event_attrition.csv,F3 events
+4K,F4,22,phase4k/event_attrition.csv,F4 events
+4K,F5,8,phase4k/event_attrition.csv,F5 events
+4K,F5_target_cars,8,phase4k/event_attrition.csv,target_cars
+4K,F5_teams,6,phase4k/event_attrition.csv,target_teams
+4K,F5_sessions,5,phase4k/event_attrition.csv,sessions
+4K,F5_years,2,phase4k/case_evaluation.csv,Y5
+4K,F5_conservative_cutoff,0,phase4k/event_attrition.csv,CONSERVATIVE F5
+4K,events_with_measured_env_change,45,phase4k/physical_input_support.csv,resolved_physical_change
+4K,genuine_forecast_vintage_events,0,phase4k/physical_input_support.csv,genuine_forecast_vintage_events
+4K,F5_events_sharing_target_outcome,0,phase4k/event_overlap_dependence.csv,events_sharing_same_target_outcome
+4K,F5_max_teammate_movement_reuse,1,phase4k/event_overlap_dependence.csv,max_teammate_movement_reuse
+4K,tier2_F5,36,phase4k/event_attrition.csv,TIER2 F5
+4K,tier2_F5_sessions,8,phase4k/event_attrition.csv,TIER2 F5 sessions
+4K,rep2025_F5,3,phase4k/event_attrition.csv,2025 F5

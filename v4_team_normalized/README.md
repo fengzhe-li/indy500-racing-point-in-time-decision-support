@@ -68,6 +68,10 @@ python3 v4_team_normalized/scripts/v4_phase4j_checks.py      # 26 checks
 python3 v4_team_normalized/scripts/v4_phase4k_feasibility.py
 python3 v4_team_normalized/scripts/v4_phase4k_reports.py
 python3 v4_team_normalized/scripts/v4_phase4k_checks.py      # 25 checks
+# Phase 4L (FINAL synthesis and freeze; no new analysis)
+python3 v4_team_normalized/scripts/v4_phase4l_synthesis.py   # renders synthesis docs from source-extracted values
+python3 v4_team_normalized/scripts/v4_phase4l_freeze.py      # v4_final_manifest.csv (+ .sha256, freeze report)
+python3 v4_team_normalized/scripts/v4_phase4l_checks.py      # 17 checks (incl. manifest reproduction)
 ```
 
 Phase 1–2 decisions accepted: #98 Andretti Herta is in the Andretti primary teammate group, and the four technical partnerships stay out of the primary layer (they remain in the registry for a later AFFILIATED sensitivity analysis). Phase 3 outputs are in `output/phase3/`.
@@ -78,6 +82,7 @@ Phase 1–2 decisions accepted: #98 Andretti Herta is in the Andretti primary te
 - `manual/v4_team_mapping_rules.csv`: explicit exact-label → canonical-team rules with sources (the only place team identity is decided)
 - `scripts/`: parser and registry/audit builder
 - `output/`: registry, audit, pair changes, affiliation links, API anomalies, report
+- `output/phase4l/`: FINAL scientific synthesis, evidence chain, claims matrix, key results and phase outcomes (source-extracted), paper-integration map (paper not edited), future data requirements, limitations, V4 freeze manifest + SHA-256 + freeze report
 - `output/phase4k/`: pre-specified prediction-feasibility spec (committed before counts) + freeze record, canonical target events (F0-F5 flags, both cutoffs), physical-input support, teammate and placebo signal support, fully comparable events, attrition, dependence, horizons, coverage, model-free support, Tier 2 and 2025 secondary feasibility, case evaluation, reports, figures
 - `output/phase4j/`: FINAL pre-registered hierarchy spec (28af221) + input verification + freeze record, primary Tier 1 common support, same-car / same-team / different-team candidate and context-aggregate tables, session-level hierarchy, contrasts, LOSO/LOTO, Tier 2 sensitivity, 2025 replication, performance-scale context, case evaluation, reports, figures
 - `output/phase4i/`: pre-specified support-audit spec (committed before counts) + Phase 4A-4H freeze record, eligible observations (Tier 1 A / Tier 2 A+B), tier support, same-car / same-team / different-team candidate support, common support by session and block, adjacency support and balance feasibility, reuse/dependence, era coverage, measurement-scale reference, case evaluation, reports, figures
