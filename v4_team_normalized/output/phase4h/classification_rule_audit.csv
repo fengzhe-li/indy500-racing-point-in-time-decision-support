@@ -1,0 +1,47 @@
+item,value
+n_2023_official_attempts,43
+n_2024_official_attempts,24
+T_steady_95,0.009401666311997741
+T_steady_100,0.01334916816180075
+T_level_95,0.001673525628209048
+T_level_100,0.001987874348791996
+threshold_source,2023 OFFICIAL_ANCHORED qualifying attempts only; numpy percentile (linear)
+official attempts in records (2023-2024),96
+official attempts matched to Timing71 4-lap runs,67
+"reference sufficiency (>=20 2023, >=10 2024)",True
+2023_2024_PRIMARY: laps,20268
+2023_2024_PRIMARY: d1 non-green,990
+2023_2024_PRIMARY: d2 observed out-lap (pit-exit matched),2963
+2023_2024_PRIMARY: d3 observed in-lap (pit-entry matched),2961
+2023_2024_PRIMARY: d4 outside 37-45 s band,5194
+2023_2024_PRIMARY: D total,5722
+2023_2024_PRIMARY: first laps of UNMATCHED-start stints (inferred out-lap; not D by rule),82
+"2023_2024_PRIMARY: of those, inside 37-45 s band",17
+2023_2024_PRIMARY: E (no valid 4-lap window),2007
+2023_2024_PRIMARY: windows,8234
+2025_SECONDARY: laps,9297
+2025_SECONDARY: d1 non-green,508
+2025_SECONDARY: d2 observed out-lap (pit-exit matched),1436
+2025_SECONDARY: d3 observed in-lap (pit-entry matched),1424
+2025_SECONDARY: d4 outside 37-45 s band,2675
+2025_SECONDARY: D total,2880
+2025_SECONDARY: first laps of UNMATCHED-start stints (inferred out-lap; not D by rule),41
+"2025_SECONDARY: of those, inside 37-45 s band",4
+2025_SECONDARY: E (no valid 4-lap window),904
+2025_SECONDARY: windows,3563
+stint start matched to pit-exit message (practice stints),0.7111875560873467
+stint end matched to pit-entry message (practice stints with endTime),0.7545247148288974
+qualifying stints start matched to pit-exit message,0.0
+classification SHA-256 (practice),29bc8da24499b72091656d2efed3f37d997bf5e7ab7f4014416d7b66aa3fdd14
+classification deterministic on re-run,True
+inputs used by classifier,"flag, stint position/provenance, pit-message match, laptime, timestamp coherence (car's own laps only)"
+"2023_2024_PRIMARY: evaluable laps in >=1 steady window (r_w <= T_steady_95), any level",0.205359279049366
+"2023_2024_PRIMARY: evaluable laps in >=1 steady window (r_w <= T_steady_100), any level",0.3331206635297871
+2023_2024_PRIMARY: evaluable laps steady(95) but failing level(95) -> not A,0.11189090039078077
+2023_2024_PRIMARY: window r_w median,0.024439403361601934
+2023_2024_PRIMARY: window level deficit l_100 median (steady windows),0.00685577826628897
+"2025_SECONDARY: evaluable laps in >=1 steady window (r_w <= T_steady_95), any level",0.21694177398875386
+"2025_SECONDARY: evaluable laps in >=1 steady window (r_w <= T_steady_100), any level",0.3275893343007437
+2025_SECONDARY: evaluable laps steady(95) but failing level(95) -> not A,0.0908761110103392
+2025_SECONDARY: window r_w median,0.026375657614104916
+2025_SECONDARY: window level deficit l_100 median (steady windows),0.004424544168080136

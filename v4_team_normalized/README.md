@@ -51,6 +51,10 @@ python3 v4_team_normalized/scripts/v4_phase4f_checks.py      # 24 checks
 python3 v4_team_normalized/scripts/v4_phase4g_adjacency.py
 python3 v4_team_normalized/scripts/v4_phase4g_reports.py
 python3 v4_team_normalized/scripts/v4_phase4g_checks.py      # 25 checks
+# Phase 4H (performance-lap / run-state measurement-validity audit; spec a56b4dd; no hierarchy recomputed)
+python3 v4_team_normalized/scripts/v4_phase4h_audit.py
+python3 v4_team_normalized/scripts/v4_phase4h_reports.py
+python3 v4_team_normalized/scripts/v4_phase4h_checks.py      # 23 checks
 ```
 
 Phase 1–2 decisions accepted: #98 Andretti Herta is in the Andretti primary teammate group, and the four technical partnerships stay out of the primary layer (they remain in the registry for a later AFFILIATED sensitivity analysis). Phase 3 outputs are in `output/phase3/`.
@@ -61,6 +65,7 @@ Phase 1–2 decisions accepted: #98 Andretti Herta is in the Andretti primary te
 - `manual/v4_team_mapping_rules.csv`: explicit exact-label → canonical-team rules with sources (the only place team identity is decided)
 - `scripts/`: parser and registry/audit builder
 - `output/`: registry, audit, pair changes, affiliation links, API anomalies, report
+- `output/phase4h/`: pre-specified validity spec (committed before classification) + Phase 4F/4G freeze record, qualifying performance reference (official-anchored / inferred attempts), practice lap inventory, speed distributions, stint sequence audit, run-state classification and rule audit, qualifying calibration, Phase 4F/4G population and adjacency run-state audits, validity summary, case evaluation, reports, figures
 - `output/phase4g/`: pre-specified diagnostic spec (committed before computation) + Phase 4F freeze record, primary control reconstruction, timing-sequence adjacency pairs, adjacency distributions, D by adjacency stratum, negative/positive block diagnostics, control reuse, design-population comparison, year/session adjacency, sequence completeness, future-evidence feasibility, case evaluation, reports, figures
 - `output/phase4f/`: pre-specified design (committed before computation), analysis population, car-block observations and validity, comparisons, block contrasts, session-balanced/year/category/LOTO/fairness sensitivities, team-relative deviations, cross-session persistence, dependence, weather/official/race diagnostics, case evaluation, reports, figures
 - `evidence/phase4e/`: retrieved Timing71 lap-level analysis JSON (101) and official INDYCAR session details (60), with `retrieval_manifest.csv`
