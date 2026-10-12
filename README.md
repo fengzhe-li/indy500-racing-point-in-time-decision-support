@@ -1,6 +1,6 @@
 <div align="center">
 
-# Indy 500 Point-in-Time Probabilistic Decision Support System
+# Indy 500 Racing Point-in-Time Decision Support System
 
 ### Physics-conditioned probabilistic inference with leakage-controlled historical replay and evidence-aware abstention
 
@@ -8,8 +8,8 @@
 
 **+ `V4_TEAM_NORMALIZED_FINAL`** — frozen additive team-normalized evidence extension (V2/V3 unchanged)
 
-[![indy500-v3-ci](https://github.com/fengzhe-li/indy500-point-in-time-decision-support/actions/workflows/ci.yml/badge.svg)](https://github.com/fengzhe-li/indy500-point-in-time-decision-support/actions/workflows/ci.yml)
-[![repository-integrity](https://github.com/fengzhe-li/indy500-point-in-time-decision-support/actions/workflows/integrity.yml/badge.svg)](https://github.com/fengzhe-li/indy500-point-in-time-decision-support/actions/workflows/integrity.yml)
+[![indy500-v3-ci](https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support/actions/workflows/ci.yml/badge.svg)](https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support/actions/workflows/ci.yml)
+[![repository-integrity](https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support/actions/workflows/integrity.yml/badge.svg)](https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support/actions/workflows/integrity.yml)
 
 [Methodology](docs/methodology.md) · [Model card](docs/model-card.md) · [Validation](docs/validation.md) · [Evidence engineering](docs/evidence-engineering.md) · [Full report](docs/paper/physics_conditioned_probabilistic_performance_inference.pdf) · [**FINAL_V3 application →**](v3_point_in_time/README.md) · [**V4 evidence extension →**](v4_team_normalized/output/phase4l/phase4l_final_scientific_synthesis.md)
 
