@@ -15,6 +15,18 @@
 
 </div>
 
+### Project at a Glance
+
+A full-stack motorsport application supporting human decisions during Indianapolis 500 qualifying, where drivers compete for starting positions. It estimates how a car's performance could change on a repeat attempt under specified conditions and a supplied time horizon. It does not predict complete race outcomes or recommend whether to retain or withdraw an existing qualifying result.
+
+Historical replay and evidence validation are central: **point-in-time** checks reject inputs whose recorded known-at or forecast issue times fall after the decision time. Forecast provenance makes inputs traceable; the system abstains from inference or historical scoring when evidence or model support is insufficient. Hypothetical scenarios remain separate from historical evidence.
+
+- **Backend:** Python / FastAPI
+- **Frontend:** React / TypeScript
+- **Infrastructure:** Docker / GitHub Actions CI
+- **Engineering:** Historical replay, data provenance, leakage prevention, reproducibility and automated testing
+- **Modelling:** Physics-conditioned probabilistic performance inference, uncertainty estimates and evidence-aware abstention
+
 ![Identifiability-driven system boundary](figures/portfolio/identifiability-system-boundary.svg)
 
 > **The key engineering result is a boundary.** Public historical evidence does not consistently reveal queue entry, Lane 1/Lane 2 state, withdrawals, requeue timing, pit return, live queue position or team intent. The project therefore does not guess an opportunity-time model or imitate historical decisions. It estimates the identifiable conditional performance problem and leaves the final retain/withdraw judgement to the pit wall.
