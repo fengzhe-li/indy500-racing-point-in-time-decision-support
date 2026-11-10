@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import data from "../../public/data/historical-attempts-v1.json";
+import data from "../data/historical-attempts-v1.json";
 import { validateHistoricalData, toObservedSeries } from "../adapters/historical";
 import { completedLaps, distanceAtTime, historicalComparison, lapBoundaries, timeAtDistance } from "./replay";
 if (!validateHistoricalData(data)) throw new Error("Fixture invalid");

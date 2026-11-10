@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import data from "../public/data/historical-attempts-v1.json";
+import data from "./data/historical-attempts-v1.json";
 import type { HistoricalAttempt } from "./domain/contract";
 import { validateHistoricalData } from "./adapters/historical";
 import { completedLaps, historicalComparison, tickReplay, type ReplayState } from "./domain/replay";

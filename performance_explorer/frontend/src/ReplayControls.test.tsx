@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { App } from "./App";
-import data from "../public/data/historical-attempts-v1.json";
+import data from "./data/historical-attempts-v1.json";
 const rows = data.rows.filter(r => r.year === 2024).sort((a, b) => a.driver.localeCompare(b.driver));
 afterEach(() => vi.useRealTimers());
 const select = () => {

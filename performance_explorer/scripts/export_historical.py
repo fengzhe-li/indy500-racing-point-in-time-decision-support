@@ -141,7 +141,7 @@ def artifacts():
         import io
         stream=io.StringIO(newline='');writer=csv.DictWriter(stream,fieldnames=list(rows[0]),lineterminator='\n');writer.writeheader();writer.writerows(rows);return stream.getvalue()
     return {
-        'frontend/public/data/historical-attempts-v1.json':json.dumps(data,indent=2,ensure_ascii=False)+'\n',
+        'frontend/src/data/historical-attempts-v1.json':json.dumps(data,indent=2,ensure_ascii=False)+'\n',
         'audit/historical_audit.json':json.dumps(audit,indent=2)+'\n',
         'audit/historical_audit.csv':csv_text([{**r,'exclusions':json.dumps(r['exclusions'],sort_keys=True)} for r in audit['years']]),
         'audit/attempt_selection.csv':csv_text(ledger),

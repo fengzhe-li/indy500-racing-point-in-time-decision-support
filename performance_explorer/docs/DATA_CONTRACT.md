@@ -4,7 +4,7 @@
 
 ## Historical export 1.1.0
 
-The file name `historical-attempts-v1.json` retains the major version; its required schema is now **1.1.0**. `attempt` accepts a positive integer or null. Added fields include recorded `lapTimesS`, `totalSeconds`, timing/speed provenance, result status, source locator and source IDs. Old 1.0.0 data is rejected with an explicit missing/invalid-data state; it is not silently interpreted under the new timing semantics.
+The generated source asset `frontend/src/data/historical-attempts-v1.json` retains the major version; its required schema is now **1.1.0**. `attempt` accepts a positive integer or null. Added fields include recorded `lapTimesS`, `totalSeconds`, timing/speed provenance, result status, source locator and source IDs. Old 1.0.0 data is rejected with an explicit missing/invalid-data state; it is not silently interpreted under the new timing semantics.
 
 The export contains 196 retained complete Day 1 qualifying attempts (2020–2024: 46/50/39/30/31). See `DATA_AUDIT.md` for provenance, exclusions, exact inclusion rules, reconciliation with V5 and regeneration. Source hashes cover all canonical inputs. The original 168-row membership is pinned solely for regression audit.
 
