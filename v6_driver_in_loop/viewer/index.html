@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>V6 • SIMULATED engineering replay</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header><div><p class="eyebrow">V6 / VEHICLE DYNAMICS LAB</p><h1>Virtual driver replay <span>SIMULATED</span></h1><p class="sub">Approximate stadium oval · software-in-the-loop · illustrative vehicle parameters</p></div><a href="../reports/ROBUSTNESS_RESULTS.md">Experiment report ↗</a></header>
+<main>
+<section class="toolbar" aria-label="Replay controls">
+<label>Driver experiment<select id="run" aria-label="Driver experiment"></select></label>
+<button id="play" disabled>Play</button><button id="pause" disabled>Pause</button><button id="reset" disabled>Reset</button>
+<label>Playback speed<select id="rate"><option value="0.25">0.25×</option><option value="1" selected>1×</option><option value="2">2×</option><option value="5">5×</option></select></label>
+<div class="clock"><strong id="time">0.000 s</strong><small id="duration">of — simulated seconds</small></div>
+<label class="timeline">Seek simulated time<input type="range" id="seek" min="0" max="1" step="any" value="0" disabled></label>
+</section>
+<div id="error" role="alert" hidden></div>
+<section class="overview">
+<div class="map panel"><div class="panel-title"><h2>Reference & driven path</h2><span>SIMULATED · metres</span></div><canvas id="map" aria-label="Approximate track boundaries, reference centreline, simulated trajectory and vehicle heading"></canvas><p class="legend"><i class="reference"></i> Reference <i class="driven"></i> Driven <i class="incident"></i> Off-track event <span>Vehicle glyph enlarged for visibility</span></p></div>
+<aside class="panel"><div class="panel-title"><h2>Run outcome</h2><span id="status">Loading</span></div><p id="reason">Loading actual V6 telemetry…</p><dl id="summary"></dl><h2>At replay cursor</h2><dl id="instant"></dl><p id="flags" aria-live="polite"></p><p class="note">Read-only playback of saved simulations. Playback speed changes presentation only. No manual driving or hardware DIL validation.</p></aside>
+</section>
+<section class="traces" aria-label="SIMULATED telemetry traces">
+<div class="panel"><h2>Speed <small>m/s · cyan actual, dashed target</small></h2><canvas id="speed"></canvas></div>
+<div class="panel"><h2>Steering <small>rad</small></h2><canvas id="steer"></canvas></div>
+<div class="panel"><h2>Throttle & brake <small>0–1 · green / red</small></h2><canvas id="pedals"></canvas></div>
+<div class="panel"><h2>Yaw rate <small>rad/s</small></h2><canvas id="yaw"></canvas></div>
+<div class="panel"><h2>Lateral acceleration <small>m/s²</small></h2><canvas id="accel"></canvas></div>
+<div class="panel"><h2>Tracking error <small>m · positive left of reference</small></h2><canvas id="errorTrace"></canvas></div>
+</section>
+<footer>All traces SIMULATED · horizontal axis: simulated seconds · yellow bands: actuator/tyre saturation · red line: off-track · cursor: white. Display samples are reduced to ~20 Hz with flag transitions and terminal events preserved; report metrics use full telemetry.</footer>
+</main><script type="module" src="app.mjs"></script>
+</body></html>

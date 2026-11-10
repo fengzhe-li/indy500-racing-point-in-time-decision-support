@@ -1,0 +1,21 @@
+name: V6 software-in-the-loop validation
+on:
+  pull_request:
+    paths: ['v6_driver_in_loop/**', '.github/workflows/v6.yml']
+  push:
+    branches: [main, feat/v6-driver-in-loop]
+    paths: ['v6_driver_in_loop/**', '.github/workflows/v6.yml']
+jobs:
+  engineering:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: python -m unittest discover -s v6_driver_in_loop/tests -v
+      - run: node --test v6_driver_in_loop/viewer/replay.test.mjs
+      - run: python -m v6_driver_in_loop.cli --output /tmp/v6-example

@@ -1,0 +1,38 @@
+[
+  {
+    "mode": "original",
+    "name": "baseline",
+    "status": "completed",
+    "lap_time_s": 72.04999999999995,
+    "reported_max_error_m": 5.19827327605821,
+    "terminal_exact_distance_to_reference_m": 3.5966522153923073,
+    "terminal_time_s": 72.03999999999995
+  },
+  {
+    "mode": "original",
+    "name": "aggressive",
+    "status": "off_track",
+    "lap_time_s": null,
+    "reported_max_error_m": 6.937209711647913,
+    "terminal_exact_distance_to_reference_m": 6.967683077040806,
+    "terminal_time_s": 15.569999999999713
+  },
+  {
+    "mode": "exact_projection_only",
+    "name": "baseline",
+    "status": "completed",
+    "lap_time_s": 72.10999999999999,
+    "reported_max_error_m": 5.208230633861449,
+    "terminal_exact_distance_to_reference_m": 3.6205865192635214,
+    "terminal_time_s": 72.09999999999998
+  },
+  {
+    "mode": "exact_projection_only",
+    "name": "aggressive",
+    "status": "completed",
+    "lap_time_s": 62.85999999999606,
+    "reported_max_error_m": 7.492558713816537,
+    "terminal_exact_distance_to_reference_m": 4.666063052915905,
+    "terminal_time_s": 62.849999999996065
+  }
+]

@@ -1,0 +1,101 @@
+{
+  "schema_version": 2,
+  "label": "SIMULATED",
+  "runs": [
+    {
+      "name": "baseline",
+      "file": "replays/baseline.json",
+      "status": "completed"
+    },
+    {
+      "name": "conservative",
+      "file": "replays/conservative.json",
+      "status": "completed"
+    },
+    {
+      "name": "aggressive",
+      "file": "replays/aggressive.json",
+      "status": "completed"
+    },
+    {
+      "name": "delay_0.1s",
+      "file": "replays/delay_0.1s.json",
+      "status": "completed"
+    },
+    {
+      "name": "delay_0.3s",
+      "file": "replays/delay_0.3s.json",
+      "status": "completed"
+    },
+    {
+      "name": "delay_0.6s",
+      "file": "replays/delay_0.6s.json",
+      "status": "off_track"
+    },
+    {
+      "name": "offset_-2m",
+      "file": "replays/offset_-2m.json",
+      "status": "completed"
+    },
+    {
+      "name": "offset_+2m",
+      "file": "replays/offset_+2m.json",
+      "status": "completed"
+    },
+    {
+      "name": "offset_+8m",
+      "file": "replays/offset_+8m.json",
+      "status": "off_track"
+    },
+    {
+      "name": "heading_-3deg",
+      "file": "replays/heading_-3deg.json",
+      "status": "completed"
+    },
+    {
+      "name": "heading_+3deg",
+      "file": "replays/heading_+3deg.json",
+      "status": "completed"
+    },
+    {
+      "name": "start_0mps",
+      "file": "replays/start_0mps.json",
+      "status": "completed"
+    },
+    {
+      "name": "start_70mps",
+      "file": "replays/start_70mps.json",
+      "status": "completed"
+    },
+    {
+      "name": "grip_0.8",
+      "file": "replays/grip_0.8.json",
+      "status": "off_track"
+    },
+    {
+      "name": "grip_1",
+      "file": "replays/grip_1.json",
+      "status": "off_track"
+    },
+    {
+      "name": "steering_gain_0.6",
+      "file": "replays/steering_gain_0.6.json",
+      "status": "off_track"
+    },
+    {
+      "name": "steering_gain_1.6",
+      "file": "replays/steering_gain_1.6.json",
+      "status": "completed"
+    },
+    {
+      "name": "speed_gain_0.175",
+      "file": "replays/speed_gain_0.175.json",
+      "status": "completed"
+    },
+    {
+      "name": "speed_gain_0.7",
+      "file": "replays/speed_gain_0.7.json",
+      "status": "completed"
+    }
+  ]
+}
