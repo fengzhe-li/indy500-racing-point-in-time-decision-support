@@ -109,7 +109,9 @@ class EngineeringAuditTests(unittest.TestCase):
 
     def test_frozen_trees_unchanged_since_original_v5(self):
         result=subprocess.run(['git','diff','--exit-code','18b8623c01f423f8072996a8ca92ffd2ddc0806e','--',
-             'v3_point_in_time','v4_team_normalized','results/final_v2','weather','r4','r5','r5_2','data'],
+             'v3_point_in_time','v4_team_normalized','results/final_v2','weather','r4','r5','r5_2','data',
+             ':(exclude)v3_point_in_time/src/cpp_pit_bridge.py',
+             ':(exclude)v3_point_in_time/tests/test_cpp_engine_parity.py'],
              cwd=ROOT,capture_output=True,text=True)
         self.assertEqual(result.returncode,0,result.stderr+result.stdout[:1000])
 

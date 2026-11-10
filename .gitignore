@@ -18,3 +18,4 @@ node_modules/
 v3_point_in_time/docker/build_context/
 v3_point_in_time/frontend/dist/
 v3_point_in_time/frontend/tsconfig.tsbuildinfo
+cpp/build/
