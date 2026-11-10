@@ -1,0 +1,88 @@
+{
+  "model": "V5 quasi-steady point-mass lap simulation",
+  "track": "Indianapolis Motor Speedway oval (parameterised approximation)",
+  "track_length_m": 4023.36,
+  "track_length_mi": 2.5,
+  "lap_time_s": 38.987452538190574,
+  "average_speed_mph": 230.84350000000498,
+  "iterations": 2,
+  "converged": true,
+  "air_density_kg_m3": 1.1839251532625141,
+  "vehicle": {
+    "mass_kg": 800.0,
+    "cd_a_m2": 1.0,
+    "cl_a_m2": 1.5,
+    "tire_mu": 1.8,
+    "power_w": 820816.877239622,
+    "drive_force_max_n": 12000.0,
+    "brake_force_max_n": 20000.0,
+    "rolling_resistance_coefficient": 0.015,
+    "grip_per_track_temp_k": 0.0015,
+    "max_speed_mps": 120.0
+  },
+  "environment": {
+    "air_temperature_c": 25.0,
+    "pressure_pa": 101325.0,
+    "track_temperature_c": 35.0,
+    "reference_track_temperature_c": 35.0
+  },
+  "track_segments": [
+    {
+      "name": "Turn 1",
+      "distance_m": 402.336,
+      "radius_m": 256.0,
+      "banking_deg": 9.2,
+      "evidence_class": "ASSUMED"
+    },
+    {
+      "name": "Back straight",
+      "distance_m": 1005.84,
+      "radius_m": null,
+      "banking_deg": 0.0,
+      "evidence_class": "ASSUMED"
+    },
+    {
+      "name": "Turn 2",
+      "distance_m": 402.336,
+      "radius_m": 256.0,
+      "banking_deg": 9.2,
+      "evidence_class": "ASSUMED"
+    },
+    {
+      "name": "Short chute 2-3",
+      "distance_m": 201.168,
+      "radius_m": null,
+      "banking_deg": 0.0,
+      "evidence_class": "ASSUMED"
+    },
+    {
+      "name": "Turn 3",
+      "distance_m": 402.336,
+      "radius_m": 256.0,
+      "banking_deg": 9.2,
+      "evidence_class": "ASSUMED"
+    },
+    {
+      "name": "Main straight",
+      "distance_m": 1005.84,
+      "radius_m": null,
+      "banking_deg": 0.0,
+      "evidence_class": "ASSUMED"
+    },
+    {
+      "name": "Turn 4",
+      "distance_m": 402.336,
+      "radius_m": 256.0,
+      "banking_deg": 9.2,
+      "evidence_class": "ASSUMED"
+    },
+    {
+      "name": "Short chute 4-1",
+      "distance_m": 201.168,
+      "radius_m": null,
+      "banking_deg": 0.0,
+      "evidence_class": "ASSUMED"
+    }
+  ],
+  "parameter_status": "one CALIBRATED effective scalar; all other vehicle/track inputs ASSUMED"
+}

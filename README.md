@@ -63,6 +63,24 @@ performance dispersion, while shared team identity showed no stable additional b
 
 ## The system in one screen
 
+### Independent V5 engineering simulation
+
+The repository also contains an isolated `v5_lap_time_simulation/` module for
+quasi-steady lap-time analysis on a parameterised 2.5-mile IMS oval. It uses a
+closed-loop speed solver with aero, tire-force, power, braking and cornering
+constraints, then compares a single effective scalar calibrated on 2020–2023
+against held-out 2024 historical results. Track radius, banking and the remaining
+vehicle values are assumptions; aggregate historical speeds do not identify a
+unique car model. V5 writes its own outputs and does not change frozen V2/V3/V4
+assets. It is not a driver-in-the-loop simulator.
+
+```bash
+python3 -m v5_lap_time_simulation.cli
+python3 -m unittest discover -s v5_lap_time_simulation/tests -p 'test_*.py' -v
+```
+
+See the [V5 model, assumptions, validation and results](v5_lap_time_simulation/README.md).
+
 | Evidence / result | Verified value | Meaning |
 |---|---:|---|
 | Frozen same-car transitions | **41** | Small, high-confidence performance core |

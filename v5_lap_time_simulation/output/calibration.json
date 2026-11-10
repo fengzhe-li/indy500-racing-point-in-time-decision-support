@@ -1,0 +1,12 @@
+{
+  "calibration_years": "2020-2023",
+  "training_attempts": 206,
+  "objective": "minimise absolute official average-speed error; target pooled median",
+  "training_median_average_speed_mph": 230.8435,
+  "fitted_effective_power_w": 820816.877239622,
+  "simulated_speed_at_fit_mph": 230.84350000000498,
+  "absolute_fit_residual_mph": 4.973799150320701e-12,
+  "parameter_classification": "CALIBRATED_EFFECTIVE_SCALAR_CONDITIONAL_ON_ASSUMED_MODEL",
+  "interpretation_limit": "Not engine power measurement; different mass/aero/grip combinations can produce similar aggregate speed.",
+  "held_out_validation_year": 2024
+}
