@@ -98,18 +98,96 @@ python3 scripts/validate_portfolio.py
 python3 -m unittest discover -s tests -p 'test_*.py' -v
 ```
 
-<details>
-<summary>Scientific evidence gallery — expand the retained figures</summary>
+## Scientific figures
 
-These original figures retain their documented scope and limitations. See the [extended evidence reference](docs/PORTFOLIO_EVIDENCE.md) for full interpretation.
+The original research figures are displayed here on the repository homepage. Related architecture diagrams and application screens share two-column layouts; diagnostic, validation and scenario charts remain full-width for legibility. The extended evidence reference retains the complete interpretation, quantitative results, citations and scientific limitations.
 
-| Evidence boundary | Point-in-time architecture |
+### Point-in-time system and application
+
+| Identifiability boundary | V3 application architecture |
 |---|---|
-| ![Identifiability boundary](figures/portfolio/identifiability-system-boundary.svg) | ![V3 architecture](figures/final_v3/figureA_final_v3_architecture.png) |
-| ![Evidence engineering](figures/portfolio/evidence-engineering-pipeline.svg) | ![Same-car transition design](figures/portfolio/same-car-transition-design.svg) |
-| ![Frozen physical response](figures/portfolio/frozen-physical-response.svg) | ![2025 external validation](figures/portfolio/external-validation-2025.png) |
-| ![V4 measurement validity](v4_team_normalized/output/phase4h/figures/fig06_run_state_by_session_category.png) | ![V4 control evidence](figures/portfolio/v4-control-evidence-summary.png) |
+| ![Identifiability-driven system boundary](figures/portfolio/identifiability-system-boundary.svg) | ![FINAL_V3 architecture](figures/final_v3/figureA_final_v3_architecture.png) |
 
-</details>
+| Pit-wall outlook | Scenario mode |
+|---|---|
+| ![Pit-wall outlook application screenshot](v3_point_in_time/output/final_ui_preview/01_pit_wall_outlook.png) | ![Scenario mode application screenshot](v3_point_in_time/output/final_ui_preview/02_scenario_mode.png) |
+
+| Historical shadow replay | Validation and abstention |
+|---|---|
+| ![Historical shadow replay application screenshot](v3_point_in_time/output/final_ui_preview/03_historical_replay.png) | ![Validation and abstention application screenshot](v3_point_in_time/output/final_ui_preview/05_validation_abstention.png) |
+
+### Evidence engineering and frozen physical response
+
+| Evidence engineering pipeline | Evidence hierarchy |
+|---|---|
+| ![Evidence engineering pipeline](figures/portfolio/evidence-engineering-pipeline.svg) | ![Evidence hierarchy](figures/portfolio/evidence-hierarchy.svg) |
+
+![Evidence products and attrition](figures/portfolio/evidence-products-and-attrition.svg)
+
+| Same-car transition design | Frozen physical-response model |
+|---|---|
+| ![Same-car transition design](figures/portfolio/same-car-transition-design.svg) | ![Frozen physical response](figures/portfolio/frozen-physical-response.svg) |
+
+![Physical-state transition examples](figures/portfolio/physical-state-transition-examples.png)
+
+![Observed versus frozen physical prediction](figures/portfolio/observed-vs-frozen-physical-prediction.png)
+
+### Future physical state and uncertainty
+
+| Future track-state model | Three-source uncertainty architecture |
+|---|---|
+| ![Future track-state model](figures/portfolio/future-track-state-model.svg) | ![Three-source uncertainty architecture](figures/portfolio/three-source-uncertainty.svg) |
+
+![Future track candidate-model comparison](figures/portfolio/future-track-model-selection.png)
+
+![Future track-state conformal calibration](figures/portfolio/future-track-conformal-calibration.png)
+
+![Uncertainty-source ablation](figures/portfolio/uncertainty-source-ablation.png)
+
+![Leave-one-year-out track coefficient stability](figures/portfolio/loyo-track-coefficient-stability.png)
+
+![Leave-one-year-out ambient coefficient stability](figures/portfolio/loyo-ambient-coefficient-stability.png)
+
+### Calibration, mechanism and scenario diagnostics
+
+![Calibrated horizon boundary](figures/portfolio/calibrated-horizon-boundary.svg)
+
+![Section mechanism coherence](figures/portfolio/section-mechanism-coherence.png)
+
+![Wind residual diagnostic](figures/portfolio/wind-residual-diagnostic.png)
+
+![120-minute scenario stress test](figures/portfolio/scenario-stress-test-120min.png)
+
+![Scenario probability range by horizon](figures/portfolio/scenario-probability-range-by-horizon.png)
+
+![Scenario performance envelope by horizon](figures/portfolio/scenario-performance-envelope-by-horizon.png)
+
+### External validation and technical-regime transfer
+
+![2025 external validation](figures/portfolio/external-validation-2025.png)
+
+![Technical-regime timeline](figures/portfolio/technical-regime-timeline.svg)
+
+![Regime coefficient comparison](figures/portfolio/regime-coefficient-comparison.png)
+
+### V4 team-normalized evidence
+
+![V4 measurement validity: run-state composition of practice laps](v4_team_normalized/output/phase4h/figures/fig06_run_state_by_session_category.png)
+
+![V4 control-evidence summary](figures/portfolio/v4-control-evidence-summary.png)
+
+### Operational outlook and reproducibility
+
+![Operational performance outlook](figures/portfolio/operational-performance-outlook.png)
+
+![Operational probability outlook](figures/portfolio/operational-probability-outlook.png)
+
+![External opportunity-window performance overlay](figures/portfolio/external-opportunity-window-performance-overlay.png)
+
+![External opportunity-window probability overlay](figures/portfolio/external-opportunity-window-probability-overlay.png)
+
+![Freeze and reproducibility](figures/portfolio/freeze-and-reproducibility.svg)
+
+See the [extended evidence reference](docs/PORTFOLIO_EVIDENCE.md) for the full methods, quantitative tables, citations, validation records and limitations.
 
 **Author:** Fengzhe Li · Independent research and engineering project; not affiliated with INDYCAR or IMS. [Citation](CITATION.cff).
