@@ -36,9 +36,8 @@ export function compatibleV6(a: V6Replay, b: V6Replay): boolean {
   }
 }
 
-export function sampleV6(samples: V6Sample[], time: number): V6Sample {
-  const durationS = Number(samples[samples.length - 1]?.sim_time_s);
-  return v6AtTime({ samples, durationS, status: "completed" } as V6Series, time).sample;
+export function sampleV6(run: V6Series, time: number): V6Sample {
+  return v6AtTime(run, time).sample;
 }
 
 export function nextV6Time(time: number, elapsedS: number, rate: number, endS: number): number {

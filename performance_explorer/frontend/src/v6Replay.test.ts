@@ -13,7 +13,7 @@ describe("V1.1 V6 view adapter", () => {
   });
   it("uses adapter interpolation and clamps the synchronized clock", () => {
     const run = decodeV6(baseline);
-    expect(sampleV6(run.samples, 1e9).sim_time_s).toBe(run.durationS);
+    expect(sampleV6(run, 1e9).sim_time_s).toBe(run.durationS);
     expect(nextV6Time(1, .5, 2, 2)).toBe(2);
     expect(() => nextV6Time(0, -1, 1, 2)).toThrow(/clock/);
   });
