@@ -245,13 +245,16 @@ def simulate_lap(track: Track | None = None, vehicle: Vehicle | None = None,
     track.validate(); vehicle.validate(); environment.validate()
     if not math.isfinite(ds_m) or ds_m <= 0:
         raise ValueError("ds_m must be finite and positive")
-    if not math.isfinite(tolerance_mps) or tolerance_mps <= 0 or max_iterations < 1:
-        raise ValueError("tolerance_mps and max_iterations must be positive")
+    if (not math.isfinite(tolerance_mps) or tolerance_mps <= 0
+            or type(max_iterations) is not int or max_iterations < 1):
+        raise ValueError("tolerance_mps must be positive and max_iterations a positive integer")
     ds, kappa, banks, indices, caps = [], [], [], [], []
     for si, seg in enumerate(track.segments):
         n = max(1, math.ceil(seg.distance_m / ds_m))
         k = 0.0 if seg.radius_m is None else 1 / seg.radius_m
         cap = sustainable_speed(vehicle, environment, k, seg.banking_deg)
+        if not math.isfinite(cap) or cap <= 0:
+            raise ValueError("local sustainable speed must be finite and positive")
         ds.extend([seg.distance_m / n] * n)
         kappa.extend([k] * n); banks.extend([seg.banking_deg] * n)
         indices.extend([si] * n); caps.extend([cap] * n)
@@ -265,6 +268,8 @@ def simulate_lap(track: Track | None = None, vehicle: Vehicle | None = None,
     def bounds(i: int, v0: float, v1: float) -> tuple[float, float]:
         vals = [force_limits(vehicle, environment, v, kappa[i], banks[i])
                 for v in (v0, (v0 + v1) / 2, v1)]
+        if not all(math.isfinite(value) for pair in vals for value in pair):
+            raise RuntimeError("nonfinite force bounds cannot define a feasible lap")
         return min(x[0] for x in vals), min(x[1] for x in vals)
 
     def reachable(i: int, fixed: float, upper: float, braking: bool) -> float:
@@ -300,6 +305,8 @@ def simulate_lap(track: Track | None = None, vehicle: Vehicle | None = None,
     next_speed = np.roll(speed, -1)
     cell_bounds = np.array([bounds(i, speed[i], next_speed[i]) for i in range(n)])
     actual_a = (next_speed ** 2 - speed ** 2) / (2 * ds)
+    if not np.isfinite(speed).all() or not np.isfinite(actual_a).all():
+        raise RuntimeError("nonfinite speed state cannot define a feasible lap")
     if np.any(actual_a > cell_bounds[:, 0] + 1e-6) or np.any(-actual_a > cell_bounds[:, 1] + 1e-6):
         raise RuntimeError("converged iteration is not a force-feasible lap")
     if np.any(speed <= 1e-6):

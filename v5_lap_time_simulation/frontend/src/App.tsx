@@ -6,11 +6,11 @@ const colors={acceleration:'#65dfb0',braking:'#ffb36b',corner_cap:'#d897ff',stea
 const parameters=[
   ['mass_kg','Mass','kg',600,1100,10],['cd_a_m2','Drag area CdA','m²',.6,1.6,.02],
   ['cl_a_m2','Downforce area ClA','m²',.5,2.5,.05],['tire_mu','Tire grip μ','–',1.1,2.2,.01],
-  ['power_w','Effective power','kW',400000,1100000,5000],
+  ['power_w','Effective power','kW',400000,1100000,'any'],
 ] as const;
 async function getReplay(url:string,body?:unknown):Promise<Replay>{
   const response=await fetch(url,body?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:undefined);
-  if(!response.ok)throw new Error(`Simulation failed (${response.status}): ${JSON.stringify((await response.json()).detail)}`);
+  if(!response.ok){const error=await response.json().catch(()=>({detail:response.statusText||'Invalid API response'}));throw new Error(`Simulation failed (${response.status}): ${JSON.stringify(error.detail)}`);}
   return parseReplay(await response.json());
 }
 export function TrackView({baseline,scenario,time}:{baseline:Replay;scenario:Replay;time:number}){
@@ -24,7 +24,7 @@ export function TrackView({baseline,scenario,time}:{baseline:Replay;scenario:Rep
     <polyline points={scenario.xy_m.map(p=>project(p).join(',')).join(' ')} fill="none" stroke="#233d4c" strokeWidth="19" strokeLinejoin="round"/>
     <polyline points={scenario.xy_m.map(p=>project(p).join(',')).join(' ')} fill="none" stroke="#6c8496" strokeWidth="1" strokeDasharray="4 5"/>
     {scenario.segments.map(s=>{const [x,y]=project(s.label_xy_m);return <text key={s.name} x={x} y={y+(y>140?-20:27)} textAnchor="middle" className="map-label">{s.name}</text>;})}
-    <circle cx={ghost[0]} cy={ghost[1]} r="9" fill="none" stroke="#c4d2dd" strokeWidth="2"/>
+    <circle data-testid="baseline-marker" data-distance={atTime(baseline,Math.min(time,baseline.lap_time_s)).distance} cx={ghost[0]} cy={ghost[1]} r="9" fill="none" stroke="#c4d2dd" strokeWidth="2"/>
     <circle data-testid="car-marker" data-distance={atTime(scenario,time).distance} cx={car[0]} cy={car[1]} r="7" fill="#59d5ff" stroke="#07131d" strokeWidth="2"/>
     <text x="260" y="140" textAnchor="middle" className="map-title">2.500 mi / 4,023.36 m</text>
     <text x="260" y="163" textAnchor="middle" className="map-label">ASSUMED CONSTANT-RADIUS COURSE</text>
@@ -38,8 +38,8 @@ export function SpeedGraph({baseline,scenario,time,onSeek}:{baseline:Replay;scen
   const X=(s:number)=>55+925*s/scenario.track_length_m,Y=(v:number)=>245-210*(v*MPH-lo)/(hi-lo);
   const path=(r:Replay,cap=false)=>r.distance_m.map((s,i)=>`${X(s)},${Y(cap?r.speed_cap_mps[i]:r.speed_mps[i])}`).join(' ');
   const seek=(e:React.PointerEvent<SVGSVGElement>)=>{const box=e.currentTarget.getBoundingClientRect();const x=(e.clientX-box.left)*1000/box.width;onSeek(timeAtDistance(scenario,(x-55)/925*scenario.track_length_m));};
-  return <svg viewBox="0 0 1000 300" role="slider" aria-label="Speed graph distance" aria-valuemin={0} aria-valuemax={Math.round(scenario.track_length_m)} aria-valuenow={Math.round(current.distance)} tabIndex={0}
-    onKeyDown={e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();onSeek(timeAtDistance(scenario,current.distance+(e.key==='ArrowRight'?1:-1)*scenario.track_length_m/100));}}}
+  return <svg viewBox="0 0 1000 300" role="slider" aria-label="Speed graph distance" aria-valuemin={0} aria-valuemax={scenario.track_length_m} aria-valuenow={Math.round(current.distance)} aria-valuetext={`${current.distance.toFixed(1)} m`} tabIndex={0}
+    onKeyDown={e=>{const keys=['ArrowRight','ArrowLeft','ArrowUp','ArrowDown','Home','End'];if(keys.includes(e.key)){e.preventDefault();const s=e.key==='Home'?0:e.key==='End'?scenario.track_length_m:current.distance+(['ArrowRight','ArrowUp'].includes(e.key)?1:-1)*scenario.track_length_m/100;onSeek(timeAtDistance(scenario,s));}}}
     onPointerDown={e=>{dragging.current=true;e.currentTarget.setPointerCapture?.(e.pointerId);seek(e);}}
     onPointerMove={e=>{if(dragging.current)seek(e);}} onPointerUp={()=>{dragging.current=false;}} onPointerCancel={()=>{dragging.current=false;}} className="speed-graph">
     {[0,1,2,3,4].map(i=>{const mph=lo+(hi-lo)*i/4,y=Y(mph/MPH);return <g key={i}><line x1="55" x2="980" y1={y} y2={y} stroke="#203541"/><text x="46" y={y+4} textAnchor="end">{mph.toFixed(0)}</text></g>;})}
@@ -58,20 +58,22 @@ export default function App(){
   const [inputs,setInputs]=useState<Record<string,number>>({}),[environment,setEnvironment]=useState<Record<string,number>>({});
   const [time,setTime]=useState(0),[playing,setPlaying]=useState(false),[rate,setRate]=useState(1);
   const [busy,setBusy]=useState(true),[dirty,setDirty]=useState(false),[error,setError]=useState('');
-  useEffect(()=>{let cancelled=false;(async()=>{try{
+  const inFlight=useRef(false),generation=useRef(0);
+  useEffect(()=>{let cancelled=false;generation.current++;(async()=>{try{
     const base=await getReplay('/api/v5/baseline');
+    if(cancelled)return;
     const initial={...base.vehicle,tire_mu:base.vehicle.tire_mu*.75};
     const env={air_temperature_c:base.environment.air_temperature_c!,track_temperature_c:base.environment.track_temperature_c!};
     const modified=await getReplay('/api/v5/simulate',{vehicle:{tire_mu:initial.tire_mu}});
     if(!cancelled){setBaseline(base);setScenario(modified);setInputs(initial);setEnvironment(env);}
-  }catch(e){if(!cancelled)setError(String(e));}finally{if(!cancelled)setBusy(false);}})();return()=>{cancelled=true;};},[]);
+  }catch(e){if(!cancelled)setError(String(e));}finally{if(!cancelled)setBusy(false);}})();return()=>{cancelled=true;generation.current++;};},[]);
   useEffect(()=>{if(!playing||!scenario)return;let frame:number,last:number|undefined;
     const tick=(now:number)=>{if(last!==undefined)setTime(t=>advanceTime(t,(now-last!)/1000,rate,scenario.lap_time_s));last=now;frame=requestAnimationFrame(tick);};frame=requestAnimationFrame(tick);return()=>cancelAnimationFrame(frame);
   },[playing,rate,scenario]);
-  async function recompute(reset=false){if(!baseline)return;setBusy(true);setPlaying(false);setError('');
+  async function recompute(reset=false){if(!baseline||inFlight.current)return;inFlight.current=true;const requestGeneration=generation.current;setBusy(true);setPlaying(false);setError('');
     const vehicle=Object.fromEntries(parameters.map(([key])=>[key,reset?baseline.vehicle[key]:inputs[key]]));
     const env=reset?{air_temperature_c:baseline.environment.air_temperature_c,track_temperature_c:baseline.environment.track_temperature_c}:environment;
-    try{const r=await getReplay('/api/v5/simulate',{vehicle,environment:env});setScenario(r);setInputs({...r.vehicle});setEnvironment({air_temperature_c:r.environment.air_temperature_c!,track_temperature_c:r.environment.track_temperature_c!});setDirty(false);setTime(0);}catch(e){setError(String(e));}finally{setBusy(false);}
+    try{const r=await getReplay('/api/v5/simulate',{vehicle,environment:env});if(requestGeneration!==generation.current)return;setScenario(r);setInputs({...r.vehicle});setEnvironment({air_temperature_c:r.environment.air_temperature_c!,track_temperature_c:r.environment.track_temperature_c!});setDirty(false);setTime(0);}catch(e){if(requestGeneration===generation.current)setError(String(e));}finally{if(requestGeneration===generation.current){inFlight.current=false;setBusy(false);}}
   }
   function seek(t:number){setPlaying(false);setTime(t);}
   if(!baseline||!scenario)return <main className="loading"><h1>V5 / Engineering replay</h1><p role={error?'alert':'status'}>{error||'Computing baseline and parameter scenario with the Python solver…'}</p>{error&&<p>Start the API with <code>python3 -m v5_lap_time_simulation.server</code>, then reload.</p>}</main>;
@@ -99,7 +101,7 @@ export default function App(){
       <div className="main-panels">
         <section className="panel"><div className="section-title"><h2>Closed-course replay</h2><span>{scenario.origin}</span></div>
           <div className="course-row"><TrackView baseline={baseline} scenario={scenario} time={time}/><div className="play-info"><label>ELAPSED TIME</label><strong>{time.toFixed(3)} <small>s</small></strong><p>/{scenario.lap_time_s.toFixed(3)} s</p><p className="muted">Position follows integrated V5 speed. Timeline and graph share one time state.</p></div></div>
-          <div className="controls"><button aria-label={playing?'Pause replay':'Play replay'} className="primary" onClick={()=>setPlaying(!playing)}>{playing?'Ⅱ Pause':'▶ Play'}</button><button onClick={()=>{seek(0);}}>↺ Restart</button><label>Playback <select aria-label="Playback speed" value={rate} onChange={e=>setRate(Number(e.target.value))}>{[.25,.5,1,2,5,10].map(r=><option key={r} value={r}>{r}×</option>)}</select></label><input aria-label="Replay time" type="range" min="0" max={scenario.lap_time_s} step="0.001" value={time} onChange={e=>seek(Number(e.target.value))}/></div>
+          <div className="controls"><button disabled={busy} aria-label={playing?'Pause replay':'Play replay'} className="primary" onClick={()=>setPlaying(!playing)}>{playing?'Ⅱ Pause':'▶ Play'}</button><button onClick={()=>{seek(0);}}>↺ Restart</button><label>Playback <select aria-label="Playback speed" value={rate} onChange={e=>setRate(Number(e.target.value))}>{[.25,.5,1,2,5,10].map(r=><option key={r} value={r}>{r}×</option>)}</select></label><input aria-label="Replay time" type="range" min="0" max={scenario.lap_time_s} step="any" aria-valuetext={`${time.toFixed(3)} s`} value={time} onChange={e=>seek(Number(e.target.value))}/></div>
         </section>
         <section className="panel"><div className="section-title"><h2>Speed envelope</h2><span>Click / drag to seek · arrow keys move 1% of distance</span></div>
           <div className="legend"><span className="cyan">━ Scenario</span><span>━ Baseline</span><span className="purple">┄ Corner / power sustainable cap</span><span className="green">● Acceleration limited</span><span className="orange">● Braking limited</span><span className="purple">● Corner cap</span></div>

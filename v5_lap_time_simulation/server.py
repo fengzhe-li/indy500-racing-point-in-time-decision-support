@@ -5,7 +5,8 @@ import json
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import FileResponse
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -44,6 +45,14 @@ def create_app(baseline_path: Path = MODULE / "output" / "baseline.json") -> Fas
     base_environment = Environment(**config["environment"])
     track = build_ims_oval_approximation()
     app = FastAPI(title="V5 engineering replay", version="1")
+
+    @app.exception_handler(RequestValidationError)
+    async def invalid_request(_request, exc):
+        # Validation inputs can contain NaN/Infinity after JSON number overflow.
+        # Do not echo those values into a strict JSON error response (which 500s).
+        detail = [{key: error[key] for key in ("type", "loc", "msg")}
+                  for error in exc.errors()]
+        return JSONResponse(status_code=422, content={"detail": detail})
 
     @lru_cache(maxsize=32)
     def compute(request_json: str):

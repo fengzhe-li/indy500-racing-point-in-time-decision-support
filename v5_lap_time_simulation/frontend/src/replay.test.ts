@@ -32,3 +32,19 @@ describe('Python replay schema and kinematics',()=>{
     expect(advanceTime(9,.5,4,10)).toBe(1);
   });
 });
+
+describe('Contract semantic rejection',()=>{
+  it('rejects wrong coordinate units and nonclosing segment geometry',()=>{
+    expect(()=>parseReplay({...baseline,units:{...baseline.units,distance:'ft'}})).toThrow();
+    const wrong=structuredClone(baseline);wrong.segments[0].distance_m+=10;
+    expect(()=>parseReplay(wrong)).toThrow();
+  });
+  it('rejects nonfinite metadata and out-of-envelope speeds',()=>{
+    expect(()=>parseReplay({...baseline,average_speed_mph:NaN})).toThrow();
+    expect(()=>parseReplay({...baseline,speed_cap_mps:baseline.speed_cap_mps.map(()=>1)})).toThrow();
+  });
+  it('supports all offered playback rates and exact lap wrap',()=>{
+    for(const rate of [.25,.5,1,2,5,10])expect(advanceTime(1,2,rate,100)).toBe(1+2*rate);
+    expect(advanceTime(0,data.lap_time_s,1,data.lap_time_s)).toBe(0);
+  });
+});
