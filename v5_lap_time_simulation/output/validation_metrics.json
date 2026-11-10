@@ -1,0 +1,19 @@
+{
+  "validation_year": 2024,
+  "method": "one effective scalar fit on 2020-2023; all remaining parameters assumed",
+  "sample_size": 54,
+  "average_speed_mph": {
+    "n": 54,
+    "mae": 1.142814814792544,
+    "rmse": 1.4005401570196687,
+    "mean_error": -0.7557222221846435
+  },
+  "four_lap_time_seconds": {
+    "n": 54,
+    "mae": 0.7692578682906309,
+    "rmse": 0.9444026140089103,
+    "mean_error": 0.504810152740439
+  },
+  "claim_boundary": "Descriptive agreement only; aggregate speed does not identify vehicle dynamics.",
+  "development_boundary": "2024 results have been inspected during development; exclusion from scalar fitting is not an untouched prospective holdout."
+}

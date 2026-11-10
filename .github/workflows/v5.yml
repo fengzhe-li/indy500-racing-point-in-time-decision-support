@@ -1,0 +1,27 @@
+name: v5-engineering-replay
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [feat/v5-lap-time-simulation]
+  workflow_dispatch: {}
+jobs:
+  physics-and-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: pip install -r v5_lap_time_simulation/requirements.txt
+      - run: python -m unittest discover -s v5_lap_time_simulation/tests -v
+      - run: python -m v5_lap_time_simulation.cli --output-dir /tmp/v5-reproduction
+      - run: npm ci
+        working-directory: v5_lap_time_simulation/frontend
+      - run: npm test && npm run build
+        working-directory: v5_lap_time_simulation/frontend
