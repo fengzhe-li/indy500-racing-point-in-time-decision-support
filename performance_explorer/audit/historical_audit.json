@@ -1,0 +1,95 @@
+{
+  "years": [
+    {
+      "year": 2020,
+      "source_rows": 63,
+      "r4p1_rows": 63,
+      "v5_complete": 46,
+      "old_explorer": 46,
+      "retained_rows": 46,
+      "recovered_unknown_order": 0,
+      "excluded_rows": 17,
+      "exclusions": {
+        "status_unknown": 17
+      }
+    },
+    {
+      "year": 2021,
+      "source_rows": 60,
+      "r4p1_rows": 60,
+      "v5_complete": 51,
+      "old_explorer": 50,
+      "retained_rows": 50,
+      "recovered_unknown_order": 0,
+      "excluded_rows": 10,
+      "exclusions": {
+        "status_unknown": 9,
+        "status_withdrawn": 1
+      }
+    },
+    {
+      "year": 2022,
+      "source_rows": 44,
+      "r4p1_rows": 44,
+      "v5_complete": 40,
+      "old_explorer": 39,
+      "retained_rows": 39,
+      "recovered_unknown_order": 0,
+      "excluded_rows": 5,
+      "exclusions": {
+        "status_disallowed": 1,
+        "status_unknown": 4
+      }
+    },
+    {
+      "year": 2023,
+      "source_rows": 85,
+      "r4p1_rows": 85,
+      "v5_complete": 69,
+      "old_explorer": 30,
+      "retained_rows": 30,
+      "recovered_unknown_order": 0,
+      "excluded_rows": 55,
+      "exclusions": {
+        "status_failed": 13,
+        "status_retired": 17,
+        "status_unknown": 1,
+        "status_valid_superseded": 8,
+        "status_waved_off": 15,
+        "status_withdrawn": 1
+      }
+    },
+    {
+      "year": 2024,
+      "source_rows": 77,
+      "r4p1_rows": 77,
+      "v5_complete": 54,
+      "old_explorer": 3,
+      "retained_rows": 31,
+      "recovered_unknown_order": 28,
+      "excluded_rows": 46,
+      "exclusions": {
+        "status_failed": 9,
+        "status_retired": 9,
+        "status_unknown": 3,
+        "status_valid_superseded": 4,
+        "status_waved_off": 20,
+        "status_withdrawn": 1
+      }
+    }
+  ],
+  "attempt_ids_unique": true,
+  "lap_ids_unique": true,
+  "orphan_laps": 0,
+  "r4p1_canonical_ids_equal": true,
+  "sourceHashes": {
+    "data/canonical/v1/attempts.csv": "bef292bce59770499a6d3bdb75fcad0e96933465f6010e7374f6b1b07b4b42c2",
+    "data/canonical/v1/attempt_laps.csv": "5ac7314f0a1b250d2c8b4ee01f6417d8e845e1e002c22e554ef679576a279682",
+    "data/canonical/v1/qualifying_events.csv": "6db1156326e04e563880e201a12a8fd622a056911dcf345dbcd3128204c8a9a5",
+    "data/canonical/v1/field_evidence_links.csv": "f1facd29d4976a25b998795d8bfd9f091c91f19dc5cc5414f7b366edde9ae495",
+    "data/canonical/v1/evidence_items.csv": "ddc71ef8bdabc2accd4833498336efb986004c800a3f978de83a21ad29ec8b3a",
+    "data/canonical/v1/sources.csv": "4a54522bfafd1769b4b58e4212011bbc4b7ad89ca138a65654fc9656e7a2d553",
+    "data/canonical/v1/attempt_sections.csv": "c1f3ba38fe97a54074a240b9851b58a77faebc9fb41878ddfd5cf75245c539c4"
+  },
+  "max_time_sum_error_s": 2.842170943040401e-14
+}
