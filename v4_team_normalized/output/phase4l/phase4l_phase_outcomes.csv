@@ -1,0 +1,14 @@
+phase,question,outcome,case_label,source
+1-2,Team identity / registry,COMPLETE (registry + audit),n/a,v4_team_normalization_report.md
+3,Teammate attempt candidates / comparability,COMPLETE (descriptive),n/a,phase3/
+4A,Frozen-transition teammate-control matching design,COMPLETE (sparse endpoint support; substantial reuse),n/a,phase4a/
+4B,Team-year timelines,COMPLETE (car x time confounding; Era A/B environment-time collinearity),n/a,phase4b/
+4C,2025 exploratory within-team panel,physical terms not separable from session time (ambient); track sign stable but interval includes 0,B,phase4c/case_evaluation.csv
+4D,Latent team-state / residual attribution feasibility,NOT IDENTIFIED,C,phase4d/feasibility_case_evaluation.csv
+4E,2018-2025 multi-session data opportunity,Design 1 feasible now for 2023-2024 only; 2018-2021 stint-level; 2022 session-level,n/a (tiered),phase4e/
+4F,Raw-practice empirical hierarchy (pre-registered),no team-control advantage under primary nearest-time estimator; design-sensitive,D,phase4f/case_evaluation.csv
+4G,Control-selection / timing-adjacency diagnostic,primary controls unusually timing-adjacent; adjacency associated with lower D,A,phase4g/phase4g_case_evaluation.csv
+4H,Performance-lap / run-state measurement validity,raw practice unsuitable for a clean performance hierarchy,D,phase4h/case_evaluation.csv
+4I,Post-validity eligibility / support,restricted hierarchy test feasible,B,phase4i/case_evaluation.csv
+4J,FINAL pre-registered hierarchy,C1 supported; C2 not established; full hierarchy not established,B,phase4j/case_evaluation.csv
+4K,Point-in-time teammate prediction feasibility,weak support; teammate predictive value not prospectively identifiable; no predictive experiment,C,phase4k/case_evaluation.csv

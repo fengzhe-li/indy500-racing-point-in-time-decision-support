@@ -1,0 +1,27 @@
+criterion,value
+phase4f_case_unchanged,D
+phase4g_case_unchanged,A
+reference_sufficient,True
+n_2023_official_attempts,43
+n_2024_official_attempts,24
+T_steady_95,0.009401666311997741
+T_steady_100,0.01334916816180075
+T_level_95,0.001673525628209048
+T_level_100,0.001987874348791996
+C1_2024_official_retention_A,0.9166666666666666
+C1_2024_official_retention_AB,0.9166666666666666
+C1_pass,True
+C2_2025_inferred_retention_AB,0.08333333333333333
+C2_pass,False
+S_AB_nonD_2023_2024,0.11570191117833081
+S_A_nonD_2023_2024,0.08057197855080435
+S_A_2023,0.07980512701542744
+S_A_2024,0.08168776371308017
+S_C_nonD,0.7463220129245153
+S_E_nonD,0.13797607589715385
+stability_abs_S_AB_minus_S_A,0.035129932627526464
+MEASUREMENT_VALIDITY_CASE,D
+agreement_2025_S_AB_nonD,0.14835592956210067
+agreement_2025_S_A_nonD,0.10830606202275206
+agreement_2025_S_C_nonD,0.7107682717780894
+phase4i_gate,STOP practice-based hierarchy

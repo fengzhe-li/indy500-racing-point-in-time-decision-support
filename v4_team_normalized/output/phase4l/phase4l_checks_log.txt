@@ -1,0 +1,19 @@
+PASS  every final case label matches its frozen source and the accepted sequence                                                             {'4C': 'B', '4D': 'C', '4F': 'D', '4G': 'A', '4H': 'D', '4I': 'B', '4J': 'B', '4K': 'C'}
+PASS  all key numbers reproduce from source outputs (re-extraction identical)                                                                
+PASS  quoted key counts/numbers match source outputs                                                                                         []
+PASS  synthesis documents are exactly the rendering of the source-extracted values                                                           
+PASS  Phase 4J C1/C2 interpretation matches pre-registered result (C1 POSITIVE_CONSISTENT; C2 INCONSISTENT; full hierarchy not established)  
+PASS  C2 not presented as robust support                                                                                                     
+PASS  Phase 4K CASE C not presented as zero teammate predictive value                                                                        
+PASS  Timing71 provenance wording correct                                                                                                    
+PASS  2018-2022 not presented as equivalent lap-level evidence                                                                               
+PASS  2025 not pooled with 2023-24                                                                                                           
+PASS  no new estimator/model/classifier in Phase 4L                                                                                          
+PASS  no Phase 1-4K artifact changed (451 hashes 4A-4J; 4K, evidence, registry, scripts vs c74e892)                                          
+PASS  FINAL_V2/V3 frozen manifests hash exactly (R5.2 + R6)                                                                                  
+PASS  paper unchanged; nothing outside V4 changed                                                                                            
+PASS  original main unchanged (main == a8bb519; original worktree clean)                                                                     
+PASS  manifest self-consistent; all hashes and sizes reproduce; complete coverage                                                            735 files
+PASS  all required outputs present                                                                                                           
+
+17/17 checks passed

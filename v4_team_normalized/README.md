@@ -1,0 +1,100 @@
+# V4 — Team-normalised / teammate-controlled evidence layer
+
+An additive extension. The frozen V2/V3 system (same-car core, future-state model, inference engine, regulation-aware extension, validation outputs, paper) is not modified; everything V4 produces lives under this directory.
+
+## Freeze record (Phase 0, 2026-09-28)
+
+| Item | Value |
+|---|---|
+| Frozen branch | `main` |
+| Frozen commit | `a8bb519b586b329f0c61eca8be31c5960abeccf8` |
+| Freeze tag | `v3-frozen-pre-team-normalization-v4` (annotated, pushed to origin) |
+| Working tree at freeze | clean; `main` was 1 commit ahead of origin (docs-only `a8bb519`) and was pushed |
+| V4 branch | `v4-team-normalized-evidence`, created from the freeze tag |
+| V4 working copy | sibling clone `indy500-point-in-time-decision-support-v4/` |
+
+## Reproduce
+
+```bash
+python3 v4_team_normalized/scripts/v4_parse_entry_lists.py     # needs pdftotext (poppler)
+python3 v4_team_normalized/scripts/v4_build_team_registry.py
+# Phase 3 (descriptive candidate construction; no model fitting)
+python3 v4_team_normalized/scripts/v4_phase3_candidates.py
+python3 v4_team_normalized/scripts/v4_phase3_reports.py
+python3 v4_team_normalized/scripts/v4_phase3_checks.py       # 26 consistency checks, exits non-zero on failure
+# Phase 4A (frozen-transition teammate-control matching design; descriptive)
+python3 v4_team_normalized/scripts/v4_phase4a_matching.py
+python3 v4_team_normalized/scripts/v4_phase4a_reports.py
+python3 v4_team_normalized/scripts/v4_phase4a_checks.py      # 28 checks
+# Phase 4B (team-year chronological timelines; exploratory, no model fitted)
+python3 v4_team_normalized/scripts/v4_phase4b_timelines.py
+python3 v4_team_normalized/scripts/v4_phase4b_reports.py
+python3 v4_team_normalized/scripts/v4_phase4b_checks.py      # 23 checks
+# Phase 4C (2025-only pre-specified exploratory panel; needs statsmodels for the mixed-model sensitivity)
+python3 v4_team_normalized/scripts/v4_phase4c_panel.py       # ~2 min (cluster bootstraps)
+(cd v4_team_normalized/scripts && python3 v4_phase4c_reports.py)
+python3 v4_team_normalized/scripts/v4_phase4c_checks.py      # 19 checks
+# Phase 4D (latent team-state feasibility audit; no latent model fitted)
+python3 v4_team_normalized/scripts/v4_phase4d_feasibility.py
+python3 v4_team_normalized/scripts/v4_phase4d_reports.py
+python3 v4_team_normalized/scripts/v4_phase4d_checks.py      # 25 checks
+# Phase 4E (2018-2025 multi-session data-opportunity audit; no model)
+#   source inventory + tier spec were committed before retrieval; retrieval is already done (manifest + SHA-256):
+# python3 v4_team_normalized/scripts/v4_phase4e_retrieve.py   # only to re-download (network)
+python3 v4_team_normalized/scripts/v4_phase4e_outputs.py     # rebuilds the audit cache, tables, figures, reports
+python3 v4_team_normalized/scripts/v4_phase4e_checks.py      # 20 checks
+# Phase 4F (empirical performance-control hierarchy; pre-specified; descriptive)
+python3 v4_team_normalized/scripts/v4_phase4f_hierarchy.py
+python3 v4_team_normalized/scripts/v4_phase4f_reports.py
+python3 v4_team_normalized/scripts/v4_phase4f_checks.py      # 24 checks
+# Phase 4G (control-selection / timing-sequence adjacency diagnostic; spec ffdfacd; no hierarchy retest, no model)
+python3 v4_team_normalized/scripts/v4_phase4g_adjacency.py
+python3 v4_team_normalized/scripts/v4_phase4g_reports.py
+python3 v4_team_normalized/scripts/v4_phase4g_checks.py      # 25 checks
+# Phase 4H (performance-lap / run-state measurement-validity audit; spec a56b4dd; no hierarchy recomputed)
+python3 v4_team_normalized/scripts/v4_phase4h_audit.py
+python3 v4_team_normalized/scripts/v4_phase4h_reports.py
+python3 v4_team_normalized/scripts/v4_phase4h_checks.py      # 23 checks
+# Phase 4I (post-validity eligibility / support audit; spec ccb06c6; no between-car D, no hierarchy)
+python3 v4_team_normalized/scripts/v4_phase4i_support.py
+python3 v4_team_normalized/scripts/v4_phase4i_reports.py
+python3 v4_team_normalized/scripts/v4_phase4i_checks.py      # 22 checks
+# Phase 4J (FINAL pre-registered hierarchy; spec 28af221 committed before any result; closes the V4 hierarchy sequence)
+python3 v4_team_normalized/scripts/v4_phase4j_verify_inputs.py   # pre-result verification (no D)
+python3 v4_team_normalized/scripts/v4_phase4j_hierarchy.py
+python3 v4_team_normalized/scripts/v4_phase4j_reports.py
+python3 v4_team_normalized/scripts/v4_phase4j_checks.py      # 26 checks
+# Phase 4K (point-in-time teammate prediction FEASIBILITY audit; spec dae6856; no predictions / errors / fitting)
+python3 v4_team_normalized/scripts/v4_phase4k_feasibility.py
+python3 v4_team_normalized/scripts/v4_phase4k_reports.py
+python3 v4_team_normalized/scripts/v4_phase4k_checks.py      # 25 checks
+# Phase 4L (FINAL synthesis and freeze; no new analysis)
+python3 v4_team_normalized/scripts/v4_phase4l_synthesis.py   # renders synthesis docs from source-extracted values
+python3 v4_team_normalized/scripts/v4_phase4l_freeze.py      # v4_final_manifest.csv (+ .sha256, freeze report)
+python3 v4_team_normalized/scripts/v4_phase4l_checks.py      # 17 checks (incl. manifest reproduction)
+```
+
+Phase 1–2 decisions accepted: #98 Andretti Herta is in the Andretti primary teammate group, and the four technical partnerships stay out of the primary layer (they remain in the registry for a later AFFILIATED sensitivity analysis). Phase 3 outputs are in `output/phase3/`.
+
+## Layout
+
+- `evidence/entry_lists/`: official INDYCAR/IMS Indianapolis 500 entry-list PDFs, 2018–2025, with layout text
+- `manual/v4_team_mapping_rules.csv`: explicit exact-label → canonical-team rules with sources (the only place team identity is decided)
+- `scripts/`: parser and registry/audit builder
+- `output/`: registry, audit, pair changes, affiliation links, API anomalies, report
+- `output/phase4l/`: FINAL scientific synthesis, evidence chain, claims matrix, key results and phase outcomes (source-extracted), paper-integration map (paper not edited), future data requirements, limitations, V4 freeze manifest + SHA-256 + freeze report
+- `output/phase4k/`: pre-specified prediction-feasibility spec (committed before counts) + freeze record, canonical target events (F0-F5 flags, both cutoffs), physical-input support, teammate and placebo signal support, fully comparable events, attrition, dependence, horizons, coverage, model-free support, Tier 2 and 2025 secondary feasibility, case evaluation, reports, figures
+- `output/phase4j/`: FINAL pre-registered hierarchy spec (28af221) + input verification + freeze record, primary Tier 1 common support, same-car / same-team / different-team candidate and context-aggregate tables, session-level hierarchy, contrasts, LOSO/LOTO, Tier 2 sensitivity, 2025 replication, performance-scale context, case evaluation, reports, figures
+- `output/phase4i/`: pre-specified support-audit spec (committed before counts) + Phase 4A-4H freeze record, eligible observations (Tier 1 A / Tier 2 A+B), tier support, same-car / same-team / different-team candidate support, common support by session and block, adjacency support and balance feasibility, reuse/dependence, era coverage, measurement-scale reference, case evaluation, reports, figures
+- `output/phase4h/`: pre-specified validity spec (committed before classification) + Phase 4F/4G freeze record, qualifying performance reference (official-anchored / inferred attempts), practice lap inventory, speed distributions, stint sequence audit, run-state classification and rule audit, qualifying calibration, Phase 4F/4G population and adjacency run-state audits, validity summary, case evaluation, reports, figures
+- `output/phase4g/`: pre-specified diagnostic spec (committed before computation) + Phase 4F freeze record, primary control reconstruction, timing-sequence adjacency pairs, adjacency distributions, D by adjacency stratum, negative/positive block diagnostics, control reuse, design-population comparison, year/session adjacency, sequence completeness, future-evidence feasibility, case evaluation, reports, figures
+- `output/phase4f/`: pre-specified design (committed before computation), analysis population, car-block observations and validity, comparisons, block contrasts, session-balanced/year/category/LOTO/fairness sensitivities, team-relative deviations, cross-session persistence, dependence, weather/official/race diagnostics, case evaluation, reports, figures
+- `evidence/phase4e/`: retrieved Timing71 lap-level analysis JSON (101) and official INDYCAR session details (60), with `retrieval_manifest.csv`
+- `output/phase4e/`: source/session inventories, granularity, team-join coverage, same-car/same-team/different-team opportunities, temporal overlap, team-reference and hierarchy feasibility, cross-session/cross-year identity, weather coverage, sampling dependence, quality tiers, design feasibility, opportunity matrix, reports, figures
+- `output/phase4d/`: identifiability spec (committed before computation), transition team context, teammate observations with independence labels, structural categories, context summaries, residual alignment, placebo (empty by rule), permutation diagnostic, large-residual cases, 2025 extension, reports, figures
+- `output/phase4c/`: pre-specification (committed before fitting), 2025 population, identifiability diagnostics, FE / within / mixed / LOTO / LOCO / strategy results, case evaluation, reports, figures
+- `output/phase4b/`: team-year timelines, car baselines, sampling/consecutive/confounding/weather audits, frozen-core context, timeline and summary figures, reports
+- `output/phase4a/`: frozen-transition anchors, endpoint teammate candidates, matched controls by strategy/window/direction, PIT view, dependence audit, reports, figures
+- `output/phase3/`: attempt join, teammate attempt-pair candidates, nearest-teammate view, comparability tables, reports, diagnostic figures
+
+See `output/v4_team_normalization_report.md` for findings and the modelling gate.

@@ -1,0 +1,25 @@
+PASS  Phase 4F/4G result files unchanged (SHA-256 vs freeze record)                                                     
+PASS  Phase 4F CASE D and Phase 4G CASE A unchanged                                                                     
+PASS  exact Phase 4E/4F practice population provenance (Tier A/B practice-type, Phase 4F roles)                         
+PASS  qualifying reference = Tier A/B formal qualifying only                                                            
+PASS  no race in the audit                                                                                              
+PASS  raw lap times / timestamps unaltered vs Timing71 evidence (400-lap sample); speed = 2.5*3600/laptime              
+PASS  no missing speed imputed (inventory row count = source lap records; no NaN laptime/speed)                         
+PASS  official qualifying four timed laps identified exactly (QualLap1-4 order and values)                              67 attempts
+PASS  stint ordering correct (unique positions; timestamps increase with position)                                      
+PASS  classification deterministic (re-run and shuffled-input re-run identical to saved)                                
+PASS  classification does not depend on D, Phase 4F delta, team or adjacency (code scan + team-permutation invariance)  
+PASS  thresholds/rules match the committed pre-specification (2023 official quantiles; band; coherence; pit tolerance)  
+PASS  case evaluation follows the pre-specified precedence (C -> D -> A -> B)                                           
+PASS  2025 kept separate (own year group; not in case criteria)                                                         
+PASS  no team/driver ranking (no rank columns; team coverage alphabetical)                                              
+PASS  no hierarchy recomputed / no model fitted                                                                         
+PASS  no tow / traffic status invented                                                                                  
+PASS  no Phase 4A-4G files changed (outputs and scripts vs d903148)                                                     
+PASS  FINAL_V2/V3 frozen manifests hash exactly (R5.2 + R6)                                                             
+PASS  pre-specification committed before results (a56b4dd) and unchanged                                                
+PASS  Timing71 labelled third-party; official anchor labelled distinctly                                                
+PASS  all required outputs and >=8 figures present                                                                      
+PASS  nothing outside v4_team_normalized/ changed                                                                       
+
+23/23 checks passed

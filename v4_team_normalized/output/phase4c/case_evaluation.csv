@@ -1,0 +1,5 @@
+case,satisfied,detail,headline_by_precedence_D_B_C_A
+D,False,"M2 est=True, M3 est=True, VIF_M2 track=1.15, ambient=1.15",B
+B,True,ambient: within VIF in M3 = 25.5,B
+C,True,M3 ambient: 1.0 LOTO sign flip(s); M3 ambient: single-team removal changes beta by 264%,B
+A,False,not met,B

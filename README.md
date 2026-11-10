@@ -1,17 +1,44 @@
 <div align="center">
 
-# Indy 500 Point-in-Time Probabilistic Decision Support System
+# Indy 500 Racing Point-in-Time Decision Support System
 
 ### Physics-conditioned probabilistic inference with leakage-controlled historical replay and evidence-aware abstention
 
 **Status: `FINAL_V3_FROZEN`** · **FINAL_V2 frozen scientific core** · **2020–2024 reference era** · **2025 external regime evaluation** · **Human in the loop**
 
-[![indy500-v3-ci](https://github.com/fengzhe-li/indy500-point-in-time-decision-support/actions/workflows/ci.yml/badge.svg)](https://github.com/fengzhe-li/indy500-point-in-time-decision-support/actions/workflows/ci.yml)
-[![repository-integrity](https://github.com/fengzhe-li/indy500-point-in-time-decision-support/actions/workflows/integrity.yml/badge.svg)](https://github.com/fengzhe-li/indy500-point-in-time-decision-support/actions/workflows/integrity.yml)
+**+ `V4_TEAM_NORMALIZED_FINAL`** — frozen additive team-normalized evidence extension (V2/V3 unchanged)
 
-[Methodology](docs/methodology.md) · [Model card](docs/model-card.md) · [Validation](docs/validation.md) · [Evidence engineering](docs/evidence-engineering.md) · [Full report](docs/paper/physics_conditioned_probabilistic_performance_inference.pdf) · [**FINAL_V3 application →**](v3_point_in_time/README.md)
+[![indy500-v3-ci](https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support/actions/workflows/ci.yml/badge.svg)](https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support/actions/workflows/ci.yml)
+[![repository-integrity](https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support/actions/workflows/integrity.yml/badge.svg)](https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support/actions/workflows/integrity.yml)
+
+[Methodology](docs/methodology.md) · [Model card](docs/model-card.md) · [Validation](docs/validation.md) · [Evidence engineering](docs/evidence-engineering.md) · [Full report](docs/paper/physics_conditioned_probabilistic_performance_inference.pdf) · [**FINAL_V3 application →**](v3_point_in_time/README.md) · [**V4 evidence extension →**](v4_team_normalized/output/phase4l/phase4l_final_scientific_synthesis.md)
 
 </div>
+
+### Project at a Glance
+
+A full-stack motorsport application supporting human decisions during Indianapolis 500 qualifying, where drivers compete for starting positions. It estimates how a car's performance could change on a repeat attempt under specified conditions and a supplied time horizon. It does not predict complete race outcomes or recommend whether to retain or withdraw an existing qualifying result.
+
+Historical replay and evidence validation are central: **point-in-time** checks reject inputs whose recorded known-at or forecast issue times fall after the decision time. Forecast provenance makes inputs traceable; the system abstains from inference or historical scoring when evidence or model support is insufficient. Hypothetical scenarios remain separate from historical evidence.
+
+- **Stack:** Python · C++17 (CMake / GoogleTest / pybind11) · FastAPI · React / TypeScript · Docker · GitHub Actions CI
+- **Focus:** Point-in-time historical replay, field-level data provenance, leakage prevention, physics-conditioned probabilistic inference and evidence-aware abstention
+
+### Transferable Software & Data Engineering Capabilities
+
+| Capability | Implemented evidence | Key source files & validation reports |
+|---|---|---|
+| **Python ingestion** | Source-registry-driven parsers ingesting JSON, PDF, ZIP timing archives, DOCX chronology notes and CSV weather extracts into deterministic UTF-8 staging tables | [`pipeline/run_pipeline.py`](pipeline/run_pipeline.py), [`pipeline/source_registry.py`](pipeline/source_registry.py), [`pipeline/parsers/`](pipeline/parsers/), [`pipeline_run_report.md`](pipeline_run_report.md) |
+| **Canonical reconciliation** | Conservative multi-source entity and attempt matching across 329 attempts, 1,174 laps and 9,898 section rows without silent forward-filling or rank-order guessing | [`pipeline/reconcile.py`](pipeline/reconcile.py), [`pipeline/chronology_2024.py`](pipeline/chronology_2024.py), [`chronology_reconciliation_report.csv`](chronology_reconciliation_report.csv), [`2024_chronology_reconciliation_report.md`](2024_chronology_reconciliation_report.md) |
+| **Data quality & eligibility** | Machine-checked reconstruction residuals (997 section groups), quarantine of unresolved records and target-specific row eligibility across 12,998 evaluations | [`pipeline/validation.py`](pipeline/validation.py), [`pipeline/eligibility.py`](pipeline/eligibility.py), [`data_quality_report.csv`](data_quality_report.csv), [`section_reconstruction_validation.csv`](section_reconstruction_validation.csv), [`data/canonical/v1/row_eligibility.csv`](data/canonical/v1/row_eligibility.csv) |
+| **Field-level provenance** | Fine-grained lineage linking 1,881 evidence items to 133,138 field-evidence records (`field_evidence_links.csv`), separating raw observations from derived values | [`pipeline/provenance.py`](pipeline/provenance.py), [`data/canonical/v1/evidence_items.csv`](data/canonical/v1/evidence_items.csv), [`data/canonical/v1/field_evidence_links.csv`](data/canonical/v1/field_evidence_links.csv), [`v1_data_dictionary.csv`](v1_data_dictionary.csv) |
+| **Temporal integrity** | Vintage-aware forecast store, fail-closed `issue_time <= decision_time` leakage guard (checking nominal forecast issue times, not independently verified historical publication availability) and deterministic SHA-256 snapshot/prediction hashing | [`v3_point_in_time/src/point_in_time_guard.py`](v3_point_in_time/src/point_in_time_guard.py), [`v3_point_in_time/src/forecast_vintage_store.py`](v3_point_in_time/src/forecast_vintage_store.py), [`v3_point_in_time/src/replay_engine.py`](v3_point_in_time/src/replay_engine.py), [`v3_point_in_time/src/hashing.py`](v3_point_in_time/src/hashing.py) |
+| **C++17 performance engine** | Native C++17 point-in-time guard, timestamp-aware observation filtering, vintage selection, NOAA solar geometry and M2b/Monte Carlo physical response with GoogleTest suite and optional `pybind11` bridge | [`cpp/include/indy500/pit_engine.hpp`](cpp/include/indy500/pit_engine.hpp), [`cpp/src/pit_engine.cpp`](cpp/src/pit_engine.cpp), [`cpp/tests/test_pit_engine.cpp`](cpp/tests/test_pit_engine.cpp), [`v3_point_in_time/src/cpp_pit_bridge.py`](v3_point_in_time/src/cpp_pit_bridge.py), [`v3_point_in_time/tests/test_cpp_engine_parity.py`](v3_point_in_time/tests/test_cpp_engine_parity.py) |
+| **V4 entity resolution** | Rule-based master-data normalisation of 2018–2025 official entry lists (51 explicit rules, no fuzzy matching) with anachronistic API-label and false-split audits | [`v4_team_normalized/scripts/v4_build_team_registry.py`](v4_team_normalized/scripts/v4_build_team_registry.py), [`v4_team_normalized/manual/v4_team_mapping_rules.csv`](v4_team_normalized/manual/v4_team_mapping_rules.csv), [`v4_team_normalized/output/v4_team_normalization_report.md`](v4_team_normalized/output/v4_team_normalization_report.md), [`v4_team_normalized/output/v4_team_normalization_audit.csv`](v4_team_normalized/output/v4_team_normalization_audit.csv) |
+| **FastAPI backend** | Read-only historical replay/provenance endpoints, AST-verified isolation of hypothetical scenario inference and readiness checks over frozen scientific assets | [`v3_point_in_time/api/main.py`](v3_point_in_time/api/main.py), [`v3_point_in_time/api/routes/`](v3_point_in_time/api/routes/), [`v3_point_in_time/app/replay_service.py`](v3_point_in_time/app/replay_service.py), [`v3_point_in_time/app/scenario_service.py`](v3_point_in_time/app/scenario_service.py), [`v3_point_in_time/app/health_service.py`](v3_point_in_time/app/health_service.py) |
+| **React / TypeScript UI** | Typed five-page decision-support interface separating historical shadow replay, provenance inspection, abstention accounting and ephemeral scenario exploration | [`v3_point_in_time/frontend/src/App.tsx`](v3_point_in_time/frontend/src/App.tsx), [`v3_point_in_time/frontend/src/pages/`](v3_point_in_time/frontend/src/pages/), [`v3_point_in_time/frontend/src/components/`](v3_point_in_time/frontend/src/components/), [`v3_point_in_time/frontend/src/types/`](v3_point_in_time/frontend/src/types/) |
+| **Docker & runtime hardening** | Staged build context, non-root runtime (`uid 10001`), kernel-enforced `read_only: true` root filesystem with `tmpfs` `/tmp` after write-testing exposed `chmod` bypass under root | [`v3_point_in_time/docker-compose.yml`](v3_point_in_time/docker-compose.yml), [`v3_point_in_time/docker/Dockerfile.api`](v3_point_in_time/docker/Dockerfile.api), [`v3_point_in_time/docker/Dockerfile.frontend`](v3_point_in_time/docker/Dockerfile.frontend), [`v3_point_in_time/scripts/prepare_docker_context.sh`](v3_point_in_time/scripts/prepare_docker_context.sh) |
+| **Testing & QA** | Automated C++, unit, API, leakage, immutability, frontend and portfolio-claim checks wired into GitHub Actions CI | [`cpp/tests/test_pit_engine.cpp`](cpp/tests/test_pit_engine.cpp), [`tests/test_pipeline.py`](tests/test_pipeline.py), [`tests/test_portfolio_integrity.py`](tests/test_portfolio_integrity.py), [`v3_point_in_time/tests/`](v3_point_in_time/tests/), [`v3_point_in_time/frontend/src/App.test.tsx`](v3_point_in_time/frontend/src/App.test.tsx), [`scripts/validate_portfolio.py`](scripts/validate_portfolio.py), [`v3_point_in_time/output/qa/final_v3_qa_report.md`](v3_point_in_time/output/qa/final_v3_qa_report.md) |
 
 ![Identifiability-driven system boundary](figures/portfolio/identifiability-system-boundary.svg)
 
@@ -28,7 +55,35 @@ Docker, CI, and health/readiness checks. The system is human-in-the-loop by desi
 queue waiting time, does **not** estimate `P(H=h)`, and does **not** issue a retain/withdraw recommendation or
 claim automated pit-wall strategy optimisation, at any layer.
 
+**V4 (additive evidence extension).** `V4_TEAM_NORMALIZED_FINAL` asks whether same-team, different-car evidence
+could serve as an intermediate control layer between exact-car repeats and unrelated cars. It is a separately
+frozen methodological study: it does **not** modify the FINAL_V2 coefficients, the 41-transition same-car core, the
+V3 point-in-time inference or the paper. Its main finding is that exact-car control robustly reduces observed
+performance dispersion, while shared team identity showed no stable additional benefit. See
+[V4 — Team-normalized evidence extension](#v4--team-normalized-evidence-extension).
+
 ## The system in one screen
+
+### Independent V5 engineering simulation
+
+The repository also contains an isolated `v5_lap_time_simulation/` module for
+quasi-steady lap-time analysis on a parameterised 2.5-mile IMS oval. It uses a
+closed-loop speed solver with aero, tire-force, power, braking and cornering
+constraints, then compares a single effective scalar calibrated on 2020–2023
+against a retrospective 2024 descriptive set and constant-speed benchmarks.
+The corrected banked-force model includes mesh experiments and an interactive
+Python-backed replay. It does not outperform the training-median speed predictor.
+Track radius, banking and the remaining vehicle values are assumptions;
+aggregate historical speeds do not identify a
+unique car model. V5 writes its own outputs and does not change frozen V2/V3/V4
+assets. It is not a driver-in-the-loop simulator.
+
+```bash
+python3 -m v5_lap_time_simulation.cli
+python3 -m unittest discover -s v5_lap_time_simulation/tests -p 'test_*.py' -v
+```
+
+See the [V5 viewer setup, model, assumptions, validation and results](v5_lap_time_simulation/README.md).
 
 | Evidence / result | Verified value | Meaning |
 |---|---:|---|
@@ -152,6 +207,54 @@ scientific finding — the primary results remain the 41-transition reference co
 physical-layer evaluation, and the qualified cross-regime transferability evidence above. Full detail:
 [`v3_point_in_time/README.md`](v3_point_in_time/README.md), [architecture](v3_point_in_time/output/final_documentation/final_v3_architecture.md),
 [model card](v3_point_in_time/output/final_documentation/FINAL_V3_MODEL_CARD.md), [scientific limitations](v3_point_in_time/output/final_documentation/scientific_limitations.md).
+
+## C++ Racing Performance Engine
+
+While the existing Python stack (`pipeline/`, `weather/`, `v3_point_in_time/`) remains the authoritative reference implementation for historical ingestion, replay orchestration and FastAPI serving, the [`cpp/`](cpp/) directory provides an additive **C++17 computational module** (`indy500_pit_engine`) that reimplements the core point-in-time temporal guards, time-series observation filtering and physical-response calculations in native C++ with optional `pybind11` bindings.
+
+### Why C++ was introduced and what it implements
+
+In live or high-frequency replay motorsport environments, repeated timestamp parsing, point-in-time eligibility filtering over weather/telemetry streams and physical-model evaluation lie on the inner computational loop. The C++17 module (`cpp/include/indy500/pit_engine.hpp`, `cpp/src/pit_engine.cpp`) implements:
+
+1. **ISO-8601 UTC parsing & hard Point-in-Time leakage guard** (`parse_iso8601_utc`, `check_point_in_time`, `enforce_point_in_time`) — proleptic Gregorian calendar conversion supporting `Z` and `±HH:MM` offsets and enforcing `known_at <= decision_time` and `forecast.issue_time <= decision_time` with identical reason codes to [`v3_point_in_time/src/point_in_time_guard.py`](v3_point_in_time/src/point_in_time_guard.py).
+2. **Timestamp-aware racing time-series filtering & thermal rate calculation** (`filter_observations_at_cutoff`, `compute_point_in_time_thermal_rate`) — filters out post-cutoff or unknown-timestamp observations, deterministically sorts unsorted input streams by `(observed_at, known_at, id)`, validates finite numerical values and computes the 10–20 minute lookback track heating/cooling rate (°C/min) matching [`weather/scripts/v2_build_future_track_samples.py`](weather/scripts/v2_build_future_track_samples.py).
+3. **Point-in-time Forecast Vintage Store** (`ForecastVintageStore`) — pre-parses nominal cycle and valid timestamps on insertion, strictly excludes vintages where `issue_time > decision_time`, prefers the freshest eligible model run and breaks ties by smallest `|valid_time - target_time|` and lexicographical `forecast_id`, matching [`v3_point_in_time/src/forecast_vintage_store.py`](v3_point_in_time/src/forecast_vintage_store.py).
+4. **Validated domain calculations (`FINAL_V2` / `FINAL_V3`)** — NOAA-style solar elevation geometry (`solar_elevation_deg`), horizon applicability gating (`evaluate_applicability`), the frozen `M2b_mean_solar` track-temperature model paired with the zero-intercept physical speed response (`evaluate_physical_response`: $\Delta v_{\text{physical}} = \beta_{\text{track}}\Delta T_{\text{track}} + \beta_{\text{ambient}}\Delta T_{\text{ambient}}$) and NumPy-compatible linear quantile summarization (`summarize_draws`, `evaluate_monte_carlo_draws`, `run_monte_carlo_inference`).
+
+### Preserving Point-in-Time correctness
+
+- **Fail-closed temporal boundary:** Any observation or forecast vintage stamped even 1 second after `decision_time` (`> decision_time`) is rejected or excluded; exact boundary equality (`== decision_time`) is permitted.
+- **Deterministic unsorted-input handling:** Unsorted observation vectors and forecast vintage lists are explicitly ordered using deterministic tie-breaking rules so arbitrary input permutations yield identical outputs.
+- **Strict input validation:** Empty observation series, malformed calendar dates (e.g. non-leap `2021-02-29`), `NaN`/`Inf` numerical values and duplicate `(id, observed_at)` or duplicate timestamps raise `indy500::pit::PitEngineError` (`ValueError` in Python).
+
+### Compiling, testing and Python integration
+
+The C++ engine builds with CMake and uses GoogleTest (`cpp/tests/test_pit_engine.cpp`). When `pybind11` is installed, CMake also compiles `_indy500_pit_cpp` (`cpp/bindings/pybind_module.cpp`). The Python bridge [`v3_point_in_time/src/cpp_pit_bridge.py`](v3_point_in_time/src/cpp_pit_bridge.py) loads the native extension when present and falls back transparently to the pure-Python implementation when unbuilt, keeping all existing FastAPI and V3 workflows backward-compatible without mandatory native build dependencies.
+
+```bash
+# Configure, build C++17 static library + GoogleTest runner + pybind11 module, and run CTest
+cmake -S cpp -B cpp/build -DCMAKE_BUILD_TYPE=Release
+cmake --build cpp/build -j4
+ctest --test-dir cpp/build --output-on-failure -V   # 16 C++ GoogleTest tests
+
+# Run Python <-> C++ parity and fallback tests
+python3 -m unittest discover -s v3_point_in_time/tests -p 'test_cpp_*.py' -v   # 12 parity/regression tests
+```
+
+### Verification and benchmark results
+
+- **C++ GoogleTest suite:** **16/16 PASS**, including temporal boundary equality, +1s future leakage rejection, `None` (`std::nullopt`) vs empty/whitespace timestamp validation, unsorted permutation determinism, `NaN`/`Inf`/duplicate/empty error handling and exact numerical parity (`1e-12` tolerance) across all **656** frozen rows in `future_track_samples_with_solar_v1.csv`.
+- **Python↔C++ parity suite:** **12/12 PASS** (`test_cpp_engine_parity.py`), verifying exact parity on real 2020–2024 HRRR forecast vintage selection (259 rows), 2020 PTSC track-temperature rate lookback, applicability gating, empty/whitespace/malformed timestamps, non-finite values, structured `PointInTimeViolation` exceptions (`.reasons` and `.code`), API naming compatibility, 5-horizon Monte Carlo draw summarization (`1e-12` agreement with NumPy when given identical draws) and statistical agreement between standalone C++ (`std::mt19937_64`) and Python (`NumPy PCG64`) Monte Carlo streams.
+- **Measured component microbenchmarks (macOS arm64, Apple clang 21.0.0 `-O3`, Python 3.14.5, median of 9 warm runs on identical inputs and outputs):**
+
+  `ForecastVintageStore` parses and stores timestamp strings as integer epochs when each C++ record is added (**0.19 ms** one-time initialization for 259 HRRR records), whereas the unmodified Python reference (`ForecastVintageStore.select`) parses timestamp strings during each `select()` call. A pre-parsed Python baseline (pre-parsing the 259 timestamps once in **0.12 ms**) is also reported below for an apples-to-apples algorithmic comparison. These are component-level microbenchmarks, not measurements of FastAPI or end-to-end application acceleration. The C++ engine is an additive computational extension; Python remains the authoritative application implementation, and historical replay and scenario API routes do not execute the C++ engine in their normal request paths.
+
+| Operation | Workload | Python reference | Pre-parsed Python baseline | C++17 (`_indy500_pit_cpp`) | Speedup vs Python ref (vs pre-parsed) |
+|---|---|---:|---:|---:|---:|
+| `solar_elevation_deg` | 6,560 calls (656 real timestamps × 10) | 10.49 ms | — | 0.87 ms (direct) / 5.04 ms (bridge) | **12.1×** (direct) / **2.1×** (bridge) |
+| `ForecastVintageStore.select` (query only) | 100 point-in-time queries over 259 real HRRR rows | 6.68 ms | 0.76 ms | 0.034 ms | **196.5×** (**22.4×**) |
+| `ForecastVintageStore` (259-row init + 100 queries) | 1 store build + 100 point-in-time queries | 6.68 ms | 0.88 ms (0.12 + 0.76 ms) | 0.224 ms (0.19 + 0.034 ms) | **29.8×** (**3.9×**) |
+| `check_point_in_time` | 10,000 leakage-guard evaluations | 12.01 ms | — | 2.45 ms (direct) | **4.9×** |
 
 ## The engineering problem
 
@@ -298,6 +401,59 @@ The 2019 pre-Aeroscreen and 2025 hybrid samples retain the same directional resp
 
 See [regime transfer](docs/regime-transfer.md).
 
+## V4 — Team-normalized evidence extension
+
+**Status: `V4_TEAM_NORMALIZED_FINAL` — frozen, additive.**
+
+- **Unchanged:** FINAL_V2 coefficients, the 41-transition core, V3 inference and the paper.
+- **Freeze:** separate pre-registered phases, a SHA-256 manifest of 735 files, and its own freeze tag.
+
+**Question.** Could same-team, different-car evidence be a defensible intermediate control layer between exact-car repeats and unrelated cars?
+
+**1. Team identity.**
+- **Normalisation:** 59 official entrant/team labels (2018–2025) normalise to **21 canonical engineering teams**.
+- **Old grouping:** it missed **85 of 313** true teammate relationships (27%) and created **no** false pairs. It was high precision with incomplete recall.
+
+**2. Measurement validity.**
+- A valid timed practice lap is not automatically a comparable performance observation.
+- Only **8.1%** of 2023–24 at-speed practice laps met the frozen, qualifying-calibrated Class-A performance-comparability rule.
+- Raw practice therefore cannot be treated as one homogeneous performance population.
+
+![V4 measurement validity: run-state composition of practice laps](v4_team_normalized/output/phase4h/figures/fig06_run_state_by_session_category.png)
+
+*Each bar splits one practice session type into run-state classes:*
+- *green (A): performance-comparable;*
+- *blue (B): plausibly comparable;*
+- *amber (C): ambiguous;*
+- *red (D): clearly non-comparable, e.g. pit or non-green laps;*
+- *grey (E): too little data to judge.*
+
+*Most timed laps are not clean performance measurements.*
+
+**3. Final pre-registered test (Phase 4J).**
+- **Population:** restricted to 2023–24 Class-A 5-minute car-blocks with timing-adjacency common support, over 6 independent sessions.
+- **Dispersion:** same car **0.37 mph**, same team **1.23 mph**, different team **1.09 mph**.
+- **C1 = same team − same car = +0.70 mph** [+0.09, +1.72]. **Robust:** positive in 5/6 sessions and in every leave-one-session-out and leave-one-team-out estimate.
+- **C2 = different team − same team = +0.20 mph** [−0.53, +0.53]. **Not robust:** positive in 4/6 sessions, one team removal flips its sign, and the Tier 2 sensitivity gives −0.09 mph.
+- **Conclusion:** the full *same car < same team < different team* hierarchy was **not established** (CASE B). Exact-car identity materially reduces observed dispersion in this high-confidence population. Shared team identity did not show a stable additional reduction versus different-team comparison. This is an empirical control result, not a causal team effect.
+
+![V4 control-evidence summary](figures/portfolio/v4-control-evidence-summary.png)
+
+**4. Teammate prediction (Phase 4K).**
+- Of **113** target events, only **8** strict, leakage-free teammate-assisted events survived.
+- Teammate predictive value therefore remains **prospectively unidentifiable** from the current retrospective record.
+- This is **not** evidence that teammate predictive value is zero.
+
+**What V4 adds.** Relaxing the same-car qualifying-repeat design exposed further layers of heterogeneity and non-identifiability. This supports the methodological value of exact-car control. It does not prove the V2 coefficients correct.
+
+**Read more:**
+- [Final V4 scientific synthesis](v4_team_normalized/output/phase4l/phase4l_final_scientific_synthesis.md)
+- [Claims matrix](v4_team_normalized/output/phase4l/phase4l_claims_matrix.csv)
+- [Evidence chain](v4_team_normalized/output/phase4l/phase4l_evidence_chain.md)
+- [V4 workspace README](v4_team_normalized/README.md)
+
+Lap-level V4 evidence is a third-party archived recording of the INDYCAR live timing feed (Timing71), cross-checked against official INDYCAR session records. Only 2023–2025 provide lap-level timing; 2018–2022 contribute identity and context, not equivalent lap-level evidence.
+
 ## Operational decision-support layer
 
 ![Operational performance outlook](figures/portfolio/operational-performance-outlook.png)
@@ -364,7 +520,9 @@ figures/final_v3/         FINAL_V3 architecture/evidence-flow/illustrative-case 
 docs/                     technical documentation and final report
 scripts/                  presentation regeneration and integrity checks
 tests/                    pipeline and portfolio QA
+cpp/                      C++17 point-in-time performance engine, GoogleTest suite and pybind11 bindings
 v3_point_in_time/         FINAL_V3: point-in-time replay, Scenario Mode, FastAPI + React app, Docker, CI
+v4_team_normalized/       V4 (frozen, additive): team registry, pre-registered Phases 3–4K, Phase 4L synthesis + freeze manifest
 ```
 
 For the detailed module and status inventory, open [the repository guide](docs/reproducibility.md) and [figure gallery](figures/GALLERY.md).
@@ -382,6 +540,10 @@ For the detailed module and status inventory, open [the repository guide](docs/r
 - FINAL_V3's point-in-time evidence base yields only 10 genuine candidate cases and 0 cases with formal aggregate historical-scoring support; statistically meaningful point-in-time forecast validation is not established (architecture and leakage control are demonstrated in running software; evidence volume is the limitation, not infrastructure).
 - The one near-anchor point-in-time case (2021, car 60) is illustrative only and must never be read as validation.
 - Neither FINAL_V2 nor FINAL_V3 models opportunity timing, queue state, or a retain/withdraw strategy, historically or hypothetically.
+- **V4** (additive) covers a restricted 2023–24 practice population of 6 independent sessions.
+  - Its same-team versus different-team contrast is not robust, so the full three-level hierarchy is not established.
+  - Teammate predictive value is not prospectively identifiable with current retrospective labels.
+  - Run purpose, fuel, tyres, tow and traffic are unobserved.
 
 ## Documentation
 
@@ -403,12 +565,31 @@ For the detailed module and status inventory, open [the repository guide](docs/r
 - [FINAL_V3 system specification](v3_point_in_time/output/final_documentation/FINAL_V3_SYSTEM_SPECIFICATION.md)
 - [FINAL_V3 scientific limitations](v3_point_in_time/output/final_documentation/scientific_limitations.md)
 - [FINAL_V3 QA report](v3_point_in_time/output/qa/final_v3_qa_report.md)
+- **V4 team-normalized evidence extension:**
+  - [final scientific synthesis](v4_team_normalized/output/phase4l/phase4l_final_scientific_synthesis.md)
+  - [claims matrix](v4_team_normalized/output/phase4l/phase4l_claims_matrix.csv)
+  - [evidence chain](v4_team_normalized/output/phase4l/phase4l_evidence_chain.md)
+  - [limitations](v4_team_normalized/output/phase4l/phase4l_limitations.md)
+  - [future data requirements](v4_team_normalized/output/phase4l/phase4l_future_data_requirements.md)
+  - [freeze report](v4_team_normalized/output/phase4l/v4_freeze_report.md)
+  - [workspace README](v4_team_normalized/README.md)
+
+  V4 is **not** yet part of the full research report above.
 
 ## Author and citation
 
 **Fengzhe Li** · University College London
 
-If this repository informs your work, cite the project and the versioned frozen artefacts used. The scientific core is `FINAL_V2`; the regulation-aware evidence extension is `R6_REGULATION_AWARE_EXTENSION_V1_FROZEN`; the point-in-time application layer is `FINAL_V3_FROZEN`.
+If this repository informs your work, cite the project and the versioned frozen artefacts used:
+
+| Frozen artefact | Role |
+|---|---|
+| `FINAL_V2` | scientific model |
+| `R6_REGULATION_AWARE_EXTENSION_V1_FROZEN` | regulation-aware evidence extension |
+| `FINAL_V3_FROZEN` | point-in-time application layer |
+| `V4_TEAM_NORMALIZED_FINAL` (git tag) | additive team-normalized evidence extension |
+
+The full research report describes FINAL_V2/V3 only. V4 findings are currently documented in the repository ([V4 synthesis](v4_team_normalized/output/phase4l/phase4l_final_scientific_synthesis.md)), not in the report.
 
 ## Status
 
@@ -417,3 +598,4 @@ If this repository informs your work, cite the project and the versioned frozen 
 | Scientific core | `FINAL_V2` — frozen |
 | Regulation-aware evidence extension | `R6_REGULATION_AWARE_EXTENSION_V1_FROZEN` |
 | Point-in-time application layer | `FINAL_V3_FROZEN` — 101/101 tests PASS, V2 immutability PASS, V3↔V2 behavioural regression PASS |
+| Team-normalized evidence extension | `V4_TEAM_NORMALIZED_FINAL` — frozen additive evidence extension; V2/V3 unchanged; 735-file SHA-256 manifest; Phase 4L checks 17/17 PASS |

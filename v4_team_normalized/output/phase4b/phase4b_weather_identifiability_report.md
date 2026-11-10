@@ -1,0 +1,80 @@
+# V4 Phase 4B — Weather Identifiability Report
+
+A dense team timeline supports environmental interpretation only if the physical-state data vary enough, are measured consistently, and are not collinear with time.
+
+## Era summary (team-years with ≥2 timed complete attempts)
+
+| era | team_years | median_track_range_c | median_ambient_range_c | median_distinct_track_values | median_corr_track_ambient | median_corr_track_time | method_inconsistent_team_years |
+|---|---|---|---|---|---|---|---|
+| ERA_A_PRE_AEROSCREEN_EXT | 13 | 6.27 | 1.94 | 3 | 1 | 0.96 | 0 |
+| ERA_B_FROZEN_REFERENCE | 32 | 8.35 | 2.71 | 3 | 0.95 | 0.95 | 5 |
+| ERA_C_HYBRID_EXTERNAL | 11 | 6.42 | 2.27 | 4 | 0.5 | 0.31 | 0 |
+
+## Per team-year
+
+| era | year | canonical_engineering_team | attempts_on_performance_timeline | track_range_c | ambient_range_c | distinct_track_values | distinct_ambient_values | distinct_track_observation_times | track_resolution | method_consistent | missing_track_fraction | missing_ambient_fraction | corr_track_ambient | corr_track_session_time | flags |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ERA_A_PRE_AEROSCREEN_EXT | 2018 | ANDRETTI | 4 |  |  | 0 | 0 | 0 | none | True | 1 | 1 |  |  | MISSING_WEATHER|NO_TRACK_TEMPERATURE|INTERRUPTIONS_UNRECONSTRUCTED|R6_WIND_UNITS_UNVERIFIED|NO_SOLAR|NO_PTSC_ARCHIVE_2018 |
+| ERA_A_PRE_AEROSCREEN_EXT | 2018 | DALE_COYNE_RACING | 2 |  |  | 0 | 0 | 0 | none | True | 1 | 1 |  |  | MISSING_WEATHER|NO_TRACK_TEMPERATURE|INTERRUPTIONS_UNRECONSTRUCTED|R6_WIND_UNITS_UNVERIFIED|NO_SOLAR|NO_PTSC_ARCHIVE_2018 |
+| ERA_A_PRE_AEROSCREEN_EXT | 2019 | AJ_FOYT | 3 | 13.82 | 3.39 | 3 | 3 | 3 | linear interpolation between 15-min PTSC obs | True | 0 | 0 | 1 | 0.96 | TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|INTERRUPTIONS_UNRECONSTRUCTED|R6_WIND_UNITS_UNVERIFIED|NO_SOLAR |
+| ERA_A_PRE_AEROSCREEN_EXT | 2019 | ANDRETTI | 4 | 15.75 | 4.32 | 4 | 4 | 3 | linear interpolation between 15-min PTSC obs | True | 0 | 0 | 1 | 0.94 | TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|INTERRUPTIONS_UNRECONSTRUCTED|R6_WIND_UNITS_UNVERIFIED|NO_SOLAR |
+| ERA_A_PRE_AEROSCREEN_EXT | 2019 | ARROW_MCLAREN_SPM | 2 | 5.84 | 1.94 | 2 | 2 | 2 | linear interpolation between 15-min PTSC obs | True | 0 | 0 |  |  | TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|INTERRUPTIONS_UNRECONSTRUCTED|R6_WIND_UNITS_UNVERIFIED|NO_SOLAR |
+| ERA_A_PRE_AEROSCREEN_EXT | 2019 | CARLIN | 3 | 10.57 | 2.51 | 3 | 3 | 3 | linear interpolation between 15-min PTSC obs | True | 0 | 0 | 1 | 1 | TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|INTERRUPTIONS_UNRECONSTRUCTED|R6_WIND_UNITS_UNVERIFIED|NO_SOLAR |
+| ERA_A_PRE_AEROSCREEN_EXT | 2019 | CHIP_GANASSI_RACING | 3 | 3.76 | 0.98 | 3 | 3 | 3 | linear interpolation between 15-min PTSC obs | True | 0 | 0 | -0.26 | -0.25 | TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|INTERRUPTIONS_UNRECONSTRUCTED|R6_WIND_UNITS_UNVERIFIED|NO_SOLAR |
+| ERA_A_PRE_AEROSCREEN_EXT | 2019 | DALE_COYNE_RACING | 3 | 5.89 | 1.22 | 3 | 3 | 2 | linear interpolation between 15-min PTSC obs | True | 0 | 0 | 0.99 | 1 | TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|INTERRUPTIONS_UNRECONSTRUCTED|R6_WIND_UNITS_UNVERIFIED|NO_SOLAR |
+| ERA_A_PRE_AEROSCREEN_EXT | 2019 | DRAGONSPEED | 2 | 0.01 | 0.54 | 2 | 2 | 2 | linear interpolation between 15-min PTSC obs | True | 0 | 0 |  |  | TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|INTERRUPTIONS_UNRECONSTRUCTED|R6_WIND_UNITS_UNVERIFIED|NO_SOLAR |
+| ERA_A_PRE_AEROSCREEN_EXT | 2019 | DREYER_REINBOLD_RACING | 4 | 5.53 | 0.43 | 4 | 4 | 3 | linear interpolation between 15-min PTSC obs | True | 0 | 0 | 0.4 | -0.95 | TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|INTERRUPTIONS_UNRECONSTRUCTED|R6_WIND_UNITS_UNVERIFIED|NO_SOLAR |
+| ERA_A_PRE_AEROSCREEN_EXT | 2019 | ED_CARPENTER_RACING | 3 | 8.02 | 1.94 | 3 | 3 | 3 | linear interpolation between 15-min PTSC obs | True | 0 | 0 | 1 | 1 | TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|INTERRUPTIONS_UNRECONSTRUCTED|R6_WIND_UNITS_UNVERIFIED|NO_SOLAR |
+| ERA_A_PRE_AEROSCREEN_EXT | 2019 | RAHAL_LETTERMAN_LANIGAN | 4 | 6.27 | 2.02 | 4 | 4 | 4 | linear interpolation between 15-min PTSC obs | True | 0 | 0 | 0.7 | 0.21 | TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|INTERRUPTIONS_UNRECONSTRUCTED|R6_WIND_UNITS_UNVERIFIED|NO_SOLAR |
+| ERA_A_PRE_AEROSCREEN_EXT | 2019 | TEAM_PENSKE | 4 | 8.29 | 2.1 | 4 | 4 | 3 | linear interpolation between 15-min PTSC obs | True | 0 | 0 | 1 | 1 | TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|INTERRUPTIONS_UNRECONSTRUCTED|R6_WIND_UNITS_UNVERIFIED|NO_SOLAR |
+| ERA_B_FROZEN_REFERENCE | 2020 | AJ_FOYT | 2 | 12.22 | 3.47 | 2 | 2 | 2 | 15-min past-safe PTSC steps | True | 0 | 0 |  |  | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2020 | ANDRETTI | 6 | 8.89 | 3.95 | 5 | 6 | 6 | 15-min past-safe PTSC steps | True | 0 | 0 | 0.89 | 0.8 | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2020 | ARROW_MCLAREN_SPM | 4 | 11.67 | 4.86 | 4 | 4 | 4 | 15-min past-safe PTSC steps | True | 0 | 0 | 0.94 | 0.92 | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2020 | CARLIN | 2 | 3.89 | 1.82 | 2 | 2 | 2 | 15-min past-safe PTSC steps | True | 0 | 0 |  |  | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2020 | CHIP_GANASSI_RACING | 6 | 11.67 | 4.94 | 5 | 6 | 6 | 15-min past-safe PTSC steps | True | 0 | 0 | 0.96 | 0.93 | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2020 | DALE_COYNE_RACING | 2 | 1.11 | 0.1 | 2 | 2 | 2 | 15-min past-safe PTSC steps | True | 0 | 0 |  |  | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2020 | DRAGONSPEED | 2 | 5.56 | 2.49 | 2 | 2 | 2 | 15-min past-safe PTSC steps | True | 0 | 0 |  |  | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2020 | DREYER_REINBOLD_RACING | 2 | 10 | 2.57 | 2 | 2 | 2 | 15-min past-safe PTSC steps | True | 0 | 0 |  |  | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2020 | ED_CARPENTER_RACING | 5 | 11.11 | 5.01 | 4 | 5 | 5 | 15-min past-safe PTSC steps | True | 0 | 0 | 0.95 | 0.9 | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2020 | MEYER_SHANK_RACING | 2 | 13.89 | 3.83 | 2 | 2 | 2 | 15-min past-safe PTSC steps | True | 0 | 0 |  |  | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2020 | RAHAL_LETTERMAN_LANIGAN | 2 | 1.11 | 0.73 | 2 | 2 | 2 | 15-min past-safe PTSC steps | True | 0 | 0 |  |  | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2020 | TEAM_PENSKE | 4 | 12.78 | 4.26 | 4 | 4 | 4 | 15-min past-safe PTSC steps | True | 0 | 0 | 0.97 | 0.87 | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2021 | AJ_FOYT | 5 | 6.67 | 1.8 | 2 | 5 | 4 | 15-min past-safe PTSC steps | True | 0 | 0 | 0.53 | 0.95 | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2021 | ANDRETTI | 11 | 13.89 | 4.1 | 7 | 11 | 9 | 15-min past-safe PTSC steps | True | 0 | 0 | 0.84 | 0.96 | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2021 | ARROW_MCLAREN_SPM | 5 | 10.56 | 1.98 | 4 | 5 | 4 | 15-min past-safe PTSC steps | True | 0 | 0 | 0.97 | 0.98 | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2021 | CHIP_GANASSI_RACING | 3 | 3.33 | 3.48 | 3 | 3 | 3 | 15-min past-safe PTSC steps | True | 0 | 0 | 0.97 | 1 | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2021 | DALE_COYNE_RACING | 3 | 12.78 | 3.61 | 3 | 3 | 3 | 15-min past-safe PTSC steps | True | 0 | 0 | 0.96 | 1 | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2021 | ED_CARPENTER_RACING | 5 | 11.11 | 2.49 | 4 | 5 | 5 | 15-min past-safe PTSC steps | True | 0 | 0 | 0.79 | 0.95 | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2021 | MEYER_SHANK_RACING | 3 | 8.33 | 3.74 | 3 | 3 | 3 | 15-min past-safe PTSC steps | True | 0 | 0 | 0.94 | 0.99 | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2021 | RAHAL_LETTERMAN_LANIGAN | 3 | 2.22 | 1.42 | 2 | 3 | 2 | 15-min past-safe PTSC steps | True | 0 | 0 | 1 | 1 | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2021 | TEAM_PENSKE | 6 | 10.56 | 2.71 | 5 | 6 | 6 | 15-min past-safe PTSC steps | True | 0 | 0 | 0.76 | 0.97 | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2022 | ARROW_MCLAREN_SPM | 2 |  |  | 0 | 0 | 0 | none | True | 1 | 1 |  |  | MISSING_WEATHER|NO_TRACK_TEMPERATURE|KNOWN_INTERRUPTIONS_2022 |
+| ERA_B_FROZEN_REFERENCE | 2023 | AJ_FOYT | 2 | 6.67 | 2.04 | 2 | 2 | 2 | 15-min past-safe PTSC steps | True | 0 | 0 |  |  | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2023 | ANDRETTI | 5 | 6.37 | 2.22 | 4 | 5 | 2 | 15-min past-safe PTSC steps | False | 0 | 0 | 0.99 | 0.91 | TRACK_15MIN_PAST_SAFE_QUANTISATION|TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|MIXED_MEASUREMENT_METHODS|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2023 | ARROW_MCLAREN_SPM | 7 | 11.11 | 3.41 | 6 | 7 | 5 | 15-min past-safe PTSC steps | False | 0 | 0 | 0.94 | 0.94 | TRACK_15MIN_PAST_SAFE_QUANTISATION|TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|MIXED_MEASUREMENT_METHODS|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2023 | CHIP_GANASSI_RACING | 8 | 12.64 | 3.59 | 6 | 8 | 3 | 15-min past-safe PTSC steps | False | 0 | 0 | 0.99 | 0.91 | TRACK_15MIN_PAST_SAFE_QUANTISATION|TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|MIXED_MEASUREMENT_METHODS|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2023 | ED_CARPENTER_RACING | 4 | 8.35 | 2.59 | 4 | 4 | 2 | 15-min past-safe PTSC steps | False | 0 | 0 | 0.98 | 0.93 | TRACK_15MIN_PAST_SAFE_QUANTISATION|TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|MIXED_MEASUREMENT_METHODS|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2023 | JUNCOS_HOLLINGER_RACING | 2 | 5.56 | 1.17 | 2 | 2 | 2 | 15-min past-safe PTSC steps | True | 0 | 0 |  |  | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2024 | ARROW_MCLAREN_SPM | 6 | 1.67 | 3.3 | 3 | 5 | 4 | 15-min past-safe PTSC steps | False | 0.17 | 0 | 0.52 | 0.98 | TRACK_15MIN_PAST_SAFE_QUANTISATION|MIXED_MEASUREMENT_METHODS|MISSING_WEATHER|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2024 | CHIP_GANASSI_RACING | 2 | 2.78 | 2.59 | 2 | 2 | 2 | 15-min past-safe PTSC steps | True | 0 | 0 |  |  | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2024 | ED_CARPENTER_RACING | 2 | 2.22 | 0.21 | 2 | 2 | 2 | mixed/other | True | 0 | 0 |  |  | INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_B_FROZEN_REFERENCE | 2024 | TEAM_PENSKE | 2 | 2.78 | 2.72 | 2 | 2 | 2 | 15-min past-safe PTSC steps | True | 0 | 0 |  |  | TRACK_15MIN_PAST_SAFE_QUANTISATION|INTERRUPTIONS_UNRECONSTRUCTED |
+| ERA_C_HYBRID_EXTERNAL | 2025 | AJ_FOYT | 4 | 3.64 | 2.22 | 4 | 4 | 4 | linear interpolation between 15-min PTSC obs | True | 0 | 0 | -0.5 | -0.6 | TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|INTERRUPTIONS_UNRECONSTRUCTED|R6_WIND_UNITS_UNVERIFIED|NO_SOLAR |
+| ERA_C_HYBRID_EXTERNAL | 2025 | ANDRETTI | 8 | 9.44 | 3.09 | 8 | 7 | 7 | linear interpolation between 15-min PTSC obs | True | 0 | 0 | 0.55 | 0.24 | TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|INTERRUPTIONS_UNRECONSTRUCTED|R6_WIND_UNITS_UNVERIFIED|NO_SOLAR |
+| ERA_C_HYBRID_EXTERNAL | 2025 | ARROW_MCLAREN_SPM | 7 | 8.42 | 3.04 | 7 | 5 | 6 | linear interpolation between 15-min PTSC obs | True | 0 | 0 | 0.84 | 0.89 | TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|INTERRUPTIONS_UNRECONSTRUCTED|R6_WIND_UNITS_UNVERIFIED|NO_SOLAR |
+| ERA_C_HYBRID_EXTERNAL | 2025 | CHIP_GANASSI_RACING | 2 | 6.42 | 1.24 | 2 | 2 | 2 | linear interpolation between 15-min PTSC obs | True | 0 | 0 |  |  | TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|INTERRUPTIONS_UNRECONSTRUCTED|R6_WIND_UNITS_UNVERIFIED|NO_SOLAR |
+| ERA_C_HYBRID_EXTERNAL | 2025 | DALE_COYNE_RACING | 3 | 4.36 | 1.38 | 3 | 3 | 3 | linear interpolation between 15-min PTSC obs | True | 0 | 0 | 0.29 | -0.39 | TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|INTERRUPTIONS_UNRECONSTRUCTED|R6_WIND_UNITS_UNVERIFIED|NO_SOLAR |
+| ERA_C_HYBRID_EXTERNAL | 2025 | DREYER_REINBOLD_RACING | 4 | 3.95 | 2.78 | 4 | 4 | 4 | linear interpolation between 15-min PTSC obs | True | 0 | 0 | 0.99 | 1 | TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|INTERRUPTIONS_UNRECONSTRUCTED|R6_WIND_UNITS_UNVERIFIED|NO_SOLAR |
+| ERA_C_HYBRID_EXTERNAL | 2025 | ED_CARPENTER_RACING | 7 | 7.54 | 3.2 | 7 | 7 | 7 | linear interpolation between 15-min PTSC obs | True | 0 | 0 | 0.45 | 0.38 | TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|INTERRUPTIONS_UNRECONSTRUCTED|R6_WIND_UNITS_UNVERIFIED|NO_SOLAR |
+| ERA_C_HYBRID_EXTERNAL | 2025 | JUNCOS_HOLLINGER_RACING | 5 | 5.47 | 1.67 | 4 | 4 | 4 | linear interpolation between 15-min PTSC obs | True | 0.2 | 0.2 | 0.92 | 0.73 | TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|MISSING_WEATHER|INTERRUPTIONS_UNRECONSTRUCTED|R6_WIND_UNITS_UNVERIFIED|NO_SOLAR |
+| ERA_C_HYBRID_EXTERNAL | 2025 | PREMA_RACING | 3 | 9.03 | 2.27 | 3 | 3 | 3 | linear interpolation between 15-min PTSC obs | True | 0 | 0 | 0.89 | 0.5 | TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|INTERRUPTIONS_UNRECONSTRUCTED|R6_WIND_UNITS_UNVERIFIED|NO_SOLAR |
+| ERA_C_HYBRID_EXTERNAL | 2025 | RAHAL_LETTERMAN_LANIGAN | 7 | 6.91 | 2.27 | 7 | 6 | 6 | linear interpolation between 15-min PTSC obs | True | 0 | 0 | 0.16 | -0.1 | TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|INTERRUPTIONS_UNRECONSTRUCTED|R6_WIND_UNITS_UNVERIFIED|NO_SOLAR |
+| ERA_C_HYBRID_EXTERNAL | 2025 | TEAM_PENSKE | 4 | 4.85 | 1.19 | 4 | 4 | 4 | linear interpolation between 15-min PTSC obs | True | 0 | 0 | -0.78 | -0.82 | TRACK_INTERPOLATED_BETWEEN_15MIN_OBS|INTERRUPTIONS_UNRECONSTRUCTED|R6_WIND_UNITS_UNVERIFIED|NO_SOLAR |
+
+## Findings
+
+- **Quantisation:** Era B track temperature is the past-safe PTSC value on a 15-minute grid. A team-year with 6–11 attempts typically has only 4–7 distinct track values; attempts within one 15-minute bin share a value. Era A/C track values are linear interpolations between 15-minute observations, which adds smoothness, not information.
+- **Collinearity (era-specific; see the table above):** in Eras A and B, track temperature within team-years is nearly collinear with session time and with ambient temperature. A within-team panel there cannot separate a track effect from an ambient effect or from a session-time trend. Era C (2025) has much weaker collinearity, so it is the only era where within-team variation could, in principle, separate state from time.
+- **Mixed methods:** in 2023–24 the core tier mixes past-safe and realized-interpolated PTSC, or issue-gated and rescue-matched HRRR, within the same team-year (`method_consistent = False`).
+- **Missing:** 2018 has no PTSC archive, and 2022 has no weather at all (it was not manufactured). Era A/C have no solar data, and their wind is in raw PTSC units, unverified.
+- **Interruptions:** they are reconstructed only for 2022, which has no performance-timeline attempts with weather. For every other year, having no interruption record doesn't mean there was no interruption.

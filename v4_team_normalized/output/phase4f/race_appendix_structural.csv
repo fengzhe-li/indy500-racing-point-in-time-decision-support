@@ -1,0 +1,4 @@
+session_key,year,car_blocks,blocks,blocks_with_same_team_pair,note
+6135,,0,0,0,structural counts only; no race D values (spec §9)
+6309,2024.0,512,24,24,structural counts only; no race D values (spec §9)
+6460,2025.0,639,24,24,structural counts only; no race D values (spec §9)

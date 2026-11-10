@@ -1,0 +1,4 @@
+population,phase4f_n,phase4g_n,phase4f_session_balanced_D,phase4g_session_balanced_D,phase4f_pooled_weighted_D,phase4g_pooled_weighted_D,team_balanced_block_values_match
+ADJACENT_BLOCK_DIFF,1006,1006,2.617011473040371,2.617011473040371,,,
+REWEIGHTED_DIFF,1937,1937,,,2.383914366781852,2.383914366781852,
+TEAM_BALANCED_DIFF,209,209,,,,,True

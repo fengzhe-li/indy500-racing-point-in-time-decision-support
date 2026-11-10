@@ -1,0 +1,4 @@
+population,events_F0,realized_environment_t0_t1,t1_reading_point_in_time_known,resolved_physical_change,same_reading_zero_change,frozen_beta_mechanically_applicable,genuine_forecast_vintage_events,note
+PRIMARY_TIER1_2023_2024,113,113,113,45,68,113,0,"PTSC 15-min observed readings (latest at/before time, age<=15 min); no forecast vintages in frozen evidence (HRRR not retrieved); wind unit unverified -> unused"
+TIER2_2023_2024_EXTENDED,258,258,258,133,125,258,0,"PTSC 15-min observed readings (latest at/before time, age<=15 min); no forecast vintages in frozen evidence (HRRR not retrieved); wind unit unverified -> unused"
+TIER1_2025_SECONDARY,94,94,94,34,60,94,0,"PTSC 15-min observed readings (latest at/before time, age<=15 min); no forecast vintages in frozen evidence (HRRR not retrieved); wind unit unverified -> unused"

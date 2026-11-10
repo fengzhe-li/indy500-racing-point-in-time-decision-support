@@ -1,0 +1,44 @@
+                                                             NTT INDYCAR SERIES
+                                             104TH RUNNING OF THE INDIANAPOLIS 500
+                                         Indianapolis Motor Speedway - Indianapolis, Indiana
+                                                                   August 23, 2020
+     CAR DRIVER                   HOMETOWN                     CAR NAME                                              TEAM                                                          ENGINE
+1     1   Josef Newgarden         Nashville, Tennessee         Shell V-Power Nitro Team Penske                       Team Penske                                                   Chevrolet
+2     3   Helio Castroneves (W)   Sao Paulo, Brazil            Pennzoil Team Penske                                  Team Penske                                                   Chevrolet
+3     4   Charlie Kimball         Camarillo, California        Tresiba /AJ Foyt Racing                               A.J. Foyt Enterprises                                         Chevrolet
+4     5   Pato O'Ward (R)         Monterrey, Mexico            Arrow McLaren SP                                      Arrow McLaren SP                                              Chevrolet
+5     7   Oliver Askew (R)        Jupiter, Florida             Arrow McLaren SP                                      Arrow McLaren SP                                              Chevrolet
+6     8   Marcus Ericsson         Kumla, Sweden                Huski Chocolate Chip Ganassi Racing                   Chip Ganassi Racing                                           Honda
+7     9   Scott Dixon (W)         Auckland, New Zealand        PNC Bank Chip Ganassi Racing                          Chip Ganassi Racing                                           Honda
+8    10   Felix Rosenqvist        Värnamo, Sweden              NTT DATA Chip Ganassi Racing                          Chip Ganassi Racing                                           Honda
+9    12   Will Power (W)          Toowoomba, Australia         Verizon 5G Edge Team Penske                           Team Penske                                                   Chevrolet
+10   14   Tony Kanaan (W)         Salvador, Brazil             ABC Supply / AJ Foyt Racing                           A.J. Foyt Enterprises                                         Chevrolet
+11   15   Graham Rahal            New Albany, Ohio             United Rentals                                        Rahal Letterman Lanigan Racing                                Honda
+12   18   Santino Ferrucci        Woodbury, Connecticut        SealMaster                                            Dale Coyne Racing with Vasser Sullivan                        Honda
+13   20   Ed Carpenter            Indianapolis, Indiana        United States Space Force                             Ed Carpenter Racing                                           Chevrolet
+14   21   Rinus VeeKay (R)        Hoofddorp, Netherlands       SONAX                                                 Ed Carpenter Racing                                           Chevrolet
+15   22   Simon Pagenaud (W)      Montmorillon, France         Menards Team Penske                                   Team Penske                                                   Chevrolet
+16   24   Sage Karam              Nazareth, Pennsylvania       DRR WIX Filters                                       Dreyer & Reinbold Racing                                      Chevrolet
+17   26   Zach Veach              Stockdale, Ohio              Gainbridge                                            Andretti Autosport                                            Honda
+18   27   Alexander Rossi (W)     Nevada City, California      NAPA AUTO PARTS / AutoNation                          Andretti Autosport                                            Honda
+19   28   Ryan Hunter-Reay (W)    Fort Lauderdale, Florida     DHL                                                   Andretti Autosport                                            Honda
+20   29   James Hinchcliffe       Toronto, Canada              Genesys                                               Andretti Autosport                                            Honda
+21   30   Takuma Sato (W)         Tokyo, Japan                 Panasonic / PeopleReady                               Rahal Letterman Lanigan Racing                                Honda
+22   41   Dalton Kellett (R)      Stouffville, Canada          K-Line USA / AJ Foyt Racing                           A. J. Foyt Enterprises                                        Chevrolet
+23   45   Spencer Pigot           Orlando, Florida             RLL with Citrone/Buhl Autosport                       RLL with Citrone/Buhl Autosport                               Honda
+24   47   Conor Daly              Noblesville, Indiana         United States Air Force                               Ed Carpenter Racing                                           Chevrolet
+25   51   James Davison           Melbourne, Australia         Jacob Construction / Tilson HR                        Dale Coyne Racing w/ Rick Ware Racing, Byrd & Belardi         Honda
+26   55   Alex Palou (R)          Barcelona, Spain             Dale Coyne Racing with Team Goh                       Dale Coyne Racing with Team Goh                               Honda
+27   59   Max Chilton             Reigate, England             Gallagher Carlin                                      Carlin                                                        Chevrolet
+28   60   Jack Harvey             Bassingham, England          AutoNation/SiriusXM                                   Meyer Shank Racing                                            Honda
+29   66   Fernando Alonso         Oviedo, Spain                Ruoff Arrow McLaren SP                                Arrow McLaren SP                                              Chevrolet
+30   67   JR Hildebrand           Sausalito, California        DRR Salesforce                                        Dreyer & Reinbold Racing                                      Chevrolet
+31   81   Ben Hanley              Manchester, England          DragonSpeed USA                                       DragonSpeed USA                                               Chevrolet
+32   88   Colton Herta            Belleair, Florida            Gleaners Food Bank of Indiana                         Andretti Harding Steinbrenner Autosport                       Honda
+33   98   Marco Andretti          Nazareth, Pennsylvania       U.S. Concrete / Curb                                  Andretti Herta Autosport w/ Marco & Curb-Agajanian            Honda
+
+
+             All cars use fourth-generation NTT INDYCAR SERIES chassis (Dallara IR12) with universal IR-18 aerodynamic bodywork, Chevrolet or Honda engines and Firestone tires.
+                                                 (R) - Denotes Indianapolis 500 Rookie of the Year candidate; (W) Denotes Indianapolis 500 Winner
+                                                                                        Issued: 8/10/2020
+

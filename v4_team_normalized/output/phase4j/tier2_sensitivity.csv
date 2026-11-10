@@ -1,0 +1,61 @@
+analysis,role,case,C1_status,C2_status,evaluable_sessions,D_same_car,D_same_team,D_diff_team,C1,C2,C3,share_sessions_C1_pos,share_sessions_C1_neg,share_sessions_C2_pos,share_sessions_C2_neg,share_sessions_C3_pos,share_sessions_C3_neg,C1_from_layer_medians,C2_from_layer_medians,C1_boot_lo,C1_boot_hi,C2_boot_lo,C2_boot_hi,C3_boot_lo,C3_boot_hi,common_support_contexts,all_contexts,table,session_key,contexts,same_car_pairs,evaluable,item,value,layer,composition,share,n
+TIER2_SENSITIVITY_2023_2024,EXTENDED MEASUREMENT-VALIDITY SENSITIVITY,B,POSITIVE_CONSISTENT,INCONSISTENT,8.0,0.7162269676941904,1.0929441006595226,1.381893388420231,0.36927315108703596,-0.09404258624874728,0.689883608852881,0.875,0.125,0.5,0.5,1.0,0.0,0.37671713296533227,0.2889492877607083,0.1296262917413742,2.411161092685944,-1.2982187461822718,0.7637696976715631,0.5567474909819765,1.5607616072512371,103.0,168.0,SUMMARY,,,,,,,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,0.7767378800390077,3.187898972724952,1.7461461628316783,2.411161092685944,-1.4417528098932735,0.9694082827926707,,,,,,,,,,,,,,,,,SESSION,6198,2.0,18.0,True,,,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,0.43147253589322077,0.1616490445474028,0.9882200268751973,-0.26982349134581796,0.7637696976715631,0.5567474909819765,,,,,,,,,,,,,,,,,SESSION,6199,6.0,25.0,True,,,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,1.0361847691928716,,,,,,,,,,,,,,,,,,,,,,SESSION,6200,0.0,8.0,False,,,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,0.6095578888296984,0.7391841805710726,1.216705179262192,0.1296262917413742,0.6331857899135116,0.6071472904324935,,,,,,,,,,,,,,,,,SESSION,6207,7.0,13.0,True,,,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,0.7354573382858121,1.0821515405594369,1.0410799996242872,0.3466942022736248,-0.347510725396603,0.30562266133847515,,,,,,,,,,,,,,,,,SESSION,6208,31.0,23.0,True,,,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,0.6788213816603275,3.2132124660817283,2.622740130043411,2.534391084421401,-1.2982187461822718,1.9439187483830835,,,,,,,,,,,,,,,,,SESSION,6375,5.0,4.0,True,,,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,0.7193498964903995,1.0672635768028442,1.491969823763668,0.34791368031244474,-0.39215576726525114,0.7726199272732686,,,,,,,,,,,,,,,,,SESSION,6378,13.0,23.0,True,,,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,0.6175451523153015,,,,,,,,,,,,,,,,,,,,,,SESSION,6380,0.0,5.0,False,,,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,0.7131040388979812,1.1037366607596084,1.2718169530767938,0.39063262186162717,0.15942555289910842,0.5587129141788125,,,,,,,,,,,,,,,,,SESSION,6387,17.0,26.0,True,,,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,0.740696206725147,1.7111516364286388,2.301457813976384,0.9704554297034917,0.8311013630468409,1.5607616072512371,,,,,,,,,,,,,,,,,SESSION,6388,22.0,19.0,True,,,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,same-team oriented contexts (all),168,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,same-team contexts in strict common support,103,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,contexts with >=3 admissible candidates (descriptive),43,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,contexts SAME_UPDATE: all / in support,24 / 6,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,contexts CONSECUTIVE: all / in support,26 / 14,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,contexts BETWEEN_1_2: all / in support,17 / 8,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,contexts BETWEEN_3_5: all / in support,21 / 11,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,contexts BETWEEN_GT5: all / in support,80 / 64,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,distinct unordered teammate pairs in support,40,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,cars in support contexts,51,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,teams in support contexts,10,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,team-years in support,18,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,sessions with support contexts,8,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,blocks with support contexts,32,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,max single-team share of support contexts,0.20388349514563106,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,max single-session share of support contexts,0.30097087378640774,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,same-team time separation median (s),84.12999987602234,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,max reuse of one target car-block across support contexts,3,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,"different-team candidate pairs (all contexts, before aggregation)",946,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,admissible different-team candidates in support contexts (before aggregation),314,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,distinct admissible candidate car-blocks,132,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,admissible candidate teams,11,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,admissible candidate time separation median (s),93.94649994373322,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,same-car local pairs,164,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,same-car cars,63,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,same-car sessions,10,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,same-car time separation median (s),82.81149995326996,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,same-car time separation IQR (s),81.0-121.1,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COVERAGE,,,,,same-car max car-block reuse,2,,,,
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COMPOSITION,,,,,,,same-team context (target|teammate),A_ONLY|A_ONLY,0.3883495145631068,40.0
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COMPOSITION,,,,,,,same-team context (target|teammate),B_ONLY|A_ONLY,0.14563106796116504,15.0
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COMPOSITION,,,,,,,same-team context (target|teammate),A_ONLY|B_ONLY,0.1262135922330097,13.0
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COMPOSITION,,,,,,,same-team context (target|teammate),B_ONLY|B_ONLY,0.0970873786407767,10.0
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COMPOSITION,,,,,,,same-team context (target|teammate),MIXED_AB|A_ONLY,0.08737864077669903,9.0
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COMPOSITION,,,,,,,same-team context (target|teammate),A_ONLY|MIXED_AB,0.07766990291262135,8.0
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COMPOSITION,,,,,,,same-team context (target|teammate),B_ONLY|MIXED_AB,0.02912621359223301,3.0
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COMPOSITION,,,,,,,same-team context (target|teammate),MIXED_AB|B_ONLY,0.02912621359223301,3.0
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COMPOSITION,,,,,,,same-team context (target|teammate),MIXED_AB|MIXED_AB,0.019417475728155338,2.0
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COMPOSITION,,,,,,,same-car pair,A_ONLY|A_ONLY,0.5365853658536586,88.0
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COMPOSITION,,,,,,,same-car pair,B_ONLY|B_ONLY,0.21341463414634146,35.0
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COMPOSITION,,,,,,,same-car pair,A_ONLY|MIXED_AB,0.06707317073170732,11.0
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COMPOSITION,,,,,,,same-car pair,MIXED_AB|A_ONLY,0.06097560975609756,10.0
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COMPOSITION,,,,,,,same-car pair,B_ONLY|A_ONLY,0.036585365853658534,6.0
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COMPOSITION,,,,,,,same-car pair,A_ONLY|B_ONLY,0.03048780487804878,5.0
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COMPOSITION,,,,,,,same-car pair,B_ONLY|MIXED_AB,0.03048780487804878,5.0
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COMPOSITION,,,,,,,same-car pair,MIXED_AB|B_ONLY,0.024390243902439025,4.0
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COMPOSITION,,,,,,,admissible candidate,A_ONLY,0.5923566878980892,186.0
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COMPOSITION,,,,,,,admissible candidate,B_ONLY,0.321656050955414,101.0
+TIER2_SENSITIVITY_2023_2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,COMPOSITION,,,,,,,admissible candidate,MIXED_AB,0.08598726114649681,27.0

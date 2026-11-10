@@ -1,10 +1,10 @@
 # v1 pipeline
 
-Run from the repository root with the bundled dependency runtime:
+Run from the repository root, in a Python 3 environment with `requirements.txt` installed:
 
 ```bash
-PYTHONPATH=. /Users/fengzhecharlieli/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m pipeline.run_pipeline
-PYTHONPATH=. /Users/fengzhecharlieli/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest -v
+PYTHONPATH=. python3 -m pipeline.run_pipeline
+PYTHONPATH=. python3 -m unittest -v
 ```
 
 The stages are separated into source registration, source-specific parsing, canonical reconciliation, provenance, validation, target-specific eligibility, materialization, and QA reporting. Raw files under `evidence/` are read-only inputs. Canonical outputs are deterministic UTF-8 CSV files under `data/canonical/v1/`; QA exports are at the repository root.

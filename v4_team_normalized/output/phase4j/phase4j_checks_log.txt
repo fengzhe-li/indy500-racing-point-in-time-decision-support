@@ -1,0 +1,28 @@
+PASS  Phase 4H classifications reproduced exactly (Phase 4I checks re-run 4H classifier; recorded pre-spec)            
+PASS  Phase 4I eligibility reproduced exactly (laps, pair universe, same-car pairs; both tiers)                        
+PASS  Tier 1 uses class A only (every primary car-block built only from A laps)                                        
+PASS  Tier 2 uses only A/B (composition labels limited to A_ONLY/B_ONLY/MIXED_AB)                                      
+PASS  no C/D/E enters any hierarchy population                                                                         
+PASS  primary years 2023-2024 only; 2025 separate                                                                      
+PASS  no 2018-2022 lap-level projection; race excluded                                                                 
+PASS  sessions = exactly the Phase 4I-supported sessions (no additions)                                                
+PASS  frozen 5-minute blocks unchanged (block = floor(ts/300))                                                         
+PASS  same-car identities exact (same car, same stint, consecutive blocks)                                             
+PASS  same-team registry mapping exact                                                                                 
+PASS  technical partnerships / non-primary-layer excluded                                                              
+PASS  different-team candidates truly different canonical teams                                                        
+PASS  no nearest-time control selection (all candidates retained per context; no time-minimising selection)            
+PASS  adjacency descriptors match Phase 4G definitions (200-candidate re-derivation)                                   
+PASS  tied timestamps never receive invented order (same-update handled only as its own stratum)                       
+PASS  strict common-support exclusions deterministic (rebuild identical)                                               
+PASS  different-team aggregation = median over admissible (same-stratum) candidates, per spec                          
+PASS  session weighting = equal-session medians of session medians (per spec)                                          
+PASS  no raw pair treated as an independent session (bootstrap/LOSO over sessions only)                                
+PASS  no hierarchy result computed before the spec commit (28af221 contains only spec + verification; spec unchanged)  
+PASS  no Phase 4A-4I output/script changed (419 hashes; scripts vs 12a660d)                                            
+PASS  FINAL_V2/V3 frozen manifests hash exactly (R5.2 + R6)                                                            
+PASS  paper unchanged; nothing outside V4 changed                                                                      
+PASS  primary case recorded before sensitivity labels and unchanged by them                                            
+PASS  all required outputs and >=8 figures present                                                                     
+
+26/26 checks passed

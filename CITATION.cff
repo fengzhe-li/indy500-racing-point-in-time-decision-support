@@ -1,11 +1,11 @@
 cff-version: 1.2.0
-title: "Indy 500 Point-in-Time Probabilistic Decision Support System"
+title: "Indy 500 Racing Point-in-Time Decision Support System"
 message: "Please cite this repository and the frozen model version used."
 type: software
 authors:
   - family-names: Li
     given-names: Fengzhe
-repository-code: "https://github.com/fengzhe-li/indy500-point-in-time-decision-support"
+repository-code: "https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support"
 version: "FINAL_V3_FROZEN"
 date-released: 2026-09-15
 abstract: >-

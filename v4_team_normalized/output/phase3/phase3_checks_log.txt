@@ -1,0 +1,26 @@
+PASS  join: attempt_id unique  
+PASS  join: all 329 core attempts present  
+PASS  join: all R6 2018/2019/2025 attempts present  
+PASS  join: no unmapped or ambiguous  
+PASS  join: speeds copied unchanged (core)  
+PASS  cand: never same entry  
+PASS  cand: never same driver  
+PASS  cand: delta_time >= 0 when timed  
+PASS  cand: delta_time = t_B - t_A  
+PASS  cand: delta_speed = B - A  
+PASS  cand: delta_track = B - A  
+PASS  cand: both attempts in primary layer  
+PASS  cand: A and B same year x team  
+PASS  cand: technical-partnership attempts excluded  
+PASS  cand: count = sum over car pairs of n_a*n_b  1173 vs 1173
+PASS  cand: no duplicate attempt pairs  
+PASS  cand: measurable = complete & timed  
+PASS  near: teammate car differs  
+PASS  near: recorded separation is the true minimum  
+PASS  near: exactly one overall-nearest per attempt  
+PASS  windows: counts non-decreasing  
+PASS  frozen: every R5.2 manifest file hash matches  
+PASS  frozen: 41 transitions  
+PASS  frozen: join track temp equals core input for every endpoint  0 differ
+PASS  frozen: join ambient temp equals core input for every endpoint  0 differ
+PASS  git: nothing outside v4_team_normalized/ changed vs freeze tag  

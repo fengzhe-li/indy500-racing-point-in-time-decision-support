@@ -1,0 +1,26 @@
+PASS  primary = exactly Phase 4E Design-1-feasible Tier A/B lap-level sessions (15)           
+PASS  race excluded from primary analysis                                                     
+PASS  primary years only 2023-2024; secondary only 2025                                       
+PASS  session categories preserved                                                            
+PASS  raw lap times and timestamps match retrieved Timing71 evidence (300-lap sample)         
+PASS  no missing values imputed (car-block v and t never NaN; laps without laptime absent)    
+PASS  canonical team mapping exactly matches V4 registry                                      
+PASS  technical partnerships absent from primary comparisons                                  
+PASS  same-car comparisons use the same car                                                   
+PASS  same-team comparisons: different cars, same canonical team                              
+PASS  different-team comparisons use different canonical teams                                
+PASS  no car compared with itself in same-team or teammate classes                            
+PASS  block assignment deterministic (recomputed car-blocks identical)                        
+PASS  each car has at most one value per primary block                                        
+PASS  pair counts reproduce                                                                   
+PASS  block-level contrasts reproduce                                                         
+PASS  broad and comparable layers distinct (comparable subset of broad; strictly fewer laps)  
+PASS  race never enters hierarchy results                                                     
+PASS  no environmental coefficient / model estimated (no fitting calls)                       
+PASS  Phases 4A-4E outputs unchanged                                                          
+PASS  FINAL_V2/V3 frozen manifests hash exactly (R5.2 + R6)                                   
+PASS  pre-specification committed before results and unchanged                                fa480ed
+PASS  Timing71 labelled as third-party archived live feed (never official)                    
+PASS  nothing outside v4_team_normalized/ changed                                             
+
+24/24 checks passed

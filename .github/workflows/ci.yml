@@ -14,6 +14,22 @@ on:
   workflow_dispatch: {}
 
 jobs:
+  cpp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pybind11 and CMake
+        run: pip install cmake pybind11
+      - name: Configure and build C++ engine
+        run: |
+          cmake -S cpp -B cpp/build -DCMAKE_BUILD_TYPE=Release
+          cmake --build cpp/build -j4
+      - name: Run C++ GoogleTest suite
+        run: ctest --test-dir cpp/build --output-on-failure -V
+
   python:
     runs-on: ubuntu-latest
     steps:
@@ -22,8 +38,12 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install Python dependencies
-        run: pip install -r v3_point_in_time/requirements.txt
-      - name: Run full Python test suite (scientific + API)
+        run: pip install -r v3_point_in_time/requirements.txt cmake pybind11
+      - name: Build optional C++ pybind11 extension
+        run: |
+          cmake -S cpp -B cpp/build -DCMAKE_BUILD_TYPE=Release -DINDY500_BUILD_TESTS=OFF
+          cmake --build cpp/build -j4
+      - name: Run full Python test suite (scientific + API + C++ parity)
         run: python -m unittest discover -s v3_point_in_time/tests -p 'test_*.py' -v
       - name: V2 frozen-dependency immutability check
         run: python v3_point_in_time/scripts/run_v2_immutability_check.py
@@ -48,7 +68,7 @@ jobs:
 
   docker-build:
     runs-on: ubuntu-latest
-    needs: [python, frontend]
+    needs: [cpp, python, frontend]
     steps:
       - uses: actions/checkout@v4
       - name: Prepare minimal Docker build context

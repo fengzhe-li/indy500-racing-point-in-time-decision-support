@@ -1,0 +1,69 @@
+{
+  "model_version": "v6.1-audited-bicycle",
+  "label": "SIMULATED",
+  "integrator": "RK4; held controls; stiffness substeps",
+  "units": "SI",
+  "track": {
+    "kind": "approximate_stadium",
+    "provenance": "ILLUSTRATIVE, not official IMS GPS",
+    "length_m": 4527.951643749406,
+    "straight_length_m": 1000.0,
+    "radius_m": 402.336,
+    "width_m": 15.0,
+    "banking_rad": 0.0,
+    "coordinates": "local Cartesian x east, y north; metres; CCW radians"
+  },
+  "vehicle": {
+    "mass_kg": 850.0,
+    "wheelbase_m": 3.0,
+    "yaw_inertia_kg_m2": 1200.0,
+    "lf_m": 1.35,
+    "lr_m": 1.65,
+    "cornering_front_n_per_rad": 90000.0,
+    "cornering_rear_n_per_rad": 100000.0,
+    "friction_coefficient": 1.5,
+    "max_steer_rad": 0.3141592653589793,
+    "max_drive_force_n": 9000.0,
+    "max_brake_force_n": 18000.0,
+    "drag_coefficient_area_m2": 1.2,
+    "air_density_kg_m3": 1.225,
+    "rolling_resistance": 0.015,
+    "downforce_coefficient_area_m2": 3.0,
+    "gravity_m_s2": 9.80665,
+    "front_brake_fraction": 0.55,
+    "slip_regularization_m_s": 2.0
+  },
+  "parameter_provenance": "ILLUSTRATIVE, uncalibrated",
+  "driver": {
+    "preview_m": 35.0,
+    "kp_speed": 0.35,
+    "ki_speed": 0.025,
+    "kd_speed": 0.02,
+    "max_speed_m_s": 75.0,
+    "lateral_accel_limit_m_s2": 10.0,
+    "reaction_delay_s": 0.0,
+    "steer_filter_tau_s": 0.0,
+    "aggression": 1.0,
+    "steering_gain": 1.0
+  },
+  "simulation": {
+    "dt_s": 0.01,
+    "max_time_s": 180,
+    "start_speed_m_s": 30.0,
+    "max_laps": 1
+  },
+  "initial_state": {
+    "x_m": 0.0,
+    "y_m": 0.0,
+    "heading_rad": 0.0,
+    "u_m_s": 30.0,
+    "v_m_s": 0.0,
+    "yaw_rate_rad_s": 0.0,
+    "time_s": 0.0,
+    "distance_m": 0.0
+  },
+  "control_mode": "PurePursuitPIDDriver",
+  "recording": "full control grid plus terminal event; outgoing held commands except terminal",
+  "actuator_priority": "brake overrides throttle",
+  "event_time_tolerance_s": 1e-09
+}

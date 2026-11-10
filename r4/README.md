@@ -84,7 +84,7 @@ The corrected target definitions are `BEAT_CURRENT_RESULT`, `CROSS_ADVANCEMENT_B
 - `final_capability_summary_v1.json`
 - `final_results_freeze_v1_qa.csv`
 
-The adapter opens these inputs only in read mode. Future R4 development remains inside the active project. The separate `indy500删圈_R3C1_FROZEN_BASELINE` snapshot is outside this package and must remain untouched by Codex.
+The adapter opens these inputs only in read mode. Future R4 development remains inside the active project. The separate `indy500删圈_R3C1_FROZEN_BASELINE` snapshot is outside this package and must remain untouched.
 
 R4A does not use `historical_action_label` or `historical_lane_label` to set eligibility. A blank or generic historical result status also cannot set Lane 1 or Lane 2 eligibility. Unknown eligibility remains unknown in the source scenario and conservatively blocks that action until the team supplies an observable value.
 

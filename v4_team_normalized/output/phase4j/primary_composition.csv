@@ -1,0 +1,4 @@
+analysis,layer,composition,share,n
+PRIMARY_TIER1_2023_2024,same-team context (target|teammate),A_ONLY|A_ONLY,1.0,53
+PRIMARY_TIER1_2023_2024,same-car pair,A_ONLY|A_ONLY,1.0,92
+PRIMARY_TIER1_2023_2024,admissible candidate,A_ONLY,1.0,117

@@ -1,0 +1,24 @@
+PASS  Phase 4H classifications reproduced exactly (re-run frozen classifier)                                
+PASS  no Phase 4H threshold changed (recomputed == frozen; Phase 4H scripts unchanged)                      
+PASS  no C/D/E observation enters Tier 1 or Tier 2                                                          
+PASS  Tier 1 contains A-A only (laps A; pair car-blocks A_ONLY)                                             
+PASS  Tier 2 contains A/B observations only                                                                 
+PASS  same-car identity exact                                                                               
+PASS  same-team mapping matches frozen canonical registry                                                   
+PASS  technical partnerships / non-primary-layer excluded from same-team layer                              
+PASS  different-team pairs truly cross canonical teams                                                      
+PASS  no nearest-time control selected (full candidate universe enumerated; no selection code)              
+PASS  no hierarchy outcome computed or used (no between-car D / speed fields in pair tables; no D columns)  
+PASS  raw speeds/timestamps unchanged vs Phase 4H inventory                                                 
+PASS  2025 remains separately identifiable (yr_group everywhere; case uses 2023-24 levels only)             
+PASS  lower-resolution years not treated as lap-level evidence                                              
+PASS  no team/driver performance ranking (no rank columns; team tables alphabetical)                        
+PASS  support case follows the pre-specified gate (recomputed from metrics)                                 CASE B
+PASS  no Phase 4A-4H output/script changed (389 hashes; git vs fd266ea)                                     
+PASS  FINAL_V2/V3 frozen manifests hash exactly (R5.2 + R6)                                                 
+PASS  pre-specification committed before results (ccb06c6) and unchanged                                    
+PASS  Timing71 labelled as third-party archived live feed                                                   
+PASS  all required outputs and >=8 figures present                                                          
+PASS  nothing outside v4_team_normalized/ changed (paper unchanged)                                         
+
+22/22 checks passed

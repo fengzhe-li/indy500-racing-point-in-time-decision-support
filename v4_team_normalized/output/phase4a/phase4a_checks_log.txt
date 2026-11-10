@@ -1,0 +1,28 @@
+PASS  anchors: 41 rows, same ids and order  
+PASS  anchors: speed_t1 == frozen before_four_lap_average_speed_mph  
+PASS  anchors: speed_t2 == frozen after_four_lap_average_speed_mph  
+PASS  anchors: observed_delta_speed == frozen delta_four_lap_average_speed_mph  
+PASS  anchors: track_temp_t1 == frozen previous_track_temp_c  
+PASS  anchors: track_temp_t2 == frozen next_track_temp_c  
+PASS  anchors: ambient_temp_t1 == frozen previous_air_temp_c  
+PASS  anchors: ambient_temp_t2 == frozen next_air_temp_c  
+PASS  anchors: LOYO residual carried unchanged  
+PASS  anchors: frozen t1 used wherever frozen t1 exists  
+PASS  cand: never the target entry  
+PASS  cand: same year x canonical team as target  
+PASS  cand: teammates all in primary layer (no technical partnerships)  
+PASS  cand: technical-partnership target has no candidates  
+PASS  cand: signed offset = teammate - endpoint  
+PASS  cand: PIT availability == offset <= 0  
+PASS  ctrl: delta_team_control = t2 - t1  
+PASS  ctrl: team_adjusted = delta_target - delta_team_control  
+PASS  ctrl: delta_target equals frozen delta  
+PASS  PIT: prior-only controls never use a future teammate attempt  
+PASS  future-only controls never use a prior attempt  
+PASS  ctrl: used attempts lie inside the window  
+PASS  common-cars: same teammate car set at both endpoints  
+PASS  car-balanced: recomputed mean-of-car-means matches (±60, T1)  
+PASS  support: both <= min(T1, T2)  
+PASS  support: non-decreasing with window  
+PASS  frozen: every R5.2 manifest file hash matches  
+PASS  git: nothing outside v4_team_normalized/ changed vs freeze tag  
