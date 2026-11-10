@@ -99,6 +99,8 @@ An isolated `v6_driver_in_loop/` module implements a Software-in-the-Loop (SIL) 
 
 *`SIMULATED — V6` · Browser replay of audited V6 exports ([`v6_driver_in_loop/viewer/`](v6_driver_in_loop/README.md)): (1) `baseline.json` completing the full `4,527.95 m` lap in `72.410 s` (`COMPLETED`, max / RMS tracking error `5.187 / 2.769 m`, tyre saturation `4.09%`), followed by (2) `delay_0.6s.json` terminating off-track at `17.474 s` (`OFF_TRACK — track boundary exceeded`, `-7.500 m` tracking error, `17.40%` tyre saturation) with synchronized speed, steering, throttle/brake, yaw-rate, lateral-acceleration and tracking-error traces. [**Full-resolution combined MP4 (`v6-vehicle-dynamics.mp4`) →**](docs/media/v6-vehicle-dynamics.mp4) · [**Completed baseline MP4 (`v6-baseline-completed.mp4`) →**](docs/media/v6-baseline-completed.mp4) · [**Off-track termination MP4 (`v6-delay-off-track.mp4`) →**](docs/media/v6-delay-off-track.mp4) · [**V6 module documentation →**](v6_driver_in_loop/README.md)*
 
+The [Performance Explorer](performance_explorer/README.md) keeps observed historical timing, V5 quasi-steady simulation, and V6 dynamic replay in separate modes. V6 Explorer V1.1 reuses the audited schema-2 adapter and does not compare V6 against historical or V5 lap-time metrics.
+
 | Evidence / result | Verified value | Meaning |
 |---|---:|---|
 | Frozen same-car transitions | **41** | Small, high-confidence performance core |
