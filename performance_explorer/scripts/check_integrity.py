@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 V4_REF = 'fe65ddf73a4de6b9c645de74830c8db7b88d64cb'
 BASE = 'f15a323199a56fe7130ebf0db97c954787bbd90b'
+MAIN_REF = 'de49616eda74224e1f07475c24e40eb6b9486f58'
 
 def git(*args):
     return subprocess.check_output(['git',*args],cwd=ROOT)
@@ -47,8 +48,8 @@ def main():
         actual=hashlib.sha256(blob).hexdigest()
         if actual!=r['sha256']:mismatches.append({'path':r['relative_path'],'expected':r['sha256'],'actual':actual,'existing_in_verified_main':True})
     report['v4_target_main_manifest']=dict(ref=V4_REF,checked=len(entries),matched=len(entries)-len(mismatches),mismatches=mismatches)
-    # Every non-Explorer tracked file must equal the original checkout blob.
-    tree=git('ls-tree','-rz',BASE).split(b'\0');checked=0;changed=[]
+    # Every non-Explorer tracked file must equal the merged main baseline (except Explorer's own workflow).
+    tree=git('ls-tree','-rz',MAIN_REF).split(b'\0');checked=0;changed=[]
     for item in tree:
         if not item:continue
         metadata,raw_path=item.split(b'\t',1);path=raw_path.decode();sha=metadata.decode().split()[2]
@@ -57,7 +58,7 @@ def main():
         if not file.exists():changed.append(path);continue
         blob=file.read_bytes();actual=hashlib.sha1(f'blob {len(blob)}\0'.encode()+blob).hexdigest();checked+=1
         if sha!=actual:changed.append(path)
-    report['non_explorer_worktree']=dict(baseline=BASE,checked=checked,changed=changed)
+    report['non_explorer_worktree']=dict(baseline=MAIN_REF,checked=checked,changed=changed)
     source=json.loads((ROOT/'performance_explorer/contracts/v5-replay-1/SOURCE.json').read_text())
     report['v5_pinned_artifacts']=file_checks([('performance_explorer/'+p,r['sha256']) for p,r in source['files'].items()])
     v6source=json.loads((ROOT/'performance_explorer/contracts/v6-replay-2/SOURCE.json').read_text())

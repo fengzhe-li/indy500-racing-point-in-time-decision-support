@@ -2,14 +2,11 @@
 
 ## Identity and scope
 
-Integration base: Explorer `164588128c9910463a7cbaa6c5e62defae6540e4` in
-`fengzhe-li/indy500-racing-point-in-time-decision-support`, PR #5, target main.
-Verified remote main is `fe65ddf73a4de6b9c645de74830c8db7b88d64cb`; the Explorer
-parent is its ancestor. No branch merge, solver port or V5 viewer copy is involved.
+Integration base: Explorer PR #5 refreshed onto merged `main` (`de49616eda74224e1f07475c24e40eb6b9486f58`) in `fengzhe-li/indy500-racing-point-in-time-decision-support`, after sequential merges of C++17 PR #3 (`2ac5b9615095f440560d809986d608e36c989962`), V5 PR #2 (`aeb67fc28488974e6ec1c11cf30ab2f5bbb8ff4f`), and V6 PR #4 (`de49616eda74224e1f07475c24e40eb6b9486f58`). No solver port or V5 viewer copy is involved.
 
-Producer: accepted V5 `8879c3095cd11215a0d444e5973bc7a37b36342b`.
+Producer: accepted V5 `8879c3095cd11215a0d444e5973bc7a37b36342b` (merged to `main` via PR #2).
 The exact schema, upstream replay notes, downstream adapter guide and two real
-exports are pinned by SHA-256 in `contracts/v5-replay-1/SOURCE.json`.
+exports are pinned by SHA-256 in `contracts/v5-replay-1/SOURCE.json` and match the merged `v5_lap_time_simulation/` files on `main` byte-for-byte.
 The frozen `v5-replay-1` schema and the Explorer `ComparisonSeriesV1` 1.0.0
 contract are unchanged. No V5 scientific calculation or calibration is altered.
 

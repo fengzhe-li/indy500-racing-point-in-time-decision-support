@@ -1,25 +1,38 @@
 # Verification and Git delivery
 
-Verified on 2026-11-10 in `/private/tmp/indy500-performance-explorer`, continuing commit `1645881`, then rebased onto concurrent Explorer commit `e2d8319` on `feat/dual-car-performance-explorer`.
+Verified on 2026-11-10 against merged `main` (`de49616eda74224e1f07475c24e40eb6b9486f58`, containing C++17 PR #3 `2ac5b9615095f440560d809986d608e36c989962`, V5 PR #2 `aeb67fc28488974e6ec1c11cf30ab2f5bbb8ff4f`, and V6 PR #4 `de49616eda74224e1f07475c24e40eb6b9486f58`) on branch `feat/dual-car-performance-explorer` (PR #5).
+
+## Final audit fixes and dependency remediation
+
+- **High-density V5 graph rendering (`src/V5Explorer.tsx`)**: Replaced spread `Math.min(...values)` and `Math.max(...values)` in `DistanceGraph` with a linear scan over `points` and `second`, preventing `RangeError: Maximum call stack size exceeded` on valid high-density V5 replay imports (verified with a 73,441-node / 7.7 MiB replay in unit tests and Chrome).
+- **V6 completed-run lap-distance consistency (`src/adapters/v6.ts`)**: Added validation requiring runs with `metrics.status === "completed"` and `metrics.completed_lap === true` to reach at least `max_laps * track.length_m - 1e-6` on `terminal.progress_m` (and final sample `progress_m` when present).
+- **Frontend dependency advisories (`frontend/package.json`, `frontend/package-lock.json`)**: Upgraded devDependencies (`vite` to `6.4.6`, `vitest` to `4.1.12`, `@vitejs/plugin-react` to `4.7.0`). `npm audit` reports **0 vulnerabilities** across all dependencies while preserving Node 20 compatibility.
+- **Dedicated Explorer CI workflow (`.github/workflows/explorer.yml`)**: Added `performance-explorer-ci` covering Explorer historical exporter unit tests, `export_historical.py --check` reproducibility, `npm ci`, `npx tsc -b`, `npm test`, and `npm run build`.
 
 ## Executed checks
 
 | Check | Actual outcome |
 |---|---|
-| `npm test` in Explorer frontend | 93 passed across 8 files; all 11 original tests preserved and passing |
-| `npm run build` in Explorer frontend | TypeScript + Vite production build passed |
+| `npm test` in Explorer frontend | 95 passed across 8 files; all 11 original tests preserved and passing |
+| `npx tsc -b && npm run build` in Explorer frontend | TypeScript + Vite production build passed |
+| `npm audit` in Explorer frontend | 0 vulnerabilities (0 critical, 0 high, 0 moderate, 0 low) |
 | Explorer Python export regression suite | 6 passed |
 | `export_historical.py --check` | Committed export/audit exactly reproduce from canonical files |
 | Root `python3 -m unittest discover -s tests -v` | 33 passed (pipeline and portfolio) |
 | `python3 -m unittest discover -s r4/tests -v` | 21 passed |
-| V3 `test_v2_immutability.py` | 1 passed |
-| Existing V3 frontend `npm test` | 9 passed |
-| Browser inspection | 2024 displays 31 retained complete attempts, unknown order labels, recorded totals and discrete boundary markers |
+| C++17 `ctest --test-dir cpp/build --output-on-failure` | 16 passed |
+| V3 `python3 -m unittest discover -s v3_point_in_time/tests -v` | 104 passed (including C++ parity and V2 immutability) |
+| Existing V3 frontend `npm test` + `npm run build` | 9 passed + build passed |
+| V5 `python3 -m unittest discover -s v5_lap_time_simulation/tests -v` | 25 passed |
+| V5 frontend `npm test` + `npm run build` | 21 passed (2 files) + build passed |
+| V6 `python3 -m unittest discover -s v6_vehicle_dynamics_control/tests -v` | 44 passed |
+| V6 viewer `node --test v6_vehicle_dynamics_control/viewer/test/*.test.mjs` | 9 passed |
+| Browser inspection (Chrome + merged V5 API) | 2024 displays 31 retained complete attempts; V5 presets, Track Dominance, live POST recompute, and 73,441-node JSON import verified with 0 console/page errors |
 | `git diff --check` | Passed |
 
-Explorer tests/build were repeated after installing its own declared dependencies with a new `package-lock.json`; they do not require the V3 checkout's dependencies. Existing V3 frontend tests used a temporary dependency link in the isolated checkout; that link was removed afterward. V5 production mode uses two actual published exports pinned separately from test fixtures; V6 fixtures are test-only.
+Explorer tests/build were repeated after installing its own declared dependencies with the updated `package-lock.json`; they do not require the V3 or V5 checkouts' frontend dependencies. V5 production mode uses two actual published exports pinned separately from test fixtures and connects to the merged `v5_lap_time_simulation.server` FastAPI service on `127.0.0.1:8005` via `/api/v5`; V6 fixtures are test-only.
 
-Numerical checks cover recorded versus speed-derived duration, official total/lap sums, invalid and duplicate identities, nullable attempt order, partial lap rejection, unequal-lap boundary support, cross-session rejection, delta sign/ties, independent car completion, common-clock seeking, rate/pause/restart and missing data. V5 checks cover the published schema, malformed/unsupported versions, units/configuration, monotonicity, time/speed/acceleration integrals, geometry/segment consistency, interior-cell time/distance round trips, scenario independence, completion, matched-coordinate rejection, and cumulative versus incremental advantage conservation. Actual simulated exports are pinned by upstream commit and SHA-256.
+Numerical checks cover recorded versus speed-derived duration, official total/lap sums, invalid and duplicate identities, nullable attempt order, partial lap rejection, unequal-lap boundary support, cross-session rejection, delta sign/ties, independent car completion, common-clock seeking, rate/pause/restart and missing data. V5 checks cover the published schema, malformed/unsupported versions, units/configuration, monotonicity, time/speed/acceleration integrals, geometry/segment consistency, interior-cell time/distance round trips, scenario independence, completion, matched-coordinate rejection, high-density replay rendering, and cumulative versus incremental advantage conservation. Actual simulated exports are pinned by upstream commit and SHA-256.
 
 ## Frozen asset audit: actual outcomes
 
@@ -35,7 +48,7 @@ Numerical checks cover recorded versus speed-derived duration, official total/la
 | V4 final manifest at verified target main | 735 / 735 | Pass |
 | Pinned V5 contract/docs/actual exports | 7 / 7 | Pass |
 | Pinned V6 docs/actual test exports | 6 / 6 | Pass |
-| All non-Explorer tracked files versus original `f15a323` checkout | 2643 / 2643 | Byte-for-byte unchanged |
+| All non-Explorer tracked files versus merged `main` (`de49616`) | 3509 / 3509 | Byte-for-byte unchanged |
 
 The three V3 Phase 4 mismatches are `v3_point_in_time/api/main.py`, `v3_point_in_time/api/models.py`, and `v3_point_in_time/app/replay_service.py`. Each matches the original Explorer commit's bytes; their last changes predate this work (`9aafae6`, FINAL_V3 finalization). This is reported as an existing historical-manifest mismatch; no frozen content was changed to make the check pass. Exact expected/actual hashes are in `audit/frozen_integrity.json`.
 

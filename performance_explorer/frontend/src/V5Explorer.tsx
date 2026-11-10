@@ -219,8 +219,10 @@ function v5SpeedAt(series: V5Series, distance: number) { return v5AtTime(series.
 function DistanceGraph({ label, points, second, length, distance, otherDistance, seek, inspect, inspection, unit }: {
   label: string; points: number[][]; second?: number[][]; length: number; distance: number; otherDistance: number; seek: (d: number) => void; inspect: (d: number | null) => void; inspection: number | null; unit: string;
 }) {
-  const values = [...points, ...(second ?? [])].map(p => p[1]);
-  const lo = Math.min(...values), hi = Math.max(...values), padding = Math.max((hi - lo) * .12, .05);
+  let lo = Infinity, hi = -Infinity;
+  for (const [, v] of points) { if (v < lo) lo = v; if (v > hi) hi = v; }
+  if (second) for (const [, v] of second) { if (v < lo) lo = v; if (v > hi) hi = v; }
+  const padding = Math.max((hi - lo) * .12, .05);
   const x = (d: number) => 60 + 540 * d / length;
   const y = (v: number) => 175 - 145 * (v - lo + padding) / (hi - lo + 2 * padding);
   const line = (p: number[][]) => p.map(([d, v]) => `${x(d)},${y(v)}`).join(" ");

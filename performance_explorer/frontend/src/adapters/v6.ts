@@ -69,6 +69,9 @@ export class V6Adapter implements SimulationAdapter {
     });
     const terminal = events[events.length - 1], last = samples[samples.length - 1];
     check(terminal.type === metrics.status && near(terminal.sim_time_s, durationS) && near(terminal.x_m, n(last, "x_m")) && near(terminal.y_m, n(last, "y_m")) && (!("progress_m" in last) || near(terminal.progress_m, n(last, "progress_m"))), "terminal event mismatch");
+    const sim = metadata.simulation;
+    const laps = sim && typeof sim === "object" && !Array.isArray(sim) && Number.isInteger((sim as Record<string, unknown>).max_laps) && ((sim as Record<string, unknown>).max_laps as number) >= 1 ? (sim as Record<string, unknown>).max_laps as number : 1;
+    check(!complete || (terminal.progress_m >= laps * (track.length_m as number) - 1e-6 && (!("progress_m" in last) || n(last, "progress_m") >= laps * (track.length_m as number) - 1e-6)), "completed run did not reach lap distance");
     return {
       schemaVersion: "1.0.0", mode: this.mode, dataKind: "simulated_dynamic_telemetry", label: `SIMULATED · V6 · ${payload.name}`,
       geometry: "assumed_oval", axes: { primary: "elapsed_time_s", ...(fields.includes("progress_m") ? { secondary: "distance_m" as const } : {}) },

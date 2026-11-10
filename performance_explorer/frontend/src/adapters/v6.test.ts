@@ -77,6 +77,7 @@ describe("published V6 schema 2 consumer", () => {
     (x: ReturnType<typeof copy>) => { x.fields[1] = x.fields[0]; },
     (x: ReturnType<typeof copy>) => { x.sampling.replay_sample_count += 1; },
     (x: ReturnType<typeof copy>) => { x.metadata.model_version = "unreviewed-model"; },
+    (x: ReturnType<typeof copy>) => { const pi = x.fields.indexOf("progress_m"); x.rows.forEach(r => { r[pi] = Number(r[pi]) / 10; }); x.events[x.events.length - 1].progress_m = Number(x.rows[x.rows.length - 1][pi]); },
   ])("rejects invalid export %#", mutate => { const data = copy(); mutate(data); expect(() => adapter.adapt(data)).toThrow(/Invalid V6/); });
   it("disables distance deltas when wrapped/unwrapped coordinates disagree", () => {
     const a = adapter.adapt(baseline); a.samples[1].track_distance_m = 100;

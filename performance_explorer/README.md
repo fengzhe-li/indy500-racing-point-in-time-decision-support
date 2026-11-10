@@ -14,24 +14,22 @@ Choose **V5 simulation · SIMULATED** to compare the actual published baseline a
 
 ## Connect the V5 API
 
-Until PR #2 is merged, run the service in a separate checkout pinned to its published commit. Do not merge V5 into this feature branch:
+With V5 (PR #2) merged into `main`, start the V5 service directly from the repository root:
 
 ```sh
-# From the repository root; choose an unused worktree path.
-git fetch origin pull/2/head:refs/remotes/origin/published-v5
-git worktree add --detach /tmp/indy500-explorer-v5-service 8879c3095cd11215a0d444e5973bc7a37b36342b
-cd /tmp/indy500-explorer-v5-service
-python3 -m venv /tmp/indy500-explorer-v5-venv
-/tmp/indy500-explorer-v5-venv/bin/pip install -r v5_lap_time_simulation/requirements.txt
-/tmp/indy500-explorer-v5-venv/bin/python -m uvicorn v5_lap_time_simulation.server:app --host 127.0.0.1 --port 8007
+python3 -m pip install -r v5_lap_time_simulation/requirements.txt
+python3 -m v5_lap_time_simulation.server
 ```
 
-Then, in the Explorer frontend:
+This starts the V5 API on `http://127.0.0.1:8005` (`GET /api/v5/baseline` and `POST /api/v5/simulate`), which matches the Explorer frontend's default proxy target. In a second terminal, run:
 
 ```sh
-V5_API_TARGET=http://127.0.0.1:8007 npm run dev
-# Or: V5_API_TARGET=http://127.0.0.1:8007 npx vite preview
+cd performance_explorer/frontend
+npm run dev
+# Or: npm run build && npx vite preview
 ```
+
+If port 8005 is in use, run `python3 -m uvicorn v5_lap_time_simulation.server:app --host 127.0.0.1 --port 8007` and set `V5_API_TARGET=http://127.0.0.1:8007` when starting Vite (`dev` or `preview`).
 
 The default proxy target is `http://127.0.0.1:8005`. Production hosting must route same-origin `/api/v5/baseline` and `/api/v5/simulate` to a compatible V5 service; the static build does not include or start Python. The client never implements a solver. API errors retain the last validated run, and each car independently cancels/ignores superseded responses. Requests time out after 30 seconds. Applied output snapshots are distinct from editable drafts. Unexposed parameters use the service's baseline.
 

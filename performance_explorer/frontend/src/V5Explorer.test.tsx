@@ -105,6 +105,24 @@ describe("V5 two-car Explorer integration", () => {
     expect(screen.getByText(/User-imported export · producer commit unverified/)).toBeInTheDocument();
     expect(screen.getByText("Tied: 100.0% (4023.4 m)")).toBeInTheDocument();
   });
+  it("renders high-density validated replays without exceeding call-stack argument limits", async () => {
+    const dense = structuredClone(baseline);
+    for (const key of ["distance_m", "elapsed_s", "speed_mps", "speed_cap_mps", "acceleration_mps2", "mode", "xy_m"] as const) dense[key] = [];
+    const factor = 180, r8 = (x: number) => Number(x.toFixed(8)), r12 = (x: number) => Number(x.toFixed(12));
+    for (let i = 0; i < baseline.distance_m.length - 1; i++) for (let j = 0; j < factor; j++) {
+      const d = baseline.distance_m[i] + (baseline.distance_m[i + 1] - baseline.distance_m[i]) * j / factor;
+      const t = v5TimeAtDistance(replay, d), p = v5AtTime(replay, t);
+      dense.distance_m.push(r8(d)); dense.elapsed_s.push(r12(t)); dense.speed_mps.push(r8(p.speedMps));
+      dense.speed_cap_mps.push(r8(Math.max(baseline.speed_cap_mps[i], baseline.speed_cap_mps[i + 1])));
+      dense.xy_m.push([r8(p.positionM[0]), r8(p.positionM[1])]);
+      dense.acceleration_mps2.push(r12(baseline.acceleration_mps2[i])); dense.mode.push(baseline.mode[i]);
+    }
+    for (const key of ["distance_m", "elapsed_s", "speed_mps", "speed_cap_mps", "xy_m"] as const) (dense[key] as unknown[]).push(baseline[key][baseline[key].length - 1]);
+    expect(dense.distance_m.length).toBeGreaterThan(70000);
+    render(<V5Explorer />); upload(dense);
+    await waitFor(() => expect(screen.getByLabelText("Car A configuration")).toHaveValue("import-A-1"));
+    expect(screen.getByRole("slider", { name: "Speed profile graph" })).toBeInTheDocument();
+  });
   it("rejects invalid input and keeps the last validated run", async () => {
     render(<V5Explorer />); upload({ ...baseline, schema_version: "v6" });
     await waitFor(() => expect(screen.getByRole("alert")).toHaveTextContent("unsupported schema version"));
