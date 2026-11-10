@@ -1,0 +1,12 @@
+import {describe,it,expect} from 'vitest';
+import {decodeV6,compatibleV6,nextV6Time,sampleV6} from './v6Replay';
+import baseline from '../../../v6_driver_in_loop/reports/replays/baseline.json';
+import offtrack from '../../../v6_driver_in_loop/reports/replays/delay_0.6s.json';
+
+describe('schema-2 V6 replay adapter',()=>{
+ it('loads authentic exports and only pairs matching geometry and coordinates',()=>{const a=decodeV6(baseline),b=decodeV6(offtrack);expect(a.samples.length).toBeGreaterThan(2);expect(compatibleV6(a,b)).toBe(true);const changed=structuredClone(baseline);changed.metadata.track.width_m+=1;expect(compatibleV6(a,decodeV6(changed))).toBe(false);changed.metadata.track.coordinates='latitude longitude';expect(()=>decodeV6(changed)).toThrow(/coordinate system/);});
+ it('clamps at each vehicle terminal and preserves the recorded off-track stop',()=>{const a=decodeV6(baseline),b=decodeV6(offtrack);expect(sampleV6(a.samples,1e9).sim_time_s).toBe(a.metrics.elapsed_sim_s);expect(sampleV6(b.samples,1e9).sim_time_s).toBe(b.metrics.elapsed_sim_s);expect(b.metrics.status).toBe('off_track');expect(sampleV6(b.samples,1e9).off_track).toBe(true);});
+ it('supports successful completion and shared clock stepping',()=>{const a=decodeV6(baseline);expect(a.metrics.status).toBe('completed');expect(nextV6Time(1,.5,2,2)).toBe(2);expect(nextV6Time(0,1,1,a.metrics.elapsed_sim_s)).toBe(1);});
+ it('rejects invalid schema, malformed geometry, and absent required telemetry',()=>{const bad=structuredClone(baseline);bad.schema_version=1;expect(()=>decodeV6(bad)).toThrow(/schema 2/);const missing=structuredClone(baseline);missing.fields=missing.fields.filter(x=>x!=='speed_m_s');missing.rows=missing.rows.map(row=>row.filter((_,i)=>i!==baseline.fields.indexOf('speed_m_s')));expect(()=>decodeV6(missing)).toThrow(/telemetry fields/);const geometry=structuredClone(baseline);geometry.metadata.track.width_m=0;expect(()=>decodeV6(geometry)).toThrow(/geometry/);});
+ it('keeps absent optional throttle and brake measurements absent',()=>{const d=structuredClone(baseline);for(const key of ['throttle_command','brake_command']){const i=d.fields.indexOf(key);d.fields.splice(i,1);d.rows=d.rows.map(row=>row.filter((_,j)=>j!==i));}const decoded=decodeV6(d),sample=sampleV6(decoded.samples,0);expect(sample).not.toHaveProperty('throttle_command');expect(sample).not.toHaveProperty('brake_command');});
+});
