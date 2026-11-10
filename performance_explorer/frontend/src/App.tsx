@@ -1,33 +1,133 @@
-import { useEffect,useMemo,useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import data from "../public/data/historical-attempts-v1.json";
-import type { HistoricalDataV1,HistoricalAttempt } from "./domain/contract";
+import type { HistoricalAttempt } from "./domain/contract";
 import { validateHistoricalData } from "./adapters/historical";
-import { runningDelta,tickReplay,type ReplayState } from "./domain/replay";
+import { completedLaps, historicalComparison, tickReplay, type ReplayState } from "./domain/replay";
 
-const dataset=data as HistoricalDataV1;const fmt=(n:number,d=3)=>n.toFixed(d);const lapSeconds=(r:HistoricalAttempt)=>r.lapSpeedsMph.map(v=>3600*2.5/v);
-function Selector({label,value,values,onChange,labels}:{label:string,value:string,values:string[],onChange:(v:string)=>void,labels?:(v:string)=>string}){return <label className="selector"><span>{label}</span><select aria-label={label} value={value} onChange={e=>onChange(e.target.value)}>{values.map(x=><option key={x} value={x}>{labels?labels(x):x}</option>)}</select></label>}
-export function App(){
- const valid=validateHistoricalData(dataset),rows=valid?dataset.rows:[];const years=Array.from(new Set(rows.map(r=>r.year))).sort((a,b)=>a-b).map(String);
- const [year,setYear]=useState(years.includes("2024")?"2024":years[years.length-1]??"");const yearRows=rows.filter(r=>String(r.year)===year);const sessions=Array.from(new Set(yearRows.map(r=>r.sessionId))).sort();const [session,setSession]=useState("");
- useEffect(()=>{if(!sessions.includes(session))setSession(sessions[0]??"")},[year,sessions.join("|")]);const sessionRows=yearRows.filter(r=>r.sessionId===session);const [idA,setIdA]=useState("");const [idB,setIdB]=useState("");
- const options=useMemo(()=>sessionRows.slice().sort((a,b)=>a.driver.localeCompare(b.driver)||a.attempt-b.attempt),[sessionRows]);useEffect(()=>{if(!options.some(x=>x.attemptId===idA))setIdA(options[0]?.attemptId??"");if(!options.some(x=>x.attemptId===idB))setIdB(options.find(x=>x.attemptId!==idA)?.attemptId??options[0]?.attemptId??"")},[session,options,idA,idB]);
- const a=options.find(x=>x.attemptId===idA),b=options.find(x=>x.attemptId===idB);const [lap,setLap]=useState(0);const [play,setPlay]=useState<ReplayState>({playing:false,elapsedS:0,durationS:155,speed:1});
- const maxDuration=useMemo(()=>a&&b?Math.max(...lapSeconds(a),...lapSeconds(b))*4:155,[a,b]);useEffect(()=>setPlay(s=>({...s,playing:false,elapsedS:0,durationS:maxDuration})),[maxDuration,idA,idB]);
- useEffect(()=>{if(!play.playing)return;const t=window.setInterval(()=>setPlay(s=>tickReplay(s,.05)),50);return()=>window.clearInterval(t)},[play.playing]);
- const elapsedA=a?lapSeconds(a).slice(0,lap).reduce((x,y)=>x+y,0):0;const elapsedB=b?lapSeconds(b).slice(0,lap).reduce((x,y)=>x+y,0):0;const dt=runningDelta(elapsedA,elapsedB);
- const lapIndex=Math.min(3,Math.floor(play.elapsedS/(maxDuration/4)));const progress=play.elapsedS/maxDuration;const deltaAt=(l:number)=>a&&b?runningDelta(lapSeconds(a).slice(0,l).reduce((x,y)=>x+y,0),lapSeconds(b).slice(0,l).reduce((x,y)=>x+y,0)):0;
- const pick=(side:"A"|"B",key:string)=>{side==="A"?setIdA(key):setIdB(key);setLap(0);setPlay(p=>({...p,playing:false,elapsedS:0}))};
- return <div className="shell"><header><div className="brand"><span className="mark">500</span><div><h1>PERFORMANCE EXPLORER</h1><p>DUAL-CAR COMPARISON · HISTORICAL TIMING</p></div></div><div className="header-tag"><i/> OBSERVED DATA MODE</div></header>
- <main>{!valid?<div className="warning">Historical dataset failed schema validation.</div>:<>
- <section className="intro"><div><div className="eyebrow">ENGINEERING WORKSPACE / HISTORICAL</div><h2>Compare the run.<br/><em>Read the evidence.</em></h2></div><p>Four-lap qualifying attempts from the canonical Indy 500 retained timing panel. Select two runs to compare official speed summaries and a lap-boundary replay.</p></section>
- <section className="controls panel"><div className="control-head"><div><div className="eyebrow">COMPARISON SETUP</div><h3>Choose two attempts</h3></div><span className="pill">OBSERVED · {year||"—"} · {options.length} COMPLETE ATTEMPTS</span></div><div className="select-grid"><Selector label="YEAR" value={year} values={years} onChange={v=>setYear(v)}/><Selector label="SESSION · ONE QUALIFYING SESSION / YEAR" value={session} values={sessions} onChange={v=>setSession(v)}/><Selector label="CAR A · DRIVER / ATTEMPT" value={idA} values={options.map(o=>o.attemptId)} onChange={v=>pick("A",v)} labels={key=>{const o=options.find(x=>x.attemptId===key);return o?`#${o.carNumber} · ${o.driver} · Attempt ${o.attempt}`:key}}/><Selector label="CAR B · DRIVER / ATTEMPT" value={idB} values={options.map(o=>o.attemptId)} onChange={v=>pick("B",v)} labels={key=>{const o=options.find(x=>x.attemptId===key);return o?`#${o.carNumber} · ${o.driver} · Attempt ${o.attempt}`:key}}/></div>
- <div className="car-pair"><CarCard side="A" row={a} color="cyan"/><div className="versus">VS</div><CarCard side="B" row={b} color="orange"/></div></section>
- <div className="grid"><section className="panel replay-panel"><div className="panel-title"><div><div className="eyebrow">LAP REPLAY</div><h3>Four-lap progression</h3></div><span className="subtle">SCHEMATIC · LAP BOUNDARY ONLY</span></div><div className="track-wrap"><Track progress={progress} lap={lapIndex} delta={dt}/><div className="track-caption"><span>INDIANAPOLIS MOTOR SPEEDWAY</span><span>2.5 MI · 4 TURNS</span></div></div><div className="timeline"><div className="lap-markers">{[0,1,2,3,4].map(i=><button key={i} aria-label={`Seek to lap ${i}`} className={i===lap?"selected":""} onClick={()=>{setLap(i);setPlay(s=>({...s,playing:false,elapsedS:maxDuration*i/4}))}}>{i===0?"START":`LAP ${i}`}</button>)}</div><input aria-label="Replay timeline" type="range" min="0" max="1000" value={Math.round(progress*1000)} onChange={e=>setPlay(s=>({...s,playing:false,elapsedS:maxDuration*Number(e.target.value)/1000}))}/><div className="timeline-bottom"><span>ELAPSED {fmt(play.elapsedS,1)} S</span><span>FINISH {fmt(maxDuration,1)} S*</span></div></div><div className="replay-controls"><button className="primary" onClick={()=>setPlay(s=>s.elapsedS>=maxDuration?{...s,elapsedS:0,playing:true}: {...s,playing:!s.playing})} aria-label={play.playing?"Pause replay":"Play replay"}>{play.playing?"Ⅱ PAUSE":"▶ PLAY BOTH"}</button><button onClick={()=>{setPlay(s=>({...s,playing:false,elapsedS:0}));setLap(0)}} aria-label="Restart replay">↺ RESTART</button><label className="speed-control">SPEED<select aria-label="Playback speed" value={play.speed} onChange={e=>setPlay(s=>({...s,speed:Number(e.target.value)}))}>{[0.5,1,2,4].map(v=><option key={v} value={v}>{v}×</option>)}</select></label><span className="replay-note">*Converted from average speed</span></div><p className="limitation">Historical data contains lap-average speed summaries, not continuous position samples. Marker motion within each lap is schematic timing progression; no GPS trace is implied.</p></section>
- <section className="panel delta-panel"><div className="panel-title"><div><div className="eyebrow">RUNNING TIME DELTA</div><h3>Lap-boundary comparison</h3></div><span className="subtle">B − A</span></div><div className="delta-readout"><strong className={dt<=0?"cyan-text":"orange-text"}>{dt>0?"+":""}{fmt(dt)}<small> s</small></strong><span>{dt<0?"CAR B AHEAD":"CAR A AHEAD"}<br/><small>at lap {lap}</small></span></div><DeltaChart deltaAt={deltaAt} lap={lap} setLap={setLap}/><div className="chart-legend"><span className="legend-a">● CAR A</span><span className="legend-b">● CAR B</span><span>— B − A · seconds</span></div><div className="insight"><span className="insight-icon">↗</span><p>{b&&a?`Car ${dt<0?"B":"A"} ${fmt(Math.abs(dt))} s ${dt<0?"ahead":"ahead"} through lap ${lap}.`:"Select two attempts to calculate the delta."}<small>Metric: cumulative converted lap time · Unit: seconds · Source: canonical retained four-lap timing panel · Interval: start to lap {lap} boundary. Evidence supports lap-average comparison only.</small></p></div><p className="limitation">Track sections and sector timing are not provided in the source. Section dominance is unavailable; no corner-level advantage is inferred.</p></section></div>
- <div className="bottom-grid"><section className="panel"><div className="panel-title"><div><div className="eyebrow">LAP COMPARISON</div><h3>Speed & converted lap time</h3></div><span className="subtle">MPH · S*</span></div><div className="lap-table"><div className="table-row table-head"><span>LAP</span><span>{a?`CAR A · ${a.carNumber}`:"CAR A"}</span><span>{b?`CAR B · ${b.carNumber}`:"CAR B"}</span><span>B − A</span></div>{[1,2,3,4].map(i=><button key={i} className={`table-row ${lap===i?"active-row":""}`} onClick={()=>{setLap(i);setPlay(s=>({...s,elapsedS:maxDuration*i/4,playing:false}))}}><span>LAP {i}</span><span>{a?`${fmt(a.lapSpeedsMph[i-1],2)} · ${fmt(lapSeconds(a)[i-1],3)}`:"—"}</span><span>{b?`${fmt(b.lapSpeedsMph[i-1],2)} · ${fmt(lapSeconds(b)[i-1],3)}`:"—"}</span><span className={a&&b&&lapSeconds(b)[i-1]<lapSeconds(a)[i-1]?"orange-text":"cyan-text"}>{a&&b?`${lapSeconds(b)[i-1]-lapSeconds(a)[i-1]>0?"+":""}${fmt(lapSeconds(b)[i-1]-lapSeconds(a)[i-1])}`:"—"}</span></button>)}</div><p className="limitation">Official per-lap average speed in mph, followed by converted lap time in seconds. Lap time is derived from 2.5 miles ÷ average speed; it is not raw line-crossing timing.</p></section><section className="panel"><div className="panel-title"><div><div className="eyebrow">DATA AVAILABILITY</div><h3>Signals & provenance</h3></div></div><div className="availability"><div><b className="ok">● AVAILABLE</b><span>4-lap average speed</span><span>Lap-average speed</span><span>Attempt and driver IDs</span></div><div><b className="missing">○ NOT AVAILABLE</b><span>Matched section times</span><span>GPS / continuous position</span><span>Vehicle control telemetry</span></div></div><div className="source-line"><span>DATASET</span><code>r4p1_attempt_four_lap_panel_v1.csv</code></div><div className="source-line"><span>CONTRACT</span><code>historical-attempts · v1.0.0</code></div></section></div>
- <footer>Independent research tool · Not affiliated with INDYCAR or IMS · Historical observed timing summaries · Simulation modes are not yet connected</footer>
- </>}</main></div>
+const fmt = (n: number, d = 4) => n.toFixed(d);
+const attemptLabel = (r: HistoricalAttempt) => r.attempt === null ? `Order unknown · ID ${r.attemptId.slice(0, 8)}` : `Attempt ${r.attempt}`;
+function Selector({ label, value, values, onChange, labels }: {
+  label: string; value: string; values: string[]; onChange: (value: string) => void; labels?: (value: string) => string;
+}) {
+  return <label className="selector"><span>{label}</span><select aria-label={label} value={value} onChange={e => onChange(e.target.value)}>
+    {values.map(v => <option key={v} value={v}>{labels ? labels(v) : v}</option>)}
+  </select></label>;
 }
-function CarCard({side,row,color}:{side:string,row?:HistoricalAttempt,color:string}){return <article className={`car-card ${color}`}><div className="car-index">CAR {side}</div><strong>{row?.driver??"Select driver"}</strong><div className="car-meta">#{row?.carNumber??"—"} <span>·</span> {row?.team??"—"}</div><div className="car-stat"><span>4-LAP AVG</span><b>{row?fmt(row.averageSpeedMph,3):"—"} <small>MPH</small></b></div><div className="attempt-label">ATTEMPT {row?.attempt??"—"} <span>·</span> {row?.sessionId??"choose session"}</div></article>}
-function Track({progress,lap,delta}:{progress:number,lap:number,delta:number}){const pos=(side:number)=>{const f=(progress+side*.035)%1;const pts=[[80,135],[120,75],[280,65],[340,125],[280,185],[120,185],[80,135]];const x=f*(pts.length-1),i=Math.min(pts.length-2,Math.floor(x)),q=x-i;return [pts[i][0]+(pts[i+1][0]-pts[i][0])*q,pts[i][1]+(pts[i+1][1]-pts[i][1])*q]};const [ax,ay]=pos(0),[bx,by]=pos(.14);return <svg viewBox="0 0 420 245" role="img" aria-label="Schematic Indianapolis oval with synchronized car markers"><defs><linearGradient id="glow" x1="0" x2="1"><stop stopColor="#15262d"/><stop offset="1" stopColor="#101820"/></linearGradient></defs><rect x="1" y="1" width="418" height="243" rx="10" fill="url(#glow)"/><path d="M80 135 C80 91 98 67 143 67 H268 C314 67 340 91 340 125 C340 166 315 187 270 187 H141 C101 187 80 165 80 135Z" fill="none" stroke="#25333c" strokeWidth="42"/><path d="M80 135 C80 91 98 67 143 67 H268 C314 67 340 91 340 125 C340 166 315 187 270 187 H141 C101 187 80 165 80 135Z" fill="none" stroke="#66737a" strokeWidth="1" strokeDasharray="4 5"/><text x="52" y="143" fill="#6e7b83" fontSize="9" textAnchor="end">TURNS 1 / 2</text><text x="365" y="143" fill="#6e7b83" fontSize="9">TURNS 3 / 4</text><text x="210" y="123" fill="#34434a" fontSize="10" textAnchor="middle" letterSpacing="2">INDIANAPOLIS</text><text x="210" y="140" fill="#34434a" fontSize="9" textAnchor="middle">MOTOR SPEEDWAY</text><line x1="81" y1="105" x2="81" y2="165" stroke="#dce5e8" strokeWidth="2"/><g transform={`translate(${ax} ${ay})`}><circle r="11" fill="#50d9e7" opacity=".2"/><circle r="5" fill="#50d9e7" stroke="#e5fcff" strokeWidth="1.4"/><text x="0" y="-14" fill="#50d9e7" fontSize="8" textAnchor="middle">A</text></g><g transform={`translate(${bx} ${by})`}><circle r="11" fill="#ff9c50" opacity=".2"/><circle r="5" fill="#ff9c50" stroke="#fff3e8" strokeWidth="1.4"/><text x="0" y="-14" fill="#ff9c50" fontSize="8" textAnchor="middle">B</text></g><g className="map-tag"><rect x="155" y="212" width="110" height="20" rx="10" fill="#1a272e"/><text x="210" y="226" textAnchor="middle" fill="#aebbc0" fontSize="9">LAP {lap} · Δ {delta>0?"+":""}{delta.toFixed(2)}s</text></g></svg>}
-function DeltaChart({deltaAt,lap,setLap}:{deltaAt:(n:number)=>number,lap:number,setLap:(n:number)=>void}){const vals=[0,1,2,3,4].map(i=>deltaAt(i));const lo=Math.min(...vals,0)-.05,hi=Math.max(...vals,0)+.05;const y=(v:number)=>112-(v-lo)/(hi-lo||1)*92;const points=vals.map((v,i)=>`${20+i*65},${y(v)}`).join(" ");return <svg className="delta-chart" viewBox="0 0 300 140" role="img" aria-label="Running cumulative time delta chart; negative means car B is ahead"><line x1="18" x2="282" y1={y(0)} y2={y(0)} stroke="#3b474e" strokeDasharray="3 4"/><polyline points={points} fill="none" stroke="#52d7e2" strokeWidth="2"/>{vals.map((v,i)=><g key={i} role="button" aria-label={`Select lap ${i}`} onClick={()=>setLap(i)} style={{cursor:"pointer"}}><circle cx={20+i*65} cy={y(v)} r={lap===i?6:4} fill={v<=0?"#52d7e2":"#ff9951"} stroke="#0c1217" strokeWidth="2"/><text x={20+i*65} y="132" fill="#74828a" fontSize="9" textAnchor="middle">{i===0?"S":`L${i}`}</text></g>)}</svg>}
+export function App({ dataset = data }: { dataset?: unknown }) {
+  if (!validateHistoricalData(dataset)) return <p role="alert">Historical dataset failed schema validation.</p>;
+  if (!dataset.rows.length) return <p role="status">No retained complete attempts available.</p>;
+  return <Explorer rows={dataset.rows} />;
+}
+function Explorer({ rows }: { rows: HistoricalAttempt[] }) {
+  const years = [...new Set(rows.map(r => String(r.year)))].sort();
+  const [year, setYear] = useState(years[years.length - 1]);
+  const sessions = [...new Set(rows.filter(r => String(r.year) === year).map(r => r.sessionId))];
+  const [sessionChoice, setSession] = useState("");
+  const session = sessions.includes(sessionChoice) ? sessionChoice : sessions[0];
+  const options = useMemo(() => rows.filter(r => r.sessionId === session).sort((a, b) =>
+    a.driver.localeCompare(b.driver) || (a.attempt ?? Infinity) - (b.attempt ?? Infinity) || a.attemptId.localeCompare(b.attemptId)), [rows, session]);
+  const [idA, setIdA] = useState(""), [idB, setIdB] = useState("");
+  const a = options.find(r => r.attemptId === idA) ?? options[0];
+  const b = options.find(r => r.attemptId === idB) ?? options.find(r => r.attemptId !== a.attemptId) ?? a;
+  const comparison = useMemo(() => historicalComparison(a, b), [a, b]);
+  const { aTimes, bTimes, count, duration, deltaAt, seekTime } = comparison;
+  const [play, setPlay] = useState<ReplayState>({ playing: false, elapsedS: 0, durationS: duration, speed: 1 });
+  useEffect(() => { setPlay(s => ({ ...s, playing: false, elapsedS: 0, durationS: duration })); }, [a.attemptId, b.attemptId, duration]);
+  useEffect(() => {
+    if (!play.playing) return;
+    let previous = performance.now();
+    const timer = window.setInterval(() => {
+      const now = performance.now(), dt = (now - previous) / 1000;
+      previous = now;
+      setPlay(s => tickReplay(s, dt));
+    }, 50);
+    return () => window.clearInterval(timer);
+  }, [play.playing]);
+  const aLap = completedLaps(aTimes, play.elapsedS), bLap = completedLaps(bTimes, play.elapsedS);
+  const lap = Math.min(aLap, bLap, count), delta = deltaAt(lap)!;
+  const seek = (time: number) => setPlay(s => ({ ...s, playing: false, elapsedS: Math.max(0, Math.min(duration, time)) }));
+  const seekLap = (n: number) => seek(seekTime(n));
+  const label = (key: string) => { const r = options.find(x => x.attemptId === key)!; return `#${r.carNumber} · ${r.driver} · ${attemptLabel(r)}`; };
+  const lead = Math.abs(delta) < .00005 ? "TIED AT BOUNDARY" : delta < 0 ? "CAR B AHEAD" : "CAR A AHEAD";
+  return <div className="shell">
+    <header><div className="brand"><span className="mark">500</span><div><h1>PERFORMANCE EXPLORER</h1><p>DUAL-CAR COMPARISON · HISTORICAL TIMING</p></div></div><div className="header-tag"><i /> OBSERVED DATA MODE</div></header>
+    <main>
+      <section className="intro"><div><div className="eyebrow">ENGINEERING WORKSPACE / HISTORICAL</div><h2>Compare the run.<br /><em>Read the evidence.</em></h2></div>
+        <p>Retained four-lap qualifying results. Official lap durations and four-lap average speeds, with replay restricted to recorded lap boundaries.</p></section>
+      <section className="controls panel"><div className="control-head"><h3>Choose two attempts</h3><span className="pill">OBSERVED · {year} · {options.length} RETAINED COMPLETE ATTEMPTS</span></div>
+        <div className="select-grid">
+          <Selector label="YEAR" value={year} values={years} onChange={setYear} />
+          <Selector label="SESSION" value={session} values={sessions} onChange={setSession} />
+          <Selector label="CAR A · DRIVER / ATTEMPT" value={a.attemptId} values={options.map(r => r.attemptId)} onChange={setIdA} labels={label} />
+          <Selector label="CAR B · DRIVER / ATTEMPT" value={b.attemptId} values={options.map(r => r.attemptId)} onChange={setIdB} labels={label} />
+        </div>
+        <div className="car-pair"><CarCard side="A" row={a} /><div className="versus">VS</div><CarCard side="B" row={b} /></div>
+        <p className="limitation">Unknown attempt order does not mean missing timing. Stable record IDs identify these attempts without assigning a chronological number.</p>
+      </section>
+      <div className="grid">
+        <section className="panel replay-panel">
+          <div className="panel-title"><h3>Four-lap progression</h3><span className="subtle">LAP BOUNDARY ONLY</span></div>
+          <div className="track-wrap"><BoundaryReplay aLap={aLap} bLap={bLap} count={count} lap={lap} delta={delta} />
+            <div className="track-caption"><span>TIMING BOUNDARIES · NOT A TRACK MAP</span><span>2.5 MI PER LAP</span></div></div>
+          <div className="timeline"><div className="lap-markers">{Array.from({ length: count + 1 }, (_, i) =>
+            <button key={i} aria-label={`Seek to lap ${i}`} className={lap === i ? "selected" : ""} onClick={() => seekLap(i)}>{i ? `LAP ${i}` : "START"}</button>)}</div>
+            <input aria-label="Replay timeline" type="range" min="0" max={duration} step="0.0001" value={play.elapsedS} onChange={e => seek(Number(e.target.value))} />
+            <div className="timeline-bottom"><span>ELAPSED {fmt(play.elapsedS)} S</span><span>FINISH {fmt(duration)} S</span></div>
+          </div>
+          <div className="replay-controls">
+            <button className="primary" aria-label={play.playing ? "Pause replay" : "Play replay"} onClick={() => setPlay(s => ({ ...s, elapsedS: s.elapsedS >= duration ? 0 : s.elapsedS, playing: !s.playing }))}>{play.playing ? "Ⅱ PAUSE" : "▶ PLAY BOTH"}</button>
+            <button aria-label="Restart replay" onClick={() => seek(0)}>↺ RESTART</button>
+            <label className="speed-control">SPEED<select aria-label="Playback speed" value={play.speed} onChange={e => setPlay(s => ({ ...s, speed: Number(e.target.value) }))}>{[.5, 1, 2, 4].map(v => <option key={v} value={v}>{v}×</option>)}</select></label>
+          </div>
+          <p data-testid="car-a-status">Car A: {aLap} / {a.lapTimesS.length} laps{aLap === a.lapTimesS.length ? " · complete" : " · awaiting next boundary"}</p>
+          <p data-testid="car-b-status">Car B: {bLap} / {b.lapTimesS.length} laps{bLap === b.lapTimesS.length ? " · complete" : " · awaiting next boundary"}</p>
+          <p className="limitation">Each marker steps only when its car completes a recorded lap. Positions between timing boundaries are unknown. Elapsed time starts at zero for both attempts; no continuous GPS trajectory is reconstructed.</p>
+        </section>
+        <section className="panel delta-panel"><div className="panel-title"><h3>Lap-boundary time delta</h3><span className="subtle">B − A · S</span></div>
+          <div className="delta-readout"><strong className={delta < 0 ? "orange-text" : "cyan-text"}>{delta > 0 ? "+" : ""}{fmt(delta)}<small> s</small></strong><span>{lead}<br /><small>at lap {lap}</small></span></div>
+          <DeltaChart values={Array.from({ length: count + 1 }, (_, i) => deltaAt(i)!)} lap={lap} seekLap={seekLap} />
+          <div className="chart-legend"><span className="legend-a">● CAR A</span><span className="legend-b">● CAR B</span><span>Negative delta: B ahead</span></div>
+          <div className="insight"><p>{Math.abs(delta) < .00005 ? "Equal elapsed time" : `Car ${delta < 0 ? "B" : "A"} is ${fmt(Math.abs(delta))} seconds ahead`} at the lap {lap} boundary.
+            <small>A: {a.driver} ({attemptLabel(a)}). B: {b.driver} ({attemptLabel(b)}). Metric: cumulative B − A elapsed time (s), start to lap {lap}. Source: canonical official lap durations. Delta is shown only at the last boundary reached by both cars; it is not a live spatial gap.</small></p></div>
+          <p className="limitation">Canonical section records exist, but this adapter does not expose a validated section-boundary mapping. Section dominance is unavailable; no corner advantage is inferred.</p>
+        </section>
+      </div>
+      <div className="bottom-grid"><section className="panel"><div className="panel-title"><h3>Lap speed & recorded duration</h3><span className="subtle">MPH · S</span></div>
+        <div className="lap-table"><div className="table-row table-head"><span>LAP</span><span>CAR A</span><span>CAR B</span><span>INCREMENTAL B − A (S)</span></div>
+          {Array.from({ length: count }, (_, n) => n + 1).map(i => <button key={i} className={`table-row ${lap === i ? "active-row" : ""}`} onClick={() => seekLap(i)}>
+            <span>LAP {i}</span><span>{fmt(a.lapSpeedsMph[i - 1], 3)} · {fmt(a.lapTimesS[i - 1])}</span><span>{fmt(b.lapSpeedsMph[i - 1], 3)} · {fmt(b.lapTimesS[i - 1])}</span><span>{fmt(b.lapTimesS[i - 1] - a.lapTimesS[i - 1])}</span>
+          </button>)}</div>
+        <p className="limitation">Lap durations are recorded official timing values. Canonical lap-average speeds are rounded derivations (9000 ÷ lap seconds). The four-lap average speed and total duration are official result fields.</p>
+      </section><section className="panel"><h3>Signals & provenance</h3><div className="availability"><div><b className="ok">● AVAILABLE</b><span>Official 4-lap average speed</span><span>Official lap durations</span><span>Derived lap-average speed</span></div><div><b className="missing">○ NOT AVAILABLE IN EXPLORER</b><span>Matched section times</span><span>GPS / continuous position</span><span>Vehicle control telemetry</span></div></div>
+        <div className="source-line"><span>DATASET</span><code>canonical/v1 · attempts + attempt_laps</code></div>
+        <div className="source-line"><span>EXPORT</span><code>historical-attempts · v1.1.0</code></div>
+        <p className="limitation">Source A: {a.sourceIds.join(", ")} · {a.sourceLocator}<br />Source B: {b.sourceIds.join(", ")} · {b.sourceLocator}</p>
+      </section></div>
+      <footer>Independent research tool · Not affiliated with INDYCAR or IMS · Historical observed timing · Simulation UI integration remains separate</footer>
+    </main>
+  </div>;
+}
+function CarCard({ side, row }: { side: "A" | "B"; row: HistoricalAttempt }) {
+  return <article className={`car-card ${side === "A" ? "cyan" : "orange"}`}><div className="car-index">CAR {side}</div><strong>{row.driver}</strong><div className="car-meta">#{row.carNumber} · {row.team}</div><div className="car-stat"><span>OFFICIAL 4-LAP AVG</span><b>{fmt(row.averageSpeedMph, 3)} <small>MPH</small></b></div><p>{fmt(row.totalSeconds)} s · official total</p><div className="attempt-label">{attemptLabel(row)}</div></article>;
+}
+function BoundaryReplay({ aLap, bLap, count, lap, delta }: { aLap: number; bLap: number; count: number; lap: number; delta: number }) {
+  const x = (n: number) => 45 + n * 320 / count;
+  return <svg viewBox="0 0 420 190" role="img" aria-label="Discrete completed-lap markers; not geographic vehicle positions">
+    {Array.from({ length: count + 1 }, (_, i) => <g key={i}><line x1={x(i)} x2={x(i)} y1="40" y2="135" stroke="#33434a" /><text x={x(i)} y="28" textAnchor="middle" fill="#aebbc0" fontSize="11">{i ? `LAP ${i}` : "START"}</text></g>)}
+    <g data-testid="marker-a" data-lap={aLap}><circle cx={x(aLap)} cy="65" r="9" fill="#50d9e7" /><text x={x(aLap)} y="69" textAnchor="middle" fontSize="11">A</text></g>
+    <g data-testid="marker-b" data-lap={bLap}><circle cx={x(bLap)} cy="110" r="9" fill="#ff9c50" /><text x={x(bLap)} y="114" textAnchor="middle" fontSize="11">B</text></g>
+    <text x="210" y="165" textAnchor="middle" fill="#aebbc0" fontSize="11">LAP {lap} · Δ {delta > 0 ? "+" : ""}{fmt(delta)}s</text>
+  </svg>;
+}
+function DeltaChart({ values, lap, seekLap }: { values: number[]; lap: number; seekLap: (lap: number) => void }) {
+  const lo = Math.min(...values, 0) - .05, hi = Math.max(...values, 0) + .05;
+  const y = (value: number) => 112 - (value - lo) / (hi - lo) * 92;
+  return <svg className="delta-chart" viewBox="0 0 300 140" role="img" aria-label="Discrete running time deltas at lap boundaries; negative means B ahead">
+    <line x1="18" x2="282" y1={y(0)} y2={y(0)} stroke="#53636b" strokeDasharray="3 4" />
+    {values.map((value, i) => <g key={i} role="button" tabIndex={0} aria-label={`Select lap ${i}`} onClick={() => seekLap(i)} onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); seekLap(i); } }} style={{ cursor: "pointer" }}>
+      <circle cx={20 + i * 260 / (values.length - 1)} cy={y(value)} r={lap === i ? 6 : 4} fill={value < 0 ? "#ff9951" : "#52d7e2"} />
+      <text x={20 + i * 260 / (values.length - 1)} y="132" fill="#aebbc0" fontSize="9" textAnchor="middle">{i ? `L${i}` : "S"}</text>
+      <title>{fmt(value)} s at lap {i}</title>
+    </g>)}
+  </svg>;
+}

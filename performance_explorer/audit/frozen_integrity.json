@@ -1,0 +1,62 @@
+{
+  "v2_final_manifest": {
+    "checked": 13,
+    "matched": 13,
+    "mismatches": []
+  },
+  "v2_pre_implementation": {
+    "checked": 32,
+    "matched": 32,
+    "mismatches": []
+  },
+  "v3_phase2": {
+    "checked": 7,
+    "matched": 7,
+    "mismatches": []
+  },
+  "v3_phase3": {
+    "checked": 12,
+    "matched": 12,
+    "mismatches": []
+  },
+  "v3_phase4": {
+    "checked": 7,
+    "matched": 4,
+    "mismatches": [
+      {
+        "path": "v3_point_in_time/api/main.py",
+        "expected": "3023e265b689b45de6a0cd87ffd579d376ab03b1ef7b05beaf3ec6443ff8ba88",
+        "actual": "f868ba007afa0e993fbd678fe8133b12efb68013f958604b57e3e0bb6b59584a",
+        "unchanged_since_original_explorer": true
+      },
+      {
+        "path": "v3_point_in_time/api/models.py",
+        "expected": "e7fce6b2ae33e8c89ba2ea55f5480ecb7547e0c14439956698911e3e59a1a57e",
+        "actual": "68ed9e27a752dad732a191cd86a41571203baf39dc1792111ae9cfcb52d0f6b7",
+        "unchanged_since_original_explorer": true
+      },
+      {
+        "path": "v3_point_in_time/app/replay_service.py",
+        "expected": "c8daa6f2558184e017ffbf486bd11aadd2feb8fb466ef690f9563a631ce4596f",
+        "actual": "7b654df7e94204c02b0303304ead4024e34bb761a7c3b86a73e91d8dc0dbcb24",
+        "unchanged_since_original_explorer": true
+      }
+    ]
+  },
+  "v4_target_main_manifest": {
+    "ref": "fe65ddf73a4de6b9c645de74830c8db7b88d64cb",
+    "checked": 735,
+    "matched": 735,
+    "mismatches": []
+  },
+  "non_explorer_worktree": {
+    "baseline": "f15a323199a56fe7130ebf0db97c954787bbd90b",
+    "checked": 2643,
+    "changed": []
+  },
+  "v5_pinned_artifacts": {
+    "checked": 4,
+    "matched": 4,
+    "mismatches": []
+  }
+}

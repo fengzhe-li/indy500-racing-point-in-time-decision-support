@@ -1,25 +1,46 @@
-import type { ComparisonSeriesV1 } from "./contract";
+import type { ComparisonSeriesV1, HistoricalAttempt } from "./contract";
 
-export function timeAtDistance(points: ComparisonSeriesV1["points"], distance: number): number | null {
-  const p = points.filter(x => x.distanceM !== undefined).slice().sort((a,b) => a.distanceM! - b.distanceM!);
-  if (!p.length || distance < p[0].distanceM! || distance > p[p.length-1].distanceM!) return null;
-  for (let i=1;i<p.length;i++) if(distance<=p[i].distanceM!) {
-    const a=p[i-1],b=p[i],f=(distance-a.distanceM!)/(b.distanceM!-a.distanceM!);
-    return a.elapsedTimeS+f*(b.elapsedTimeS-a.elapsedTimeS);
+// Explicit piecewise-linear interpolation helper for validated distance samples.
+// Historical lap boundaries intentionally have no distanceM and return null.
+function interpolate(points: ComparisonSeriesV1["points"], value: number, axis: "distanceM" | "elapsedTimeS"): number | null {
+  const other = axis === "distanceM" ? "elapsedTimeS" : "distanceM";
+  if (!Number.isFinite(value) || points.length < 2 || points.some((p, i) =>
+    !Number.isFinite(p.distanceM) || !Number.isFinite(p.elapsedTimeS) ||
+    (i > 0 && (p.distanceM! <= points[i - 1].distanceM! || p.elapsedTimeS <= points[i - 1].elapsedTimeS)))) return null;
+  if (value < points[0][axis]! || value > points[points.length - 1][axis]!) return null;
+  for (let i = 1; i < points.length; i++) if (value <= points[i][axis]!) {
+    const a = points[i - 1], b = points[i], f = (value - a[axis]!) / (b[axis]! - a[axis]!);
+    return a[other]! + f * (b[other]! - a[other]!);
   }
-  return p[p.length-1].elapsedTimeS;
+  return null;
 }
-export function distanceAtTime(points: ComparisonSeriesV1["points"], time: number): number | null {
-  const p=points.filter(x=>x.distanceM!==undefined).slice().sort((a,b)=>a.elapsedTimeS-b.elapsedTimeS);
-  if(!p.length||time<p[0].elapsedTimeS||time>p[p.length-1].elapsedTimeS)return null;
-  for(let i=1;i<p.length;i++)if(time<=p[i].elapsedTimeS){const a=p[i-1],b=p[i],f=(time-a.elapsedTimeS)/(b.elapsedTimeS-a.elapsedTimeS);return a.distanceM!+f*(b.distanceM!-a.distanceM!)}
-  return p[p.length-1].distanceM!;
-}
+export const timeAtDistance = (p: ComparisonSeriesV1["points"], d: number) => interpolate(p, d, "distanceM");
+export const distanceAtTime = (p: ComparisonSeriesV1["points"], t: number) => interpolate(p, t, "elapsedTimeS");
 export interface ReplayState { playing: boolean; elapsedS: number; durationS: number; speed: number }
 export function tickReplay(s: ReplayState, dt: number): ReplayState {
-  if(!s.playing)return s;
-  const elapsedS=Math.min(s.durationS,s.elapsedS+Math.max(0,dt)*s.speed);
-  return {...s,elapsedS,playing:elapsedS<s.durationS};
+  if (!s.playing || !Number.isFinite(dt) || dt < 0) return s;
+  const elapsedS = Math.min(s.durationS, s.elapsedS + dt * s.speed);
+  return { ...s, elapsedS, playing: elapsedS < s.durationS };
 }
-export const runningDelta = (aSeconds:number,bSeconds:number) => bSeconds-aSeconds; // positive means B is behind; negative means B ahead.
-export function segmentDelta(aStart:number,aEnd:number,bStart:number,bEnd:number){return (bEnd-bStart)-(aEnd-aStart)}
+export const runningDelta = (aSeconds: number, bSeconds: number) => bSeconds - aSeconds;
+export const segmentDelta = (aStart: number, aEnd: number, bStart: number, bEnd: number) => (bEnd - bStart) - (aEnd - aStart);
+export function lapBoundaries(times: number[]) {
+  if (!times.length || times.some(t => !Number.isFinite(t) || t <= 0)) throw new Error("Invalid lap durations");
+  return times.reduce<number[]>((result, t) => [...result, result[result.length - 1] + t], [0]);
+}
+export function completedLaps(boundaries: number[], time: number) {
+  return Math.max(0, boundaries.filter(t => t <= time + 1e-9).length - 1);
+}
+export function historicalComparison(a: HistoricalAttempt, b: HistoricalAttempt) {
+  if (a.sessionId !== b.sessionId) throw new Error("Historical sessions are not comparable");
+  const aTimes = lapBoundaries(a.lapTimesS), bTimes = lapBoundaries(b.lapTimesS);
+  const count = Math.min(a.lapTimesS.length, b.lapTimesS.length);
+  return { aTimes, bTimes, count, duration: Math.max(aTimes[aTimes.length - 1], bTimes[bTimes.length - 1]),
+    // Seek to the instant both cars have reached the selected boundary.
+    seekTime: (lap: number) => {
+      if (!Number.isInteger(lap) || lap < 0 || lap > count) throw new Error("Unavailable lap boundary");
+      return Math.max(aTimes[lap], bTimes[lap]);
+    },
+    deltaAt: (lap: number): number | null => Number.isInteger(lap) && lap >= 0 && lap <= count ? runningDelta(aTimes[lap], bTimes[lap]) : null,
+  };
+}

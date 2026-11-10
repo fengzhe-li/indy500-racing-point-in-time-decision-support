@@ -1,0 +1,23 @@
+{
+  "upstreamBranch": "feat/v5-lap-time-simulation",
+  "upstreamCommit": "81674ea7d27e1a0f7305c215da8b4c049c8fbbfe",
+  "fixtureClassification": "ACTUAL_SIMULATED_EXPORTS_FOR_CONTRACT_TESTS_ONLY_NOT_OFFICIAL_RESULTS",
+  "files": {
+    "contracts/v5-replay-1/UPSTREAM_CONTRACT.md": {
+      "upstreamPath": "v5_lap_time_simulation/docs/REPLAY_CONTRACT.md",
+      "sha256": "dc31e04b81640172c3a8f933b77090df93ca12fb753b414983f38752fa59dcc9"
+    },
+    "contracts/v5-replay-1/replay.schema.json": {
+      "upstreamPath": "v5_lap_time_simulation/schema/replay.schema.json",
+      "sha256": "db85d20fa99e759b6a0b3eeedc6165b39600eca32e0c32bf7c4cbb6088125d85"
+    },
+    "frontend/src/test/fixtures/v5-baseline.json": {
+      "upstreamPath": "v5_lap_time_simulation/output/replay.json",
+      "sha256": "e0394c8255b23c2c969a7c87a696b11829102e68184223dcc7dde872cd778f03"
+    },
+    "frontend/src/test/fixtures/v5-low-grip.json": {
+      "upstreamPath": "v5_lap_time_simulation/output/replay_low_grip.json",
+      "sha256": "919f3900b90aa7d17b2e24e50a68eb0184e06be9f723128e737e3cb10e21c6e3"
+    }
+  }
+}
