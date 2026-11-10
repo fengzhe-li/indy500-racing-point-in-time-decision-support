@@ -2,6 +2,18 @@
 
 Independent comparison UI with separate official historical timing, **SIMULATED V5 dual-car performance**, and **SIMULATED V6 telemetry replay** modes. The V6 view reuses the audited schema-2 adapter and does not modify frozen scientific assets.
 
+## Recorded Explorer demonstrations
+
+![Authentic Performance Explorer V5 dual-car replay](../docs/media/explorer-dual-car.gif)
+
+**SIMULATED — V5 · Unified Explorer.** Baseline versus grip −25%, with independent finish clamping, speed comparison and Track Dominance. [Full-resolution MP4](../docs/media/explorer-dual-car.mp4).
+
+![Authentic integrated Performance Explorer V1.1 V6 dual-car replay](../docs/media/explorer-v6-integrated.gif)
+
+**SIMULATED — V6 · Integrated Explorer V1.1.** Recorded from the accepted browser application and its saved schema-2 exports: baseline completion, delay-induced off-track termination, shared playback, telemetry and speed traces. [Full-resolution MP4](../docs/media/explorer-v6-integrated.mp4) · [Source and capture provenance](../docs/media/README.md). This is distinct from the older standalone V6 viewer recording.
+
+## Run the Explorer
+
 ```sh
 cd performance_explorer/frontend
 npm ci
