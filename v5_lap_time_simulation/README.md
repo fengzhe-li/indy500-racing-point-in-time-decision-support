@@ -6,6 +6,12 @@ simulation results through a separate FastAPI service. It uses an explicitly
 assumed closed IMS oval, not GPS or ECU telemetry, individual-car forecasts,
 measured aero maps or V6 driver-in-the-loop dynamics.
 
+## Recorded engineering replay
+
+![Authentic V5 baseline versus reduced-grip physics comparison](../docs/media/v5-physics-comparison.gif)
+
+**SIMULATED — V5 · This module's standalone viewer.** Recorded from the Python solver exports, with baseline and grip −25% trajectories, speed profiles and lap/segment comparisons. [Full-resolution MP4](../docs/media/v5-physics-comparison.mp4) · [Media provenance](../docs/media/README.md) · [Unified Performance Explorer](../performance_explorer/README.md).
+
 ## Run the viewer
 
 From the repository root (Python 3.10+ and Node 20):

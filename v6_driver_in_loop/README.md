@@ -10,6 +10,14 @@ follow-up audit corrects combined tyre forces, front-force rotation, low-speed
 creep, acceleration telemetry, geometry projection, lap events and validation.
 [Audit and legacy comparison](docs/PHYSICS_AUDIT.md).
 
+## Recorded vehicle dynamics
+
+![Authentic standalone V6 dynamics replay with completed and off-track runs](../docs/media/v6-vehicle-dynamics.gif)
+
+**SIMULATED — V6 · Standalone dynamics viewer.** This recording covers the completed baseline and 600 ms delay off-track run. [Full-resolution MP4](../docs/media/v6-vehicle-dynamics.mp4) · [Media provenance](../docs/media/README.md).
+
+The [integrated Performance Explorer V1.1](../performance_explorer/README.md) provides a separate two-car interface and has its own [authentic V6 recording](../docs/media/explorer-v6-integrated.mp4). The standalone viewer shown above is not the integrated Explorer.
+
 ## Run and replay
 
 Python 3.10+ standard library is sufficient for the model, tests and data exports.
