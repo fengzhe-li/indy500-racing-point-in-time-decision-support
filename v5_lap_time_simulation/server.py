@@ -76,9 +76,6 @@ def create_app(baseline_path: Path = MODULE / "output" / "baseline.json") -> Fas
     dist = MODULE / "frontend" / "dist"
     if dist.exists():
         app.mount("/assets", StaticFiles(directory=dist / "assets"), name="v5-assets")
-        reports = dist / "reports"
-        if reports.exists():
-            app.mount("/reports", StaticFiles(directory=reports), name="v6-replay-exports")
 
     @app.get("/", include_in_schema=False)
     def viewer():

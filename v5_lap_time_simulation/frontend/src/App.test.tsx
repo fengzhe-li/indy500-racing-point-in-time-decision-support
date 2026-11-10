@@ -4,13 +4,10 @@ import {cleanup,fireEvent,render,screen,waitFor,act} from '@testing-library/reac
 import App from './App';
 import baseline from '../../output/replay.json';
 import modified from '../../output/replay_low_grip.json';
-import v6Base from '../../../v6_driver_in_loop/reports/replays/baseline.json';
-import v6Aggressive from '../../../v6_driver_in_loop/reports/replays/aggressive.json';
-import v6Offtrack from '../../../v6_driver_in_loop/reports/replays/delay_0.6s.json';
 const response=(x:unknown):Promise<Response>=>Promise.resolve({ok:true,json:()=>Promise.resolve(x)} as Response);
 beforeEach(()=>{
   vi.stubGlobal('PointerEvent',MouseEvent);
-  vi.stubGlobal('fetch',vi.fn().mockImplementation((input:string|URL)=>{const url=String(input);if(url.includes('baseline.json'))return response(v6Base);if(url.includes('aggressive.json'))return response(v6Aggressive);if(url.includes('delay_0.6s.json'))return response(v6Offtrack);return response(baseline);}).mockImplementationOnce(()=>response(baseline)).mockImplementationOnce(()=>response(modified)));
+  vi.stubGlobal('fetch',vi.fn().mockImplementationOnce(()=>response(baseline)).mockImplementationOnce(()=>response(modified)).mockImplementation(()=>response(baseline)));
 });
 afterEach(()=>{cleanup();vi.unstubAllGlobals();vi.useRealTimers();});
 async function ready(){render(<App/>);await screen.findByRole('button',{name:'Play replay'});}
@@ -120,31 +117,5 @@ describe('Recompute failure recovery',()=>{
     fireEvent.click(screen.getByText('Recompute with Python'));
     await waitFor(()=>expect(screen.queryByRole('alert')).toBeNull());
     expect(screen.getByTestId('car-marker').getAttribute('data-distance')).toBe('0');
-  });
-});
-
-describe('V5 and V6 mode separation',()=>{
-  it('switches to the integrated V6 Explorer and preserves both simulation modes',async()=>{
-    await ready();expect(screen.getByText('V5 Engineering Replay')).toBeTruthy();fireEvent.click(screen.getByText('V6 Replay'));
-    expect(await screen.findByText('V6 Interactive Replay')).toBeTruthy();
-    expect(screen.getByRole('combobox',{name:'Vehicle A scenario'})).toBeTruthy();expect(screen.getByRole('combobox',{name:'Vehicle B scenario'})).toBeTruthy();
-    await waitFor(()=>expect(screen.getByText(/TERMINATED OFF TRACK/)).toBeTruthy());
-    expect(screen.getByRole('button',{name:/Play both vehicles/})).toBeTruthy();
-    expect(screen.getByRole('img',{name:/Two simulated vehicles/})).toBeTruthy();
-    const seek=screen.getByRole('slider',{name:'V6 simulation time'}) as HTMLInputElement;
-    fireEvent.change(seek,{target:{value:seek.max}});
-    expect(Number(screen.getByTestId('v6-car-0').getAttribute('data-time'))).toBeCloseTo(v6Base.metrics.elapsed_sim_s,6);
-    expect(Number(screen.getByTestId('v6-car-1').getAttribute('data-time'))).toBeCloseTo(v6Offtrack.metrics.elapsed_sim_s,6);
-    fireEvent.click(screen.getByText('V5 Explorer'));expect(screen.getByText('V5 Engineering Replay')).toBeTruthy();
-  });
-  it('plays and pauses the V6 shared clock and seeks both vehicles together',async()=>{
-    await ready();fireEvent.click(screen.getByText('V6 Replay'));await screen.findByText('V6 Interactive Replay');await screen.findByText(/Synchronized speed telemetry/);
-    vi.useFakeTimers();let stamp=0;vi.stubGlobal('requestAnimationFrame',(callback:FrameRequestCallback)=>setTimeout(()=>callback(stamp+=16),16));vi.stubGlobal('cancelAnimationFrame',(id:number)=>clearTimeout(id));
-    fireEvent.click(screen.getByRole('button',{name:/Play both vehicles/}));await act(async()=>{vi.advanceTimersByTime(300);});
-    const before=Number(screen.getByTestId('v6-car-0').getAttribute('data-time'));expect(before).toBeGreaterThan(0);
-    fireEvent.click(screen.getByRole('button',{name:'Ⅱ Pause'}));await act(async()=>{vi.advanceTimersByTime(150);});
-    expect(Number(screen.getByTestId('v6-car-0').getAttribute('data-time'))).toBe(before);
-    fireEvent.change(screen.getByRole('slider',{name:'V6 simulation time'}),{target:{value:'5'}});
-    expect(Number(screen.getByTestId('v6-car-0').getAttribute('data-time'))).toBeCloseTo(5,2);expect(Number(screen.getByTestId('v6-car-1').getAttribute('data-time'))).toBeCloseTo(5,2);
   });
 });

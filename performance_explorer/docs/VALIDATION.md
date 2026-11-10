@@ -113,6 +113,20 @@ is included in this delivery; no V6 files or proxy edits are staged.
 | Portfolio integrity | 1 | 0 | 0 |
 | Pinned V5 artifacts | 7 | 0 | 0 |
 
+## Unified V6 replay UI integration — 2026-11-10
+
+PR #7 adds V6 replay mode to `performance_explorer/frontend`, reusing its existing schema-2 adapter and leaving historical/V5 modes in the same app. The V6-only interface and adapter previously added to `v5_lap_time_simulation/frontend` were removed; the V5 app and its API are restored to the merged-main implementation. Published replay JSON is served/copied from the V6 report index for the Explorer, without changing those exports.
+
+| Check | Actual outcome |
+|---|---|
+| Explorer frontend | 99 passed across 9 files |
+| TypeScript validation and production build | Passed; build contains indexed V6 replay exports |
+| Explorer Python export regression suite | 6 passed |
+| `export_historical.py --check` | Passed |
+| Repository integrity manifest | Historical V3 Phase 4 manifest reports the same three pre-existing mismatches, marked `unchanged_since_original_explorer`; V2, V3 Phase 2/3, V4, non-Explorer, V5 and V6 pinned checks pass |
+
+No V5/V6 physics, scientific results, frozen assets, or historical evidence were changed by this UI integration.
+
 All suites above were rerun in the isolated checkout. The 18 added frontend
 cases cover independent selections, import failures/stale completion, incompatible
 origins, common-clock rates and completion, graph dragging/keyboard seeking,

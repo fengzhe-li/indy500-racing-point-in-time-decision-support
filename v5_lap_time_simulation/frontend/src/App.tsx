@@ -1,7 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {advanceTime, atTime, MPH, parseReplay, pointAtDistance, Replay, timeAtDistance} from './replay';
 import './style.css';
-import V6Explorer from './V6Explorer';
 
 const colors={acceleration:'#65dfb0',braking:'#ffb36b',corner_cap:'#d897ff',steady_or_transition:'#61788b'};
 const parameters=[
@@ -55,7 +54,6 @@ export function SpeedGraph({baseline,scenario,time,onSeek}:{baseline:Replay;scen
   </svg>;
 }
 export default function App(){
-  const [mode,setMode]=useState<'v5'|'v6'>('v5');
   const [baseline,setBaseline]=useState<Replay>(),[scenario,setScenario]=useState<Replay>();
   const [inputs,setInputs]=useState<Record<string,number>>({}),[environment,setEnvironment]=useState<Record<string,number>>({});
   const [time,setTime]=useState(0),[playing,setPlaying]=useState(false),[rate,setRate]=useState(1);
@@ -78,11 +76,10 @@ export default function App(){
     try{const r=await getReplay('/api/v5/simulate',{vehicle,environment:env});if(requestGeneration!==generation.current)return;setScenario(r);setInputs({...r.vehicle});setEnvironment({air_temperature_c:r.environment.air_temperature_c!,track_temperature_c:r.environment.track_temperature_c!});setDirty(false);setTime(0);}catch(e){if(requestGeneration===generation.current)setError(String(e));}finally{if(requestGeneration===generation.current){inFlight.current=false;setBusy(false);}}
   }
   function seek(t:number){setPlaying(false);setTime(t);}
-  if(mode==='v6')return <main><div className="mode-switch" role="group" aria-label="Explorer mode"><button onClick={()=>setMode('v5')}>V5 Explorer</button><button className="selected" aria-pressed="true">V6 Replay</button></div><V6Explorer/></main>;
-  if(!baseline||!scenario)return <main className="loading"><div className="mode-switch" role="group" aria-label="Explorer mode"><button className="selected" aria-pressed="true">V5 Explorer</button><button onClick={()=>setMode('v6')}>V6 Replay</button></div><h1>V5 / Engineering replay</h1><p role={error?'alert':'status'}>{error||'Computing baseline and parameter scenario with the Python solver…'}</p>{error&&<p>Start the API with <code>python3 -m v5_lap_time_simulation.server</code>, then reload.</p>}</main>;
+  if(!baseline||!scenario)return <main className="loading"><h1>V5 / Engineering replay</h1><p role={error?'alert':'status'}>{error||'Computing baseline and parameter scenario with the Python solver…'}</p>{error&&<p>Start the API with <code>python3 -m v5_lap_time_simulation.server</code>, then reload.</p>}</main>;
   const current=atTime(scenario,time),delta=scenario.lap_time_s-baseline.lap_time_s;
   return <main>
-    <div className="mode-switch" role="group" aria-label="Explorer mode"><button className="selected" aria-pressed="true">V5 Explorer</button><button onClick={()=>setMode('v6')}>V6 Replay</button></div><header><div><div className="eyebrow">INDIANAPOLIS / VEHICLE PERFORMANCE LAB</div><h1>V5 Engineering Replay <span>QUASI-STEADY</span></h1><p>One generic model · assumed path · Python simulation outputs</p></div><a href="/docs" target="_blank" rel="noreferrer">API & schema ↗</a></header>
+    <header><div><div className="eyebrow">INDIANAPOLIS / VEHICLE PERFORMANCE LAB</div><h1>V5 Engineering Replay <span>QUASI-STEADY</span></h1><p>One generic model · assumed path · Python simulation outputs</p></div><a href="/docs" target="_blank" rel="noreferrer">API & schema ↗</a></header>
     <div className="notice">SIMULATION ONLY · Approximate geometry and assumed vehicle characteristics. No GPS or ECU telemetry, individual-car forecast, or V6 driver dynamics.</div>
     <section className="metrics" aria-label="Simulation summary">
       <article><label>BASELINE LAP</label><strong>{baseline.lap_time_s.toFixed(4)} <small>s</small></strong><span>{baseline.average_speed_mph.toFixed(3)} mph average</span></article>

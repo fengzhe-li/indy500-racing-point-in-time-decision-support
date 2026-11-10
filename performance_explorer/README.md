@@ -1,6 +1,6 @@
 # Indy 500 Dual-Car Performance Explorer
 
-Independent comparison UI with two modes: official historical timing and **SIMULATED V5 dual-car performance**. It imports no V5/V6 implementation code and does not modify frozen scientific assets.
+Independent comparison UI with three separate modes: official historical timing, **SIMULATED V5 quasi-steady performance**, and **SIMULATED — V6 vehicle dynamics**. It imports no V5/V6 physics code and does not modify frozen scientific assets.
 
 ```sh
 cd performance_explorer/frontend
@@ -37,7 +37,9 @@ The default proxy target is `http://127.0.0.1:8005`. Production hosting must rou
 
 Historical mode preserves **196 retained complete Day 1 qualifying attempts**, 2020–2024: **46 / 50 / 39 / 30 / 31**. Official durations drive discrete lap-boundary replay. Unknown chronological attempt numbers remain unknown; no GPS, continuous trajectory or unmatched section advantages are invented.
 
-The **V6 schema-2 adapter** consumes actual published dynamic exports, preserves optional signal availability, interpolates actual pose and holds commands/flags. It validates terminal events and supports V6-vs-V6 common-clock comparison, with distance deltas restricted to common strictly advancing reference-progress coverage. V6 UI is not connected in this version. Its 4527.95 m stadium is never aligned to the V5 4023.36 m oval.
+The **V6 schema-2 adapter** consumes actual published dynamic exports, preserves optional signal availability, interpolates actual pose and holds commands/flags. It validates terminal events and supports V6-vs-V6 common-clock comparison, with distance deltas restricted to common strictly advancing reference-progress coverage. Its 4527.95 m stadium is never aligned to the V5 4023.36 m oval.
+
+Choose **V6 dynamics · SIMULATED** to replay any two compatible published schema-2 runs in the same Explorer. The UI uses the existing `V6Adapter`, `compareV6`, and `v6AtTime` contracts; it shows recorded position traces, independent terminal status, shared-time play/pause/restart/seek/rate controls, and only telemetry present in each export. Off-track runs stop at the actual terminal event. Export files are served as build assets from `v6_driver_in_loop/reports` without copying them into the Explorer source tree. Historical, V5, and V6 remain separate data modes; cross-mode lap-time and Track Dominance comparisons are unavailable. Position interpolation is display-only and the approximate V6 stadium is not official IMS GPS geometry.
 
 - [Historical audit](docs/DATA_AUDIT.md)
 - [Contracts, numerical semantics and integration requirements](docs/DATA_CONTRACT.md)

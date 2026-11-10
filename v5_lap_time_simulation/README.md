@@ -24,29 +24,6 @@ seeking share one simulation clock. Click/drag the graph or use its arrow keys
 to seek by distance. A baseline ghost is shown at the same elapsed time and stops
 at its lap end. Compare the speed profiles, lap delta and segment contributions.
 
-The **V5 Explorer / V6 Replay** selector also opens the V6 interactive replay.
-V6 loads the published schema-2 JSON exports from `v6_driver_in_loop/reports`,
-lets you pair two V6 runs with matching coordinate-system and stadium geometry,
-and animates their recorded Cartesian positions on one shared elapsed-time
-clock. Play/pause, restart, seeking and playback-rate controls apply to both
-vehicles. Each vehicle stops at its own recorded terminal sample; an off-track
-run is marked and never extrapolated. The telemetry cards show exported speed,
-position, steering, yaw rate, lateral acceleration and tracking error, plus
-throttle/brake only when present. Missing measurements are not synthesized.
-The mode is labeled **SIMULATED — V6**. Its illustrative vehicle parameters and
-approximate stadium are not official IMS geometry or measured car data. V5 and
-V6 are separate simulation domains; the UI does not compare their lap times or
-Track Dominance.
-
-## V6 Performance Explorer demonstration
-
-The integrated V6 Explorer replays two runs from the saved V6 simulation telemetry:
-the completed baseline and the 600 ms steering-delay run that terminates off track.
-The standalone V6 viewer is a separate interface and is not shown as this integrated Explorer.
-
-**Recording pending browser capture.** A full-resolution MP4 and an optimized GIF
-demonstration will be linked here after capture from the running Explorer.
-
 Edit mass, CdA, ClA, grip, effective power, air or track temperature, then press
 **Recompute with Python**. Pending edits are labeled; errors preserve the last
 valid result. **Reset scenario to baseline** restores all supported inputs.

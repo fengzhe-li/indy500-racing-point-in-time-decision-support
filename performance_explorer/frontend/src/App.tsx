@@ -4,6 +4,7 @@ import type { HistoricalAttempt } from "./domain/contract";
 import { validateHistoricalData } from "./adapters/historical";
 import { completedLaps, historicalComparison, tickReplay, type ReplayState } from "./domain/replay";
 import { V5Explorer } from "./V5Explorer";
+import { V6Explorer } from "./V6Explorer";
 
 const fmt = (n: number, d = 4) => n.toFixed(d);
 const attemptLabel = (r: HistoricalAttempt) => r.attempt === null ? `Order unknown · ID ${r.attemptId.slice(0, 8)}` : `Attempt ${r.attempt}`;
@@ -15,12 +16,12 @@ function Selector({ label, value, values, onChange, labels }: {
   </select></label>;
 }
 export function App({ dataset = data }: { dataset?: unknown }) {
-  const [mode, setMode] = useState("historical");
+  const [mode, setMode] = useState<"historical" | "v5" | "v6">("historical");
   return <><nav className="mode-switch" aria-label="Data source">
     <button aria-pressed={mode === "historical"} onClick={() => setMode("historical")}>Historical timing · OBSERVED</button>
     <button aria-pressed={mode === "v5"} onClick={() => setMode("v5")}>V5 simulation · SIMULATED</button>
-    <span>V6 · schema-2 adapter ready; UI not connected</span>
-  </nav>{mode === "v5" ? <V5Explorer /> : <HistoricalApp dataset={dataset} />}</>;
+    <button aria-pressed={mode === "v6"} onClick={() => setMode("v6")}>V6 dynamics · SIMULATED</button>
+  </nav>{mode === "v5" ? <V5Explorer /> : mode === "v6" ? <V6Explorer /> : <HistoricalApp dataset={dataset} />}</>;
 }
 function HistoricalApp({ dataset }: { dataset: unknown }) {
   if (!validateHistoricalData(dataset)) return <p role="alert">Historical dataset failed schema validation.</p>;
