@@ -1,0 +1,7 @@
+import type { ComparisonSeriesV1, HistoricalAttempt, HistoricalDataV1 } from "../domain/contract";
+export const validateHistoricalData=(data:HistoricalDataV1)=>data.schemaVersion==="1.0.0"&&data.dataKind==="observed_official_timing_summary"&&data.recordCount===data.rows.length&&data.rows.every(r=>r.year>1900&&r.lapSpeedsMph.length===4&&r.lapSpeedsMph.every(x=>Number.isFinite(x)&&x>0));
+export function toObservedSeries(row:HistoricalAttempt):ComparisonSeriesV1{
+  let t=0;const points=[{lap:0,elapsedTimeS:0}];
+  row.lapSpeedsMph.forEach((speed,i)=>{t+=2.5*3600/speed;points.push({lap:i+1,elapsedTimeS:t})});
+  return {schemaVersion:"1.0.0",mode:"historical",dataKind:"observed_official_timing_summary",label:`Observed timing summary · ${row.year} ${row.driver} · car ${row.carNumber}`,provenance:{provider:"Canonical Indy 500 research dataset",dataset:"r4p1 retained four-lap attempt panel",sourceFiles:[row.source],notes:["Official four-lap average speed values are represented at lap granularity.","Lap seconds are converted from average speed over the standard 2.5-mile lap; they are not raw transponder boundary times."]},units:{speed:"mph",time:"s",distance:"mi"},geometry:"oval_four_turn",axes:{primary:"lap_boundary"},availability:{available:["four_lap_average_speed_mph","lap_average_speed_mph","lap_boundary_estimated_time"],unavailable:["gps","continuous_position","section_times","steering","throttle","braking"],granularity:"lap",sampleCount:4},points};
+}
