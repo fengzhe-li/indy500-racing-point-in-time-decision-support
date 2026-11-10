@@ -8,7 +8,7 @@ import numpy as np
 from v5_lap_time_simulation.analysis import calibrate_effective_power, historical_validation
 from v5_lap_time_simulation.model import (
     Environment, G, MILE_M, Track, TrackSegment, Vehicle,
-    build_ims_oval_approximation, simulate_lap,
+    build_ims_oval_approximation, simulate_lap, _corner_speed_limit,
 )
 
 
@@ -36,7 +36,8 @@ class LapSimulationTests(unittest.TestCase):
                        TrackSegment("straight", 100)))
         result = simulate_lap(track, vehicle, env, ds_m=15)
         expected = math.sqrt(vehicle.tire_mu * G * radius)
-        self.assertAlmostEqual(result.corner_speed_limit_mps[0], expected, places=8)
+        self.assertAlmostEqual(_corner_speed_limit(vehicle, env, radius, bank), expected, places=8)
+        self.assertLess(result.corner_speed_limit_mps[0], expected)
         self.assertLessEqual(float(np.max(result.speed_mps[:int(2 * math.pi * radius / 15) + 1])), expected + 1e-7)
 
     def test_closed_loop_speed_bounds_and_convergence(self):
@@ -51,7 +52,7 @@ class LapSimulationTests(unittest.TestCase):
             self.assertLessEqual(result.speed_mps[j] ** 2,
                                  result.speed_mps[i] ** 2 + 2 * result.acceleration_limit_mps2[i] * result.distance_step_m[i] + 1e-5)
             self.assertLessEqual(result.speed_mps[i] ** 2,
-                                 result.speed_mps[j] ** 2 + 2 * result.braking_limit_mps2[j] * result.distance_step_m[i] + 1e-5)
+                                 result.speed_mps[j] ** 2 + 2 * result.braking_limit_mps2[i] * result.distance_step_m[i] + 1e-5)
 
     def test_constant_speed_integration_analytic(self):
         track = Track((TrackSegment("straight A", 137.0), TrackSegment("straight B", 263.0)))

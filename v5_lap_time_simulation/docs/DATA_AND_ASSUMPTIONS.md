@@ -1,46 +1,44 @@
-# Data inventory and assumptions
+# Data provenance and assumptions
 
-## Repository evidence reviewed
+## Evidence inventory
 
-The audit used `data/canonical/v1/attempts.csv`, `attempt_laps.csv`,
-`attempt_sections.csv`, `qualifying_events.csv`, `weather_forecasts.csv`,
-`forecast_snapshots.csv`, `field_evidence_links.csv`, and the repository's
-`data_reconnaissance_report.md` and `data/canonical/README.md`.
+V5 reads canonical `data/canonical/v1/attempts.csv` and `attempt_laps.csv`.
+The repository also contains report-supported section summaries, chronology,
+forecast snapshots and evidence links. Their existence does not provide vehicle
+telemetry or a surveyed spatial crosswalk to V5's eight segments.
 
-| Quantity | Classification | Availability and use |
-|---|---|---|
-| Event/session, car number, driver/team, attempt ID/status | OBSERVED | Canonical attempt rows; identifiers are retained in historical output |
-| Four-lap average speed and official elapsed time | OBSERVED | Used for 2024 held-out comparison only |
-| Individual lap times and speeds | OBSERVED | Canonical lap records; the report inventory describes year-specific completeness |
-| Section/lap speeds and section timing | OBSERVED | Present for report-supported sections; not treated as high-rate sampling |
-| Selected event timestamps | OBSERVED or evidence-qualified | Canonical chronology may be approximate or order-only; not required for V5 speed-profile fitting |
-| Weather forecast fields | OBSERVED in available forecast snapshots | Air temperature and pressure are configurable; standard run uses stated baseline values |
-| Air density | DERIVED | Ideal dry-air equation from air temperature and pressure |
-| Lap-average conversion from 4 x 2.5 mi / elapsed time | DERIVED | Used only as a physical consistency relationship; official average speed is compared directly |
-| 2.5 mi track length and segment split | DERIVED/parameterised | Closure convention for IMS oval, not GPS geometry |
-| Corner radius and banking | ASSUMED | Configurable effective values, not surveyed line-specific measurements |
-| Vehicle mass, CdA, ClA, tire mu, brake/drive limits, Crr | ASSUMED | Generic configurable scenario; no claim of exact current or confidential IndyCar values |
-| Effective power scalar | CALIBRATED | Fit to pooled 2020–2023 median average speed, conditional on all other assumptions; not an engine power estimate |
-| Track-temperature effect on grip | ASSUMED | A small explicit coefficient used only for sensitivity; empirical weather association is not causal evidence |
-| Unique vehicle dynamics calibration | UNAVAILABLE | Aggregate speeds are insufficient to uniquely identify mass, aero, tire, power and setup |
-| GPS path, steering, throttle, brake pressure, tire temperature, wheel speed, suspension travel | UNAVAILABLE | No telemetry is synthesized |
+| Quantity | Classification and use |
+|---|---|
+| Official four-lap average speed and elapsed time | OBSERVED canonical data; 2020–2023 calibrates one scalar, 2024 supplies descriptive comparisons |
+| Attempt, driver, car and session identifiers | OBSERVED identifiers retained for traceability; no per-car parameter fitting |
+| Lap and section summaries | OBSERVED where report coverage supports them; never continuous speed measurements |
+| Nominal oval lengths and 9.2° corner bank | Published nominal description from [INDYCAR](https://www.indycar.com/news/2023/05/05-19-setup-indy); application to one ideal path is ASSUMED |
+| Four circular arcs, uniform bank, flat straights | ASSUMED geometry; radius 256.135052735 m is DERIVED from quarter-mile arc and 90° turn |
+| Mass, CdA, ClA, tire μ, force limits, Crr, top speed | ASSUMED generic parameters, not actual or confidential IndyCar specifications |
+| Effective power | CALIBRATED scalar conditional on all other assumptions; not measured engine power |
+| Air/track conditions | ASSUMED fixed conditions, not historical conditions aligned to an attempt |
+| Air density | DERIVED ideal dry air from configured temperature and pressure |
+| Track-temperature grip slope | ASSUMED sensitivity law, not empirical causal evidence |
+| GPS, ECU, steering, throttle, brake pressure, tire state, suspension | UNAVAILABLE; no such traces are fabricated |
 
-The `attempt_sections` values are section summaries from official reports. Four
-lap speeds are averages over a lap, not continuous telemetry. The simulation's
-spatial profile is model-generated and must not be interpreted as measured
-distance-resolved vehicle speed.
+## Baseline
 
-## Baseline parameters
+`output/baseline.json` records all effective inputs. Baseline mass is 800 kg,
+CdA 1.00 m², ClA 1.50 m², μ 1.80, drive/brake limits 12000/20000 N,
+Crr 0.015, top-speed bound 120 m/s, and grip slope 0.0015 K⁻¹. Air is 25 °C,
+101325 Pa; track is 35 °C, the reference grip temperature. Effective power is
+682824.947115 W after correcting the physics and refitting the same 2020–2023
+median target. These choices are not uniquely identifiable from aggregate speeds.
+The baseline is power limited; a grip reduction of 25% provides a separate
+corner-limited viewer example without changing the fitted scalar.
 
-Baseline values are recorded in `output/baseline.json`; the fitted scalar and
-training objective are in `output/calibration.json`. Vehicle parameters are
-configurable in `model.py` and deliberately labelled assumptions. Environmental
-baseline: 25 °C air, 101325 Pa pressure, and 35 °C track temperature as the
-reference point for the sensitivity-only grip relation. These are simulation
-conditions, not a reconstructed historical session's aligned environment.
+## Independence and interpretation
 
-## Independence and preservation
+The scalar fit uses 206 complete 2020–2023 attempts. A test mutates 2024 outcomes
+and checks that the fit is unchanged. However, 2024 results have been inspected
+during development. This is a retrospective, year-separated descriptive
+comparison, not an untouched prospective validation of model selection.
 
-V5 reads the canonical V1 data read-only. It writes only inside its own
-`output/` folder. It neither updates nor reinterprets frozen V2/V3/V4 assets,
-claims, hashes, historical results, or model coefficients.
+V5 writes only its own outputs and serves a separate local API/frontend. V2/V3/V4
+assets and scientific claims remain frozen. The V6 directory and concurrent C++
+work are outside this implementation. V5 has no driver-in-the-loop dynamics.

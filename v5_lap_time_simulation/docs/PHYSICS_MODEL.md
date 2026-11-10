@@ -1,102 +1,109 @@
-# Physics model and numerical method
+# Corrected V5 physics and numerical method
 
-## Scope
+## Scope and units
 
-The solver is a quasi-steady, single-track-width, point-mass model. It finds the
-maximum feasible speed envelope for a car that follows a prescribed closed path.
-It does not integrate yaw, sideslip, steering, suspension, tire relaxation,
-gearshifts, transient load transfer or a driver controller.
+This is a quasi-steady point-mass engineering model on a prescribed horizontal
+closed path with banked road axes. It produces a conservative speed envelope
+under local sustainable-speed caps, not a proven globally optimal transient lap.
+SI units are used internally: m, s, m/s, N, kg, W, Pa; temperature inputs are °C
+and configured bank angles are degrees. No driver, yaw, steering, suspension,
+tire relaxation, axle load transfer, gearshifts or measured controls are modeled.
 
-All distances are metres, time seconds, speed m/s, force N, mass kg, power W,
-pressure Pa, temperature °C, and angles degrees at configuration boundaries.
+## Track order and geometric closure
 
-## Track
+The order is Turn 1 → short chute 1–2 → Turn 2 → back straight → Turn 3 →
+short chute 3–4 → Turn 4 → front straight → Turn 1. Four 402.336 m arcs,
+two 201.168 m chutes and two 1005.840 m straights sum to **4023.360 m (2.5 mi)**.
+The default radius is derived as `402.336 / (π/2) = 256.135052735 m`, so each
+constant-radius arc turns exactly 90°. Integrating these segments produces a
+closed course with continuous position and tangent. Curvature and banking jump
+at segment boundaries; no transition spirals or banking ramps are represented.
 
-The provided oval has a nominal length of 2.5 mi = 4023.36 m. It is split into
-four 1/4 mile corner arcs, two 5/8 mile main straights and two 1/8 mile short
-chutes. Each curved section has a configurable constant effective radius and
-bank angle. Segment lengths sum exactly to 2.5 mi. This parameterisation follows
-the conventional oval description; radius and bank are assumptions, and the
-geometry does not define a surveyed lane centreline. Every segment is divided
-into equal distance cells no longer than the requested `ds_m`.
+Nominal lengths and 9°12′ (9.2°) corner banking are described by
+[INDYCAR, The Setup: Indianapolis 500](https://www.indycar.com/news/2023/05/05-19-setup-indy).
+Applying that bank uniformly and using circular arcs are assumptions. This is
+not a surveyed racing line or GPS trace. The replay origin is Turn 1 entry,
+not the official timing line. Custom Python paths need not be geometrically
+closed; the replay exporter rejects those that do not close spatially.
 
-## Environment and aero
+## Consistent banked tire forces
 
-For dry air, density is
+Dry-air density: `rho = p / (287.05 * (T_air + 273.15))`.
+Drag: `D = 0.5 rho CdA v²`; downforce magnitude: `L = 0.5 rho ClA v²`.
+Downforce is assumed **normal to the road**, drag along the path. For inward
+positive bank θ and horizontal curvature magnitude κ, resolve forces into the
+road-normal and road-lateral axes:
 
-`rho = p / (R_air * (T_air + 273.15))`, `R_air = 287.05 J/(kg K)`.
+```
+N  = m g cosθ + m v² κ sinθ + L
+Fy = m v² κ cosθ − m g sinθ
+Fx_remaining = sqrt(max(0, (mu N)² − Fy²))
+```
 
-Aerodynamic drag and downforce magnitudes are
+The same N and Fy are used for lateral and longitudinal constraints. At zero
+bank this reduces to the flat-road friction circle. No tire load sensitivity,
+front/rear allocation or combined-slip tire curves are inferred. Rolling
+resistance is `Crr N`; tire grip follows the explicitly assumed temperature law
+`mu = mu_ref * max(0.5, 1 + slope * (T_track − T_ref))`.
 
-`D = 0.5 * rho * CdA * v^2`
+The lateral-only upper cap, on the high-speed branch, is:
 
-`L = 0.5 * rho * ClA * v^2`.
+```
+v² = m g (sinθ + mu cosθ)
+     / [m κ (cosθ − mu sinθ) − 0.5 mu rho ClA]
+```
 
-Humidity, yaw-dependent aero, ground effect and ride-height maps are not modeled.
-Rolling resistance is `Crr * m * g`.
+When the denominator is nonpositive, the configured top-speed bound applies.
+This does not imply unlimited real-world cornering. The supported regime has
+positive normal load and a feasible near-rest state; bank/grip combinations
+requiring a minimum-speed solution are rejected. Default IMS inputs and the
+viewer parameter ranges stay within this intended regime.
 
-## Lateral constraint
+## Drive, drag and braking
 
-For a bank angle `theta` (positive when the bank supports inward centripetal
-force), the local corner cap solves
+```
+Fdrive = min(Fdrive_max, P / max(v, 1e-6), Fx_remaining)
+a_max = (Fdrive − D − Crr N) / m
+b_max = (min(Fbrake_max, Fx_remaining) + D + Crr N) / m
+```
 
-`m v^2/R - m g sin(theta) <= mu * (m g cos(theta) + L)`.
+`a_max` is signed. The original implementation clamped negative acceleration to
+zero, permitting a steady speed even when the tires could not supply the force
+needed to offset drag. The correction finds a local **sustainable speed** with
+`a_max >= 0`, bounded by the analytical lateral cap and top-speed setting.
+The exported historical field `corner_speed_limit_mps` now means this combined
+sustainable cap; on straights it is generally power limited. Being at a curve's
+cap does not establish that lateral grip is the active constraint.
 
-Thus, where the denominator is positive,
+Restricting every cell to a sustainable cap is deliberately conservative: a
+transient vehicle could sometimes enter a corner faster while decelerating.
+This model does not solve that optimal-control problem. No throttle or brake
+pressure is reconstructed from the net force envelope.
 
-`v_corner^2 = m g (sin(theta) + mu cos(theta)) / (m/R - 0.5 mu rho ClA)`.
+## Periodic discrete solver
 
-The result is bounded by the configured vehicle maximum speed. If the denominator
-is non-positive, the assumed aero/grip combination predicts no lateral cap below
-that maximum; this is reported as a consequence of the assumptions, not evidence
-that the real car has unlimited cornering capability.
+1. Divide each constant-geometry segment into equal cells no longer than `ds_m`.
+2. Cap each node by both the incoming and outgoing cell's sustainable speed.
+3. Sweep forward and backward around the ring. Use an implicit bisection solve
+   of `v1² − v0² <= 2 a_max ds` and `v0² − v1² <= 2 b_max ds`.
+4. In each cell, use the minimum capacity at the two endpoint speeds and their
+   speed midpoint. Both acceleration and braking arrays are indexed by cell i.
+5. Repeat until node changes are below the iterative tolerance. Reject iteration
+   exhaustion, a force-infeasible final lap or a zero-speed lap.
+6. Integrate `dt = 2 ds / (v0 + v1)`, including the final-to-first edge.
 
-For longitudinal propagation, remaining tire force is computed with a friction
-circle:
+Three-point force sampling is a discretisation, not a continuum feasibility
+proof. Tests independently sample nine speeds in each cell in a corner-limited
+case. Spatial refinement is reported separately in
+[engineering results](ENGINEERING_RESULTS.md); the 1e-8 m/s stopping tolerance
+only measures iteration change on a fixed mesh.
 
-`F_x,max = sqrt(max(0, (mu * (m g + L))^2 - (m v^2 |kappa|)^2))`.
+## Replay kinematics
 
-The propagation approximation uses flat-road normal load in this combined-force
-calculation. Banking is included in the scalar corner-speed cap. The difference
-is a known simplification. Track temperature changes `mu` only through an
-explicitly assumed coefficient in `Vehicle.grip_per_track_temp_k`; it is a
-sensitivity knob, not a measured tire law.
-
-## Longitudinal constraints
-
-Propulsive tire force is bounded by
-
-`F_drive = min(F_drive,max, P/v, F_x,max)`.
-
-Net acceleration is
-
-`a = max(0, (F_drive - D - Crr*m*g)/m)`.
-
-Braking capability is `min(F_brake,max, F_x,max)` plus aerodynamic and rolling
-resistance, divided by mass. No engine braking or separate front/rear axle model
-is included.
-
-## Closed loop solution
-
-1. Construct each cell's local speed cap from top speed and, for a curve, the
-   lateral formula above.
-2. Initialize all cells at their local caps.
-3. Sweep forward around the ring, constraining the next cell by
-   `v[j]^2 <= v[i]^2 + 2*a[i]*ds[i]`.
-4. Sweep backward around the ring, constraining the previous cell by
-   `v[i]^2 <= v[j]^2 + 2*b[j]*ds[i]`.
-5. Repeat until the maximum speed change is below the configured tolerance.
-6. Integrate each cell using constant acceleration kinematics in average-speed
-   form: `dt = 2*ds/(v[i]+v[j])`.
-
-The profile only decreases from its local caps, is periodic by wraparound edge,
-and fails explicitly if the iteration limit is reached. A zero or invalid
-configuration raises a `ValueError`; non-convergence raises a `RuntimeError`.
-
-## Outputs
-
-The structured result includes distance, speed, curvature, local speed cap,
-available acceleration/braking, segment index, time increment, lap time,
-average speed, convergence flag and iteration count. The CLI exports these with
-units to CSV/JSON. The profile plots simulated values only; the separate
-historical comparison plot identifies observed official average speeds.
+The JSON contract includes an explicit periodic endpoint at `(s=L, t=T, v=v0)`.
+Within each cell, `a=(v1²−v0²)/(2 ds)` and
+`s(t)=s0+v0 τ+0.5 a τ²`, `v(t)=v0+a τ`.
+Inverse seeking uses `τ=2(s−s0)/(v0+sqrt(v0²+2a(s−s0)))`.
+The frontend uses these equations for the car, timeline and graph cursor. It
+integrates the same constant-curvature segments for drawing coordinates. Playback
+speed changes wall-clock rate only; it does not change the simulated physics.

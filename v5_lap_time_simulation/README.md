@@ -1,71 +1,78 @@
-# V5 — Physics Based Quasi Steady Lap Simulation
+# V5 — Physics audit and interactive engineering replay
 
-V5 is an independent Python/NumPy simulation module. It computes a periodic speed
-profile and lap time from a parameterised oval, a point mass vehicle model and
-air/track conditions. It is deliberately separated from the frozen V2/V3/V4
-scientific and application assets.
+An isolated Python/NumPy quasi-steady lap model and React/TypeScript viewer using
+the repository's existing frontend stack. The viewer consumes genuine Python
+simulation results through a separate FastAPI service. It uses an explicitly
+assumed closed IMS oval, not GPS or ECU telemetry, individual-car forecasts,
+measured aero maps or V6 driver-in-the-loop dynamics.
 
-This is an engineering reference model, not an IndyCar performance predictor.
-Vehicle values and unsurveyed oval lane geometry are labelled assumptions. One
-effective power scalar is calibrated to the pooled 2020–2023 median average
-speed, conditional on the remaining assumed parameters; it is not a physical
-engine-power estimate. 2024 is held out for validation.
+## Run the viewer
 
-## Quick run
-
-From the repository root, with Python 3.10+, NumPy and Matplotlib installed:
+From the repository root (Python 3.10+ and Node 20):
 
 ```bash
-python3 -m v5_lap_time_simulation.cli \
-  --data-dir data/canonical/v1 \
-  --output-dir v5_lap_time_simulation/output
+python3 -m pip install -r v5_lap_time_simulation/requirements.txt
+npm ci --prefix v5_lap_time_simulation/frontend
+npm run build --prefix v5_lap_time_simulation/frontend
+python3 -m v5_lap_time_simulation.server
 ```
 
-This writes a JSON baseline, per-distance and per-segment CSVs, a historical
-comparison, sensitivity tables, and PNG engineering plots. All outputs are
-deterministic for the same source/configuration. The data path can be changed;
-no user-specific absolute paths are embedded in the code.
+Open **http://127.0.0.1:8005**. The committed baseline configuration is recomputed
+by the corrected solver. The initial scenario reduces assumed grip by 25%, showing
+acceleration and braking regions. Play/pause, restart, rate control and timeline
+seeking share one simulation clock. Click/drag the graph or use its arrow keys
+to seek by distance. A baseline ghost is shown at the same elapsed time and stops
+at its lap end. Compare the speed profiles, lap delta and segment contributions.
 
-Run the V5 verification suite:
+Edit mass, CdA, ClA, grip, effective power, air or track temperature, then press
+**Recompute with Python**. Pending edits are labeled; errors preserve the last
+valid result. **Reset scenario to baseline** restores all supported inputs.
+Scenario edits never refit the scalar or alter historical files. Inputs carry
+units and assumed/calibrated provenance. The API and schema are at `/docs`.
+
+For development, run the API as above and
+`npm run dev --prefix v5_lap_time_simulation/frontend`; Vite on port 5175 proxies
+`/api/v5` to port 8005. Production serving uses the built `frontend/dist` folder.
+
+## Reproduce outputs and checks
 
 ```bash
+python3 -m v5_lap_time_simulation.cli --data-dir data/canonical/v1 --output-dir v5_lap_time_simulation/output
+python3 -m v5_lap_time_simulation.schema
 python3 -m unittest discover -s v5_lap_time_simulation/tests -p 'test_*.py' -v
+npm test --prefix v5_lap_time_simulation/frontend
+npm run build --prefix v5_lap_time_simulation/frontend
 ```
 
-## What is included
+The CLI regenerates calibration, profiles, segment times, sensitivities, historical
+comparisons, constant-speed benchmarks, two mesh experiments and replay JSON.
+Same inputs produce the same outputs within floating-point/platform precision.
+The versioned contract is `schema/replay.schema.json` (`v5-replay-1`); runtime
+frontend checks verify periodic endpoints and integration consistency.
 
-- Parameterised 2.5 mile IMS oval approximation, with straights, four turns and
-  optional banking. It is the oval, not the IMS road course.
-- Drag, downforce, rolling resistance, power/drive force, braking, a friction
-  circle and a bank-adjusted lateral corner speed cap.
-- Closed loop forward acceleration and backward braking propagation followed by
-  distance/time integration.
-- Air density from ideal dry air and a separately labelled track-temperature
-  grip sensitivity assumption.
-- 2024 official four-lap comparison, fixed assumed-parameter sensitivity
-  experiments, segment time contributions, CSV/JSON export and plots.
+## Results and evidence boundary
 
-## Status and evidence boundary
+- Correct order and 4023.360 m total distance; quarter-mile arcs give 90° turns.
+- Consistent banked normal/lateral loads and longitudinal friction circle;
+  sustainable-speed limits reserve tire force against drag.
+- Baseline: **38.987453 s**, effective scalar **682.824947 kW**.
+- Grip −25% example: **40.963472 s**, **+1.976019 s** at ≤10 m mesh.
+- 2024 speed MAE/RMSE: **1.142815 / 1.400540 mph**, exactly matching the
+  training-median benchmark. No demonstrated aggregate predictive gain.
+- Refinement from ≤10 m to ≤1.25 m changes baseline lap time by 0.000670 s and
+  the low-grip lap by 0.005681 s; local profile errors remain separately reported.
 
-| Item | State |
-|---|---|
-| Official four-lap average speeds, total times and lap records | Observed in canonical data |
-| Section speeds/times | Observed for supported report coverage; not treated as telemetry |
-| IMS total oval distance | 2.5 mi nominal configuration; approximation constraint |
-| Turn radius and banking in this module | Assumed parameter values, not surveyed or lane-specific |
-| Vehicle mass, aero, power, tire grip and force limits | Assumed configurable values; not asserted as confidential IndyCar specifications |
-| Weather fields | Present in canonical forecast/evidence tables; V5 uses an ideal-air baseline and does not fit weather effects |
-| GPS, steering, throttle, brake pressure, tire temperature traces | Unavailable and not fabricated |
-| Calibration | 2020–2023 median-speed fit of one effective scalar; remaining parameters assumed |
-| Validation | Chronological 2024 descriptive comparison; not high fidelity validation |
+2024 is excluded from scalar fitting but was inspected during development. The
+comparison is retrospective and descriptive. This generic model offers spatial
+engineering experiments, not measured individual-car dynamics.
 
-See [the physics model](docs/PHYSICS_MODEL.md),
+Read [physics and numerical method](docs/PHYSICS_MODEL.md),
 [data and assumptions](docs/DATA_AND_ASSUMPTIONS.md),
-[validation report](docs/VALIDATION_REPORT.md), and
-[engineering results](docs/ENGINEERING_RESULTS.md).
+[historical benchmarks](docs/VALIDATION_REPORT.md),
+[updated numerical results](docs/ENGINEERING_RESULTS.md),
+[viewer contract](docs/REPLAY_CONTRACT.md), and
+[verification record](docs/VERIFICATION.md).
 
-## V6 compatibility
-
-Track, immutable vehicle/environment configurations, speed state and simulation
-result are separate interfaces. V5 does not implement a driver controller,
-real-time driver interaction or hardware in the loop.
+V5 does not modify frozen V2/V3/V4 assets, import the V3 API, or implement V6 driver
+interaction. Its Python package, output, frontend, local server and CI workflow
+are isolated under the existing feature branch.

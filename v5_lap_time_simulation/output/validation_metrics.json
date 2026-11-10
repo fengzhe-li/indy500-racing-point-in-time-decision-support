@@ -4,15 +4,16 @@
   "sample_size": 54,
   "average_speed_mph": {
     "n": 54,
-    "mae": 1.1428148148117108,
-    "rmse": 1.4005401570371214,
-    "mean_error": -0.7557222222169874
+    "mae": 1.142814814792544,
+    "rmse": 1.4005401570196687,
+    "mean_error": -0.7557222221846435
   },
   "four_lap_time_seconds": {
     "n": 54,
-    "mae": 0.7692578683035828,
-    "rmse": 0.9444026140205931,
-    "mean_error": 0.5048101527622953
+    "mae": 0.7692578682906309,
+    "rmse": 0.9444026140089103,
+    "mean_error": 0.504810152740439
   },
-  "claim_boundary": "Descriptive agreement only; aggregate speed does not identify vehicle dynamics."
+  "claim_boundary": "Descriptive agreement only; aggregate speed does not identify vehicle dynamics.",
+  "development_boundary": "2024 results have been inspected during development; exclusion from scalar fitting is not an untouched prospective holdout."
 }

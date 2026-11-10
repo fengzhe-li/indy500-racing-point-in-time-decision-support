@@ -112,7 +112,7 @@ def calibrate_effective_power(data_dir: Path, *, ds_m: float = 10.0) -> tuple[Ve
     the training median speed.
     """
     records = load_historical_records(data_dir)
-    training = [r for r in records if r["year"] <= 2023]
+    training = [r for r in records if 2020 <= r["year"] <= 2023]
     if not training:
         raise ValueError("no complete 2020-2023 attempts available for calibration")
     target = float(np.median([r["observed_four_lap_average_speed_mph"] for r in training]))
@@ -143,12 +143,14 @@ def calibrate_effective_power(data_dir: Path, *, ds_m: float = 10.0) -> tuple[Ve
         "parameter_classification": "CALIBRATED_EFFECTIVE_SCALAR_CONDITIONAL_ON_ASSUMED_MODEL",
         "interpretation_limit": "Not engine power measurement; different mass/aero/grip combinations can produce similar aggregate speed.",
         "held_out_validation_year": 2024,
+        "holdout_scope": "Excluded from scalar fitting; retrospective descriptive comparison, not an untouched model-development holdout.",
+        "calibration_mesh_max_step_m": ds_m,
     }
     return calibrated_vehicle, report
 
 
 def historical_validation(data_dir: Path, simulated_lap_time_s: float) -> tuple[list[dict[str, Any]], dict[str, Any]]:
-    """Compare the pre-2024 calibrated model against held-out 2024 attempts."""
+    """Retrospective 2024 comparison; excluded from the scalar fit."""
     records = [r for r in load_historical_records(data_dir) if r["year"] == 2024]
     rows: list[dict[str, Any]] = []
     for a in records:
@@ -164,7 +166,7 @@ def historical_validation(data_dir: Path, simulated_lap_time_s: float) -> tuple[
             "observed_four_lap_total_seconds": observed_total,
             "simulated_four_lap_total_seconds": sim_four_lap_time,
             "time_residual_sim_minus_obs_s": sim_four_lap_time - observed_total,
-            "evaluation_role": "CHRONOLOGICAL_HELD_OUT_2024_DESCRIPTIVE_CHECK",
+            "evaluation_role": "YEAR_SEPARATED_2024_RETROSPECTIVE_DESCRIPTIVE_CHECK",
             "fit_role": "NOT_USED_FOR_CALIBRATION",
         })
     speed_errors = [r["speed_residual_sim_minus_obs_mph"] for r in rows]
@@ -179,6 +181,7 @@ def historical_validation(data_dir: Path, simulated_lap_time_s: float) -> tuple[
         "sample_size": len(rows), "average_speed_mph": metrics(speed_errors),
         "four_lap_time_seconds": metrics(time_errors),
         "claim_boundary": "Descriptive agreement only; aggregate speed does not identify vehicle dynamics.",
+        "development_boundary": "2024 results have been inspected during development; exclusion from scalar fitting is not an untouched prospective holdout.",
     }
     return rows, report
 
@@ -188,7 +191,7 @@ def write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
         path.write_text("", encoding="utf-8")
         return
     with path.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=list(rows[0]))
+        writer = csv.DictWriter(f, fieldnames=list(rows[0]), lineterminator="\n")
         writer.writeheader(); writer.writerows(rows)
 
 
@@ -201,6 +204,8 @@ def run_analysis(output_dir: Path, data_dir: Path) -> dict[str, Any]:
     result = simulate_lap(track, vehicle, environment)
     summary = {
         "model": "V5 quasi-steady point-mass lap simulation",
+        "physics_revision": "banked-force-consistency-audit-1",
+        "mesh_max_step_m": 10.0,
         "track": track.name, "track_length_m": track.length_m,
         "track_length_mi": track.length_m / 1609.344,
         "lap_time_s": result.lap_time_s, "average_speed_mph": result.average_speed_mph,
@@ -216,7 +221,7 @@ def run_analysis(output_dir: Path, data_dir: Path) -> dict[str, Any]:
     for i, x in enumerate(result.distance_m):
         j = (i + 1) % len(result.speed_mps)
         accel_limited = edge_accel[i] > 1e-4 and abs(edge_accel[i] - result.acceleration_limit_mps2[i]) < 0.05
-        braking_limited = edge_accel[i] < -1e-4 and abs(-edge_accel[i] - result.braking_limit_mps2[j]) < 0.05
+        braking_limited = edge_accel[i] < -1e-4 and abs(-edge_accel[i] - result.braking_limit_mps2[i]) < 0.05
         corner_limited = result.curvature_1pm[i] > 0 and abs(result.speed_mps[i] - result.corner_speed_limit_mps[i]) < 0.05
         profile.append({
             "distance_m": float(x), "distance_mi": float(x / 1609.344),
@@ -239,7 +244,7 @@ def run_analysis(output_dir: Path, data_dir: Path) -> dict[str, Any]:
         segrows.append({"segment": s.name, "distance_m": s.distance_m,
                         "radius_m": s.radius_m or "", "banking_deg": s.banking_deg,
                         "time_s": float(np.sum(result.time_step_s[mask])),
-                        "mean_speed_mph": float(np.average(result.speed_mps[mask], weights=result.time_step_s[mask]) * MPS_TO_MPH),
+                        "mean_speed_mph": float(s.distance_m / np.sum(result.time_step_s[mask]) * MPS_TO_MPH),
                         "max_speed_mph": float(np.max(result.speed_mps[mask]) * MPS_TO_MPH),
                         "classification": "SIMULATED"})
     write_csv(output_dir / "segment_times.csv", segrows)
@@ -249,6 +254,13 @@ def run_analysis(output_dir: Path, data_dir: Path) -> dict[str, Any]:
     historical_rows, validation = historical_validation(data_dir, result.lap_time_s)
     write_csv(output_dir / "historical_validation_2024.csv", historical_rows)
     (output_dir / "validation_metrics.json").write_text(json.dumps(validation, indent=2), encoding="utf-8")
+    from .audit import write_audit
+    from .replay import replay_payload
+    write_audit(output_dir, data_dir, vehicle, environment, result)
+    (output_dir / "replay.json").write_text(json.dumps(replay_payload(track, vehicle, environment, result), indent=2), encoding="utf-8")
+    low_vehicle = with_changes(vehicle, tire_mu=vehicle.tire_mu * .75)
+    low_result = simulate_lap(track, low_vehicle, environment)
+    (output_dir / "replay_low_grip.json").write_text(json.dumps(replay_payload(track, low_vehicle, environment, low_result), indent=2), encoding="utf-8")
     _plot(output_dir, result, track, historical_rows, sensitivity)
     return {"baseline": summary, "validation": validation, "sensitivity": sensitivity}
 
@@ -262,18 +274,18 @@ def _plot(output_dir: Path, result: Any, track: Track, observed: list[dict[str, 
     fig, ax = plt.subplots(figsize=(12, 5.5))
     ax.plot(x_mi, result.speed_mps * MPS_TO_MPH, color="#145da0", label="Simulated speed")
     ax.plot(x_mi, result.corner_speed_limit_mps * MPS_TO_MPH, color="#c43c35", alpha=.65,
-            linestyle="--", label="Local corner / top-speed cap")
+            linestyle="--", label="Local sustainable corner / power cap")
     next_v = np.roll(result.speed_mps, -1)
     edge_a = (next_v ** 2 - result.speed_mps ** 2) / (2 * result.distance_step_m)
     accel_mask = (edge_a > 1e-4) & (np.abs(edge_a - result.acceleration_limit_mps2) < 0.05)
-    brake_mask = (edge_a < -1e-4) & (np.abs(-edge_a - np.roll(result.braking_limit_mps2, -1)) < 0.05)
+    brake_mask = (edge_a < -1e-4) & (np.abs(-edge_a - result.braking_limit_mps2) < 0.05)
     corner_mask = (result.curvature_1pm > 0) & (np.abs(result.speed_mps - result.corner_speed_limit_mps) < 0.05)
     ax.scatter(x_mi[accel_mask], (result.speed_mps * MPS_TO_MPH)[accel_mask], s=8,
                color="#238636", label="Acceleration limited")
     ax.scatter(x_mi[brake_mask], (result.speed_mps * MPS_TO_MPH)[brake_mask], s=8,
                color="#e67700", label="Braking limited")
     ax.scatter(x_mi[corner_mask], (result.speed_mps * MPS_TO_MPH)[corner_mask], s=8,
-               color="#c43c35", label="Corner speed limited")
+               color="#c43c35", label="At local curve cap (may be power limited)")
     ax.set(xlabel="Track distance (mi)", ylabel="Speed (mph)", title="V5 quasi-steady speed profile — assumed IMS oval")
     ax.grid(alpha=.25); ax.legend(); fig.tight_layout()
     fig.savefig(output_dir / "speed_profile.png", dpi=160); plt.close(fig)
@@ -285,7 +297,7 @@ def _plot(output_dir: Path, result: Any, track: Track, observed: list[dict[str, 
         lo, hi = min(obs.min(), sim.min()) - 1, max(obs.max(), sim.max()) + 1
         ax.plot([lo, hi], [lo, hi], "k--", linewidth=1)
         ax.set(xlabel="Observed official four-lap average speed (mph)",
-               ylabel="Simulated average speed (mph)", title="2024 held-out descriptive comparison")
+               ylabel="Simulated average speed (mph)", title="2024 retrospective descriptive comparison")
         ax.grid(alpha=.25); fig.tight_layout()
         fig.savefig(output_dir / "historical_comparison.png", dpi=160); plt.close(fig)
     fig, ax = plt.subplots(figsize=(9, 5))
