@@ -1,0 +1,222 @@
+{
+  "$defs": {
+    "Segment": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "distance_m": {
+          "title": "Distance M",
+          "type": "number"
+        },
+        "radius_m": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Radius M"
+        },
+        "banking_deg": {
+          "title": "Banking Deg",
+          "type": "number"
+        },
+        "evidence_class": {
+          "title": "Evidence Class",
+          "type": "string"
+        },
+        "start_m": {
+          "title": "Start M",
+          "type": "number"
+        },
+        "time_s": {
+          "title": "Time S",
+          "type": "number"
+        },
+        "label_xy_m": {
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Label Xy M",
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "distance_m",
+        "radius_m",
+        "banking_deg",
+        "evidence_class",
+        "start_m",
+        "time_s",
+        "label_xy_m"
+      ],
+      "title": "Segment",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "v5-replay-1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "units": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Units",
+      "type": "object"
+    },
+    "provenance": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Provenance",
+      "type": "object"
+    },
+    "origin": {
+      "title": "Origin",
+      "type": "string"
+    },
+    "vehicle": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "title": "Vehicle",
+      "type": "object"
+    },
+    "environment": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "title": "Environment",
+      "type": "object"
+    },
+    "lap_time_s": {
+      "title": "Lap Time S",
+      "type": "number"
+    },
+    "track_length_m": {
+      "title": "Track Length M",
+      "type": "number"
+    },
+    "average_speed_mph": {
+      "title": "Average Speed Mph",
+      "type": "number"
+    },
+    "segments": {
+      "items": {
+        "$ref": "#/$defs/Segment"
+      },
+      "title": "Segments",
+      "type": "array"
+    },
+    "distance_m": {
+      "items": {
+        "type": "number"
+      },
+      "title": "Distance M",
+      "type": "array"
+    },
+    "elapsed_s": {
+      "items": {
+        "type": "number"
+      },
+      "title": "Elapsed S",
+      "type": "array"
+    },
+    "speed_mps": {
+      "items": {
+        "type": "number"
+      },
+      "title": "Speed Mps",
+      "type": "array"
+    },
+    "speed_cap_mps": {
+      "items": {
+        "type": "number"
+      },
+      "title": "Speed Cap Mps",
+      "type": "array"
+    },
+    "acceleration_mps2": {
+      "items": {
+        "type": "number"
+      },
+      "title": "Acceleration Mps2",
+      "type": "array"
+    },
+    "mode": {
+      "items": {
+        "enum": [
+          "acceleration",
+          "braking",
+          "corner_cap",
+          "steady_or_transition"
+        ],
+        "type": "string"
+      },
+      "title": "Mode",
+      "type": "array"
+    },
+    "xy_m": {
+      "items": {
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "number"
+          }
+        ],
+        "type": "array"
+      },
+      "title": "Xy M",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "units",
+    "provenance",
+    "origin",
+    "vehicle",
+    "environment",
+    "lap_time_s",
+    "track_length_m",
+    "average_speed_mph",
+    "segments",
+    "distance_m",
+    "elapsed_s",
+    "speed_mps",
+    "speed_cap_mps",
+    "acceleration_mps2",
+    "mode",
+    "xy_m"
+  ],
+  "title": "ReplayResponse",
+  "type": "object"
+}

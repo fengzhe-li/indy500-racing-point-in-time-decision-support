@@ -1,0 +1,13 @@
+{
+  "legacy_revision": "18b8623c01f423f8072996a8ca92ffd2ddc0806e",
+  "legacy_lap_time_s": 38.987452538190574,
+  "corrected_fixed_legacy_parameters_lap_s": 36.6421795616111,
+  "corrected_zero_bank_same_parameters_lap_s": 40.55303201650457,
+  "legacy_corner_speed_mps": 99.76138587315336,
+  "legacy_flat_circle_lateral_utilisation": 1.0357216348370544,
+  "consistent_banked_lateral_utilisation_at_legacy_speed": 0.7589895372543157,
+  "legacy_flat_normal_n": 16682.434016059044,
+  "consistent_banked_normal_n": 21553.98576799194,
+  "interpretation": "Old mixed equations gave zero remaining tire capacity while drag still required drive force. Corrections include banked loads, sustained-speed caps, cell geometry, signed force limits and boundary caps; fixed-parameter lap delta is their combined effect.",
+  "mesh_note": "Fitted parameters held fixed across steps; finest grid is a reference, not an exact solution. Baseline and -25% grip scenario both reported."
+}
