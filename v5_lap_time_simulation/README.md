@@ -70,7 +70,9 @@ Read [physics and numerical method](docs/PHYSICS_MODEL.md),
 [data and assumptions](docs/DATA_AND_ASSUMPTIONS.md),
 [historical benchmarks](docs/VALIDATION_REPORT.md),
 [updated numerical results](docs/ENGINEERING_RESULTS.md),
-[viewer contract](docs/REPLAY_CONTRACT.md), and
+[viewer contract](docs/REPLAY_CONTRACT.md),
+[downstream adapter integration](docs/EXPLORER_ADAPTER.md),
+[final release acceptance](docs/FINAL_ACCEPTANCE.md), and
 [verification record](docs/VERIFICATION.md).
 
 V5 does not modify frozen V2/V3/V4 assets, import the V3 API, or implement V6 driver
