@@ -23,7 +23,7 @@ describe("V5 two-car Explorer integration", () => {
     fireEvent.click(screen.getByRole("button", { name: "V5 simulation · SIMULATED" }));
     expect(screen.queryByText("OBSERVED DATA MODE")).not.toBeInTheDocument();
     expect(screen.getByText(/No GPS, ECU, throttle/)).toBeInTheDocument();
-    expect(screen.getByText(/V6 · schema-2 adapter ready/)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "V6 interactive replay · SIMULATED" })).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Historical timing · OBSERVED" }));
     expect(screen.queryByLabelText("Simulation timeline")).not.toBeInTheDocument();
     expect(screen.getByText(/31 RETAINED COMPLETE ATTEMPTS/)).toBeInTheDocument();

@@ -1,6 +1,6 @@
 # Indy 500 Dual-Car Performance Explorer
 
-Independent comparison UI with two modes: official historical timing and **SIMULATED V5 dual-car performance**. It imports no V5/V6 implementation code and does not modify frozen scientific assets.
+Independent comparison UI with separate official historical timing, **SIMULATED V5 dual-car performance**, and **SIMULATED V6 telemetry replay** modes. The V6 view reuses the audited schema-2 adapter and does not modify frozen scientific assets.
 
 ```sh
 cd performance_explorer/frontend
@@ -37,7 +37,7 @@ The default proxy target is `http://127.0.0.1:8005`. Production hosting must rou
 
 Historical mode preserves **196 retained complete Day 1 qualifying attempts**, 2020–2024: **46 / 50 / 39 / 30 / 31**. Official durations drive discrete lap-boundary replay. Unknown chronological attempt numbers remain unknown; no GPS, continuous trajectory or unmatched section advantages are invented.
 
-The **V6 schema-2 adapter** consumes actual published dynamic exports, preserves optional signal availability, interpolates actual pose and holds commands/flags. It validates terminal events and supports V6-vs-V6 common-clock comparison, with distance deltas restricted to common strictly advancing reference-progress coverage. V6 UI is not connected in this version. Its 4527.95 m stadium is never aligned to the V5 4023.36 m oval.
+The **V6 schema-2 adapter** consumes actual published dynamic exports, preserves optional signal availability, interpolates actual pose and holds commands/flags. It validates terminal events and supports V6-vs-V6 common-clock comparison, with distance deltas restricted to common strictly advancing reference-progress coverage. The Explorer V1.1 UI replays bundled complete and off-track V6 runs on a shared simulation clock. It keeps V6 separate from V5 lap-time and Track Dominance metrics; the 4527.95 m illustrative stadium is never aligned to the V5 4023.36 m oval.
 
 - [Historical audit](docs/DATA_AUDIT.md)
 - [Contracts, numerical semantics and integration requirements](docs/DATA_CONTRACT.md)
