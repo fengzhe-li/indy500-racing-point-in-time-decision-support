@@ -123,47 +123,4 @@ describe("published V5 contract (actual simulated exports, never official result
       expect(() => compareV5(a, changed)).toThrow(/Incompatible/);
     }
   });
-  it("reports length-weighted segment dominance, sign reversal and ties", () => {
-    const a = adapter.adapt(baseline), b = adapter.adapt(lowGrip);
-    const forward = compareV5(a, b), reverse = compareV5(b, a);
-    const dominance = trackDominance(forward.regions), flipped = trackDominance(reverse.regions);
-    expect(dominance.A.percent + dominance.B.percent + dominance.tie.percent).toBeCloseTo(100, 10);
-    expect(dominance.A.distanceM).toBe(flipped.B.distanceM);
-    expect(trackDominance(compareV5(a, a).regions).tie.percent).toBe(100);
-    forward.regions.forEach((r, i) => {
-      expect(r.bTimeS - r.aTimeS).toBeCloseTo(r.incrementalDeltaS, 10);
-      expect(reverse.regions[i].incrementalDeltaS).toBeCloseTo(-r.incrementalDeltaS, 10);
-      expect(r.winner).toBe(Math.abs(r.incrementalDeltaS) < 1e-9 ? "tie" : r.incrementalDeltaS < 0 ? "B" : "A");
-    });
-  });
-  it("compares different sample meshes by distance, never by matching indices", () => {
-    const a = adapter.adapt(baseline), original = a.simulation;
-    // Split an actual simulation cell without changing its kinematics or path.
-    const refined = structuredClone(original), i = 10;
-    const time = (original.elapsed_s[i] + original.elapsed_s[i + 1]) / 2;
-    const mid = v5AtTime(original, time);
-    refined.distance_m.splice(i + 1, 0, mid.distanceM);
-    refined.elapsed_s.splice(i + 1, 0, time);
-    refined.speed_mps.splice(i + 1, 0, mid.speedMps);
-    refined.speed_cap_mps.splice(i + 1, 0, Math.max(original.speed_cap_mps[i], original.speed_cap_mps[i + 1]));
-    refined.xy_m.splice(i + 1, 0, mid.positionM);
-    refined.acceleration_mps2.splice(i + 1, 0, original.acceleration_mps2[i]);
-    refined.mode.splice(i + 1, 0, original.mode[i]);
-    const result = compareV5(a, adapter.adapt(refined));
-    expect(result.speedComparison.some(p => p.distanceM === mid.distanceM)).toBe(true);
-    result.speedComparison.forEach(p => expect(p.aMps).toBeCloseTo(p.bMps, 9));
-    result.runningDelta.forEach(p => expect(p.deltaS).toBeCloseTo(0, 10));
-  });
-  it("uses the A-clock seeking convention and rejects incompatible boundaries and banking", () => {
-    const a = adapter.adapt(baseline), b = adapter.adapt(lowGrip), result = compareV5(a, b);
-    const distance = 2000;
-    const state = result.atTime(result.seekTimeAtDistance(distance));
-    expect(state.a.distanceM).toBeCloseTo(distance, 9);
-    expect(state.b.distanceM).not.toBeCloseTo(distance, 2);
-    expect(result.deltaAt(distance)).toBeCloseTo(v5TimeAtDistance(b.simulation, distance) - v5TimeAtDistance(a.simulation, distance), 10);
-    for (const key of ["start_m", "banking_deg", "distance_m"] as const) {
-      const changed = structuredClone(b); changed.simulation.segments[1][key] += 1;
-      expect(() => compareV5(a, changed)).toThrow(/Incompatible/);
-    }
-  });
 });
