@@ -19,7 +19,7 @@ export function App({ dataset = data }: { dataset?: unknown }) {
   return <><nav className="mode-switch" aria-label="Data source">
     <button aria-pressed={mode === "historical"} onClick={() => setMode("historical")}>Historical timing · OBSERVED</button>
     <button aria-pressed={mode === "v5"} onClick={() => setMode("v5")}>V5 simulation · SIMULATED</button>
-    <span>V6 · unavailable until its contract is published</span>
+    <span>V6 · schema-2 adapter ready; UI not connected</span>
   </nav>{mode === "v5" ? <V5Explorer /> : <HistoricalApp dataset={dataset} />}</>;
 }
 function HistoricalApp({ dataset }: { dataset: unknown }) {

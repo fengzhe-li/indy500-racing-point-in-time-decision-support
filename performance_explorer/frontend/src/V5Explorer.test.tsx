@@ -23,7 +23,7 @@ describe("V5 two-car Explorer integration", () => {
     fireEvent.click(screen.getByRole("button", { name: "V5 simulation · SIMULATED" }));
     expect(screen.queryByText("OBSERVED DATA MODE")).not.toBeInTheDocument();
     expect(screen.getByText(/No GPS, ECU, throttle/)).toBeInTheDocument();
-    expect(screen.getByText(/V6 · unavailable/)).toBeInTheDocument();
+    expect(screen.getByText(/V6 · schema-2 adapter ready/)).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Historical timing · OBSERVED" }));
     expect(screen.queryByLabelText("Simulation timeline")).not.toBeInTheDocument();
     expect(screen.getByText(/31 RETAINED COMPLETE ATTEMPTS/)).toBeInTheDocument();
@@ -133,5 +133,83 @@ describe("V5 two-car Explorer integration", () => {
     fireEvent.change(screen.getByLabelText("Import Car B V5 replay JSON"), { target: { files: [{ name: "broken.json", size: 100, text: async () => { throw new Error("Read failed"); } }] } });
     await waitFor(() => expect(screen.getByRole("alert")).toHaveTextContent("Read failed"));
     expect(screen.getByLabelText("Car B configuration")).toHaveValue("low-grip");
+  });
+});
+
+const response = (payload: unknown, ok = true, status = 200) => ({ ok, status, json: async () => payload }) as Response;
+describe("independent V5 API scenarios", () => {
+  it("posts independent drafts and applies each successful response only to its car", async () => {
+    const fetchMock = vi.fn().mockResolvedValueOnce(response(baseline)).mockResolvedValueOnce(response(lowGrip)); vi.stubGlobal("fetch", fetchMock);
+    render(<V5Explorer />);
+    fireEvent.change(screen.getByLabelText("Car A Mass (kg)"), { target: { value: "900" } });
+    fireEvent.change(screen.getByLabelText("Car B Mass (kg)"), { target: { value: "950" } });
+    fireEvent.submit(screen.getByRole("form", { name: "Car A scenario" }));
+    await waitFor(() => expect(screen.getByLabelText("Car A configuration")).toHaveValue("api-A-1"));
+    expect(screen.getByLabelText("Car B configuration")).toHaveValue("low-grip");
+    expect(screen.getByLabelText("Car B Mass (kg)")).toHaveValue(950);
+    fireEvent.submit(screen.getByRole("form", { name: "Car B scenario" }));
+    await waitFor(() => expect(screen.getByLabelText("Car B configuration")).toHaveValue("api-B-1"));
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body).vehicle.mass_kg).toBe(900);
+    expect(JSON.parse(fetchMock.mock.calls[1][1].body).vehicle.mass_kg).toBe(950);
+    expect(fetchMock.mock.calls[0][0]).toBe("/api/v5/simulate");
+    expect(screen.getAllByText(/Actual SIMULATED API output/)).toHaveLength(2);
+    // Applied fields must come from returned output, not pretend the service honored a draft.
+    expect(screen.getByLabelText("Car A Mass (kg)")).toHaveValue(baseline.vehicle.mass_kg);
+  });
+  it("loads API baseline and handles service validation failures without losing valid runs", async () => {
+    const fetchMock = vi.fn().mockResolvedValueOnce(response({ detail: [{ msg: "Rejected scenario" }] }, false, 422)).mockResolvedValueOnce(response(baseline)); vi.stubGlobal("fetch", fetchMock);
+    render(<V5Explorer />);
+    fireEvent.submit(screen.getByRole("form", { name: "Car A scenario" }));
+    await waitFor(() => expect(screen.getByRole("alert")).toHaveTextContent("Rejected scenario"));
+    expect(screen.getByLabelText("Car A configuration")).toHaveValue("baseline");
+    expect(screen.getByLabelText("Simulation timeline")).toBeInTheDocument();
+    fireEvent.click(screen.getByText("Load API baseline B"));
+    await waitFor(() => expect(screen.getByLabelText("Car B configuration")).toHaveValue("api-B-1"));
+    expect(fetchMock.mock.calls[1][1].method).toBe("GET");
+  });
+  it.each(["network", "invalid schema"])("retains valid data on %s failures", async kind => {
+    vi.stubGlobal("fetch", kind === "network" ? vi.fn().mockRejectedValue(new Error("Offline")) : vi.fn().mockResolvedValue(response({ schema_version: "bad" })));
+    render(<V5Explorer />); fireEvent.click(screen.getByText("Load API baseline A"));
+    await waitFor(() => expect(screen.getByRole("alert")).toHaveTextContent("Last valid configuration retained"));
+    expect(screen.getByLabelText("Car A configuration")).toHaveValue("baseline");
+  });
+  it.each([true, false])("ignores stale %s response after a newer request and keeps A/B isolated", async success => {
+    let finish!: (r: Response) => void;
+    const pending = new Promise<Response>(resolve => { finish = resolve; });
+    const fetchMock = vi.fn().mockReturnValueOnce(pending).mockResolvedValueOnce(response(lowGrip)).mockResolvedValueOnce(response(baseline)); vi.stubGlobal("fetch", fetchMock);
+    render(<V5Explorer />);
+    fireEvent.click(screen.getByText("Load API baseline A"));
+    fireEvent.click(screen.getByText("Load API baseline A"));
+    fireEvent.click(screen.getByText("Load API baseline B"));
+    await waitFor(() => expect(screen.getByLabelText("Car A configuration")).toHaveValue("api-A-2"));
+    await act(async () => finish(response(success ? baseline : { detail: "Stale error" }, success, success ? 200 : 500)));
+    expect(fetchMock.mock.calls[0][1].signal.aborted).toBe(true);
+    expect(screen.getByLabelText("Car A configuration")).toHaveValue("api-A-2");
+    expect(screen.getByLabelText("Car B configuration")).toHaveValue("api-B-1");
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+  });
+  it("invalidates pending API results on selection and on unmount", async () => {
+    let finish!: (r: Response) => void;
+    const fetchMock = vi.fn().mockImplementation(() => new Promise<Response>(resolve => { finish = resolve; })); vi.stubGlobal("fetch", fetchMock);
+    const view = render(<V5Explorer />);
+    fireEvent.click(screen.getByText("Load API baseline A"));
+    fireEvent.change(screen.getByLabelText("Car A configuration"), { target: { value: "low-grip" } });
+    await act(async () => finish(response(baseline)));
+    expect(screen.getByLabelText("Car A configuration")).toHaveValue("low-grip");
+    fireEvent.click(screen.getByText("Load API baseline B")); view.unmount();
+    expect(fetchMock.mock.calls[1][1].signal.aborted).toBe(true);
+    await act(async () => finish(response(baseline)));
+  });
+  it("highlights the same region and inspection cursor across charts without moving the clock", () => {
+    vi.stubGlobal("PointerEvent", MouseEvent); render(<V5Explorer />);
+    const graph = screen.getByRole("slider", { name: "Speed profile graph" });
+    vi.spyOn(graph, "getBoundingClientRect").mockReturnValue({ left: 0, width: 640 } as DOMRect);
+    fireEvent.pointerMove(graph, { clientX: 330, buttons: 0 });
+    expect(timeline()).toHaveValue("0");
+    expect(screen.getByTestId("Speed profile graph-inspection")).toHaveAttribute("x1", "330");
+    expect(screen.getByTestId("Running delta graph-inspection")).toHaveAttribute("x1", "330");
+    expect(screen.getByTestId("region-insight")).toHaveTextContent("Turn 3");
+    fireEvent.pointerLeave(graph);
+    expect(screen.queryByTestId("Speed profile graph-inspection")).not.toBeInTheDocument();
   });
 });

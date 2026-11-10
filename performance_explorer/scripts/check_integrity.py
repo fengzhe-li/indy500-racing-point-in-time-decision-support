@@ -60,6 +60,8 @@ def main():
     report['non_explorer_worktree']=dict(baseline=BASE,checked=checked,changed=changed)
     source=json.loads((ROOT/'performance_explorer/contracts/v5-replay-1/SOURCE.json').read_text())
     report['v5_pinned_artifacts']=file_checks([('performance_explorer/'+p,r['sha256']) for p,r in source['files'].items()])
+    v6source=json.loads((ROOT/'performance_explorer/contracts/v6-replay-2/SOURCE.json').read_text())
+    report['v6_pinned_artifacts']=file_checks([('performance_explorer/'+p,r['sha256']) for p,r in v6source['files'].items()])
     (ROOT/'performance_explorer/audit/frozen_integrity.json').write_text(json.dumps(report,indent=2)+'\n')
     for name,result in report.items():print(name,json.dumps(result))
     if changed or any(r['mismatches'] for k,r in report.items() if k!='non_explorer_worktree'):

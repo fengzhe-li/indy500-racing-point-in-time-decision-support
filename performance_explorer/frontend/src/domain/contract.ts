@@ -32,19 +32,3 @@ export interface SimulationAdapter {
   readonly mode: "v5-quasi-steady" | "v6-dynamic";
   adapt(payload: unknown): ComparisonSeriesV1;
 }
-// Explorer-owned future boundary; not a claim about V6's unfinished export schema.
-export interface V6IntegrationBoundaryV1 {
-  explorerBoundaryVersion: "v6-boundary-1";
-  upstreamSchemaVersion: string;
-  status: "complete" | "partial" | "failed";
-  failureReason?: string;
-  origin: string;
-  validatedDistanceCoordinate?: { id: string; evidence: string };
-  units: Record<string, string>;
-  provenance: Provenance;
-  samples: Array<{
-    timeS: number; distanceM?: number; positionM?: [number, number]; headingRad?: number;
-    velocityMps?: number; steeringRad?: number; throttle?: number; braking?: number;
-    yawRateRadS?: number; trackingErrorM?: number;
-  }>;
-}

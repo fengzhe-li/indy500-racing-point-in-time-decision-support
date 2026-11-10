@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
+import { V5ScenarioForm, requestV5, type ScenarioRequest } from "./V5ScenarioForm";
 import baseline from "./data/v5-baseline.json";
 import lowGrip from "./data/v5-low-grip.json";
 import source from "../../contracts/v5-replay-1/SOURCE.json";
@@ -16,16 +17,18 @@ const format = (n: number, digits = 4) => n.toFixed(digits);
 const signed = (n: number) => `${n > 0 ? "+" : ""}${format(n)}`;
 const colors = { A: "#55d4de", B: "#ff9c50", tie: "#849298" };
 
-/** Export-only integration: no solver, calibration or historical refitting here. */
+/** Only consumes exported or API-returned simulations; no solver here. */
 export function V5Explorer() {
   const [runs, setRuns] = useState<[Run, Run]>([presets[0], presets[1]]);
   const [imports, setImports] = useState<Partial<Record<Side, Run>>>({});
   const [errors, setErrors] = useState<Partial<Record<Side, string>>>({});
   const [loading, setLoading] = useState<Partial<Record<Side, boolean>>>({});
   const epochs = useRef({ A: 0, B: 0 });
-  useEffect(() => () => { epochs.current.A++; epochs.current.B++; }, []);
+  const requests = useRef<Partial<Record<Side, AbortController>>>({});
+  useEffect(() => () => { epochs.current.A++; epochs.current.B++; requests.current.A?.abort(); requests.current.B?.abort(); }, []);
   const select = (side: Side, run: Run) => {
     epochs.current[side]++;
+    requests.current[side]?.abort();
     setLoading(s => ({ ...s, [side]: false }));
     setErrors(s => ({ ...s, [side]: "" }));
     setRuns(s => side === "A" ? [run, s[1]] : [s[0], run]);
@@ -33,6 +36,7 @@ export function V5Explorer() {
   const importRun = async (side: Side, file?: File) => {
     if (!file) return;
     const epoch = ++epochs.current[side];
+    requests.current[side]?.abort();
     setLoading(s => ({ ...s, [side]: true }));
     setErrors(s => ({ ...s, [side]: "" }));
     try {
@@ -52,6 +56,26 @@ export function V5Explorer() {
       if (epoch === epochs.current[side]) setLoading(s => ({ ...s, [side]: false }));
     }
   };
+  const recompute = async (side: Side, request?: ScenarioRequest) => {
+    const epoch = ++epochs.current[side];
+    requests.current[side]?.abort();
+    const controller = new AbortController(); requests.current[side] = controller;
+    const timeout = window.setTimeout(() => controller.abort(), 30000);
+    setLoading(s => ({ ...s, [side]: true })); setErrors(s => ({ ...s, [side]: "" }));
+    try {
+      const series = adapter.adapt(await requestV5(request, controller.signal));
+      if (epoch !== epochs.current[side]) return;
+      const run: Run = { id: `api-${side}-${epoch}`, name: request ? `API scenario ${side} · ${epoch}` : `API baseline ${side} · ${epoch}`, series,
+        lineage: `Actual SIMULATED API output · ${request ? "POST /api/v5/simulate" : "GET /api/v5/baseline"} · runtime producer commit unverified · request ${JSON.stringify(request ?? {})}` };
+      setImports(s => ({ ...s, [side]: run }));
+      setRuns(s => side === "A" ? [run, s[1]] : [s[0], run]);
+    } catch (error) {
+      if (epoch === epochs.current[side]) setErrors(s => ({ ...s, [side]: `${controller.signal.aborted ? "V5 service timed out" : error instanceof Error ? error.message : "V5 request failed"}. Last valid configuration retained. Check the V5 service connection.` }));
+    } finally {
+      window.clearTimeout(timeout);
+      if (epoch === epochs.current[side]) setLoading(s => ({ ...s, [side]: false }));
+    }
+  };
   const compatible = useMemo(() => {
     try { return { comparison: compareV5(runs[0].series, runs[1].series), error: "" }; }
     catch (error) { return { comparison: null, error: (error as Error).message }; }
@@ -68,8 +92,9 @@ export function V5Explorer() {
               {options.map(r => <option key={r.id} value={r.id}>{r.name}</option>)}
             </select></label>
             <p>{format(runs[i].series.simulation.lap_time_s)} s · {format(runs[i].series.simulation.average_speed_mph, 3)} mph average</p>
+            <V5ScenarioForm key={runs[i].id} side={side} series={runs[i].series} busy={!!loading[side]} submit={request => { void recompute(side, request); }} />
             <label className="import-control">Import Car {side} V5 replay JSON<input aria-label={`Import Car ${side} V5 replay JSON`} type="file" accept=".json,application/json" onChange={e => { void importRun(side, e.target.files?.[0]); e.target.value = ""; }} /></label>
-            {loading[side] && <p role="status">Validating Car {side} export…</p>}
+            {loading[side] && <p role="status">Loading Car {side} · last valid run remains visible…</p>}
             {errors[side] && <p role="alert">{errors[side]}</p>}
             <details><summary>Inputs & provenance · Car {side}</summary><p className="lineage">{runs[i].lineage}</p>
               <p>{runs[i].series.simulation.origin}</p>
@@ -78,7 +103,7 @@ export function V5Explorer() {
             </details>
           </div>;
         })}</div>
-        <p className="limitation">Choose either export independently, including identical runs, or import another V5 output. Inputs are read-only snapshots. Generate changed parameters with V5, then import the JSON. Files stay in this browser; no backend is required. Historical timing and future V6 channels remain separate. V5 has no demonstrated aggregate MAE improvement over the training-median baseline; these are engineering scenarios, not individual-car predictions.</p>
+        <p className="limitation">Choose either export independently, including identical runs, or import another V5 output. Recompute uses the existing V5 API and requires a connected V5 service. Bundled exports and local imports work without it. Historical timing and V6 channels remain separate. V5 has no demonstrated aggregate MAE improvement over the training-median baseline; these are engineering scenarios, not individual-car predictions.</p>
       </section>
       {compatible.comparison ? <SimulationComparison key={`${runs[0].id}/${runs[1].id}`} runs={runs} comparison={compatible.comparison} /> :
         <p role="alert" className="warning">{compatible.error}. Comparison and replay disabled. Select exports with matching origin, geometry and segment boundaries.</p>}
@@ -98,6 +123,7 @@ function SimulationComparison({ runs, comparison }: { runs: [Run, Run]; comparis
   const r = runs[0].series.simulation, length = r.track_length_m;
   const [play, setPlay] = useState<ReplayState>({ playing: false, elapsedS: 0, speed: 1, durationS: comparison.durationS });
   const [highlight, setHighlight] = useState<number | null>(null);
+  const [inspection, setInspection] = useState<number | null>(null);
   useEffect(() => {
     if (!play.playing) return;
     let previous = performance.now();
@@ -109,10 +135,13 @@ function SimulationComparison({ runs, comparison }: { runs: [Run, Run]; comparis
   }, [play.playing]);
   const state = comparison.atTime(play.elapsedS), distance = state.a.distanceM;
   const currentRegion = r.segments.findIndex((s, i) => distance < s.start_m + s.distance_m || i === r.segments.length - 1);
-  const active = highlight ?? currentRegion;
+  const inspectedRegion = inspection === null ? null : r.segments.findIndex((s, i) => inspection < s.start_m + s.distance_m || i === r.segments.length - 1);
+  const active = highlight ?? inspectedRegion ?? currentRegion;
+  const region = comparison.regions[active];
+  const regionSum = (corners: boolean) => comparison.regions.reduce((sum, item, i) => sum + ((r.segments[i].radius_m !== null) === corners ? item.incrementalDeltaS : 0), 0);
   const delta = comparison.deltaAt(distance), dominance = trackDominance(comparison.regions);
   const seek = (t: number) => setPlay(s => ({ ...s, playing: false, elapsedS: Math.max(0, Math.min(comparison.durationS, t)) }));
-  const seekDistance = (d: number) => { setHighlight(null); seek(comparison.seekTimeAtDistance(d)); };
+  const seekDistance = (d: number) => { setHighlight(null); setInspection(null); seek(comparison.seekTimeAtDistance(d)); };
   // Uniform coordinate scaling preserves the assumed geometry's aspect ratio.
   const pathPoints = Array.from({ length: 401 }, (_, i) => v5PositionAtDistance(r, i * length / 400));
   const xs = pathPoints.map(p => p[0]), ys = pathPoints.map(p => p[1]);
@@ -135,6 +164,7 @@ function SimulationComparison({ runs, comparison }: { runs: [Run, Run]; comparis
               <text y={side === "A" ? -17 : 26} textAnchor="middle" fill={colors[side]} fontSize="14">{side}{car.complete ? " ✓" : ""}</text>
             </g>;
           })}
+          {inspection !== null && <circle data-testid="track-inspection-point" cx={project(v5PositionAtDistance(r, inspection))[0]} cy={project(v5PositionAtDistance(r, inspection))[1]} r="5" fill="#fff"><title>Inspection point {format(inspection, 2)} m; not a third vehicle</title></circle>}
           <text x="320" y="130" textAnchor="middle" fill="#e6ecee" fontSize="16">ASSUMED CLOSED PATH</text>
           <text x="320" y="153" textAnchor="middle" fill="#aebbc0" fontSize="12">{format(length, 3)} m · same origin for both cars</text>
           <text x="320" y="175" textAnchor="middle" fill="#aebbc0" fontSize="12">{comparison.regions[active].name}</text>
@@ -151,16 +181,25 @@ function SimulationComparison({ runs, comparison }: { runs: [Run, Run]; comparis
         <div className="delta-readout"><strong className={delta < 0 ? "orange-text" : "cyan-text"}>{signed(delta)}<small> s</small></strong></div>
         <p data-testid="running-delta">B − A at {format(distance, 2)} m (Car A cursor). Positive: B takes longer. Negative: B takes less time.</p>
         <p>Full-lap B − A: <b>{signed(lapDelta)} s</b></p>
-        <DistanceGraph label="Running delta graph" points={comparison.runningDelta.map(p => [p.distanceM, p.deltaS])} length={length} distance={distance} otherDistance={state.b.distanceM} seek={seekDistance} unit="s · B − A" />
+        <DistanceGraph label="Running delta graph" points={comparison.runningDelta.map(p => [p.distanceM, p.deltaS])} length={length} distance={distance} otherDistance={state.b.distanceM} seek={seekDistance} inspect={setInspection} inspection={inspection} unit="s · B − A" />
         <p className="limitation">Delta compares each run's arrival time at the same distance. It is not the time separation of the two markers at this instant. Graph seeking places Car A at the selected distance and places Car B using that same elapsed time.</p>
         <div className="insight"><p>At {format(distance, 2)} m, A takes {format(comparison.seekTimeAtDistance(distance))} s; B takes {format(comparison.seekTimeAtDistance(distance) + delta)} s. Difference: {signed(delta)} s.<small>Calculated with each export's constant-acceleration cells. Interval differences describe the simulated result; they do not establish a causal effect or real-car performance.</small></p></div>
       </section>
     </div>
     <section className="panel v5-speed-panel"><h3>Distance-aligned speed profiles · SIMULATED</h3>
-      <DistanceGraph label="Speed profile graph" points={comparison.speedComparison.map(p => [p.distanceM, p.aMps])} second={comparison.speedComparison.map(p => [p.distanceM, p.bMps])} length={length} distance={distance} otherDistance={state.b.distanceM} seek={seekDistance} unit="m/s" />
+      <DistanceGraph label="Speed profile graph" points={comparison.speedComparison.map(p => [p.distanceM, p.aMps])} second={comparison.speedComparison.map(p => [p.distanceM, p.bMps])} length={length} distance={distance} otherDistance={state.b.distanceM} seek={seekDistance} inspect={setInspection} inspection={inspection} unit="m/s" />
+      {inspection !== null && <p role="status">Inspection at {format(inspection, 2)} m: A {format(v5SpeedAt(runs[0].series, inspection), 3)} m/s; B {format(v5SpeedAt(runs[1].series, inspection), 3)} m/s; arrival delta B − A {signed(comparison.deltaAt(inspection))} s. White point marks the inspected assumed track position.</p>}
       <p className="chart-legend"><span className="legend-a">● A speed / solid A cursor</span><span className="legend-b">● B speed / dashed B cursor</span></p>
       <p>At A's distance: speed B − A = {format(v5SpeedAt(runs[1].series, distance) - v5SpeedAt(runs[0].series, distance), 3)} m/s.</p>
       <p className="limitation">Profiles use a common distance grid, including both meshes. Click or drag either graph; arrow keys seek 25 m, Home/End seek 0/L. Calculations use exact cell kinematics; connecting graph samples are a drawing approximation.</p>
+    </section>
+    <section className="panel engineering-insights"><h3>Engineering comparison · SIMULATED</h3>
+      <p>Car A: {runs[0].name} · Car B: {runs[1].name}</p>
+      <p data-testid="region-insight">{region.name} [{format(region.startM, 2)}, {format(region.endM, 2)} m]: {region.winner === "tie" ? "Equal interval times" : `Car ${region.winner} gains ${format(Math.abs(region.incrementalDeltaS))} seconds`}. A: {format(region.aTimeS)} s; B: {format(region.bTimeS)} s.</p>
+      <p>Cumulative B − A at this region's exit: {signed(region.cumulativeDeltaS)} s. Full lap [0, {format(length, 2)} m]: {signed(lapDelta)} s.</p>
+      <p>Sum across corner regions: B − A {signed(regionSum(true))} s. Sum across straight regions: {signed(regionSum(false))} s. These signed contributions sum to the lap difference; offsets between regions can occur.</p>
+      <p>Applied tire friction: A {runs[0].series.scenario.vehicle.tire_mu}, B {runs[1].series.scenario.vehicle.tire_mu} (dimensionless). Other inputs may also differ; inspect both applied snapshots.</p>
+      <p className="limitation">Evidence: the two validated V5 exports, matched assumed segment boundaries and constant-acceleration cell arrival times. These are measured differences within the model outputs, not isolated causal effects or observed corner advantages. Hover a chart or region to inspect it; click or use keyboard controls to seek.</p>
     </section>
     <section className="panel v5-dominance"><h3>Track Dominance · SIMULATED segment-time advantage</h3>
       <p>{(["A", "B", "tie"] as const).map(side => <span key={side} style={{ color: colors[side], marginRight: 16 }}>{side === "tie" ? "Tied" : `Car ${side}`}: {format(dominance[side].percent, 1)}% ({format(dominance[side].distanceM, 1)} m) </span>)}</p>
@@ -177,21 +216,22 @@ function SimulationComparison({ runs, comparison }: { runs: [Run, Run]; comparis
 // Reuse the upstream kinematic inverse, never linear speed interpolation.
 function v5SpeedAt(series: V5Series, distance: number) { return v5AtTime(series.simulation, v5TimeAtDistance(series.simulation, distance)).speedMps; }
 
-function DistanceGraph({ label, points, second, length, distance, otherDistance, seek, unit }: {
-  label: string; points: number[][]; second?: number[][]; length: number; distance: number; otherDistance: number; seek: (d: number) => void; unit: string;
+function DistanceGraph({ label, points, second, length, distance, otherDistance, seek, inspect, inspection, unit }: {
+  label: string; points: number[][]; second?: number[][]; length: number; distance: number; otherDistance: number; seek: (d: number) => void; inspect: (d: number | null) => void; inspection: number | null; unit: string;
 }) {
   const values = [...points, ...(second ?? [])].map(p => p[1]);
   const lo = Math.min(...values), hi = Math.max(...values), padding = Math.max((hi - lo) * .12, .05);
   const x = (d: number) => 60 + 540 * d / length;
   const y = (v: number) => 175 - 145 * (v - lo + padding) / (hi - lo + 2 * padding);
   const line = (p: number[][]) => p.map(([d, v]) => `${x(d)},${y(v)}`).join(" ");
-  const fromPointer = (e: PointerEvent<SVGSVGElement>) => {
+  const fromPointer = (e: PointerEvent<SVGSVGElement>, click = false) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    if (rect.width > 0) seek(Math.max(0, Math.min(length, ((e.clientX - rect.left) * 640 / rect.width - 60) / 540 * length)));
+    if (rect.width > 0) (click ? seek : inspect)(Math.max(0, Math.min(length, ((e.clientX - rect.left) * 640 / rect.width - 60) / 540 * length)));
   };
   return <svg className="v5-graph" viewBox="0 0 640 210" preserveAspectRatio="none" role="slider" tabIndex={0} aria-label={label} aria-valuemin={0} aria-valuemax={length} aria-valuenow={distance} aria-valuetext={`${format(distance, 2)} metres; Car A distance`}
-    onPointerDown={e => { e.currentTarget.setPointerCapture?.(e.pointerId); fromPointer(e); }} onPointerMove={e => { if (e.buttons === 1) fromPointer(e); }}
+    onPointerDown={e => { e.currentTarget.setPointerCapture?.(e.pointerId); fromPointer(e, true); }} onPointerMove={e => fromPointer(e, e.buttons === 1)} onPointerLeave={() => inspect(null)}
     onKeyDown={e => { const d = e.key === "Home" ? 0 : e.key === "End" ? length : ["ArrowRight", "ArrowUp"].includes(e.key) ? Math.min(length, distance + 25) : ["ArrowLeft", "ArrowDown"].includes(e.key) ? Math.max(0, distance - 25) : null; if (d !== null) { e.preventDefault(); seek(d); } }}>
+    {inspection !== null && <line data-testid={`${label}-inspection`} x1={x(inspection)} x2={x(inspection)} y1="25" y2="178" stroke="#ffffff" strokeDasharray="2 3" />}
     {[lo, (lo + hi) / 2, hi].map((v, i) => <g key={i}><line x1="60" x2="600" y1={y(v)} y2={y(v)} stroke="#26343b" /><text className="graph-y-label" x="54" y={y(v) + 4} textAnchor="end" fill="#aebbc0" fontSize="11">{format(v, 2)}</text></g>)}
     <text x="60" y="15" fill="#aebbc0" fontSize="11">{unit}</text>
     <polyline points={line(points)} fill="none" stroke={colors.A} strokeWidth="2" />

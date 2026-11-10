@@ -58,5 +58,10 @@
     "checked": 7,
     "matched": 7,
     "mismatches": []
+  },
+  "v6_pinned_artifacts": {
+    "checked": 6,
+    "matched": 6,
+    "mismatches": []
   }
 }

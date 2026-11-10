@@ -36,10 +36,10 @@ validated and hashed; their producer commit is explicitly unverified. Files abov
 10 MiB are rejected. Failed reads/validation preserve the last valid run; newer
 selections invalidate pending imports. Imports are session-only, not persisted.
 
-This integration consumes **exported JSON**, one of the supported V5 interfaces.
-It needs no API server. Input snapshots are read-only; for new parameters, generate
-an export with the existing V5 implementation and import it. It does not duplicate
-the V5 solver, calibration, parameter editor or original viewer.
+This integration now also has independent scenario forms using the existing V5 API.
+Bundled and imported JSON work without a service. Recompute requires the separate
+V5 service; see [setup instructions](../README.md#connect-the-v5-api). Applied output
+snapshots remain distinct from editable drafts. No solver is duplicated.
 
 Play/pause, restart, rate (0.5/1/2/4/10×) and timeline use Explorer's existing
 `tickReplay` clock. Each car uses its own constant-acceleration cell mapping;
@@ -92,13 +92,11 @@ demonstrated aggregate MAE improvement over the training-median baseline**.
 
 ## V6 integration requirements
 
-V6 stays disconnected. Its future adapter needs a published versioned producer
-schema, actual exports, units, provenance, time coordinates, completion/partial/
-failure semantics and validated common origin/distance coordinates before spatial
-comparison. Optional position, control or state channels must come from actual
-exports. Missing GPS, throttle, steering, brake pressure, ECU and driver channels
-remain unavailable. No V6 code, fixtures or unfinished concurrent integrations
-are imported by this delivery.
+The published V6 schema-2 adapter is now tested against exact PR #4 exports,
+including failure and zero-duration termination. Its UI remains disconnected.
+See [the current contract](DATA_CONTRACT.md#v6-actual-published-schema-2) for
+signal availability, same-course comparison and distance-coverage restrictions.
+No V5/V6 source is imported or modified.
 
 See [verification](VALIDATION.md) for actual test results and the known historical
 V3 manifest discrepancies.

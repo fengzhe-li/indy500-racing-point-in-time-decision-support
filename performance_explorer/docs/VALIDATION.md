@@ -1,5 +1,79 @@
 # Verification and Git delivery
 
+Verified on 2026-11-10 in `/private/tmp/indy500-performance-explorer`, continuing commit `1645881`, then rebased onto concurrent Explorer commit `e2d8319` on `feat/dual-car-performance-explorer`.
+
+## Executed checks
+
+| Check | Actual outcome |
+|---|---|
+| `npm test` in Explorer frontend | 93 passed across 8 files; all 11 original tests preserved and passing |
+| `npm run build` in Explorer frontend | TypeScript + Vite production build passed |
+| Explorer Python export regression suite | 6 passed |
+| `export_historical.py --check` | Committed export/audit exactly reproduce from canonical files |
+| Root `python3 -m unittest discover -s tests -v` | 33 passed (pipeline and portfolio) |
+| `python3 -m unittest discover -s r4/tests -v` | 21 passed |
+| V3 `test_v2_immutability.py` | 1 passed |
+| Existing V3 frontend `npm test` | 9 passed |
+| Browser inspection | 2024 displays 31 retained complete attempts, unknown order labels, recorded totals and discrete boundary markers |
+| `git diff --check` | Passed |
+
+Explorer tests/build were repeated after installing its own declared dependencies with a new `package-lock.json`; they do not require the V3 checkout's dependencies. Existing V3 frontend tests used a temporary dependency link in the isolated checkout; that link was removed afterward. V5 production mode uses two actual published exports pinned separately from test fixtures; V6 fixtures are test-only.
+
+Numerical checks cover recorded versus speed-derived duration, official total/lap sums, invalid and duplicate identities, nullable attempt order, partial lap rejection, unequal-lap boundary support, cross-session rejection, delta sign/ties, independent car completion, common-clock seeking, rate/pause/restart and missing data. V5 checks cover the published schema, malformed/unsupported versions, units/configuration, monotonicity, time/speed/acceleration integrals, geometry/segment consistency, interior-cell time/distance round trips, scenario independence, completion, matched-coordinate rejection, and cumulative versus incremental advantage conservation. Actual simulated exports are pinned by upstream commit and SHA-256.
+
+## Frozen asset audit: actual outcomes
+
+`python3 performance_explorer/scripts/check_integrity.py` deliberately exits **1** because the older V3 Phase 4 manifest contains three pre-existing source-code hash discrepancies. It does not rewrite manifests or classify that check as passing.
+
+| Manifest/scope | Matched / checked | Result |
+|---|---:|---|
+| V2 final manifest | 13 / 13 | Pass |
+| V2 pre-implementation dependency hashes | 32 / 32 | Pass |
+| V3 Phase 2 | 7 / 7 | Pass |
+| V3 Phase 3 | 12 / 12 | Pass |
+| V3 Phase 4 | 4 / 7 | Three pre-existing code differences |
+| V4 final manifest at verified target main | 735 / 735 | Pass |
+| Pinned V5 contract/docs/actual exports | 7 / 7 | Pass |
+| Pinned V6 docs/actual test exports | 6 / 6 | Pass |
+| All non-Explorer tracked files versus original `f15a323` checkout | 2643 / 2643 | Byte-for-byte unchanged |
+
+The three V3 Phase 4 mismatches are `v3_point_in_time/api/main.py`, `v3_point_in_time/api/models.py`, and `v3_point_in_time/app/replay_service.py`. Each matches the original Explorer commit's bytes; their last changes predate this work (`9aafae6`, FINAL_V3 finalization). This is reported as an existing historical-manifest mismatch; no frozen content was changed to make the check pass. Exact expected/actual hashes are in `audit/frozen_integrity.json`.
+
+V4 was added to main after Explorer's base and is absent from this older worktree. Its 735 entries were verified directly against Git blobs at `fe65ddf73a4de6b9c645de74830c8db7b88d64cb`, the verified target-main commit. No V4 checkout, regeneration or write was performed.
+
+## Git history and safe delivery
+
+Correct repository: `https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support`.
+
+Remote main was verified with `git ls-remote`, returning `fe65ddf73a4de6b9c645de74830c8db7b88d64cb`. The original Explorer parent `c7797837535ce20e425d1466aba2a4ca43bea375` is an ancestor of that commit. The original feature commit contains only `performance_explorer/` paths; comparison against target main's merge base also contains only those paths. The repositories share the correct Indy 500 history, so no transplant or history rewrite is required.
+
+Only after this verification, `origin` was changed to the correct URL and main fetched. GitHub CLI authentication works with normal network/keychain access outside the restricted sandbox; the earlier reported invalid-token result was not a continuing delivery blocker. Delivery uses an ordinary feature-branch push and PR targeting `main`, with no merge, force-push or destructive cleaning. V5/V6 worktree changes are never staged.
+
+## Integration limitations
+
+- Historical UI remains Day 1 qualifying and `VALID_RETAINED` only. Broader complete-but-not-retained populations are audited, not silently included.
+- Canonical sections need an explicit validated boundary mapping before region comparisons can be exposed.
+- V5 UI, file imports and API client are implemented. Runtime recomputation needs the separate V5 service from PR #2 (or a compatible deployed service); static exports need no backend. Production hosting must route `/api/v5` to it.
+- V6 schema-2 adapter and same-course comparison are tested against real PR #4 exports. V6 UI is intentionally not connected. Failed runs truncate comparison coverage; absent/nonmonotonic progress disables distance comparison.
+- The historical V3 Phase 4 manifest mismatch remains outside this module's scope.
+
+## Interactive V1 browser smoke (2026-11-10)
+
+The API ran in an isolated detached worktree at verified V5 `8879c30`, on 127.0.0.1:8007; Explorer at 127.0.0.1:5175 proxied `/api/v5` there. Other existing services on ports 8005/5174 were left untouched. No V5 source or combined integration history was created.
+
+- Actual browser submissions: A mass 900 kg returned 39.0331526207 s; independently B tire friction 1.5 returned 38.9874525382 s. Both POST requests returned HTTP 200. Applied input snapshots and separate API scenario selections updated.
+- At shared time ~0.4014 s with 2× playback, A/B progressed independently (~41.32/~41.37 m). Pause and graph keyboard seeking updated linked cursors without forcing equal vehicle distances.
+- Published baseline vs low-grip: seeking A to its finish at 38.9874525382 s left A at 4023.36 m (complete), B at 3821.50 m (in progress). The slower endpoint is 40.9634716751 s.
+- Back-straight selection sought A to 1005.84 m, B to 937.91 m on the common 9.7578508582 s clock. Selected interval insight: A gains 0.2789 s; full-lap delta +1.9760 s. Corner contributions +1.1848 s and straight contributions +0.7912 s sum to it.
+- Stopping only the isolated API produced a visible HTTP 500 connection error from the proxy, retaining the valid runs and replay. Restarting the service and loading its baseline recovered successfully.
+- Mode switching preserved observed historical timing and the 31 retained 2024 attempts; simulation markers/channels do not enter historical replay.
+
+Automated UI tests cover independent drafts/submissions, successful API loads, validation/network/schema failures, stale success and error responses, selection/unmount cancellation, graph hover/pointer/keyboard seeking, replay rates, independent completion, import failures and provenance labels. V6 tests cover real completed/failed/zero-duration samples, held controls, unwrapped heading, missing/unknown channels, incompatible geometry, terminal event consistency, restricted progress comparisons and delta conservation.
+
+## Concurrent export-only integration record (e2d8319)
+
+The record below is retained from the concurrent same-branch delivery. Its export-only/API/V6 scope describes that earlier commit; current functionality and tests are documented above. Its additional regression and dependency findings are preserved.
+
 ## Accepted V5 integration — 2026-11-10
 
 Base Explorer commit `164588128c9910463a7cbaa6c5e62defae6540e4`;
@@ -76,65 +150,3 @@ python3 v3_point_in_time/scripts/run_v3_v2_behavioral_regression.py
 python3 v3_point_in_time/scripts/smoke_test.py
 python3 scripts/validate_portfolio.py
 ```
-
-## Previous audit and delivery record (superseded integration status)
-
-The following records the earlier historical audit/adapter-only delivery. Its
-statements that the production UI is historical-only describe that earlier commit.
-See the integration results above and `V5_INTEGRATION.md` for current capabilities.
-
-Verified on 2026-11-10 in `/private/tmp/indy500-performance-explorer`, continuing commit `f15a323` on `feat/dual-car-performance-explorer`.
-
-## Executed checks
-
-| Check | Actual outcome |
-|---|---|
-| `npm test` in Explorer frontend | 43 passed across 6 files; all 11 original tests preserved and passing |
-| `npm run build` in Explorer frontend | TypeScript + Vite production build passed |
-| Explorer Python export regression suite | 6 passed |
-| `export_historical.py --check` | Committed export/audit exactly reproduce from canonical files |
-| Root `python3 -m unittest discover -s tests -v` | 33 passed (pipeline and portfolio) |
-| `python3 -m unittest discover -s r4/tests -v` | 21 passed |
-| V3 `test_v2_immutability.py` | 1 passed |
-| Existing V3 frontend `npm test` | 9 passed |
-| Browser inspection | 2024 displays 31 retained complete attempts, unknown order labels, recorded totals and discrete boundary markers |
-| `git diff --check` | Passed |
-
-Explorer tests/build were repeated after installing its own declared dependencies with a new `package-lock.json`; they do not require the V3 checkout's dependencies. Existing V3 frontend tests used a temporary dependency link in the isolated checkout; that link was removed afterward. No test fixtures were added to the production UI.
-
-Numerical checks cover recorded versus speed-derived duration, official total/lap sums, invalid and duplicate identities, nullable attempt order, partial lap rejection, unequal-lap boundary support, cross-session rejection, delta sign/ties, independent car completion, common-clock seeking, rate/pause/restart and missing data. V5 checks cover the published schema, malformed/unsupported versions, units/configuration, monotonicity, time/speed/acceleration integrals, geometry/segment consistency, interior-cell time/distance round trips, scenario independence, completion, matched-coordinate rejection, and cumulative versus incremental advantage conservation. Actual simulated exports are pinned by upstream commit and SHA-256.
-
-## Frozen asset audit: actual outcomes
-
-`python3 performance_explorer/scripts/check_integrity.py` deliberately exits **1** because the older V3 Phase 4 manifest contains three pre-existing source-code hash discrepancies. It does not rewrite manifests or classify that check as passing.
-
-| Manifest/scope | Matched / checked | Result |
-|---|---:|---|
-| V2 final manifest | 13 / 13 | Pass |
-| V2 pre-implementation dependency hashes | 32 / 32 | Pass |
-| V3 Phase 2 | 7 / 7 | Pass |
-| V3 Phase 3 | 12 / 12 | Pass |
-| V3 Phase 4 | 4 / 7 | Three pre-existing code differences |
-| V4 final manifest at verified target main | 735 / 735 | Pass |
-| Pinned V5 contract/docs/real test exports | 4 / 4 | Pass |
-| All non-Explorer tracked files versus original `f15a323` checkout | 2643 / 2643 | Byte-for-byte unchanged |
-
-The three V3 Phase 4 mismatches are `v3_point_in_time/api/main.py`, `v3_point_in_time/api/models.py`, and `v3_point_in_time/app/replay_service.py`. Each matches the original Explorer commit's bytes; their last changes predate this work (`9aafae6`, FINAL_V3 finalization). This is reported as an existing historical-manifest mismatch; no frozen content was changed to make the check pass. Exact expected/actual hashes are in `audit/frozen_integrity.json`.
-
-V4 was added to main after Explorer's base and is absent from this older worktree. Its 735 entries were verified directly against Git blobs at `fe65ddf73a4de6b9c645de74830c8db7b88d64cb`, the verified target-main commit. No V4 checkout, regeneration or write was performed.
-
-## Git history and safe delivery
-
-Correct repository: `https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support`.
-
-Remote main was verified with `git ls-remote`, returning `fe65ddf73a4de6b9c645de74830c8db7b88d64cb`. The original Explorer parent `c7797837535ce20e425d1466aba2a4ca43bea375` is an ancestor of that commit. The original feature commit contains only `performance_explorer/` paths; comparison against target main's merge base also contains only those paths. The repositories share the correct Indy 500 history, so no transplant or history rewrite is required.
-
-Only after this verification, `origin` was changed to the correct URL and main fetched. GitHub CLI authentication works with normal network/keychain access outside the restricted sandbox; the earlier reported invalid-token result was not a continuing delivery blocker. Delivery uses an ordinary feature-branch push and PR targeting `main`, with no merge, force-push or destructive cleaning. V5/V6 worktree changes are never staged.
-
-## Integration limitations
-
-- Historical UI remains Day 1 qualifying and `VALID_RETAINED` only. Broader complete-but-not-retained populations are audited, not silently included.
-- Canonical sections need an explicit validated boundary mapping before region comparisons can be exposed.
-- V5 adapter and comparison engine are ready for actual `v5-replay-1` payloads. UI/service wiring and independent scenario editors are intentionally a subsequent integration step.
-- V6 needs an actual published export version, units, signal availability, origin/common-distance validation and completion/failure semantics. Its placeholder rejects input rather than inventing channels.
-- The historical V3 Phase 4 manifest mismatch remains outside this module's scope.
