@@ -85,6 +85,8 @@ python3 -m unittest discover -s v5_lap_time_simulation/tests -p 'test_*.py' -v
 
 See the [V5 viewer setup, model, assumptions, validation and results](v5_lap_time_simulation/README.md).
 
+The [Performance Explorer](performance_explorer/README.md) keeps observed historical timing, V5 quasi-steady simulation, and V6 dynamic replay in separate modes. V6 Explorer V1.1 reuses the audited schema-2 adapter and does not compare V6 against historical or V5 lap-time metrics.
+
 | Evidence / result | Verified value | Meaning |
 |---|---:|---|
 | Frozen same-car transitions | **41** | Small, high-confidence performance core |
