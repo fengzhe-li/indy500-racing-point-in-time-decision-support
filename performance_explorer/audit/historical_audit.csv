@@ -1,0 +1,6 @@
+year,source_rows,r4p1_rows,v5_complete,old_explorer,retained_rows,recovered_unknown_order,excluded_rows,exclusions
+2020,63,63,46,46,46,0,17,"{""status_unknown"": 17}"
+2021,60,60,51,50,50,0,10,"{""status_unknown"": 9, ""status_withdrawn"": 1}"
+2022,44,44,40,39,39,0,5,"{""status_disallowed"": 1, ""status_unknown"": 4}"
+2023,85,85,69,30,30,0,55,"{""status_failed"": 13, ""status_retired"": 17, ""status_unknown"": 1, ""status_valid_superseded"": 8, ""status_waved_off"": 15, ""status_withdrawn"": 1}"
+2024,77,77,54,3,31,28,46,"{""status_failed"": 9, ""status_retired"": 9, ""status_unknown"": 3, ""status_valid_superseded"": 4, ""status_waved_off"": 20, ""status_withdrawn"": 1}"

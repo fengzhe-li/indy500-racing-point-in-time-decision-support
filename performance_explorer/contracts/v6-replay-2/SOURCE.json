@@ -1,0 +1,30 @@
+{
+  "upstreamCommit": "71128258e809b1a34906d0e2a39754db473f7996",
+  "fixtureClassification": "ACTUAL_SIMULATED_EXPORTS_ILLUSTRATIVE_UNCALIBRATED_NOT_OFFICIAL_RESULTS",
+  "files": {
+    "frontend/src/test/fixtures/v6-baseline.json": {
+      "upstreamPath": "v6_driver_in_loop/reports/replays/baseline.json",
+      "sha256": "b20aefae0fd36bf778025cd23870b292020231b105b9155a7a024304a66f4040"
+    },
+    "frontend/src/test/fixtures/v6-conservative.json": {
+      "upstreamPath": "v6_driver_in_loop/reports/replays/conservative.json",
+      "sha256": "2d30e5fa03a2c2053e902df2142dd60184324aaa368e954f9338aa8a61a3a9fa"
+    },
+    "frontend/src/test/fixtures/v6-delay_0.6s.json": {
+      "upstreamPath": "v6_driver_in_loop/reports/replays/delay_0.6s.json",
+      "sha256": "7a92068d55f513b69d88045dff85f5f3679b5ef77ef66c64878cd0eda5b95d1e"
+    },
+    "frontend/src/test/fixtures/v6-offset_+8m.json": {
+      "upstreamPath": "v6_driver_in_loop/reports/replays/offset_+8m.json",
+      "sha256": "034f43084255453b3731093850d514ff0d6353ab32b5199870052f5fbfdcc671"
+    },
+    "contracts/v6-replay-2/INTERACTIVE_REPLAY.md": {
+      "upstreamPath": "v6_driver_in_loop/docs/INTERACTIVE_REPLAY.md",
+      "sha256": "ee40a7fce84ca3e79d76cd1b857d2bd2d1324ccfb8e2a3b6de5d7f6460cd7b90"
+    },
+    "contracts/v6-replay-2/V5_INTEGRATION_CONTRACT.md": {
+      "upstreamPath": "v6_driver_in_loop/docs/V5_INTEGRATION_CONTRACT.md",
+      "sha256": "ef88eeb4d58f2eeb46fefb52b02da416a2cb49262724e7d2e010d25c7e5aab5f"
+    }
+  }
+}

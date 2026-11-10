@@ -1,0 +1,9 @@
+{
+  "name": "indy500-performance-explorer",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": { "dev": "vite --port 5174", "build": "tsc -b && vite build", "test": "vitest run" },
+  "dependencies": { "react": "^18.3.1", "react-dom": "^18.3.1" },
+  "devDependencies": { "@testing-library/jest-dom": "^6.5.0", "@testing-library/react": "^16.0.1", "@types/react": "^18.3.12", "@types/react-dom": "^18.3.1", "@vitejs/plugin-react": "^4.7.0", "jsdom": "^25.0.1", "typescript": "^5.6.3", "vite": "^6.4.4", "vitest": "^4.1.12" }
+}

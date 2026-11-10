@@ -1,0 +1,60 @@
+name: performance-explorer-ci
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'performance_explorer/**'
+      - '.github/workflows/explorer.yml'
+      - 'data/canonical/v1/**'
+      - 'r4/output/r4p1_attempt_four_lap_panel_v1.csv'
+      - 'v5_lap_time_simulation/output/replay*.json'
+      - 'v5_lap_time_simulation/schema/replay.schema.json'
+      - 'v5_lap_time_simulation/docs/REPLAY_CONTRACT.md'
+      - 'v5_lap_time_simulation/docs/EXPLORER_ADAPTER.md'
+      - 'v6_driver_in_loop/reports/replays/*.json'
+      - 'v6_driver_in_loop/docs/INTERACTIVE_REPLAY.md'
+      - 'v6_driver_in_loop/docs/V5_INTEGRATION_CONTRACT.md'
+  push:
+    branches: [main, feat/dual-car-performance-explorer]
+    paths:
+      - 'performance_explorer/**'
+      - '.github/workflows/explorer.yml'
+      - 'data/canonical/v1/**'
+      - 'r4/output/r4p1_attempt_four_lap_panel_v1.csv'
+      - 'v5_lap_time_simulation/output/replay*.json'
+      - 'v5_lap_time_simulation/schema/replay.schema.json'
+      - 'v5_lap_time_simulation/docs/REPLAY_CONTRACT.md'
+      - 'v5_lap_time_simulation/docs/EXPLORER_ADAPTER.md'
+      - 'v6_driver_in_loop/reports/replays/*.json'
+      - 'v6_driver_in_loop/docs/INTERACTIVE_REPLAY.md'
+      - 'v6_driver_in_loop/docs/V5_INTEGRATION_CONTRACT.md'
+  workflow_dispatch: {}
+
+jobs:
+  explorer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Historical exporter regression tests
+        run: python -m unittest discover -s performance_explorer/tests -v
+      - name: Historical export reproducibility check
+        run: python performance_explorer/scripts/export_historical.py --check
+      - name: Install Explorer frontend dependencies
+        working-directory: performance_explorer/frontend
+        run: npm ci
+      - name: TypeScript validation
+        working-directory: performance_explorer/frontend
+        run: npx tsc -b
+      - name: Explorer frontend tests
+        working-directory: performance_explorer/frontend
+        run: npm test
+      - name: Explorer production build
+        working-directory: performance_explorer/frontend
+        run: npm run build
