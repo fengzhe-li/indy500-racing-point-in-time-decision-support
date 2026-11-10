@@ -12,9 +12,9 @@ The export contains 196 retained complete Day 1 qualifying attempts (2020–2024
 
 ## V5: published `v5-replay-1`
 
-Pinned upstream branch: `feat/v5-lap-time-simulation`, commit `81674ea7d27e1a0f7305c215da8b4c049c8fbbfe`.
+Pinned upstream branch: `feat/v5-lap-time-simulation`, commit `8879c3095cd11215a0d444e5973bc7a37b36342b`.
 
-`contracts/v5-replay-1/` contains the exact published schema and documentation plus source paths/hashes. Two real committed simulation exports are copied into `frontend/src/test/fixtures/` **for contract testing only**. They are actual assumed-model simulations, never official racing results, and are not loaded by the production historical UI. No solver or V5 frontend code is imported or edited.
+`contracts/v5-replay-1/` contains the exact published schema and documentation plus source paths/hashes. Two real committed simulation exports are pinned in `frontend/src/test/fixtures/` for regression testing and in `frontend/src/data/` for the separate SIMULATED production mode. They are actual assumed-model simulations, never official racing results. The historical mode never interprets them as observations. No solver or V5 frontend code is imported or edited.
 
 `V5Adapter.adapt(payload: unknown)` validates:
 
@@ -39,7 +39,7 @@ const { a: carA, b: carB } = comparison.atTime(elapsedSeconds);
 
 `v5AtTime` and `v5TimeAtDistance` use the upstream constant-acceleration cell model and its inverse, not generic linear interpolation. Position follows the same assumed arc/straight geometry. The generic domain interpolation helpers remain explicitly piecewise linear and are not used for V5 kinematics.
 
-This task prepares and verifies the adapter and comparison engine. Connecting a UI loader/service client and two scenario configuration editors remains a separate integration step. The Explorer does not launch or depend on the V5 server. Actual contract version changes must be reviewed and versioned; unsupported versions fail explicitly.
+The Explorer now connects this adapter to independent A/B export selection and local JSON imports, common-clock replay and linked comparison graphs. Read-only input snapshots preserve each scenario. New parameter configurations are produced by V5 and imported, not recalculated in Explorer. See `V5_INTEGRATION.md` for seeking and Track Dominance definitions. The Explorer does not launch or depend on the V5 server. Actual contract version changes must be reviewed and versioned; unsupported versions fail explicitly.
 
 ## V6: isolated future boundary
 

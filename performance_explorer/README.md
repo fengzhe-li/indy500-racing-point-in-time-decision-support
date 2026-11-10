@@ -1,6 +1,6 @@
 # Indy 500 Dual-Car Performance Explorer
 
-Independent historical comparison and lap-boundary replay module, with a tested adapter for published V5 simulation exports. It imports no V5/V6 implementation code and does not modify frozen scientific assets.
+Independent historical comparison and dual-car V5 simulation replay module. It imports no V5/V6 implementation code and does not modify frozen scientific assets.
 
 ```sh
 cd performance_explorer/frontend
@@ -12,8 +12,9 @@ npm run dev
 
 The historical UI compares **196 retained complete Day 1 qualifying attempts** from 2020–2024: **46 / 50 / 39 / 30 / 31**. Stable attempt IDs retain records whose chronological attempt number is unknown. Official lap durations drive discrete boundary replay; lap-average speeds are canonical derivations from those times. There is no continuous historical GPS trajectory or section-level spatial advantage.
 
-The isolated V5 adapter consumes published `v5-replay-1` exports and supports common-clock dual-run progression, distance-aligned speed/delta and incremental region advantage. Its contract tests use actual committed simulation exports, labelled SIMULATED. The production UI remains historical; connecting a V5 service and scenario editors is a separate integration step. V6 remains disconnected pending a published schema and validated distance coordinate.
+The isolated V5 adapter consumes published `v5-replay-1` exports and supports common-clock dual-run progression, distance-aligned speed/delta and incremental region advantage. Its separate SIMULATED UI uses real accepted V5 exports, independent A/B selectors and validated local JSON imports. Both cars share one clock and clamp at their own finishes. Linked speed/delta graphs and segment Track Dominance use matched distance coordinates. Input snapshots are read-only; generate parameter changes with V5 and import the resulting JSON. No backend is required. V6 remains disconnected pending a published schema and validated distance coordinate.
 
+- [V5 integration, replay conventions and use](docs/V5_INTEGRATION.md)
 - [Historical audit and count reconciliation](docs/DATA_AUDIT.md)
 - [Versioned contracts and integration requirements](docs/DATA_CONTRACT.md)
 - [Verification results and delivery history](docs/VALIDATION.md)

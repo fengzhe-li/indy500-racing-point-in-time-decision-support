@@ -3,6 +3,7 @@ import data from "./data/historical-attempts-v1.json";
 import type { HistoricalAttempt } from "./domain/contract";
 import { validateHistoricalData } from "./adapters/historical";
 import { completedLaps, historicalComparison, tickReplay, type ReplayState } from "./domain/replay";
+import { V5Explorer } from "./V5Explorer";
 
 const fmt = (n: number, d = 4) => n.toFixed(d);
 const attemptLabel = (r: HistoricalAttempt) => r.attempt === null ? `Order unknown · ID ${r.attemptId.slice(0, 8)}` : `Attempt ${r.attempt}`;
@@ -14,6 +15,14 @@ function Selector({ label, value, values, onChange, labels }: {
   </select></label>;
 }
 export function App({ dataset = data }: { dataset?: unknown }) {
+  const [mode, setMode] = useState("historical");
+  return <><nav className="mode-switch" aria-label="Data source">
+    <button aria-pressed={mode === "historical"} onClick={() => setMode("historical")}>Historical timing · OBSERVED</button>
+    <button aria-pressed={mode === "v5"} onClick={() => setMode("v5")}>V5 simulation · SIMULATED</button>
+    <span>V6 · unavailable until its contract is published</span>
+  </nav>{mode === "v5" ? <V5Explorer /> : <HistoricalApp dataset={dataset} />}</>;
+}
+function HistoricalApp({ dataset }: { dataset: unknown }) {
   if (!validateHistoricalData(dataset)) return <p role="alert">Historical dataset failed schema validation.</p>;
   if (!dataset.rows.length) return <p role="status">No retained complete attempts available.</p>;
   return <Explorer rows={dataset.rows} />;
@@ -103,7 +112,7 @@ function Explorer({ rows }: { rows: HistoricalAttempt[] }) {
         <div className="source-line"><span>EXPORT</span><code>historical-attempts · v1.1.0</code></div>
         <p className="limitation">Source A: {a.sourceIds.join(", ")} · {a.sourceLocator}<br />Source B: {b.sourceIds.join(", ")} · {b.sourceLocator}</p>
       </section></div>
-      <footer>Independent research tool · Not affiliated with INDYCAR or IMS · Historical observed timing · Simulation UI integration remains separate</footer>
+      <footer>Independent research tool · Not affiliated with INDYCAR or IMS · Historical observed timing · V5 simulation is a separate data mode</footer>
     </main>
   </div>;
 }

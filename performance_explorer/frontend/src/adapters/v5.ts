@@ -152,6 +152,10 @@ export function compareV5(a: V5Series, b: V5Series) {
   };
   return {
     label: "SIMULATED" as const, durationS: Math.max(ar.lap_time_s, br.lap_time_s),
+    deltaAt,
+    // Graph selection anchors A at the selected distance. B retains its own
+    // position on the shared clock; equal distance never means equal time.
+    seekTimeAtDistance: (distance: number) => v5TimeAtDistance(ar, distance),
     atTime: (time: number) => ({ a: v5AtTime(ar, time), b: v5AtTime(br, time) }),
     runningDelta: boundaries.map(distanceM => ({ distanceM, deltaS: deltaAt(distanceM) })),
     speedComparison: boundaries.map(distanceM => ({ distanceM,
@@ -161,8 +165,19 @@ export function compareV5(a: V5Series, b: V5Series) {
       const startM = s.start_m, endM = Math.min(ar.track_length_m, startM + s.distance_m);
       const incrementalDeltaS = deltaAt(endM) - deltaAt(startM);
       return { name: s.name, startM, endM, incrementalDeltaS, cumulativeDeltaS: deltaAt(endM),
+        aTimeS: v5TimeAtDistance(ar, endM) - v5TimeAtDistance(ar, startM),
+        bTimeS: v5TimeAtDistance(br, endM) - v5TimeAtDistance(br, startM),
         winner: Math.abs(incrementalDeltaS) < 1e-9 ? "tie" : incrementalDeltaS < 0 ? "B" : "A",
         evidence: "SIMULATED interval time over matched assumed track geometry; no causal attribution." };
     }),
   };
+}
+
+/** Share of matched segment length won, not pointwise speed superiority. */
+export function trackDominance(regions: ReturnType<typeof compareV5>["regions"]) {
+  const distance = { A: 0, B: 0, tie: 0 };
+  for (const r of regions) distance[r.winner as keyof typeof distance] += r.endM - r.startM;
+  const total = distance.A + distance.B + distance.tie;
+  return Object.fromEntries(Object.entries(distance).map(([side, meters]) =>
+    [side, { distanceM: meters, percent: 100 * meters / total }])) as Record<"A" | "B" | "tie", { distanceM: number; percent: number }>;
 }
