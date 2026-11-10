@@ -2,7 +2,7 @@
 
 A motorsport engineering portfolio spanning point-in-time decision support, frozen scientific evidence, native C++17 computation, vehicle simulation and interactive replay. Python, FastAPI and React/TypeScript connect traceable data to engineering tools; Docker and GitHub Actions support reproducible delivery.
 
-**Explore:** [V2 / V3](#v2-v3) · [V4](#v4) · [V5](#v5) · [V6](#v6) · [Performance Explorer](#performance-explorer) · [C++17](#cpp17)
+**Explore:** [V2](docs/final_v2_system_specification.md) / [V3](v3_point_in_time/README.md) · [V4](v4_team_normalized/README.md) · [V5](v5_lap_time_simulation/README.md) · [V6](v6_driver_in_loop/README.md) · [Performance Explorer](performance_explorer/README.md) · [C++17](cpp/README.md)
 
 [![Application CI](https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support/actions/workflows/ci.yml/badge.svg)](https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support/actions/workflows/ci.yml)
 [![Explorer CI](https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support/actions/workflows/explorer.yml/badge.svg)](https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support/actions/workflows/explorer.yml)
@@ -22,8 +22,6 @@ A motorsport engineering portfolio spanning point-in-time decision support, froz
 | **V6** | Dynamic bicycle model, virtual driver, scenario sweeps and recorded telemetry | [V6 README](v6_driver_in_loop/README.md) |
 | **Performance Explorer V1.1** | Historical timing, V5 comparison and integrated V6 dual-car replay in one interface | [Explorer README](performance_explorer/README.md) |
 | **C++17** | Native temporal guards, forecast selection and physical-response calculations with Python parity checks | [C++17 README](cpp/README.md) |
-
-<a name="performance-explorer"></a>
 
 ## Performance Explorer — one interface, three domains
 
@@ -45,8 +43,6 @@ npm run dev
 
 Bundled replays work without a simulation server. V5 recomputation requires its Python service; see the [connection guide](performance_explorer/README.md#connect-the-v5-api). V6 V1.1 currently bundles two scenarios. V5 and V6 use different track geometries and are never compared through cross-mode lap times or Track Dominance.
 
-<a name="v5"></a>
-
 ## V5 — quasi-steady physics
 
 A Python/NumPy model combines aero, banked tyre-force limits, power, braking and cornering on an assumed **4023.36 m** oval. Its separate engineering viewer supports scenario recomputation and replay from real solver exports.
@@ -56,8 +52,6 @@ A Python/NumPy model combines aero, banked tyre-force limits, power, braking and
 **SIMULATED — V5 · Standalone engineering viewer.** Baseline **38.987453 s**; grip −25% **40.963472 s**. [Watch the MP4](docs/media/v5-physics-comparison.mp4) · [V5 setup, physics and validation](v5_lap_time_simulation/README.md).
 
 The effective scalar is fitted on 2020–2023; the retrospective 2024 comparison does **not** outperform the training-median speed benchmark. Track shape and vehicle parameters remain assumptions, not identified individual-car measurements.
-
-<a name="v6"></a>
 
 ## V6 — vehicle dynamics and virtual driver
 
@@ -69,15 +63,11 @@ An audited dynamic bicycle model with RK4 integration, pure-pursuit steering and
 
 This is software-in-the-loop with an illustrative virtual driver and an approximate **4527.95 m** stadium. It is not measured ECU telemetry, surveyed IMS geometry or validated hardware driver-in-the-loop performance. The standalone recording above is distinct from the integrated Explorer V6 recording.
 
-<a name="cpp17"></a>
-
 ## C++17 — native computation
 
 The additive native engine implements UTC parsing, point-in-time guards, observation filtering, forecast-vintage selection, solar geometry and physical-response/Monte Carlo calculations. CMake, GoogleTest and optional pybind11 bindings support parity checks and a Python fallback.
 
 Reported verification includes **16 C++ tests** and **12 Python parity/regression tests**. Component microbenchmarks are documented with their workloads and pre-parsed Python comparison; they are not end-to-end API speedups. Python remains the authoritative application implementation, and normal historical/scenario API requests do not execute the native engine. [Build, tests and benchmark details](cpp/README.md).
-
-<a name="v2-v3"></a>
 
 ## V2 / V3 — point-in-time decision support
 
@@ -86,8 +76,6 @@ Reported verification includes **16 C++ tests** and **12 Python parity/regressio
 The 2025 external evaluation contains **15 cases**: MAE **0.492 mph**, RMSE **0.610 mph**, and directional accuracy **46.7%**. Only **4** cases lie within the production horizon. Genuine point-in-time replay has **10 candidates** and **0 cases** supporting formal aggregate historical-scoring validation; the illustrative near-anchor case is not validation.
 
 The system conditions on a supplied horizon and supports human judgement. It does not infer queue opportunity, team intent, or whether to retain or withdraw a qualifying result. Small samples, latent setup/tyre/execution state, thermal-regime transfer and forecast availability limit conclusions. [V2 specification](docs/final_v2_system_specification.md) · [V3 application](v3_point_in_time/README.md) · [Complete evidence and limitations](docs/PORTFOLIO_EVIDENCE.md).
-
-<a name="v4"></a>
 
 ## V4 — team-normalized evidence
 
