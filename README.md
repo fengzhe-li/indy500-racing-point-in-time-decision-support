@@ -24,6 +24,12 @@ Historical replay and evidence validation are central: **point-in-time** checks 
 - **Stack:** Python · C++17 (CMake / GoogleTest / pybind11) · FastAPI · React / TypeScript · Docker · GitHub Actions CI
 - **Focus:** Point-in-time historical replay, field-level data provenance, leakage prevention, physics-conditioned probabilistic inference and evidence-aware abstention
 
+### Interactive Dual-Car Performance Explorer (`SIMULATED — V5`)
+
+![Dual-Car Performance Explorer: V5 Baseline vs. Grip −25% Scenario (SIMULATED — V5)](docs/media/explorer-dual-car.gif)
+
+*`SIMULATED — V5` · Synchronized dual-car playback in [`performance_explorer/`](performance_explorer/README.md) comparing the published V5 baseline (`Car A`: `38.9875 s`, `230.844 mph`, $\mu = 1.80$) against the reduced-grip scenario (`Car B`: `40.9635 s`, `219.708 mph`, $\mu = 1.35$, `+1.9760 s`), with live distance-aligned speed comparison, running equal-distance time delta, segment-level Track Dominance (`Car A: 100.0% / 4023.4 m` across all 8 segments) and independent finish clamping (`A ✓` completes at `38.9875 s` while `B` continues to `40.9635 s`). Assumed closed-oval simulation; not official telemetry or an individual-car forecast. [**Full-resolution MP4 (`explorer-dual-car.mp4`) →**](docs/media/explorer-dual-car.mp4) · [**Explorer module & historical mode →**](performance_explorer/README.md)*
+
 ### Transferable Software & Data Engineering Capabilities
 
 | Capability | Implemented evidence | Key source files & validation reports |
@@ -83,7 +89,15 @@ python3 -m v5_lap_time_simulation.cli
 python3 -m unittest discover -s v5_lap_time_simulation/tests -p 'test_*.py' -v
 ```
 
-See the [V5 viewer setup, model, assumptions, validation and results](v5_lap_time_simulation/README.md).
+See the [V5 viewer setup, model, assumptions, validation and results](v5_lap_time_simulation/README.md) · [Animated V5 physics comparison GIF (`SIMULATED — V5`)](docs/media/v5-physics-comparison.gif) · [Full-resolution V5 MP4 (`v5-physics-comparison.mp4`)](docs/media/v5-physics-comparison.mp4).
+
+### Independent V6 vehicle-dynamics & virtual-driver simulation (`SIMULATED — V6`)
+
+An isolated `v6_driver_in_loop/` module implements a Software-in-the-Loop (SIL) dynamic bicycle vehicle model with RK4 integration, combined tyre-force saturation, aerodynamic load, and a pure-pursuit + PID virtual driver on an analytical closed stadium oval (`4,527.95 m`), accompanied by a 19-scenario sensitivity sweep and read-only browser replay viewer. Every trajectory, telemetry trace and terminal event is **`SIMULATED — V6`** using illustrative vehicle parameters (not measured IndyCar ECU telemetry, surveyed IMS lane geometry, or hardware-in-the-loop certification), and never modifies frozen V2/V3/V4 assets.
+
+![V6 Vehicle Dynamics: Completed Baseline Lap and 0.6 s Delay Off-Track Termination (SIMULATED — V6)](docs/media/v6-vehicle-dynamics.gif)
+
+*`SIMULATED — V6` · Browser replay of audited V6 exports ([`v6_driver_in_loop/viewer/`](v6_driver_in_loop/README.md)): (1) `baseline.json` completing the full `4,527.95 m` lap in `72.410 s` (`COMPLETED`, max / RMS tracking error `5.187 / 2.769 m`, tyre saturation `4.09%`), followed by (2) `delay_0.6s.json` terminating off-track at `17.474 s` (`OFF_TRACK — track boundary exceeded`, `-7.500 m` tracking error, `17.40%` tyre saturation) with synchronized speed, steering, throttle/brake, yaw-rate, lateral-acceleration and tracking-error traces. [**Full-resolution combined MP4 (`v6-vehicle-dynamics.mp4`) →**](docs/media/v6-vehicle-dynamics.mp4) · [**Completed baseline MP4 (`v6-baseline-completed.mp4`) →**](docs/media/v6-baseline-completed.mp4) · [**Off-track termination MP4 (`v6-delay-off-track.mp4`) →**](docs/media/v6-delay-off-track.mp4) · [**V6 module documentation →**](v6_driver_in_loop/README.md)*
 
 | Evidence / result | Verified value | Meaning |
 |---|---:|---|
@@ -523,6 +537,10 @@ tests/                    pipeline and portfolio QA
 cpp/                      C++17 point-in-time performance engine, GoogleTest suite and pybind11 bindings
 v3_point_in_time/         FINAL_V3: point-in-time replay, Scenario Mode, FastAPI + React app, Docker, CI
 v4_team_normalized/       V4 (frozen, additive): team registry, pre-registered Phases 3–4K, Phase 4L synthesis + freeze manifest
+v5_lap_time_simulation/   V5 (isolated, simulated): quasi-steady closed-oval lap solver, mesh audit and FastAPI + React replay
+v6_driver_in_loop/        V6 (isolated, simulated): dynamic-bicycle SIL vehicle dynamics, 19-run sweep and telemetry viewer
+performance_explorer/     Dual-Car Performance Explorer: 196 historical attempts and synchronized V5 dual-car comparison UI
+docs/media/               authentic browser-recorded GIF and MP4 demonstrations with provenance and reproduction notes
 ```
 
 For the detailed module and status inventory, open [the repository guide](docs/reproducibility.md) and [figure gallery](figures/GALLERY.md).
@@ -575,6 +593,11 @@ For the detailed module and status inventory, open [the repository guide](docs/r
   - [workspace README](v4_team_normalized/README.md)
 
   V4 is **not** yet part of the full research report above.
+- **Interactive engineering simulations & Explorer (`SIMULATED`):**
+  - [Dual-Car Performance Explorer README](performance_explorer/README.md) · [data contract](performance_explorer/docs/DATA_CONTRACT.md) · [validation](performance_explorer/docs/VALIDATION.md)
+  - [V5 lap-time simulation README](v5_lap_time_simulation/README.md) · [physics model](v5_lap_time_simulation/docs/PHYSICS_MODEL.md) · [validation report](v5_lap_time_simulation/docs/VALIDATION_REPORT.md)
+  - [V6 vehicle-dynamics & virtual-driver README](v6_driver_in_loop/README.md) · [vehicle dynamics](v6_driver_in_loop/docs/VEHICLE_DYNAMICS.md) · [simulation validation](v6_driver_in_loop/docs/SIMULATION_VALIDATION.md)
+  - [Demo media inventory & reproduction instructions](docs/media/README.md)
 
 ## Author and citation
 
