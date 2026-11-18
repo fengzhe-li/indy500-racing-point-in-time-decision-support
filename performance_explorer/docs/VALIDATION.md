@@ -1,5 +1,7 @@
 # Verification and Git delivery
 
+Current release note: Explorer V1.1 was accepted in PR #8 (merge `80344d9581c0bb464036085a141503bdc09358d2`). It connects V6 mode; 103 frontend tests, TypeScript, production build and GitHub Actions passed. Statements below about an unconnected V6 UI describe the original V1.0 audit and are retained as historical evidence.
+
 Verified on 2026-11-10 against merged `main` (`de49616eda74224e1f07475c24e40eb6b9486f58`, containing C++17 PR #3 `2ac5b9615095f440560d809986d608e36c989962`, V5 PR #2 `aeb67fc28488974e6ec1c11cf30ab2f5bbb8ff4f`, and V6 PR #4 `de49616eda74224e1f07475c24e40eb6b9486f58`) on branch `feat/dual-car-performance-explorer` (PR #5).
 
 ## Final audit fixes and dependency remediation

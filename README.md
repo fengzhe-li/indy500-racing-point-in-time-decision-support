@@ -1,603 +1,374 @@
-<div align="center">
+# Indy 500 — Point-in-Time Decision Support, Frozen Scientific Evidence & Vehicle Simulation Extensions
 
-# Indy 500 Racing Point-in-Time Decision Support System
+A full-stack motorsport research and software engineering repository anchored by a **frozen physics-conditioned probabilistic decision-support core (`V2`)**, a **leakage-controlled point-in-time replay and hypothetical scenario application (`V3`)**, a **pre-registered team-normalized evidence study (`V4`)**, and an **additive C++17 temporal and physical computation engine (`C++17`)**, extended with later vehicle-engineering simulation modules for **quasi-steady lap-time physics (`V5`)**, **Software-in-the-Loop vehicle dynamics and virtual-driver control (`V6`)**, and a **unified dual-car comparison interface (`Performance Explorer`)**.
 
-### Physics-conditioned probabilistic inference with leakage-controlled historical replay and evidence-aware abstention
+**[V2](docs/final_v2_system_specification.md) | [V3](v3_point_in_time/README.md) | [V4](v4_team_normalized/README.md) | [V5](v5_lap_time_simulation/README.md) | [V6](v6_driver_in_loop/README.md) | [Performance Explorer](performance_explorer/README.md) | [C++17](cpp/README.md)**
 
-**Status: `FINAL_V3_FROZEN`** · **FINAL_V2 frozen scientific core** · **2020–2024 reference era** · **2025 external regime evaluation** · **Human in the loop**
+**On this page:** [Module Navigation](#module-navigation--architecture-overview) · [V2 / V3 Core System](#v2--v3--scientific-model-and-point-in-time-application) · [V4 Team-Normalized Evidence](#v4--team-normalized-evidence) · [C++17 Native Computation](#c17--native-computation) · [Scientific & Application Figure Gallery (36 Figures)](#scientific-and-application-figure-gallery) · [V5 Lap-Time Physics Simulation](#v5--lap-time-physics-simulation) · [V6 Vehicle Dynamics & Virtual Driver](#v6--vehicle-dynamics-and-virtual-driver) · [Performance Explorer](#performance-explorer--unified-interface-and-demonstrations) · [Reproducibility, Limitations & Documentation](#reproducibility-limitations-and-further-documentation)
 
-**+ `V4_TEAM_NORMALIZED_FINAL`** — frozen additive team-normalized evidence extension (V2/V3 unchanged)
+[![Application CI](https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support/actions/workflows/ci.yml/badge.svg)](https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support/actions/workflows/ci.yml)
+[![Explorer CI](https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support/actions/workflows/explorer.yml/badge.svg)](https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support/actions/workflows/explorer.yml)
+[![Repository integrity](https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support/actions/workflows/integrity.yml/badge.svg)](https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support/actions/workflows/integrity.yml)
 
-[![indy500-v3-ci](https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support/actions/workflows/ci.yml/badge.svg)](https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support/actions/workflows/ci.yml)
-[![repository-integrity](https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support/actions/workflows/integrity.yml/badge.svg)](https://github.com/fengzhe-li/indy500-racing-point-in-time-decision-support/actions/workflows/integrity.yml)
+---
 
-[Methodology](docs/methodology.md) · [Model card](docs/model-card.md) · [Validation](docs/validation.md) · [Evidence engineering](docs/evidence-engineering.md) · [Full report](docs/paper/physics_conditioned_probabilistic_performance_inference.pdf) · [**FINAL_V3 application →**](v3_point_in_time/README.md) · [**V4 evidence extension →**](v4_team_normalized/output/phase4l/phase4l_final_scientific_synthesis.md)
+## Module Navigation & Architecture Overview
 
-</div>
+**[V2](docs/final_v2_system_specification.md)**, **[V3](v3_point_in_time/README.md)**, and **[V4](v4_team_normalized/README.md)** constitute the repository's central scientific and point-in-time decision-support work, backed by an additive **[C++17](cpp/README.md)** computational engine. **[V5](v5_lap_time_simulation/README.md)**, **[V6](v6_driver_in_loop/README.md)**, and the **[Performance Explorer](performance_explorer/README.md)** are later, isolated vehicle-engineering simulation extensions that preserve all frozen scientific assets without modification.
 
-### Project at a Glance
+| Module | Role & Evidence Class | Core Scientific or Engineering Scope | Stack & Verification | Module README & Section |
+|---|---|---|---|---|
+| **[V2](docs/final_v2_system_specification.md) / [V3](v3_point_in_time/README.md)** | Core Scientific Model & Application (`FINAL_V2` / `FINAL_V3_FROZEN`) | Physics-conditioned probabilistic performance inference $p(\Delta v \mid H = h)$ over `41` same-car transitions (`39/41` section-linked, `15/30/60/90/120 min` horizons), HRRR forecast-vintage provenance, fail-closed `issue_time <= decision_time` leakage guard, read-only shadow replay, isolated Scenario Mode, and hardened Docker containers | Python · FastAPI · React/TypeScript · Docker (`read_only: true`, non-root) · `101/101` V3 tests | [V2 Spec](docs/final_v2_system_specification.md) · [V3 README](v3_point_in_time/README.md) · [Jump to Section ↓](#v2--v3--scientific-model-and-point-in-time-application) |
+| **[V4](v4_team_normalized/README.md)** | Core Additive Evidence Study (`V4_TEAM_NORMALIZED_FINAL`) | Rule-based entity resolution (`59` entrant labels → `21` canonical engineering teams, `2018–2025`), practice run-state comparability audit (`8.1%` Class-A), and pre-registered `same car < same team < different team` dispersion hierarchy tests (`Phase 4H/4J/4K/4L`) | Python · `735`-file SHA-256 freeze manifest · `17/17` Phase 4L checks | [V4 README](v4_team_normalized/README.md) · [Final Synthesis](v4_team_normalized/output/phase4l/phase4l_final_scientific_synthesis.md) · [Jump to Section ↓](#v4--team-normalized-evidence) |
+| **[C++17](cpp/README.md)** | Additive Native Compute (`indy500_pit_engine`) | Native C++17 ISO-8601 UTC parsing, fail-closed point-in-time guards, timestamp-aware observation lookback filtering, HRRR forecast-vintage store, NOAA solar geometry, and `M2b`/Monte Carlo evaluation with transparent Python fallback | C++17 · CMake · GoogleTest (`16/16`) · `pybind11` parity suite (`12/12`) | [C++17 README](cpp/README.md) · [`pit_engine.hpp`](cpp/include/indy500/pit_engine.hpp) · [Jump to Section ↓](#c17--native-computation) |
+| **[V5](v5_lap_time_simulation/README.md)** | Vehicle Simulation Extension (`SIMULATED — V5`) | Quasi-steady closed-loop spatial speed solver on an assumed `4023.360 m` (`2.5 mi`, `9.2°` banked) 8-segment oval, spatial mesh convergence audit (`40 m` to `1.25 m`), sensitivity sweeps, retrospective 2024 comparison, and FastAPI + React replay viewer | Python · NumPy · FastAPI · React/TypeScript (`v5-replay-1` schema, `25/25` Python tests) | [V5 README](v5_lap_time_simulation/README.md) · [Physics Model](v5_lap_time_simulation/docs/PHYSICS_MODEL.md) · [Jump to Section ↓](#v5--lap-time-physics-simulation) |
+| **[V6](v6_driver_in_loop/README.md)** | Vehicle Dynamics Extension (`SIMULATED — V6`) | Audited planar dynamic-bicycle Software-in-the-Loop (SIL) simulator with classical RK4 integration, circular combined-slip tyre saturation, pure-pursuit + anti-windup PID virtual driver, `≤1 ns` boundary/finish bisection, 19-scenario robustness matrix (`14` completed / `5` off-track), and standalone Canvas telemetry viewer | Python 3.10+ stdlib · ES Modules / HTML5 Canvas (`44` Python + `9` JS tests) | [V6 README](v6_driver_in_loop/README.md) · [Vehicle Dynamics](v6_driver_in_loop/docs/VEHICLE_DYNAMICS.md) · [Jump to Section ↓](#v6--vehicle-dynamics-and-virtual-driver) |
+| **[Performance Explorer](performance_explorer/README.md)** | Unified Comparison UI (`OBSERVED` + `SIMULATED V5/V6`) | Unified React/TypeScript dual-car comparison application separating `196` official historical qualifying attempts (`OBSERVED`), V5 dual-car simulation overlays (`SIMULATED — V5`), and integrated V6 schema-2 dynamic telemetry replay (`SIMULATED — V6`) | React 18 · TypeScript · Vite · Vitest · Python data audit & integrity suite | [Explorer README](performance_explorer/README.md) · [Data Contract](performance_explorer/docs/DATA_CONTRACT.md) · [Jump to Section ↓](#performance-explorer--unified-interface-and-demonstrations) |
 
-A full-stack motorsport application supporting human decisions during Indianapolis 500 qualifying, where drivers compete for starting positions. It estimates how a car's performance could change on a repeat attempt under specified conditions and a supplied time horizon. It does not predict complete race outcomes or recommend whether to retain or withdraw an existing qualifying result.
+---
 
-Historical replay and evidence validation are central: **point-in-time** checks reject inputs whose recorded known-at or forecast issue times fall after the decision time. Forecast provenance makes inputs traceable; the system abstains from inference or historical scoring when evidence or model support is insufficient. Hypothetical scenarios remain separate from historical evidence.
+## V2 / V3 — Scientific Model and Point-in-Time Application
 
-- **Stack:** Python · C++17 (CMake / GoogleTest / pybind11) · FastAPI · React / TypeScript · Docker · GitHub Actions CI
-- **Focus:** Point-in-time historical replay, field-level data provenance, leakage prevention, physics-conditioned probabilistic inference and evidence-aware abstention
+During Indianapolis 500 qualifying, an entrant with a valid four-lap average must decide whether to hold position in the lower-priority lane or withdraw that official time to seek priority for another attempt as track and ambient conditions evolve. Because public historical records do not consistently expose queue entry, Lane 1/Lane 2 state, withdrawals, or team intent, **[V2 (`FINAL_V2`)](docs/final_v2_system_specification.md)** and **[V3 (`FINAL_V3_FROZEN`)](v3_point_in_time/README.md)** enforce an explicit **identifiability boundary**: the system estimates the conditional physical performance distribution $p(\Delta v \mid H = h)$ for a same-car repeat attempt at a supplied horizon $h$, while leaving unobservable queue timing $P(H = h)$ and final retain/withdraw strategy judgement to the human pit wall.
 
-### Transferable Software & Data Engineering Capabilities
+### Frozen Scientific Core ([V2 Specification](docs/final_v2_system_specification.md))
 
-| Capability | Implemented evidence | Key source files & validation reports |
-|---|---|---|
-| **Python ingestion** | Source-registry-driven parsers ingesting JSON, PDF, ZIP timing archives, DOCX chronology notes and CSV weather extracts into deterministic UTF-8 staging tables | [`pipeline/run_pipeline.py`](pipeline/run_pipeline.py), [`pipeline/source_registry.py`](pipeline/source_registry.py), [`pipeline/parsers/`](pipeline/parsers/), [`pipeline_run_report.md`](pipeline_run_report.md) |
-| **Canonical reconciliation** | Conservative multi-source entity and attempt matching across 329 attempts, 1,174 laps and 9,898 section rows without silent forward-filling or rank-order guessing | [`pipeline/reconcile.py`](pipeline/reconcile.py), [`pipeline/chronology_2024.py`](pipeline/chronology_2024.py), [`chronology_reconciliation_report.csv`](chronology_reconciliation_report.csv), [`2024_chronology_reconciliation_report.md`](2024_chronology_reconciliation_report.md) |
-| **Data quality & eligibility** | Machine-checked reconstruction residuals (997 section groups), quarantine of unresolved records and target-specific row eligibility across 12,998 evaluations | [`pipeline/validation.py`](pipeline/validation.py), [`pipeline/eligibility.py`](pipeline/eligibility.py), [`data_quality_report.csv`](data_quality_report.csv), [`section_reconstruction_validation.csv`](section_reconstruction_validation.csv), [`data/canonical/v1/row_eligibility.csv`](data/canonical/v1/row_eligibility.csv) |
-| **Field-level provenance** | Fine-grained lineage linking 1,881 evidence items to 133,138 field-evidence records (`field_evidence_links.csv`), separating raw observations from derived values | [`pipeline/provenance.py`](pipeline/provenance.py), [`data/canonical/v1/evidence_items.csv`](data/canonical/v1/evidence_items.csv), [`data/canonical/v1/field_evidence_links.csv`](data/canonical/v1/field_evidence_links.csv), [`v1_data_dictionary.csv`](v1_data_dictionary.csv) |
-| **Temporal integrity** | Vintage-aware forecast store, fail-closed `issue_time <= decision_time` leakage guard (checking nominal forecast issue times, not independently verified historical publication availability) and deterministic SHA-256 snapshot/prediction hashing | [`v3_point_in_time/src/point_in_time_guard.py`](v3_point_in_time/src/point_in_time_guard.py), [`v3_point_in_time/src/forecast_vintage_store.py`](v3_point_in_time/src/forecast_vintage_store.py), [`v3_point_in_time/src/replay_engine.py`](v3_point_in_time/src/replay_engine.py), [`v3_point_in_time/src/hashing.py`](v3_point_in_time/src/hashing.py) |
-| **C++17 performance engine** | Native C++17 point-in-time guard, timestamp-aware observation filtering, vintage selection, NOAA solar geometry and M2b/Monte Carlo physical response with GoogleTest suite and optional `pybind11` bridge | [`cpp/include/indy500/pit_engine.hpp`](cpp/include/indy500/pit_engine.hpp), [`cpp/src/pit_engine.cpp`](cpp/src/pit_engine.cpp), [`cpp/tests/test_pit_engine.cpp`](cpp/tests/test_pit_engine.cpp), [`v3_point_in_time/src/cpp_pit_bridge.py`](v3_point_in_time/src/cpp_pit_bridge.py), [`v3_point_in_time/tests/test_cpp_engine_parity.py`](v3_point_in_time/tests/test_cpp_engine_parity.py) |
-| **V4 entity resolution** | Rule-based master-data normalisation of 2018–2025 official entry lists (51 explicit rules, no fuzzy matching) with anachronistic API-label and false-split audits | [`v4_team_normalized/scripts/v4_build_team_registry.py`](v4_team_normalized/scripts/v4_build_team_registry.py), [`v4_team_normalized/manual/v4_team_mapping_rules.csv`](v4_team_normalized/manual/v4_team_mapping_rules.csv), [`v4_team_normalized/output/v4_team_normalization_report.md`](v4_team_normalized/output/v4_team_normalization_report.md), [`v4_team_normalized/output/v4_team_normalization_audit.csv`](v4_team_normalized/output/v4_team_normalization_audit.csv) |
-| **FastAPI backend** | Read-only historical replay/provenance endpoints, AST-verified isolation of hypothetical scenario inference and readiness checks over frozen scientific assets | [`v3_point_in_time/api/main.py`](v3_point_in_time/api/main.py), [`v3_point_in_time/api/routes/`](v3_point_in_time/api/routes/), [`v3_point_in_time/app/replay_service.py`](v3_point_in_time/app/replay_service.py), [`v3_point_in_time/app/scenario_service.py`](v3_point_in_time/app/scenario_service.py), [`v3_point_in_time/app/health_service.py`](v3_point_in_time/app/health_service.py) |
-| **React / TypeScript UI** | Typed five-page decision-support interface separating historical shadow replay, provenance inspection, abstention accounting and ephemeral scenario exploration | [`v3_point_in_time/frontend/src/App.tsx`](v3_point_in_time/frontend/src/App.tsx), [`v3_point_in_time/frontend/src/pages/`](v3_point_in_time/frontend/src/pages/), [`v3_point_in_time/frontend/src/components/`](v3_point_in_time/frontend/src/components/), [`v3_point_in_time/frontend/src/types/`](v3_point_in_time/frontend/src/types/) |
-| **Docker & runtime hardening** | Staged build context, non-root runtime (`uid 10001`), kernel-enforced `read_only: true` root filesystem with `tmpfs` `/tmp` after write-testing exposed `chmod` bypass under root | [`v3_point_in_time/docker-compose.yml`](v3_point_in_time/docker-compose.yml), [`v3_point_in_time/docker/Dockerfile.api`](v3_point_in_time/docker/Dockerfile.api), [`v3_point_in_time/docker/Dockerfile.frontend`](v3_point_in_time/docker/Dockerfile.frontend), [`v3_point_in_time/scripts/prepare_docker_context.sh`](v3_point_in_time/scripts/prepare_docker_context.sh) |
-| **Testing & QA** | Automated C++, unit, API, leakage, immutability, frontend and portfolio-claim checks wired into GitHub Actions CI | [`cpp/tests/test_pit_engine.cpp`](cpp/tests/test_pit_engine.cpp), [`tests/test_pipeline.py`](tests/test_pipeline.py), [`tests/test_portfolio_integrity.py`](tests/test_portfolio_integrity.py), [`v3_point_in_time/tests/`](v3_point_in_time/tests/), [`v3_point_in_time/frontend/src/App.test.tsx`](v3_point_in_time/frontend/src/App.test.tsx), [`scripts/validate_portfolio.py`](scripts/validate_portfolio.py), [`v3_point_in_time/output/qa/final_v3_qa_report.md`](v3_point_in_time/output/qa/final_v3_qa_report.md) |
+- **Canonical Evidence & Observational Units ([`pipeline/`](pipeline/run_pipeline.py), [`docs/evidence-engineering.md`](docs/evidence-engineering.md)):** Reconciles `329` qualifying attempts, `1,174` laps, and `9,898` section rows (`2020–2024`) with `133,138` field-level provenance links (`field_evidence_links.csv`) and `12,998` target-specific eligibility evaluations. The performance core uses **41 same-car within-day transitions**; section mechanism diagnostics link to **39/41 transitions** (`351` dependent within-transition section comparisons, never treated as independent training rows); and the future track-state pathway uses **168 structured track-temperature observations** forming **656 current–future pairs** across five independently calibrated horizons (**`15 / 30 / 60 / 90 / 120 minutes`**).
+- **Zero-Intercept Physical Response (`r5_2/manual/probabilistic_physics_core_v1.json`):**
+  $$\Delta v_{\text{physical}} = \beta_{\text{track}}\,\Delta T_{\text{track}} + \beta_{\text{ambient}}\,\Delta T_{\text{ambient}}, \qquad \beta_{\text{track}} = -0.034825\text{ mph/}^\circ\text{C},\quad \beta_{\text{ambient}} = +0.182393\text{ mph/}^\circ\text{C}$$
+  The zero intercept ensures that zero measured thermal change predicts zero modelled thermal effect while preserving latent tyre, setup, wind, and driver execution variation in the empirical residual distribution.
+- **Future Track-State (`M2b_mean_solar`) & Three-Source Uncertainty ([`docs/uncertainty.md`](docs/uncertainty.md)):** Horizon-specific future track temperature conditions on future ambient change, current track-to-ambient thermal gap, and mean solar elevation. Predictive distributions propagate (1) paired-bootstrap coefficient uncertainty, (2) horizon-specific conformal future track-temperature intervals, and (3) centered leave-one-year-out empirical performance residuals. Removing empirical performance residuals reduces mean 80% interval width by **`90.4%` at 15 minutes** and **`72.8%` at 120 minutes**, showing why better track-temperature point prediction alone cannot collapse outcome uncertainty.
+- **Diagnostics & 135-Scenario Stress Test:** Mean directional coherence across nine track sections is **`0.724`** overall (`n = 39`) and rises to **`0.935`** for transitions with $|\Delta v| \ge 0.50\text{ mph}$ (`n = 12`). Historical fixed-point/gridded wind proxies showed weak out-of-year residual stability and were not forced into `FINAL_V2`. Exercised across **135 scenarios** (`3 thermal gaps × 3 ambient trajectories × 3 solar states × 5 horizons`), 120-minute $P(\Delta v > 0)$ ranges from **`0.20552` to `0.6704`** (`[0.20552, 0.6704]`) and expected $\Delta v$ ranges from **`−0.4630` to `+0.2248 mph`**.
 
-![Identifiability-driven system boundary](figures/portfolio/identifiability-system-boundary.svg)
-
-> **The key engineering result is a boundary.** Public historical evidence does not consistently reveal queue entry, Lane 1/Lane 2 state, withdrawals, requeue timing, pit return, live queue position or team intent. The project therefore does not guess an opportunity-time model or imitate historical decisions. It estimates the identifiable conditional performance problem and leaves the final retain/withdraw judgement to the pit wall.
-
-**What this is, in one paragraph.** This repository is `FINAL_V3_FROZEN`: a point-in-time probabilistic
-decision-support system built around a frozen physics-conditioned scientific core (`FINAL_V2`). `FINAL_V2`
-estimates the conditional physical-performance distribution `p(Δv | H=h)` for a same-car repeat qualifying
-attempt; it is never refit or modified by anything described below. `FINAL_V3` adds, on top of that frozen
-core, the engineering needed to use it responsibly with real historical or hypothetical data: point-in-time
-forecast-vintage provenance, a fail-closed leakage guard, historical shadow replay, evidence-aware abstention,
-an isolated hypothetical scenario interface, and a FastAPI + React/TypeScript application, packaged with
-Docker, CI, and health/readiness checks. The system is human-in-the-loop by design: it does **not** predict
-queue waiting time, does **not** estimate `P(H=h)`, and does **not** issue a retain/withdraw recommendation or
-claim automated pit-wall strategy optimisation, at any layer.
-
-**V4 (additive evidence extension).** `V4_TEAM_NORMALIZED_FINAL` asks whether same-team, different-car evidence
-could serve as an intermediate control layer between exact-car repeats and unrelated cars. It is a separately
-frozen methodological study: it does **not** modify the FINAL_V2 coefficients, the 41-transition same-car core, the
-V3 point-in-time inference or the paper. Its main finding is that exact-car control robustly reduces observed
-performance dispersion, while shared team identity showed no stable additional benefit. See
-[V4 — Team-normalized evidence extension](#v4--team-normalized-evidence-extension).
-
-## The system in one screen
-
-### Independent V5 engineering simulation
-
-The repository also contains an isolated `v5_lap_time_simulation/` module for
-quasi-steady lap-time analysis on a parameterised 2.5-mile IMS oval. It uses a
-closed-loop speed solver with aero, tire-force, power, braking and cornering
-constraints, then compares a single effective scalar calibrated on 2020–2023
-against a retrospective 2024 descriptive set and constant-speed benchmarks.
-The corrected banked-force model includes mesh experiments and an interactive
-Python-backed replay. It does not outperform the training-median speed predictor.
-Track radius, banking and the remaining vehicle values are assumptions;
-aggregate historical speeds do not identify a
-unique car model. V5 writes its own outputs and does not change frozen V2/V3/V4
-assets. It is not a driver-in-the-loop simulator.
-
-```bash
-python3 -m v5_lap_time_simulation.cli
-python3 -m unittest discover -s v5_lap_time_simulation/tests -p 'test_*.py' -v
-```
-
-See the [V5 viewer setup, model, assumptions, validation and results](v5_lap_time_simulation/README.md).
-
-The [Performance Explorer](performance_explorer/README.md) keeps observed historical timing, V5 quasi-steady simulation, and V6 dynamic replay in separate modes. V6 Explorer V1.1 reuses the audited schema-2 adapter and does not compare V6 against historical or V5 lap-time metrics.
-
-| Evidence / result | Verified value | Meaning |
+| Scientific / Validation Dimension | Verified Value | Engineering & Statistical Interpretation |
 |---|---:|---|
-| Frozen same-car transitions | **41** | Small, high-confidence performance core |
-| Section-linked transitions | **39 / 41** | Mechanism evidence; sections are not independent rows |
-| Scientific horizons | **15 / 30 / 60 / 90 / 120 min** | Independently fitted/calibrated anchors |
-| Stress-test scenarios | **135** | Thermal gap × ambient path × solar state × horizon |
-| 2025 external cases | **15** | Hybrid-era realized-weather retrospective evaluation |
-| External MAE / RMSE | **0.492 / 0.610 mph** | Point-error scale across all 15 cases |
-| External 80% / 90% PI coverage | **80% / 100%** | Empirical rates in a small external sample |
-| External directional accuracy | **46.7%** | Weak direction discrimination, reported without concealment |
+| **Frozen same-car transitions (`2020–2024`)** | **`41`** (`39 / 41` section-linked) | High-confidence exact-car repeat performance core (`32/32` frozen files SHA-256 verified) |
+| **Future track-state sample interface** | **`656` pairs** (`15 / 30 / 60 / 90 / 120 min`) | Horizon-specific `M2b_mean_solar` fits; `OPERATIONAL_CURVE_V2` labels 1-min intermediate steps as `INTERPOLATED_OPERATIONAL` |
+| **Systematic physical stress test** | **`135` scenarios** | At `120 min`, $P(\Delta v > 0) \in [0.20552, 0.6704]$ and $E[\Delta v] \in [-0.4630, +0.2248]\text{ mph}$ |
+| **2025 external hybrid-era evaluation (`≤180 min`)** | **`15` cases** (`MAE = 0.492 mph`, `RMSE = 0.610 mph`) | `80% / 90%` PI coverage: **`80% / 100%`**; directional accuracy: **`46.7%`** (`0.466667`, weak direction discrimination reported transparently) |
+| **2025 production-horizon subset (`≤120 min`)** | **`4` cases** (`MAE = 0.221 mph`, `RMSE = 0.269 mph`) | `80% / 90%` PI coverage: `100% / 100%`; directional accuracy: `50.0%` (sample too small for broad calibration claims) |
+| **V3 point-in-time historical shadow replay** | **`10` candidates → `0` formal scoring cases** | `31/41` pre-candidates excluded for timestamp ambiguity; `9/10` candidates have realized horizon `>120 min`; `1` case (2021 Car 60) is illustrative only |
 
-The model is more useful as a **probabilistic physical-opportunity envelope** than as a binary prediction that the next run will be faster. Of the 15 external cases, **4** lie inside the production boundary of ≤120 minutes; that subset has MAE **0.221 mph**, RMSE **0.269 mph**, 80% coverage **100%**, 90% coverage **100%**, and directional accuracy **50%**. These four cases are too few for a broad calibration claim.
+### Point-in-Time Application Layer ([V3 README](v3_point_in_time/README.md))
 
-## FINAL_V3: point-in-time application layer
+**[V3 (`FINAL_V3_FROZEN`)](v3_point_in_time/README.md)** wraps the immutable `FINAL_V2` core in a production FastAPI + React/TypeScript application ([`v3_point_in_time/`](v3_point_in_time/README.md)) with two strictly isolated execution paths:
 
-**Status: `FINAL_V3_FROZEN`.** On top of the frozen `FINAL_V2` scientific core above, a second engineering
-layer turns the model into an auditable, evidence-aware decision-support application: a point-in-time
-historical replay system, a strictly isolated hypothetical scenario mode, a FastAPI + React/TypeScript
-application, and Docker/CI packaging. None of it changes a single frozen coefficient, residual pool, or
-calibration file — see [`v3_point_in_time/`](v3_point_in_time/) for the full subsystem.
-
-![FINAL_V3 architecture](figures/final_v3/figureA_final_v3_architecture.png)
-
-Two paths share the frozen scientific core and nothing else: a **historical path** that only ever reads
-already-frozen, point-in-time-controlled evidence through a read-only API, and a **hypothetical path** that
-runs the same frozen adapter on user-supplied hypothetical input and returns an ephemeral result that can
-never be written back into historical evidence. Neither path estimates opportunity timing, models a queue,
-or issues a retain/withdraw recommendation.
-
-### Historical Shadow Replay
-
-A forecast-vintage store enforces `forecast.issue_time <= decision_time` before any historical inference is
-issued; a fail-closed guard independently re-checks the same invariant. The replay engine then separates two
-questions that are easy to conflate but must not be:
-
-- **Inference support** — can the frozen model issue a conditional outlook `p(Δv | H=h)` at a calibrated
-  horizon, given the current physical state and an available forecast vintage?
-- **Historical scoring support** — can a realised historical outcome be defensibly paired with that outlook
-  and scored?
-
-| Evidence / result | Value |
-|---|---:|
-| Same-car transitions in the frozen 2020–2024 core | 41 |
-| Excluded / abstained pre-candidates (ambiguous pairing or no usable timestamp) | 31 |
-| Genuine point-in-time candidate cases | 10 |
-| Cases with full 5-horizon inference support | 9 |
-| Cases abstained from historical scoring (realised horizon > 120 min) | 9 |
-| Illustrative-only shadow case (2021, car 60) | 1 |
-| Cases contributing to formal aggregate historical-scoring validation | **0** |
-
-**Point-in-time architecture and leakage control: demonstrated. Statistically meaningful point-in-time
-forecast validation: not established.** This is reported as an evidence/identifiability boundary, the same way
-the rest of this project treats unidentifiable quantities — not concealed, not padded with a larger but less
-defensible sample. The one near-anchor case (2021, car 60) is retained as `ILLUSTRATIVE_POINT_IN_TIME_SHADOW_CASE`
-only, is never counted toward validation, and is featured because it demonstrates a genuine evidence/model
-boundary: its forecast-conditioned (+0.0236 mph) and realised-environment (+0.0451 mph) expectations were
-close to each other, while the observed change (+4.695 mph) was far larger than either.
-
-### Hypothetical Scenario Mode
-
-A separate, isolated interface (`POST /api/scenario/infer`) runs the identical frozen `FINAL_V2` adapter on
-user-supplied hypothetical current-state input, for demonstration and exploration. Every response is labelled
-`HYPOTHETICAL_SCENARIO` / `NOT_HISTORICAL_EVIDENCE`, uses a minimum input contract derived directly from what
-the frozen adapter requires, and is never written to any historical store or counted in any validation metric.
-
-### Evidence-Aware Abstention
-
-Wherever evidence does not support an inference or a historical score, the system says so explicitly with a
-machine-readable reason code (`INSUFFICIENT_ATTEMPT_TIMESTAMP`, `HORIZON_OUT_OF_SUPPORT`,
-`NON_ANCHOR_EVALUATION_NOT_APPROVED`, ...) rather than silently dropping the case. Abstention is a first-class,
-auditable output, not an application error.
-
-### Application
-
-| Pit-Wall Outlook | Scenario Mode |
-|---|---|
-| ![Pit-Wall Outlook](v3_point_in_time/output/final_ui_preview/01_pit_wall_outlook.png) | ![Scenario Mode](v3_point_in_time/output/final_ui_preview/02_scenario_mode.png) |
-| Conditional physical outlook across all five calibrated horizons for the deterministically selected, non-illustrative default case. | Hypothetical scenario inference, clearly labelled `HYPOTHETICAL SCENARIO — NOT HISTORICAL EVIDENCE`. |
-
-| Historical Shadow Replay | Validation & Abstention |
-|---|---|
-| ![Historical Shadow Replay](v3_point_in_time/output/final_ui_preview/03_historical_replay.png) | ![Validation and Abstention](v3_point_in_time/output/final_ui_preview/05_validation_abstention.png) |
-| Time-ordered replay events with an explicit information-cutoff boundary between what was known at time *t* and what was only observed later. | Authoritative evidence counts and abstention-reason breakdown, read live from the same frozen Phase 3 output as the numbers above. |
-
-### Quick start
+1. **Historical Shadow Replay & Evidence-Aware Abstention:** A vintage-aware HRRR forecast store (`ForecastVintageStore`) and fail-closed temporal guard (`point_in_time_guard.py`) enforce `known_at <= decision_time` and `forecast.issue_time <= decision_time`. When timestamp granularity or horizon support is insufficient, the engine returns structured machine-readable abstention reason codes (`INSUFFICIENT_ATTEMPT_TIMESTAMP`, `HORIZON_OUT_OF_SUPPORT`, `NON_ANCHOR_EVALUATION_NOT_APPROVED`). The single near-anchor case (`2021, Car 60`) is retained strictly as `ILLUSTRATIVE_POINT_IN_TIME_SHADOW_CASE` (where forecast-conditioned `+0.0236 mph` and realized-weather `+0.0451 mph` expectations both differed from the `+4.695 mph` observed jump) and is never counted as validation.
+2. **Isolated Hypothetical Scenario Mode & Hardened Runtime:** `POST /api/scenario/infer` evaluates user-supplied physical states through the identical frozen `FINAL_V2` adapter, badges every response `HYPOTHETICAL_SCENARIO` / `NOT_HISTORICAL_EVIDENCE`, and is AST-verified never to write to historical stores. Docker deployment mounts a kernel-enforced `read_only: true` root filesystem under a non-root user (`uid 10001`).
 
 ```bash
-pip install -r v3_point_in_time/requirements.txt
-cd v3_point_in_time/frontend && npm install && cd ../..
-
+# Launch the FINAL_V3 FastAPI backend (http://127.0.0.1:8000) and React UI (http://127.0.0.1:5173)
 ./v3_point_in_time/scripts/run_v3_app.sh
-# API:      http://127.0.0.1:8000  (docs at /docs)
-# Frontend: http://127.0.0.1:5173
 ```
 
-### Docker
+Read more: [V2 System Specification](docs/final_v2_system_specification.md) · [V3 Application README](v3_point_in_time/README.md) · [V3 Architecture](v3_point_in_time/output/final_documentation/final_v3_architecture.md) · [V3 Model Card](v3_point_in_time/output/final_documentation/FINAL_V3_MODEL_CARD.md) · [Extended Portfolio Evidence Reference](docs/PORTFOLIO_EVIDENCE.md).
 
-```bash
-cd v3_point_in_time
-./scripts/prepare_docker_context.sh   # stages a minimal (~3.6 MB) build context
-docker compose up --build
-# API:      http://localhost:8000
-# Frontend: http://localhost:8080
-```
+---
 
-The API container's filesystem is mounted read-only at runtime and runs as a non-root user, so frozen
-scientific assets cannot be modified even by the process serving them.
+## V4 — Team-Normalized Evidence
 
-### Testing
+**[V4 (`V4_TEAM_NORMALIZED_FINAL`)](v4_team_normalized/README.md)** is a separately frozen, additive methodological investigation (`735`-file SHA-256 manifest, `17/17` Phase 4L checks passing) that asks whether same-team, different-car observations can provide an intermediate control layer between exact-car repeats and unrelated cars without altering any `FINAL_V2` or `FINAL_V3_FROZEN` artifact:
 
-```bash
-python3 -m unittest discover -s v3_point_in_time/tests -p 'test_*.py' -v   # 92 tests
-cd v3_point_in_time/frontend && npx vitest run                              # 9 tests
-python3 v3_point_in_time/scripts/smoke_test.py                              # end-to-end smoke test
-```
+- **Canonical Team Entity Resolution (`2018–2025`, [`v4_build_team_registry.py`](v4_team_normalized/scripts/v4_build_team_registry.py)):** Deterministic rule-based normalization (`51` explicit rules, no fuzzy matching) maps `59` official entrant labels to **21 canonical engineering teams**, recovering `85` of `313` true teammate relationships (`27%`) missed by raw entrant labels while introducing zero false pairs.
+- **Practice Measurement Validity (`Phase 4H`):** Auditing third-party archived live-timing practice laps (`Timing71`, cross-checked against official INDYCAR session records for `2023–2025`) shows that only **8.1%** of at-speed 2023–2024 practice laps satisfied the frozen, qualifying-calibrated Class-A performance-comparability rule. Raw practice laps cannot be treated as a homogeneous performance population.
+- **Pre-Registered Dispersion Hierarchy Test (`Phase 4J`, Primary Tier-1 `2023–2024` across 6 independent sessions):** Within Class-A 5-minute car-blocks sharing timing-adjacency common support, session-balanced median $|\Delta\text{speed}|$ dispersion is **0.37 mph** for the same car, **1.23 mph** for the same team, and **1.09 mph** for different teams:
+  - **C1 = same team − same car = +0.70 mph** [+0.09, +1.72]. **Robust** exact-car control benefit (positive in `5/6` sessions and every leave-one-session-out and leave-one-team-out check).
+  - **C2 = different team − same team = +0.20 mph** [−0.53, +0.53]. **Not robust:** positive in `4/6` sessions, one team removal flips its sign, and Tier-2 sensitivity yields `−0.09 mph`. The full three-level hierarchy (*same car < same team < different team*) was **not established** (`PRIMARY_CASE = B`).
+- **Prospective Teammate-Assisted Attrition (`Phase 4K`):** Of **113** teammate-assisted target events (`F0`), only **8** strict leakage-free cases (`F5`) survived point-in-time and comparability filtering. Teammate predictive value remains prospectively unidentifiable from the current retrospective record; this is **not** evidence that teammate predictive value is zero.
 
-**`FINAL_V3_FROZEN`** · **101/101 tests PASS** · **V2 immutability PASS (32/32 frozen dependencies byte-identical)**
-· **V3↔V2 behavioural regression PASS**. These are engineering-verification results, not the project's
-scientific finding — the primary results remain the 41-transition reference core, the 2025 external
-physical-layer evaluation, and the qualified cross-regime transferability evidence above. Full detail:
-[`v3_point_in_time/README.md`](v3_point_in_time/README.md), [architecture](v3_point_in_time/output/final_documentation/final_v3_architecture.md),
-[model card](v3_point_in_time/output/final_documentation/FINAL_V3_MODEL_CARD.md), [scientific limitations](v3_point_in_time/output/final_documentation/scientific_limitations.md).
+Read more: [V4 Workspace README](v4_team_normalized/README.md) · [Phase 4L Final Scientific Synthesis](v4_team_normalized/output/phase4l/phase4l_final_scientific_synthesis.md) · [Claims Matrix](v4_team_normalized/output/phase4l/phase4l_claims_matrix.csv) · [Evidence Chain](v4_team_normalized/output/phase4l/phase4l_evidence_chain.md).
 
-## C++ Racing Performance Engine
+---
 
-While the existing Python stack (`pipeline/`, `weather/`, `v3_point_in_time/`) remains the authoritative reference implementation for historical ingestion, replay orchestration and FastAPI serving, the [`cpp/`](cpp/) directory provides an additive **C++17 computational module** (`indy500_pit_engine`) that reimplements the core point-in-time temporal guards, time-series observation filtering and physical-response calculations in native C++ with optional `pybind11` bindings.
+## C++17 — Native Computation
 
-### Why C++ was introduced and what it implements
+While Python remains the authoritative application implementation for historical ingestion, replay orchestration, and FastAPI serving, **[C++17 (`cpp/`)](cpp/README.md)** provides an additive native computational module (`indy500_pit_engine`) reimplementing the inner-loop point-in-time temporal guards, observation lookback filtering, forecast-vintage selection, and physical-response calculations with GoogleTest verification and optional `pybind11` bindings (`_indy500_pit_cpp`).
 
-In live or high-frequency replay motorsport environments, repeated timestamp parsing, point-in-time eligibility filtering over weather/telemetry streams and physical-model evaluation lie on the inner computational loop. The C++17 module (`cpp/include/indy500/pit_engine.hpp`, `cpp/src/pit_engine.cpp`) implements:
+- **Implemented Components ([`pit_engine.hpp`](cpp/include/indy500/pit_engine.hpp), [`pit_engine.cpp`](cpp/src/pit_engine.cpp)):**
+  1. **ISO-8601 UTC parsing & fail-closed leakage guard** (`parse_iso8601_utc`, `check_point_in_time`, `enforce_point_in_time`): Proleptic Gregorian epoch conversion enforcing `known_at <= decision_time` and `forecast.issue_time <= decision_time` (rejecting records even `1 s` after `decision_time` with reason codes identical to Python).
+  2. **Timestamp-aware observation filtering & thermal rate lookback** (`filter_observations_at_cutoff`, `compute_point_in_time_thermal_rate`): Deterministic sorting of arbitrary input permutations by `(observed_at, known_at, id)`, strict `NaN`/`Inf`/duplicate rejection, and 10–20 minute track heating/cooling rate calculation (`°C/min`).
+  3. **Vintage-aware HRRR selection & domain physics** (`ForecastVintageStore`, `solar_elevation_deg`, `evaluate_applicability`, `evaluate_physical_response`, `summarize_draws`, `run_monte_carlo_inference`): Exact `1e-12` numerical parity with `FINAL_V2` across all **656** frozen rows in `future_track_samples_with_solar_v1.csv` and all **259** HRRR forecast vintages.
+- **Verification & Component Microbenchmarks ([`cpp/README.md`](cpp/README.md)):**
+  - **16/16 C++ GoogleTest tests PASS** and **12/12 Python↔C++ parity and fallback tests PASS** ([`test_cpp_engine_parity.py`](v3_point_in_time/tests/test_cpp_engine_parity.py)).
+  - Measured component microbenchmarks (macOS arm64, Apple clang `-O3`, median of 9 warm runs): `solar_elevation_deg` (`6,560` calls) runs in **`0.87 ms` direct / `5.04 ms` via bridge** vs. `10.49 ms` Python (**`12.1×` / `2.1×`**); `ForecastVintageStore` (`259`-row init + `100` queries) runs in **`0.224 ms`** vs. `6.68 ms` unmodified Python / `0.88 ms` pre-parsed Python (**`29.8×` / `3.9×`**); `check_point_in_time` (`10,000` evaluations) runs in **`2.45 ms`** vs. `12.01 ms` (**`4.9×`**).
+  - **Production path caveat:** These are component microbenchmarks, not end-to-end API speedups. The C++ engine is not executed in the production FastAPI historical replay or scenario request paths.
 
-1. **ISO-8601 UTC parsing & hard Point-in-Time leakage guard** (`parse_iso8601_utc`, `check_point_in_time`, `enforce_point_in_time`) — proleptic Gregorian calendar conversion supporting `Z` and `±HH:MM` offsets and enforcing `known_at <= decision_time` and `forecast.issue_time <= decision_time` with identical reason codes to [`v3_point_in_time/src/point_in_time_guard.py`](v3_point_in_time/src/point_in_time_guard.py).
-2. **Timestamp-aware racing time-series filtering & thermal rate calculation** (`filter_observations_at_cutoff`, `compute_point_in_time_thermal_rate`) — filters out post-cutoff or unknown-timestamp observations, deterministically sorts unsorted input streams by `(observed_at, known_at, id)`, validates finite numerical values and computes the 10–20 minute lookback track heating/cooling rate (°C/min) matching [`weather/scripts/v2_build_future_track_samples.py`](weather/scripts/v2_build_future_track_samples.py).
-3. **Point-in-time Forecast Vintage Store** (`ForecastVintageStore`) — pre-parses nominal cycle and valid timestamps on insertion, strictly excludes vintages where `issue_time > decision_time`, prefers the freshest eligible model run and breaks ties by smallest `|valid_time - target_time|` and lexicographical `forecast_id`, matching [`v3_point_in_time/src/forecast_vintage_store.py`](v3_point_in_time/src/forecast_vintage_store.py).
-4. **Validated domain calculations (`FINAL_V2` / `FINAL_V3`)** — NOAA-style solar elevation geometry (`solar_elevation_deg`), horizon applicability gating (`evaluate_applicability`), the frozen `M2b_mean_solar` track-temperature model paired with the zero-intercept physical speed response (`evaluate_physical_response`: $\Delta v_{\text{physical}} = \beta_{\text{track}}\Delta T_{\text{track}} + \beta_{\text{ambient}}\Delta T_{\text{ambient}}$) and NumPy-compatible linear quantile summarization (`summarize_draws`, `evaluate_monte_carlo_draws`, `run_monte_carlo_inference`).
+---
 
-### Preserving Point-in-Time correctness
+## Scientific and Application Figure Gallery
 
-- **Fail-closed temporal boundary:** Any observation or forecast vintage stamped even 1 second after `decision_time` (`> decision_time`) is rejected or excluded; exact boundary equality (`== decision_time`) is permitted.
-- **Deterministic unsorted-input handling:** Unsorted observation vectors and forecast vintage lists are explicitly ordered using deterministic tie-breaking rules so arbitrary input permutations yield identical outputs.
-- **Strict input validation:** Empty observation series, malformed calendar dates (e.g. non-leap `2021-02-29`), `NaN`/`Inf` numerical values and duplicate `(id, observed_at)` or duplicate timestamps raise `indy500::pit::PitEngineError` (`ValueError` in Python).
+All **36 original scientific and application figures** are preserved directly below on the repository homepage. Paired diagrams, UI views, and single-panel plots with matched aspect ratios are arranged in compact two-column tables, while multi-panel or text-dense diagnostic charts remain full-width for clear legibility. Complete narrative context is cross-referenced in [`docs/PORTFOLIO_EVIDENCE.md`](docs/PORTFOLIO_EVIDENCE.md) and [`figures/GALLERY.md`](figures/GALLERY.md).
 
-### Compiling, testing and Python integration
+### 1. Point-in-Time System Boundary, V3 Architecture & Application Screens (Figures 1–6)
 
-The C++ engine builds with CMake and uses GoogleTest (`cpp/tests/test_pit_engine.cpp`). When `pybind11` is installed, CMake also compiles `_indy500_pit_cpp` (`cpp/bindings/pybind_module.cpp`). The Python bridge [`v3_point_in_time/src/cpp_pit_bridge.py`](v3_point_in_time/src/cpp_pit_bridge.py) loads the native extension when present and falls back transparently to the pure-Python implementation when unbuilt, keeping all existing FastAPI and V3 workflows backward-compatible without mandatory native build dependencies.
+| Figure 1 — Identifiability-Driven System Boundary (`16:9`) | Figure 2 — V3 Historical Shadow Replay UI (`16:10`) |
+|---|---|
+| ![Identifiability-driven system boundary](figures/portfolio/identifiability-system-boundary.svg) | ![Historical shadow replay application screenshot](v3_point_in_time/output/final_ui_preview/03_historical_replay.png) |
+| Separates the identifiable conditional physical response $p(\Delta v \mid H = h)$ from unobservable queue mechanics $P(H = h)$ and pit-wall utility decisions. | Time-ordered replay events enforcing the `known_at <= decision_time` and `forecast.issue_time <= decision_time` information cutoff boundary. |
 
-```bash
-# Configure, build C++17 static library + GoogleTest runner + pybind11 module, and run CTest
-cmake -S cpp -B cpp/build -DCMAKE_BUILD_TYPE=Release
-cmake --build cpp/build -j4
-ctest --test-dir cpp/build --output-on-failure -V   # 16 C++ GoogleTest tests
+| Figure 3 — V3 Pit-Wall Outlook UI (`01_pit_wall_outlook.png`) | Figure 4 — V3 Validation & Abstention UI (`05_validation_abstention.png`) |
+|---|---|
+| ![Pit-wall outlook application screenshot](v3_point_in_time/output/final_ui_preview/01_pit_wall_outlook.png) | ![Validation and abstention application screenshot](v3_point_in_time/output/final_ui_preview/05_validation_abstention.png) |
+| Conditional physical outlook across all five calibrated horizons (`15 / 30 / 60 / 90 / 120 min`) for the deterministically selected non-illustrative default case. | Authoritative evidence attrition (`41` transitions → `10` point-in-time candidates → `0` formal aggregate scoring cases) and abstention-reason breakdown. |
 
-# Run Python <-> C++ parity and fallback tests
-python3 -m unittest discover -s v3_point_in_time/tests -p 'test_cpp_*.py' -v   # 12 parity/regression tests
-```
+| Figure 5 — `FINAL_V3` Dual-Path Application Architecture | Figure 6 — V3 Hypothetical Scenario Mode UI (`02_scenario_mode.png`) |
+|---|---|
+| ![FINAL_V3 architecture](figures/final_v3/figureA_final_v3_architecture.png) | ![Scenario mode application screenshot](v3_point_in_time/output/final_ui_preview/02_scenario_mode.png) |
+| Architectural isolation between the read-only historical replay path and the ephemeral hypothetical scenario path sharing the unmodified `FINAL_V2` adapter. | Isolated hypothetical scenario inference explicitly badged `HYPOTHETICAL SCENARIO — NOT HISTORICAL EVIDENCE` and blocked from writing to historical stores. |
 
-### Verification and benchmark results
+### 2. Evidence Engineering, Data Provenance & Frozen Physical Response (Figures 7–14)
 
-- **C++ GoogleTest suite:** **16/16 PASS**, including temporal boundary equality, +1s future leakage rejection, `None` (`std::nullopt`) vs empty/whitespace timestamp validation, unsorted permutation determinism, `NaN`/`Inf`/duplicate/empty error handling and exact numerical parity (`1e-12` tolerance) across all **656** frozen rows in `future_track_samples_with_solar_v1.csv`.
-- **Python↔C++ parity suite:** **12/12 PASS** (`test_cpp_engine_parity.py`), verifying exact parity on real 2020–2024 HRRR forecast vintage selection (259 rows), 2020 PTSC track-temperature rate lookback, applicability gating, empty/whitespace/malformed timestamps, non-finite values, structured `PointInTimeViolation` exceptions (`.reasons` and `.code`), API naming compatibility, 5-horizon Monte Carlo draw summarization (`1e-12` agreement with NumPy when given identical draws) and statistical agreement between standalone C++ (`std::mt19937_64`) and Python (`NumPy PCG64`) Monte Carlo streams.
-- **Measured component microbenchmarks (macOS arm64, Apple clang 21.0.0 `-O3`, Python 3.14.5, median of 9 warm runs on identical inputs and outputs):**
+| Figure 7 — Evidence Engineering Pipeline (`16:9`) | Figure 8 — Canonical Evidence Products & Attrition (`16:9`) |
+|---|---|
+| ![Evidence engineering pipeline](figures/portfolio/evidence-engineering-pipeline.svg) | ![Evidence products and attrition](figures/portfolio/evidence-products-and-attrition.svg) |
+| Source-registry ingestion, canonical reconciliation (`329` attempts, `1,174` laps, `9,898` sections), and field-level provenance (`133,138` links). | Target-specific eligibility filtering across `12,998` evaluations and explicit quarantine of unresolved chronology or weather joins. |
 
-  `ForecastVintageStore` parses and stores timestamp strings as integer epochs when each C++ record is added (**0.19 ms** one-time initialization for 259 HRRR records), whereas the unmodified Python reference (`ForecastVintageStore.select`) parses timestamp strings during each `select()` call. A pre-parsed Python baseline (pre-parsing the 259 timestamps once in **0.12 ms**) is also reported below for an apples-to-apples algorithmic comparison. These are component-level microbenchmarks, not measurements of FastAPI or end-to-end application acceleration. The C++ engine is an additive computational extension; Python remains the authoritative application implementation, and historical replay and scenario API routes do not execute the C++ engine in their normal request paths.
+| Figure 9 — Multi-Layer Evidence Hierarchy (`16:9`) | Figure 10 — Exact-Car Repeat Transition Design (`16:9`) |
+|---|---|
+| ![Evidence hierarchy](figures/portfolio/evidence-hierarchy.svg) | ![Same-car transition design](figures/portfolio/same-car-transition-design.svg) |
+| Distinct observational units across `41` same-car transitions, `39` section-linked transitions (`351` within-transition pairs), and `656` track-state pairs. | Within-day same-car qualifying repeat design controlling for chassis, engine, baseline aerodynamic package, and driver identity (`2020–2024`). |
 
-| Operation | Workload | Python reference | Pre-parsed Python baseline | C++17 (`_indy500_pit_cpp`) | Speedup vs Python ref (vs pre-parsed) |
-|---|---|---:|---:|---:|---:|
-| `solar_elevation_deg` | 6,560 calls (656 real timestamps × 10) | 10.49 ms | — | 0.87 ms (direct) / 5.04 ms (bridge) | **12.1×** (direct) / **2.1×** (bridge) |
-| `ForecastVintageStore.select` (query only) | 100 point-in-time queries over 259 real HRRR rows | 6.68 ms | 0.76 ms | 0.034 ms | **196.5×** (**22.4×**) |
-| `ForecastVintageStore` (259-row init + 100 queries) | 1 store build + 100 point-in-time queries | 6.68 ms | 0.88 ms (0.12 + 0.76 ms) | 0.224 ms (0.19 + 0.034 ms) | **29.8×** (**3.9×**) |
-| `check_point_in_time` | 10,000 leakage-guard evaluations | 12.01 ms | — | 2.45 ms (direct) | **4.9×** |
+| Figure 11 — Frozen Zero-Intercept Physical Response (`16:9`) | Figure 12 — Calibrated Horizon & Operational Boundary (`16:9`) |
+|---|---|
+| ![Frozen physical response](figures/portfolio/frozen-physical-response.svg) | ![Calibrated horizon boundary](figures/portfolio/calibrated-horizon-boundary.svg) |
+| Huber-robust zero-intercept thermal response: $\beta_{\text{track}} = -0.034825\text{ mph/}^\circ\text{C}$ and $\beta_{\text{ambient}} = +0.182393\text{ mph/}^\circ\text{C}$. | Scientific calibration at exact `15, 30, 60, 90, 120 min` anchors; intermediate 1-minute points are labelled `INTERPOLATED_OPERATIONAL`. |
 
-## The engineering problem
+| Figure 13 — Physical-State Transition Examples | Figure 14 — Observed vs. Frozen Physical Prediction |
+|---|---|
+| ![Physical-state transition examples](figures/portfolio/physical-state-transition-examples.png) | ![Observed versus frozen physical prediction](figures/portfolio/observed-vs-frozen-physical-prediction.png) |
+| Measured $\Delta T_{\text{track}}$ and $\Delta T_{\text{ambient}}$ examples showing the gap between modelled physical contribution and total realized speed change. | Observed four-lap speed change versus frozen deterministic physical prediction, illustrating why empirical attempt-level residuals must be propagated. |
 
-After setting a valid four-lap average, an Indianapolis 500 entrant may retain it and wait in the lower-priority lane, or withdraw it to seek priority for another attempt. That choice combines at least three different processes:
+### 3. Future Track-State Pathway, Probabilistic Uncertainty & LOYO Stability (Figures 15–21)
 
-1. **Opportunity:** whether and when another run becomes available.
-2. **Physical performance:** how the car's four-lap performance distribution changes as conditions evolve.
-3. **Utility:** how rank, bubble position, time remaining and downside risk affect the team decision.
+| Figure 15 — Future Track-State Model (`M2b_mean_solar`) | Figure 16 — Three-Source Uncertainty Architecture |
+|---|---|
+| ![Future track-state model](figures/portfolio/future-track-state-model.svg) | ![Three-source uncertainty architecture](figures/portfolio/three-source-uncertainty.svg) |
+| Horizon-specific future track-temperature specification conditioning on future ambient change, current thermal gap, and mean solar elevation (`656` pairs). | Monte Carlo combination of paired-bootstrap coefficient draws, conformal future track-temperature intervals, and centered LOYO attempt residuals. |
 
-Historical evidence was sufficient for the second process, but not for a consistently labelled first process. That finding changed the estimand from a complete strategy policy to:
-
-> **If another on-track opportunity occurs _h_ minutes from now, what distribution of four-lap qualifying-performance change should be expected relative to the current official result?**
-
-Formally, the project estimates **p(Δv | H = h)**. It does not estimate **P(H = h)**. Physical-performance inference, opportunity-time prediction and strategy recommendation remain separate layers.
-
-![Evidence engineering pipeline](figures/portfolio/evidence-engineering-pipeline.svg)
-
-## Evidence engineering and data archaeology
-
-The analysis began with official results and detailed reports, then reconciled attempts, chronology, section timing, observed track temperature, weather context and source authority. Every usable value carries evidence and eligibility semantics; unresolved joins remain quarantined.
-
-![Evidence products and attrition](figures/portfolio/evidence-products-and-attrition.svg)
-
-The two core datasets use different observational units. The performance response uses **41 same-car transitions**. The future-state layer uses **168 structured track-temperature observations**, transformed into **656 current–future pairs** at the supported horizons. Section evidence links to **39** transitions and contributes **351 dependent within-transition comparisons**, not 351 independent training examples.
-
-![Evidence hierarchy](figures/portfolio/evidence-hierarchy.svg)
-
-![Same-car transition design](figures/portfolio/same-car-transition-design.svg)
-
-See [evidence engineering](docs/evidence-engineering.md), [data dictionary](docs/data-dictionary.md), and [identifiability boundary](docs/identifiability-boundary.md).
-
-## Frozen physical-response model
-
-The robust zero-intercept response model is:
-
-```text
-Δvphysical = βtrack ΔTtrack + βambient ΔTambient
-
-βtrack   = −0.034825 mph / °C
-βambient = +0.182393 mph / °C
-```
-
-The zero intercept encodes a narrow physical constraint: when both measured temperature changes are zero, the modelled thermal contribution is zero. It does **not** claim that realized speed change must be zero; tyre preparation, setup, execution, wind exposure and other latent run state remain in the residual distribution.
-
-![Frozen physical response](figures/portfolio/frozen-physical-response.svg)
-
-The frozen examples below expose both the measured physical-state changes and the gap between observed total performance change and the modelled physical contribution. They make the residual role visible instead of presenting the coefficients in isolation.
-
-![Physical-state transition examples](figures/portfolio/physical-state-transition-examples.png)
-
-![Observed versus frozen physical prediction](figures/portfolio/observed-vs-frozen-physical-prediction.png)
-
-## Future physical state
-
-Future track temperature is estimated separately from the performance response. The retained **M2b** specification conditions on future ambient-temperature change, the current track-to-ambient thermal gap and mean solar elevation. One model is fitted for each scientific horizon, selected through leave-one-year-out comparison.
-
-![Future track model](figures/portfolio/future-track-state-model.svg)
-
-![Candidate-model comparison](figures/portfolio/future-track-model-selection.png)
-
-![Future track-state conformal calibration](figures/portfolio/future-track-conformal-calibration.png)
-
-The solar-state extension is retained in the future track-state pathway. A direct solar performance coefficient is not added to the speed model. Current heating/cooling rate and change in solar elevation were investigated and rejected when their out-of-year evidence did not justify extra complexity.
-
-## Probabilistic inference
-
-FINAL_V2 propagates three sources of uncertainty:
-
-- paired bootstrap uncertainty in the physical-response coefficients;
-- horizon-specific future track-state uncertainty;
-- empirical unexplained attempt-level performance variation from centered leave-one-year-out residuals.
-
-![Three-source uncertainty architecture](figures/portfolio/three-source-uncertainty.svg)
+| Figure 17 — Future Track Candidate-Model Selection | Figure 18 — Future Track Conformal Calibration |
+|---|---|
+| ![Future track candidate-model comparison](figures/portfolio/future-track-model-selection.png) | ![Future track-state conformal calibration](figures/portfolio/future-track-conformal-calibration.png) |
+| Leave-one-year-out structural and solar-feature MAE comparisons across `611` common samples and validated horizons, selecting `M2b_mean_solar`. | Overall empirical conformal coverage (`0.806` at 80%, `0.908` at 90%) versus the `2022` thermal-regime shift undercoverage warning (`0.610` / `0.699`). |
 
 ![Uncertainty-source ablation](figures/portfolio/uncertainty-source-ablation.png)
 
-Removing empirical performance residual uncertainty reduces mean 80% interval width by about **90.4% at 15 minutes** and **72.8% at 120 minutes**. This is an uncertainty-source ablation and sensitivity result, not an orthogonal variance decomposition. It shows why better track-temperature point prediction alone cannot collapse the final outcome interval.
+*Above — **Figure 19 (`uncertainty-source-ablation.png`):** Two-panel uncertainty-source ablation across horizons (`15–120 min`), showing that removing empirical attempt-level performance residuals compresses 80% predictive interval width by **`90.4%` at 15 minutes** and **`72.8%` at 120 minutes**.*
 
-See [uncertainty architecture](docs/uncertainty.md).
+| Figure 20 — LOYO Track Coefficient Stability ($\beta_{\text{track}}$) | Figure 21 — LOYO Ambient Coefficient Stability ($\beta_{\text{ambient}}$) |
+|---|---|
+| ![Leave-one-year-out track coefficient stability](figures/portfolio/loyo-track-coefficient-stability.png) | ![Leave-one-year-out ambient coefficient stability](figures/portfolio/loyo-ambient-coefficient-stability.png) |
+| Leave-one-year-out refits of $\beta_{\text{track}}$ (`−0.0292` to `−0.0456 mph/°C`) against the frozen full-sample value (`−0.034825 mph/°C`). | Leave-one-year-out refits of $\beta_{\text{ambient}}$ across held-out reference seasons against the frozen full-sample value (`+0.182393 mph/°C`). |
 
-The leave-one-year-out coefficient traces below show why cross-year stability was inspected directly rather than inferred from a single full-sample fit.
+### 4. Mechanism Diagnostics & 135-Scenario Physical Stress Tests (Figures 22–26)
 
-![Leave-one-year-out track coefficient](figures/portfolio/loyo-track-coefficient-stability.png)
-
-![Leave-one-year-out ambient coefficient](figures/portfolio/loyo-ambient-coefficient-stability.png)
-
-## Calibrated support and operational interpolation
-
-![Calibration boundary](figures/portfolio/calibrated-horizon-boundary.svg)
-
-Scientific support exists at exactly **15, 30, 60, 90 and 120 minutes**. `OPERATIONAL_CURVE_V2` provides a one-minute display between anchors, with every row labelled as `CURRENT_STATE_BOUNDARY`, `CALIBRATED_ANCHOR` or `INTERPOLATED_OPERATIONAL`. The interpolated values are presentation summaries; they are not independently calibrated minute-by-minute forecasts.
-
-## Diagnostics that interrogate rather than inflate the model
-
-### Section-level mechanism evidence
-
-![Section mechanism](figures/portfolio/section-mechanism-coherence.png)
-
-For the 39 linked transitions, mean directional coherence across nine common sections is **0.724** and rises to **0.935** for the 12 transitions with |Δv| ≥ 0.50 mph. Meaningful changes are generally spatially coherent. Large residuals can also be coherent, so section evidence clarifies mechanism without converting dependent section rows into extra training samples.
-
-### Wind diagnostic
-
-![Wind residual diagnostic](figures/portfolio/wind-residual-diagnostic.png)
-
-Wind is physically relevant. The available fixed-point and gridded historical proxies, however, showed weak or unstable out-of-year residual relationships. No deterministic wind coefficient or production residual-scale term was forced into FINAL_V2.
-
-## Scenario stress test
-
-The frozen model was exercised over **3 thermal-gap states × 3 ambient trajectories × 3 solar states × 5 horizons = 135 scenarios**. Every ambient trajectory remained within its corresponding historical support range.
+| Figure 22 — Section-Level Mechanism Coherence (`39/41`) | Figure 23 — Historical Wind Residual Diagnostic |
+|---|---|
+| ![Section mechanism coherence](figures/portfolio/section-mechanism-coherence.png) | ![Wind residual diagnostic](figures/portfolio/wind-residual-diagnostic.png) |
+| Mean directional coherence across nine track sections rises from `0.724` (`n = 39` all linked transitions) to `0.935` (`n = 12` transitions with $|\Delta v| \ge 0.50\text{ mph}$). | Partial Spearman correlations of fixed-point and gridded wind proxies with performance residuals remained too weak/unstable for a deterministic production term. |
 
 ![120-minute scenario stress test](figures/portfolio/scenario-stress-test-120min.png)
 
-![Scenario probability range by horizon](figures/portfolio/scenario-probability-range-by-horizon.png)
+*Above — **Figure 24 (`scenario-stress-test-120min.png`):** Three-panel 120-minute heatmap from the `135`-scenario physical stress test (`3 thermal-gap states × 3 ambient trajectories × 3 solar states`), where Monte Carlo $P(\Delta v > 0)$ spans **`0.20552` (`0.206`) to `0.6704` (`0.670`)**.*
 
-![Scenario performance envelope by horizon](figures/portfolio/scenario-performance-envelope-by-horizon.png)
+| Figure 25 — Scenario Improvement-Probability Range by Horizon | Figure 26 — Scenario Expected-Performance Envelope by Horizon |
+|---|---|
+| ![Scenario probability range by horizon](figures/portfolio/scenario-probability-range-by-horizon.png) | ![Scenario performance envelope by horizon](figures/portfolio/scenario-performance-envelope-by-horizon.png) |
+| Minimum, median, and maximum $P(\Delta v > 0)$ across all `27` physical scenarios at each calibrated horizon (`15–120 min`). | Expected speed-change envelope $E[\Delta v]$ across horizons (`−0.4630` to `+0.2248 mph` at `120 min`) under cooling, neutral, and warming trajectories. |
 
-At 120 minutes, P(improvement) ranges from **0.2055 to 0.6704**, while expected Δspeed ranges from **−0.4630 to +0.2248 mph**. Physical state can materially shift the odds without eliminating outcome uncertainty. The grid remains conditional on an opportunity occurring; it contains no queue model.
-
-## 2025 external validation
+### 5. 2025 External Validation, Technical-Regime Transfer & V4 Team-Normalized Evidence (Figures 27–31)
 
 ![2025 external validation](figures/portfolio/external-validation-2025.png)
 
-The frozen 2020–2024 inference core was evaluated on 15 eligible 2025 hybrid-era same-car repeats. The evaluation uses the realized PTSC ambient trajectory retrospectively, so it tests the physical-inference chain under a new technical regime; it is **not** live weather-forecast validation.
+*Above — **Figure 27 (`external-validation-2025.png`):** Case-by-case retrospective physical evaluation of the frozen `2020–2024` core on **`15` eligible 2025 hybrid-era same-car repeats** (`MAE = 0.492 mph`, `RMSE = 0.610 mph`, `80% PI = 80.0%`, `90% PI = 100.0%`, `directional accuracy = 46.7%`; `4` cases within `≤120 min` have `MAE = 0.221 mph`).*
 
-| Metric | All external cases ≤180 min | Production-boundary subset ≤120 min |
-|---|---:|---:|
-| N | 15 | 4 |
-| MAE | 0.492 mph | 0.221 mph |
-| Median absolute error | 0.425 mph | 0.190 mph |
-| RMSE | 0.610 mph | 0.269 mph |
-| Directional accuracy | 46.7% | 50.0% |
-| 80% PI coverage | 80% | 100% |
-| 90% PI coverage | 100% | 100% |
-
-Cases above 120 minutes are marked as extended retrospective validation and are not production-supported outputs. The 100% 90% interval coverage is an observed rate in 15 cases, not proof of perfect long-run calibration. See [validation](docs/validation.md).
-
-## Technical-regime transfer and format boundary
-
-![Technical regime timeline](figures/portfolio/technical-regime-timeline.svg)
-
-![Regime coefficients](figures/portfolio/regime-coefficient-comparison.png)
-
-The 2019 pre-Aeroscreen and 2025 hybrid samples retain the same directional response as the reference core. All reported 90% bootstrap intervals for direct coefficient differences include zero. This is qualified compatibility evidence, not equivalence or causal proof of coefficient invariance. The 2026 format is separately classified as structurally lacking same-day initial-round repeat transitions.
-
-See [regime transfer](docs/regime-transfer.md).
-
-## V4 — Team-normalized evidence extension
-
-**Status: `V4_TEAM_NORMALIZED_FINAL` — frozen, additive.**
-
-- **Unchanged:** FINAL_V2 coefficients, the 41-transition core, V3 inference and the paper.
-- **Freeze:** separate pre-registered phases, a SHA-256 manifest of 735 files, and its own freeze tag.
-
-**Question.** Could same-team, different-car evidence be a defensible intermediate control layer between exact-car repeats and unrelated cars?
-
-**1. Team identity.**
-- **Normalisation:** 59 official entrant/team labels (2018–2025) normalise to **21 canonical engineering teams**.
-- **Old grouping:** it missed **85 of 313** true teammate relationships (27%) and created **no** false pairs. It was high precision with incomplete recall.
-
-**2. Measurement validity.**
-- A valid timed practice lap is not automatically a comparable performance observation.
-- Only **8.1%** of 2023–24 at-speed practice laps met the frozen, qualifying-calibrated Class-A performance-comparability rule.
-- Raw practice therefore cannot be treated as one homogeneous performance population.
+| Figure 28 — Technical-Regime Timeline (`2019–2026`) | Figure 29 — Cross-Regime Thermal Coefficient Comparison |
+|---|---|
+| ![Technical-regime timeline](figures/portfolio/technical-regime-timeline.svg) | ![Regime coefficient comparison](figures/portfolio/regime-coefficient-comparison.png) |
+| Technical and format evolution across `2019` pre-Aeroscreen, `2020–2024` frozen Aeroscreen reference, `2025` hybrid era, and `2026` format boundary. | 90% cluster-bootstrap intervals for `2019` (`n = 10`) and `2025` (`n = 23`) versus the frozen `2020–2024` point estimates (`n = 41`), showing directional compatibility. |
 
 ![V4 measurement validity: run-state composition of practice laps](v4_team_normalized/output/phase4h/figures/fig06_run_state_by_session_category.png)
 
-*Each bar splits one practice session type into run-state classes:*
-- *green (A): performance-comparable;*
-- *blue (B): plausibly comparable;*
-- *amber (C): ambiguous;*
-- *red (D): clearly non-comparable, e.g. pit or non-green laps;*
-- *grey (E): too little data to judge.*
-
-*Most timed laps are not clean performance measurements.*
-
-**3. Final pre-registered test (Phase 4J).**
-- **Population:** restricted to 2023–24 Class-A 5-minute car-blocks with timing-adjacency common support, over 6 independent sessions.
-- **Dispersion:** same car **0.37 mph**, same team **1.23 mph**, different team **1.09 mph**.
-- **C1 = same team − same car = +0.70 mph** [+0.09, +1.72]. **Robust:** positive in 5/6 sessions and in every leave-one-session-out and leave-one-team-out estimate.
-- **C2 = different team − same team = +0.20 mph** [−0.53, +0.53]. **Not robust:** positive in 4/6 sessions, one team removal flips its sign, and the Tier 2 sensitivity gives −0.09 mph.
-- **Conclusion:** the full *same car < same team < different team* hierarchy was **not established** (CASE B). Exact-car identity materially reduces observed dispersion in this high-confidence population. Shared team identity did not show a stable additional reduction versus different-team comparison. This is an empirical control result, not a causal team effect.
+*Above — **Figure 30 (`fig06_run_state_by_session_category.png`):** V4 Phase 4H practice run-state audit across 10 session categories (`2023–2024` and `2025`), showing that only **`8.1%`** of 2023–2024 at-speed practice laps meet the qualifying-calibrated Class-A comparability criterion (green).*
 
 ![V4 control-evidence summary](figures/portfolio/v4-control-evidence-summary.png)
 
-**4. Teammate prediction (Phase 4K).**
-- Of **113** target events, only **8** strict, leakage-free teammate-assisted events survived.
-- Teammate predictive value therefore remains **prospectively unidentifiable** from the current retrospective record.
-- This is **not** evidence that teammate predictive value is zero.
+*Above — **Figure 31 (`v4-control-evidence-summary.png`):** V4 Phase 4J pre-registered dispersion summary across 6 independent 2023–2024 sessions: same-car **`0.37 mph`**, same-team **`1.23 mph`**, and different-team **`1.09 mph`** (`C1 = +0.70 mph [+0.09, +1.72]` robust; `C2 = +0.20 mph [−0.53, +0.53]` not robust; full three-level hierarchy **not established**).*
 
-**What V4 adds.** Relaxing the same-car qualifying-repeat design exposed further layers of heterogeneity and non-identifiability. This supports the methodological value of exact-car control. It does not prove the V2 coefficients correct.
+### 6. Operational Decision-Support Overlays & Freeze Discipline (Figures 32–36)
 
-**Read more:**
-- [Final V4 scientific synthesis](v4_team_normalized/output/phase4l/phase4l_final_scientific_synthesis.md)
-- [Claims matrix](v4_team_normalized/output/phase4l/phase4l_claims_matrix.csv)
-- [Evidence chain](v4_team_normalized/output/phase4l/phase4l_evidence_chain.md)
-- [V4 workspace README](v4_team_normalized/README.md)
+| Figure 32 — Operational Performance Outlook (`OPERATIONAL_CURVE_V2`) | Figure 33 — Operational Improvement-Probability Outlook |
+|---|---|
+| ![Operational performance outlook](figures/portfolio/operational-performance-outlook.png) | ![Operational probability outlook](figures/portfolio/operational-probability-outlook.png) |
+| Calibrated scientific anchors (`15, 30, 60, 90, 120 min`) connected by explicitly labelled 1-minute `INTERPOLATED_OPERATIONAL` expected $\Delta v$ and 80% PI bands. | Operational $P(\Delta v > 0)$ trajectories under cooling, neutral, and warming ambient paths across `0–120 min`. |
 
-Lap-level V4 evidence is a third-party archived recording of the INDYCAR live timing feed (Timing71), cross-checked against official INDYCAR session records. Only 2023–2025 provide lap-level timing; 2018–2022 contribute identity and context, not equivalent lap-level evidence.
-
-## Operational decision-support layer
-
-![Operational performance outlook](figures/portfolio/operational-performance-outlook.png)
-
-![Operational probability outlook](figures/portfolio/operational-probability-outlook.png)
-
-An externally supplied opportunity window can be overlaid without converting it into a queue prediction. These views show how live operational context and model evidence remain separate layers.
-
-![External opportunity-window performance overlay](figures/portfolio/external-opportunity-window-performance-overlay.png)
-
-![External opportunity-window probability overlay](figures/portfolio/external-opportunity-window-probability-overlay.png)
-
-The model returns expected Δspeed, median Δspeed, 80% and 90% predictive intervals, and P(Δv > 0) for a supplied physical scenario and opportunity horizon. A real pit-wall decision must combine that evidence with live queue position, cars ahead, leaderboard state, session remaining, interruption risk, withdrawal consequences and engineering judgement.
-
-It does not choose Lane 1 or Lane 2, predict an optimal wait, or recommend retain/withdraw actions. See [operational interface](docs/operational-interface.md).
-
-## Evidence-based decisions: rejected or not retained
-
-| Candidate | Decision | Evidence-based reason |
-|---|---|---|
-| Historical queue-time model | Rejected | Queue/lane/withdrawal states were not consistently observable |
-| Direct solar speed term | Not retained | Solar enters through the future track-state mechanism |
-| Deterministic wind term | Not retained | Historical proxy relationships were weak and unstable across years |
-| Section rows as training observations | Rejected | Nine sections within a transition are dependent |
-| Pooling 2025 into the frozen core | Rejected | Would destroy external validation integrity |
-| Independent minute-level calibration | Rejected | Intermediate minutes are labelled operational interpolation |
-| Unsupported high-capacity models | Rejected | The evidence base does not justify complexity for its own sake |
-
-These are model-risk controls and engineering outputs, not unfinished work.
-
-## Reproducibility and freeze discipline
+| Figure 34 — External Opportunity-Window Performance Overlay | Figure 35 — External Opportunity-Window Probability Overlay |
+|---|---|
+| ![External opportunity-window performance overlay](figures/portfolio/external-opportunity-window-performance-overlay.png) | ![External opportunity-window probability overlay](figures/portfolio/external-opportunity-window-probability-overlay.png) |
+| Externally supplied pit-wall opportunity window (`45–75 min`) overlaid onto the physical performance curve without predicting queue duration. | Externally supplied opportunity window overlaid onto the improvement-probability trajectory to support human pit-wall decision-making. |
 
 ![Freeze and reproducibility](figures/portfolio/freeze-and-reproducibility.svg)
 
-The repository contains frozen manifests and SHA-256 records for the performance core, FINAL_V2, diagnostics, operational curve and regulation extension. Portfolio scripts read those artefacts without refitting them. Later observations remain external unless a separately versioned research phase explicitly replaces the freeze.
+*Above — **Figure 36 (`freeze-and-reproducibility.svg`):** SHA-256 manifest governance across `FINAL_V2`, `R6_REGULATION_AWARE_EXTENSION_V1_FROZEN`, `FINAL_V3_FROZEN`, and `V4_TEAM_NORMALIZED_FINAL`, keeping all scientific artifacts immutable while isolating the later [V5](v5_lap_time_simulation/README.md), [V6](v6_driver_in_loop/README.md), and [Performance Explorer](performance_explorer/README.md) engineering extensions below.*
+
+---
+
+## V5 — Lap-Time Physics Simulation
+
+**[V5 (`v5_lap_time_simulation/`)](v5_lap_time_simulation/README.md)** is an isolated vehicle-engineering extension that implements a Python/NumPy quasi-steady spatial lap-time solver together with a FastAPI service and React/TypeScript engineering replay viewer. It models aerodynamic drag and downforce, banked normal and lateral tyre-force limits, longitudinal friction-circle coupling, drivetrain power limits, and forward/backward integration passes around an explicitly assumed **`4023.360 m` (`2.5 mi`)** eight-segment closed oval.
+
+### Standalone V5 Engineering Replay (`SIMULATED — V5`)
+
+![Authentic V5 physics comparison showing baseline versus reduced grip](docs/media/v5-physics-comparison.gif)
+
+*Above — **`SIMULATED — V5` Standalone Engineering Viewer ([`v5_lap_time_simulation/`](v5_lap_time_simulation/README.md)):** Recorded from the verified Python solver exports (`v5_lap_time_simulation/output/replay.json` vs. `replay_low_grip.json`). Compares the recalibrated baseline (**`38.987453 s`**, **`230.843500 mph`** average speed, effective power scalar **`682.824947 kW`**, $\mu = 1.80$) against a **`-25%` tire-grip perturbation** (**`40.963472 s`**, **`219.708 mph`**, $\mu = 1.35$, **`+1.976019 s` / `+5.068346%`** lap delta), showing synchronized ghost-car progression, acceleration/braking regime shading, and 8-segment time contributions (`+0.296197 s` per turn, `+0.116753 s` per short chute, `+0.278862 s` per main straight). [**Watch full-resolution MP4 (`v5-physics-comparison.mp4`) →**](docs/media/v5-physics-comparison.mp4) · [**V5 module README →**](v5_lap_time_simulation/README.md)*
+
+### V5 Spatial Speed Profile, Sensitivity Analysis & Retrospective 2024 Benchmark
+
+![V5 quasi-steady speed profile across the assumed 4023.360 m IMS oval](v5_lap_time_simulation/output/speed_profile.png)
+
+*Above — **V5 Spatial Quasi-Steady Speed Profile (`v5_lap_time_simulation/output/speed_profile.png`):** Simulated speed (`230.548823–231.375288 mph`) across the assumed `4023.360 m` (`2.5 mi`) oval (`2 × 1005.840 m` main straights, `2 × 201.168 m` short chutes, `4 × 402.336 m` turns at $R = 256.135\text{ m}$ and $9.2^\circ$ banking). After auditing and correcting the legacy mixed flat/banked normal-load equations (increasing turn normal load from `16,682.434 N` to `21,553.986 N` and lowering lateral tire utilization at the legacy reference speed from `103.572%` to `75.899%` while reserving longitudinal tire capacity against aerodynamic drag), the baseline car remains **power-limited** below its sustainable cornering cap across all four turns. Reducing grip by `25%` ($\mu = 1.35$) drops the cornering speed cap below straightaway speed and activates explicit braking entry and acceleration exit zones.*
+
+| Single-Factor Parameter Sensitivity (`sensitivity.png`) | Retrospective 2024 Descriptive Comparison (`historical_comparison.png`) |
+|---|---|
+| ![V5 parameter assumption sensitivity chart](v5_lap_time_simulation/output/sensitivity.png) | ![V5 2024 retrospective descriptive comparison scatter plot](v5_lap_time_simulation/output/historical_comparison.png) |
+| **Assumed-Model Perturbation Sensitivity:** One-factor perturbations around the `38.987453 s` baseline holding the calibrated `682.824947 kW` power scalar fixed: available power `+10%` (`-1.232977 s` / `-3.162%`), drag area $C_dA$ `+10%` (`+1.212310 s` / `+3.109%`), air temperature `+10 °C` (`-0.419448 s` / `-1.076%` via lower air density $\rho$), mass `+10%` (`+0.036528 s`), downforce area $C_lA$ `+10%` with $C_dA$ fixed (`+0.028116 s` via higher rolling resistance in a power-limited regime), and tire grip `+5%` or track temperature `+10 °C` (`0.000000 s` because baseline corners have unused lateral grip margin). | **Retrospective 2024 Benchmark (`54` Complete Attempts):** Calibrating one global power scalar (`682.825 kW`) to the `206`-attempt `2020–2023` pooled median speed (**`230.843500 mph`**) yields a constant prediction across all `54` complete 2024 qualifying attempts. The resulting 2024 speed MAE (**`1.142815 mph`**) and RMSE (**`1.400540 mph`**)—and four-lap time MAE (`0.769258 s`) / RMSE (`0.944403 s`)—**identically match the training-median constant-speed benchmark**, confirming zero aggregate predictive gain over the training median. |
+
+### V5 Verification, Mesh Convergence & Setup
+
+- **Spatial Mesh Refinement ([`ENGINEERING_RESULTS.md`](v5_lap_time_simulation/docs/ENGINEERING_RESULTS.md)):** Tested across `40, 20, 10, 5, 2.5, 1.25 m` spatial grids without recalibrating. Relative to `1.25 m`, the `≤10 m` production grid differs by **`0.000670 s`** (`0.014219 m/s` profile RMSE, `0.315171 m/s` local transition max) for baseline and **`0.005681 s`** (`0.026001 m/s` profile RMSE, `0.352606 m/s` max) for grip `-25%`.
+- **Assumptions & Predictive Limitations ([`VALIDATION_REPORT.md`](v5_lap_time_simulation/docs/VALIDATION_REPORT.md)):** Track radius, banking, aero coefficients, and mass are generic assumptions; `2024` data was excluded from scalar fitting but inspected during development; and public 9-section (`2020–2023`) / 17-section (`2024`) timing summaries have no verified distance crosswalk or continuous GPS/ECU telemetry to validate spatial profiles.
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-python3 -m pip install -r requirements.txt
-
-# Recreate only the curated GitHub figures from frozen outputs
-make figures
-
-# Verify public claims, figure references and frozen hashes
-make portfolio-check
-
-# Run repository smoke/integrity tests
-make test
+# Run V5 standalone FastAPI service + built React viewer on http://127.0.0.1:8005
+python3 -m pip install -r v5_lap_time_simulation/requirements.txt
+npm ci --prefix v5_lap_time_simulation/frontend && npm run build --prefix v5_lap_time_simulation/frontend
+python3 -m v5_lap_time_simulation.server
 ```
 
-Raw public-source evidence is retained for audit where redistribution permits. Derived canonical tables, provenance records, quarantine outputs and freeze manifests are included. Some external services and historical replay resources are not guaranteed to remain available; the repository does not claim that every raw acquisition can be repeated indefinitely. See [reproducibility](docs/reproducibility.md).
+Read more: [V5 README](v5_lap_time_simulation/README.md) · [Physics Model](v5_lap_time_simulation/docs/PHYSICS_MODEL.md) · [Data & Assumptions](v5_lap_time_simulation/docs/DATA_AND_ASSUMPTIONS.md) · [Engineering Results](v5_lap_time_simulation/docs/ENGINEERING_RESULTS.md) · [Validation Report](v5_lap_time_simulation/docs/VALIDATION_REPORT.md).
 
-## Repository map
+---
 
-```text
-pipeline/                 source-specific ingestion and canonical reconciliation
-data/canonical/v1/        canonical historical data products
-weather/                  observed weather, future-state model and FINAL_V2 outputs
-r5_2/                     frozen 2020–2024 physical-response core
-r6_regime_extension/      2019/2025 regime evidence and external evaluation
-figures/portfolio/        curated GitHub visual narrative
-figures/final_v3/         FINAL_V3 architecture/evidence-flow/illustrative-case figures
-docs/                     technical documentation and final report
-scripts/                  presentation regeneration and integrity checks
-tests/                    pipeline and portfolio QA
-cpp/                      C++17 point-in-time performance engine, GoogleTest suite and pybind11 bindings
-v3_point_in_time/         FINAL_V3: point-in-time replay, Scenario Mode, FastAPI + React app, Docker, CI
-v4_team_normalized/       V4 (frozen, additive): team registry, pre-registered Phases 3–4K, Phase 4L synthesis + freeze manifest
+## V6 — Vehicle Dynamics and Virtual Driver
+
+**[V6 (`v6_driver_in_loop/`)](v6_driver_in_loop/README.md)** is an independent **Software-in-the-Loop (SIL)** dynamic vehicle simulation and telemetry replay extension built with zero external runtime dependencies (Python 3.10+ standard library and native HTML5 Canvas / ES Modules). Unlike [V5](v5_lap_time_simulation/README.md)'s quasi-steady spatial solver, [V6](v6_driver_in_loop/README.md) integrates a planar dynamic bicycle model forward in time under closed-loop feedback from a virtual driver across a 19-scenario robustness sweep (**14 completed and 5 off-track runs**).
+
+### Standalone V6 Dynamics Replay & Side-by-Side Scenario Comparison (`SIMULATED — V6`)
+
+![Authentic standalone V6 vehicle-dynamics viewer showing completed and off-track scenarios](docs/media/v6-vehicle-dynamics.gif)
+
+*Above — **`SIMULATED — V6` Standalone Dynamics Viewer ([`v6_driver_in_loop/viewer/`](v6_driver_in_loop/README.md)):** Sequential browser recording of the standalone V6 viewer replaying the completed baseline run (**`72.409997 s`**, max tracking error **`5.18681 m`**) followed by the `600 ms` command-delay run (**`OFF_TRACK`** at **`17.473821 s`**, boundary violation at **`-7.50000 m`**), displaying the `4527.951644 m` stadium centerline, `±7.5 m` corridor boundaries, vehicle pose and heading vector, and six synchronized telemetry traces. [**Watch full-resolution combined MP4 (`v6-vehicle-dynamics.mp4`) →**](docs/media/v6-vehicle-dynamics.mp4) · [**V6 module README →**](v6_driver_in_loop/README.md)*
+
+| Completed Baseline Scenario (`v6-baseline-completed.gif`) | 600 ms Steering-Delay Off-Track Scenario (`v6-delay-off-track.gif`) |
+|---|---|
+| ![Standalone V6 replay of completed baseline lap](docs/media/v6-baseline-completed.gif) | ![Standalone V6 replay of 600 ms command delay off-track termination](docs/media/v6-delay-off-track.gif) |
+| **`baseline.json` — `COMPLETED` (`72.409997 s` at $\Delta t = 10\text{ ms}$):** Undelayed pure-pursuit steering (`35 m` lookahead, gain `1.2`) and curvature-preview PID speed control complete the full **`4527.951644 m`** stadium lap. Speed ranges from **`30.000 m/s`** (start) to **`70.441 m/s`** (straights) with a **`62.842 m/s`** time-weighted mean (`~60.0 m/s` steady cornering). Lateral tracking error peaks at **`5.18681 m`** (`2.76899 m` RMS), staying well inside the `±7.500 m` corridor with **`4.09%`** tire-saturation occupancy and **`12.8275 m/s²`** peak lateral acceleration. [**Watch `v6-baseline-completed.mp4` →**](docs/media/v6-baseline-completed.mp4) | **`delay_0.6s.json` — `OFF_TRACK` at `17.473821 s` (`17.474 s`):** A **`600 ms` FIFO actuator delay queue** buffers requested steering and braking commands across `60` control ticks ($\Delta t = 10\text{ ms}$). The car enters Turn 1 (`s ≈ 1000 m` at `t ≈ 15.6 s`) at straightaway speed (`70.44 m/s`) before delayed turn-in and braking release, driving lateral acceleration to **`14.2727 m/s²`**, tire saturation to **`17.40%`**, and signed tracking error to the **`-7.50000 m`** outer boundary at **`17.473821 s`** (`track boundary exceeded`, bisected to `≤1 ns`). [**Watch `v6-delay-off-track.mp4` →**](docs/media/v6-delay-off-track.mp4) |
+
+| Six-Panel Baseline Engineering Telemetry (`engineering.png`) | Standalone Replay Control & Pose Inspector (`replay_preview.png`) |
+|---|---|
+| ![SIMULATED V6 six-panel engineering telemetry plot](v6_driver_in_loop/reports/engineering.png) | ![V6 standalone viewer control and track preview card](v6_driver_in_loop/reports/replay_preview.png) |
+| **Audited Six-Panel Telemetry (`v6_driver_in_loop/reports/engineering.png`):** Shows (1) driven trajectory vs. reference `4527.95 m` stadium oval, (2) actual speed $\operatorname{hypot}(u, v)$ vs. driver curvature-preview target (`75.0 m/s` straight / `63.430 m/s` curve target), (3) front steering angle $\delta$ (`rad`, `0.0275 rad` entry peak, `0.0194 rad` steady cornering), (4) applied throttle and brake pedals (`[0, 1]`), (5) net body lateral acceleration $a_{y,\text{body}} = \dot{v} + ur = F_{y,\text{body}}/m$ (`12.83 m/s²` peak), and (6) signed lateral tracking error $e_y$ within the `±7.5 m` dashed red limits. | **Read-Only Browser Replay Inspector (`v6_driver_in_loop/reports/replay_preview.png`):** Detail of the standalone Canvas viewer (`v6_driver_in_loop/viewer/`) providing scenario selection across all **19 exported runs** (`14 completed`, `5 off_track`), play/pause/reset controls, playback rate selector (`0.5×–8×`), continuous simulated-time seek slider (`30.000 s` of `72.410 s` shown), and live vehicle pose rendering. The viewer strictly reads exported JSON files without running physics in the browser. |
+
+### How V6 Works: Bicycle Model, RK4 Integrator, Virtual Driver & Tracking Error
+
+1. **Planar Dynamic Bicycle Model ([`vehicle.py`](v6_driver_in_loop/vehicle.py), [`docs/VEHICLE_DYNAMICS.md`](v6_driver_in_loop/docs/VEHICLE_DYNAMICS.md)):**
+   - Integrates the 7-state vector $\mathbf{x} = (x, y, \psi, u, v, r, s)$ in SI units with illustrative open-wheel parameters ($m = 850\text{ kg}$, $I_z = 1200\text{ kg}\cdot\text{m}^2$, $L = 3.0\text{ m}$, $l_f = 1.35\text{ m}$, $l_r = 1.65\text{ m}$, $C_f = 90\text{ kN/rad}$, $C_r = 100\text{ kN/rad}$, $\mu = 1.5$, $C_dA = 1.2\text{ m}^2$, $C_lA = 3.0\text{ m}^2$, $\rho = 1.225\text{ kg/m}^3$).
+   - Front wheel-frame velocity components $u_f = u\cos\delta + (v + l_f r)\sin\delta$ and $v_f = -u\sin\delta + (v + l_f r)\cos\delta$ define slip angles $\alpha_f = -\operatorname{atan2}(v_f, \max(|u_f|, u_\epsilon))$ and $\alpha_r = -\operatorname{atan2}(v - l_r r, \max(u, u_\epsilon))$ with low-speed denominator regularization $u_\epsilon = 2.0\text{ m/s}$. Requested lateral forces $C_i\alpha_i$ and longitudinal axle demands (rear drive $9000\text{ N} \times \text{throttle}$; brake $18000\text{ N} \times \text{brake} \times \tanh(u/0.2)$ split `55%` front / `45%` rear) are jointly scaled on each axle by the circular combined-slip envelope $\min\bigl(1, \mu F_{z,i}/\operatorname{hypot}(F_{x,i}^{\text{req}}, F_{y,i}^{\text{req}})\bigr)$ where normal load $F_{z,i}$ includes speed-squared downforce $\frac{1}{2}\rho(u^2+v^2)C_lA$. Front tyre forces rotate by $\delta$ into body coordinates before subtracting vector aerodynamic drag and rolling resistance, yielding exact rigid-body equations $\dot{u} = F_{x,\text{body}}/m + vr$, $\dot{v} = F_{y,\text{body}}/m - ur$, $\dot{r} = (l_f F_{yf,\text{body}} - l_r F_{yr})/I_z$, and true body accelerations $a_{x,\text{body}} = F_{x,\text{body}}/m$ and $a_{y,\text{body}} = F_{y,\text{body}}/m$.
+2. **Classical RK4 Integration, Convergence & Nanosecond Event Bisection ([`simulation.py`](v6_driver_in_loop/simulation.py), [`reports/CONVERGENCE_RESULTS.md`](v6_driver_in_loop/reports/CONVERGENCE_RESULTS.md)):**
+   - Advances held actuator commands over each control step $\Delta t \in (0, 0.05]\text{ s}$ (default `10 ms`) using deterministic internal RK4 substeps $h \le \min(0.02\text{ s}, 0.25\tau)$ based on the linear tire-damping timescale $\tau$. First boundary (`|e_y| > 7.5 m`) or lap-completion crossings (`s >= 4527.951644 m`) are localized by re-integrating the held command and **bisecting time to `≤1 ns`**.
+   - **Timestep refinement (`20 / 10 / 5 / 2.5 ms`):** Baseline lap times converge smoothly (**`72.4132 / 72.4100 / 72.4077 / 72.4068 s`**), with maximum same-time position differences relative to `2.5 ms` of **`0.4063 / 0.2019 / 0.0573 m`**.
+3. **Virtual Driver & 19-Scenario Robustness Matrix ([`controller.py`](v6_driver_in_loop/controller.py), [`reports/ROBUSTNESS_RESULTS.md`](v6_driver_in_loop/reports/ROBUSTNESS_RESULTS.md)):**
+   - **Pure-pursuit lateral steering** targets a point `preview_m = 35.0 m` ahead along the known reference centerline ($\delta_{\text{req}} = k_{\text{steer}}\operatorname{atan2}(2Ly_t, dx^2+dy^2)$) with optional first-order steering lag. **Curvature-preview PID speed control** tracks $v_{\text{target}} = \text{aggression} \cdot \min(v_{\max}, \sqrt{a_{y,\lim}/|\kappa_{\text{preview}}|})$ (`75.0 m/s` on straights; `63.430 m/s` in $R = 402.336\text{ m}$ turns before aggression) with conditional integral anti-windup and a deterministic FIFO reaction-delay queue.
+
+| Scenario (`v6_driver_in_loop/reports/robustness.csv`) | Status | Simulated Lap Time (`s`) | Max Tracking Error (`m`) | RMS Tracking Error (`m`) | Peak Lateral Accel (`m/s²`) | Tire Saturation | Physical & Control Outcome Summary |
+|---|---|---:|---:|---:|---:|---:|---|
+| **`baseline`** ($\Delta t = 10\text{ ms}$, delay `0 s`, $\mu = 1.5$) | **`completed`** | **`72.409997`** | `5.18681` | `2.76899` | `12.8275` | `4.09%` | Reference SIL run; steady cornering understeer drift remains `2.31 m` inside the `7.50 m` wall |
+| **`conservative`** (`aggression = 0.80`, `preview = 40 m`) | **`completed`** | **`90.373859`** | `3.12874` | `1.82252` | `7.9256` | `1.68%` | Lower corner speed reduces peak tracking error by `39.7%` and tire saturation by `58.9%` |
+| **`aggressive`** (`aggression = 1.12`, `preview = 28 m`) | **`completed`** | **`63.221075`** | `7.48895` | `3.69339` | `18.0807` | `4.68%` | Completes with only **`~11.05 mm` (`0.01105 m`)** margin to the `7.500 m` boundary |
+| **`delay_0.1s`** (`100 ms`) & **`delay_0.3s`** (`300 ms`) | **`completed`** | **`72.481166` / `72.651203`** | `5.48751 / 6.75530` | `2.786 / 2.894` | `13.58 / 16.73` | `4.11% / 4.13%` | Turn-entry path overshoot grows with actuator delay but recovers before `7.500 m` |
+| **`delay_0.6s`** (`600 ms` command delay) | **`off_track`** (`17.474 s`) | — | **`7.50000`** | `1.00918` | `14.2727` | `17.40%` | Enters Turn 1 at `70.44 m/s` before delayed turn-in/braking arrive; breaches `-7.500 m` at `17.473821 s` |
+| **`grip_0.8`**, **`grip_1`**, **`steering_gain_0.6`**, **`offset_+8m`** | **`off_track`** (`4` runs) | — | **`7.50000` / `8.000`** | `1.268–8.000` | `3.94–18.24` | `0.00%–33.51%` | Insufficient lateral friction circle ($\mu \in \{0.8, 1.0\}$), weak lateral gain ($0.6$), or initially out-of-bounds (`+8 m`) |
+| **`steering_gain_1.6`**, **`offset_±2m`**, **`heading_±3deg`**, **`start_0/70mps`**, **`speed_gain_0.175/0.7`** | **`completed`** (`9` runs) | `70.724–75.974` | `2.866–5.190` | `1.570–2.899` | `12.33–12.83` | `0.00%–9.85%` | Higher steering gain (`1.6`) halves tracking error (`2.866 m`); initial offset/heading/speed transients decay cleanly |
+
+```bash
+# Regenerate V6 baseline, run the 19-scenario robustness sweep, and serve the standalone viewer on http://127.0.0.1:8766/v6_driver_in_loop/viewer/
+python3 -m v6_driver_in_loop.cli --dt 0.01 --output v6_driver_in_loop/output
+python3 -m v6_driver_in_loop.experiments
+python3 -m http.server 8766 --bind 127.0.0.1
 ```
 
-For the detailed module and status inventory, open [the repository guide](docs/reproducibility.md) and [figure gallery](figures/GALLERY.md).
+Read more: [V6 README](v6_driver_in_loop/README.md) · [Physics Audit](v6_driver_in_loop/docs/PHYSICS_AUDIT.md) · [Vehicle Dynamics](v6_driver_in_loop/docs/VEHICLE_DYNAMICS.md) · [Controller Design](v6_driver_in_loop/docs/CONTROLLER_DESIGN.md) · [Robustness Results](v6_driver_in_loop/reports/ROBUSTNESS_RESULTS.md) · [Convergence Results](v6_driver_in_loop/reports/CONVERGENCE_RESULTS.md) · [Simulation Validation](v6_driver_in_loop/docs/SIMULATION_VALIDATION.md).
 
-## Limitations
+---
 
-- The primary response dataset contains only 41 transitions.
-- Exact queue opportunity and team-intent history remains unidentifiable from the public record.
-- Latent setup, tyre preparation, execution and vehicle state dominate much of the predictive spread.
-- The 2025 external sample is small, with only four cases inside the production horizon.
-- Future-state validation uses realized historical ambient paths; end-to-end live forecast validation remains separate.
-- 2022 shows a marked thermal-regime shift and future-track interval undercoverage.
-- Wind proxies do not represent the spatial aerodynamic exposure around the oval.
-- Technical transferability is qualified; qualifying-format applicability must be checked separately.
-- FINAL_V3's point-in-time evidence base yields only 10 genuine candidate cases and 0 cases with formal aggregate historical-scoring support; statistically meaningful point-in-time forecast validation is not established (architecture and leakage control are demonstrated in running software; evidence volume is the limitation, not infrastructure).
-- The one near-anchor point-in-time case (2021, car 60) is illustrative only and must never be read as validation.
-- Neither FINAL_V2 nor FINAL_V3 models opportunity timing, queue state, or a retain/withdraw strategy, historically or hypothetically.
-- **V4** (additive) covers a restricted 2023–24 practice population of 6 independent sessions.
-  - Its same-team versus different-team contrast is not robust, so the full three-level hierarchy is not established.
-  - Teammate predictive value is not prospectively identifiable with current retrospective labels.
-  - Run purpose, fuel, tyres, tow and traffic are unobserved.
+## Performance Explorer — Unified Interface and Demonstrations
 
-## Documentation
+The **[Indy 500 Dual-Car Performance Explorer (`performance_explorer/`)](performance_explorer/README.md)** is a unified React/TypeScript application (`V1.1`) that brings together **Historical (`OBSERVED`)** qualifying records, **[V5](v5_lap_time_simulation/README.md) (`SIMULATED — V5`)** dual-car lap-time comparisons, and **[V6](v6_driver_in_loop/README.md) (`SIMULATED — V6`)** schema-2 dynamic telemetry replays in one interface while preserving strict cross-mode boundaries.
 
-- [Identifiability boundary](docs/identifiability-boundary.md)
-- [Methodology](docs/methodology.md)
-- [Model card](docs/model-card.md)
-- [Evidence engineering](docs/evidence-engineering.md)
-- [Validation](docs/validation.md)
-- [Uncertainty](docs/uncertainty.md)
-- [Regime transfer](docs/regime-transfer.md)
-- [Operational interface](docs/operational-interface.md)
-- [Reproducibility](docs/reproducibility.md)
-- [Technical challenges](docs/technical_challenges.md)
-- [FINAL_V2 system specification](docs/final_v2_system_specification.md)
-- [Full research report](docs/paper/physics_conditioned_probabilistic_performance_inference.pdf) (includes FINAL_V3 Section 10, "Point-in-Time Historical Shadow Evaluation")
-- [FINAL_V3 application README](v3_point_in_time/README.md)
-- [FINAL_V3 architecture](v3_point_in_time/output/final_documentation/final_v3_architecture.md)
-- [FINAL_V3 model card](v3_point_in_time/output/final_documentation/FINAL_V3_MODEL_CARD.md)
-- [FINAL_V3 system specification](v3_point_in_time/output/final_documentation/FINAL_V3_SYSTEM_SPECIFICATION.md)
-- [FINAL_V3 scientific limitations](v3_point_in_time/output/final_documentation/scientific_limitations.md)
-- [FINAL_V3 QA report](v3_point_in_time/output/qa/final_v3_qa_report.md)
-- **V4 team-normalized evidence extension:**
-  - [final scientific synthesis](v4_team_normalized/output/phase4l/phase4l_final_scientific_synthesis.md)
-  - [claims matrix](v4_team_normalized/output/phase4l/phase4l_claims_matrix.csv)
-  - [evidence chain](v4_team_normalized/output/phase4l/phase4l_evidence_chain.md)
-  - [limitations](v4_team_normalized/output/phase4l/phase4l_limitations.md)
-  - [future data requirements](v4_team_normalized/output/phase4l/phase4l_future_data_requirements.md)
-  - [freeze report](v4_team_normalized/output/phase4l/v4_freeze_report.md)
-  - [workspace README](v4_team_normalized/README.md)
+### Authentic Dual-Car Demonstrations: V5 Simulation Mode & Integrated V6 Replay Mode
 
-  V4 is **not** yet part of the full research report above.
+![Authentic Performance Explorer V5 comparison: baseline and reduced-grip cars, shared replay, speed profiles and Track Dominance](docs/media/explorer-dual-car.gif)
 
-## Author and citation
+*Above — **`SIMULATED — V5` in [Performance Explorer](performance_explorer/README.md):** Synchronized dual-car playback comparing the published V5 baseline (`Car A`: `38.9875 s`, `230.844 mph`, $\mu = 1.80$) against the reduced-grip configuration (`Car B`: `40.9635 s`, `219.708 mph`, $\mu = 1.35$, `+1.9760 s` / `+5.068%`). Shows shared-clock progression around the assumed `4023.36 m` 8-segment oval, distance-aligned speed envelopes, equal-distance arrival delta $t_B(s) - t_A(s)$, segment-level Track Dominance (`Car A: 100.0% / 4023.4 m`), and independent finish clamping (`A ✓` at `38.9875 s` while `B` finishes at `40.9635 s`). [**Watch full-resolution MP4 (`explorer-dual-car.mp4`) →**](docs/media/explorer-dual-car.mp4) · [**Media provenance →**](docs/media/README.md)*
 
-**Fengzhe Li** · University College London
+![Authentic integrated Performance Explorer V1.1 V6 mode showing two recorded runs and independent terminal events](docs/media/explorer-v6-integrated.gif)
 
-If this repository informs your work, cite the project and the versioned frozen artefacts used:
+*Above — **`SIMULATED — V6` in Integrated [Performance Explorer V1.1](performance_explorer/README.md):** Authentic browser capture from `performance_explorer/frontend/` replaying the audited schema-2 V6 exports (`baseline.json` vs. `delay_0.6s.json`). Shows shared playback controls (`2×` and `10×` rates, pause, restart, seek), synchronized speed/steering/pedal/yaw/lateral-acceleration/tracking-error traces, and independent terminal clamping: the `600 ms` delay car terminates off-track at **`17.473821 s`** (`OFF_TRACK — track boundary exceeded`, `-7.500 m` error) while the baseline car completes the full `4527.95 m` stadium lap in **`72.409997 s`** (`COMPLETED`). Distinct from the standalone V6 viewer above. [**Watch full-resolution MP4 (`explorer-v6-integrated.mp4`) →**](docs/media/explorer-v6-integrated.mp4) · [**Explorer README →**](performance_explorer/README.md)*
 
-| Frozen artefact | Role |
-|---|---|
-| `FINAL_V2` | scientific model |
-| `R6_REGULATION_AWARE_EXTENSION_V1_FROZEN` | regulation-aware evidence extension |
-| `FINAL_V3_FROZEN` | point-in-time application layer |
-| `V4_TEAM_NORMALIZED_FINAL` (git tag) | additive team-normalized evidence extension |
+### Evidence Contracts Across the Three Explorer Modes
 
-The full research report describes FINAL_V2/V3 only. V4 findings are currently documented in the repository ([V4 synthesis](v4_team_normalized/output/phase4l/phase4l_final_scientific_synthesis.md)), not in the report.
+| Explorer Mode | Provenance Badge | Data Source & Coverage | Geometry & Coordinate System | Playback Clock & Interpolation | Supported Comparisons & Guardrails |
+|---|---|---|---|---|---|
+| **Historical Timing** | **`OBSERVED`** | `196` retained complete Day 1 four-lap qualifying attempts (`2020–2024`: `46 / 50 / 39 / 30 / 31` per year) | Official `2.5 mi` (`4023.36 m`) IMS qualifying distance | **Discrete lap-boundary progression** (`Laps 1–4`); no GPS or continuous intra-lap position is invented | Official 4-lap total time/speed, per-lap durations, lap deltas, and matched section comparisons where official section schemas align |
+| **V5 Simulation** | **`SIMULATED — V5`** | Bundled `v5-baseline.json` & `v5-low-grip.json` (`v5-replay-1`), imported JSON, or live Python API (`POST /api/v5/simulate`) | Assumed **`4023.360 m`** closed 8-segment banked oval (`9.2°` turns, $R = 256.135\text{ m}$) | **Continuous shared clock** with distance-indexed interpolation (`≤10 m` mesh) and independent finish clamping | Speed overlay $v(s)$, equal-distance arrival delta $t_B(s) - t_A(s)$, 8-segment **Track Dominance**, and two-car parameter recomputation |
+| **V6 Telemetry Replay** | **`SIMULATED — V6`** | Audited **schema-2 (`v6-replay-2`)** dynamic-bicycle RK4 exports (`baseline.json` and `delay_0.6s.json`) | Illustrative **`4527.951644 m`** closed flat stadium (`2 × 1000 m` straights + `2 × R=402.336 m` turns) | **Continuous shared clock** ($\Delta t = 10\text{ ms}$) interpolating pose $(x, y, \psi)$ while zero-order holding actuator commands/flags to each car's terminal event | Dual-car pose & heading overlay, synchronized speed, steering $\delta$, throttle/brake, yaw rate $r$, lateral acceleration $a_y$, tracking error $e_y$, and common-progress distance delta |
 
-## Status
+```bash
+# Run Performance Explorer locally (bundled Historical, V5, and V6 replays work offline out of the box)
+cd performance_explorer/frontend
+npm ci && npm test && npm run dev
 
-| Layer | Status |
-|---|---|
-| Scientific core | `FINAL_V2` — frozen |
-| Regulation-aware evidence extension | `R6_REGULATION_AWARE_EXTENSION_V1_FROZEN` |
-| Point-in-time application layer | `FINAL_V3_FROZEN` — 101/101 tests PASS, V2 immutability PASS, V3↔V2 behavioural regression PASS |
-| Team-normalized evidence extension | `V4_TEAM_NORMALIZED_FINAL` — frozen additive evidence extension; V2/V3 unchanged; 735-file SHA-256 manifest; Phase 4L checks 17/17 PASS |
+# Optional: start the V5 Python FastAPI service on http://127.0.0.1:8005 for live two-car V5 recomputation
+python3 -m pip install -r v5_lap_time_simulation/requirements.txt
+python3 -m v5_lap_time_simulation.server
+```
+
+Read more: [Performance Explorer README](performance_explorer/README.md) · [Data Contract](performance_explorer/docs/DATA_CONTRACT.md) · [Historical Data Audit](performance_explorer/docs/DATA_AUDIT.md) · [Validation Record](performance_explorer/docs/VALIDATION.md) · [Media Provenance](docs/media/README.md).
+
+---
+
+## Reproducibility, Limitations and Further Documentation
+
+### Core Engineering & Scientific Caveats
+
+1. **[V2](docs/final_v2_system_specification.md), [V3](v3_point_in_time/README.md), and [V4](v4_team_normalized/README.md) are frozen and scientifically distinct:** `FINAL_V2` (`41` same-car transitions; `15` external 2025 cases with `4` inside `≤120 min`), `FINAL_V3_FROZEN` (`10` point-in-time candidates and `0` formal aggregate historical-scoring validation cases; 2021 Car 60 is illustrative only), and `V4_TEAM_NORMALIZED_FINAL` (`8.1%` Class-A practice share; `C1 = +0.70 mph [+0.09, +1.72]` robust; `C2 = +0.20 mph [−0.53, +0.53]` not robust; full hierarchy **not established**; `8` surviving leakage-free teammate-assisted cases out of `113`) are SHA-256 frozen and never modified by [V5](v5_lap_time_simulation/README.md), [V6](v6_driver_in_loop/README.md), or the [Performance Explorer](performance_explorer/README.md). None of these layers models queue duration, estimates $P(H = h)$, or recommends retain/withdraw decisions.
+2. **[V5](v5_lap_time_simulation/README.md) and [V6](v6_driver_in_loop/README.md) use different assumed track geometries:** [V5](v5_lap_time_simulation/README.md) uses an assumed **`4023.360 m`** (`2.5 mi`, `9.2°` banked, 4-turn, 8-segment) oval, whereas [V6](v6_driver_in_loop/README.md) uses an illustrative **`4527.951644 m`** (flat, 2-turn analytical stadium with `±7.5 m` boundaries). Their lap times (`38.987 s` vs. `72.410 s`), distances, and Track Dominance metrics are never compared across models.
+3. **[V6](v6_driver_in_loop/README.md) is simulated (`SIMULATED — V6`), not real ECU telemetry:** Every V6 trajectory, actuator trace, acceleration, and off-track termination is generated by an illustrative planar dynamic-bicycle SIL model and virtual driver—not measured IndyCar ECU telemetry, surveyed IMS lane geometry, or hardware-in-the-loop certification.
+4. **[V5](v5_lap_time_simulation/README.md) does not outperform the training-median benchmark:** Fitting one effective power scalar (`682.825 kW`) to the `2020–2023` median speed (`230.843500 mph`) produces a constant prediction on `2024` attempts (`MAE = 1.142815 mph`, `RMSE = 1.400540 mph`), identical to the training-median constant-speed predictor.
+5. **The [C++17](cpp/README.md) engine is not the production FastAPI execution path:** `cpp/` (`indy500_pit_engine`) is an additive native library verified for numerical parity (`1e-12`) and component microbenchmarks; the production V3 FastAPI service runs the authoritative Python implementation.
+
+### Repository Verification Commands
+
+```bash
+# Verify README claims, all 47 local image/figure links, V4 numbers, and frozen SHA-256 manifests
+python3 scripts/validate_portfolio.py
+
+# Run repository pipeline & portfolio integrity tests (33 tests) and V3 point-in-time / C++ parity tests (92 tests)
+python3 -m unittest discover -s tests -p 'test_*.py' -v
+python3 -m unittest discover -s v3_point_in_time/tests -p 'test_*.py' -v
+
+# Run V5 (25 tests), V6 (44 Python + 9 JS tests), and Performance Explorer (6 Python + frontend) suites
+python3 -m unittest discover -s v5_lap_time_simulation/tests -p 'test_*.py' -v
+python3 -m unittest discover -s v6_driver_in_loop/tests -v
+node --test v6_driver_in_loop/viewer/replay.test.mjs
+python3 -m unittest discover -s performance_explorer/tests -v
+```
+
+### Complete Documentation Map
+
+- **Core Scientific Model & Point-in-Time Application ([V2](docs/final_v2_system_specification.md) / [V3](v3_point_in_time/README.md) / [V4](v4_team_normalized/README.md) / [C++17](cpp/README.md)):**
+  [V2 System Specification](docs/final_v2_system_specification.md) · [V3 Application README](v3_point_in_time/README.md) · [V3 Architecture](v3_point_in_time/output/final_documentation/final_v3_architecture.md) · [V3 Model Card](v3_point_in_time/output/final_documentation/FINAL_V3_MODEL_CARD.md) · [V3 Scientific Limitations](v3_point_in_time/output/final_documentation/scientific_limitations.md) · [V4 Workspace README](v4_team_normalized/README.md) · [V4 Final Scientific Synthesis](v4_team_normalized/output/phase4l/phase4l_final_scientific_synthesis.md) · [C++17 Engine README](cpp/README.md) · [Extended Portfolio Evidence Reference](docs/PORTFOLIO_EVIDENCE.md) · [Methodology](docs/methodology.md) · [Model Card](docs/model-card.md) · [Validation](docs/validation.md) · [Evidence Engineering](docs/evidence-engineering.md) · [Uncertainty](docs/uncertainty.md) · [Regime Transfer](docs/regime-transfer.md) · [Operational Interface](docs/operational-interface.md) · [Identifiability Boundary](docs/identifiability-boundary.md) · [Reproducibility](docs/reproducibility.md) · [Figure Gallery](figures/GALLERY.md) · [Full Research Report (PDF)](docs/paper/physics_conditioned_probabilistic_performance_inference.pdf)
+- **Vehicle Simulation Extensions & Unified Explorer ([V5](v5_lap_time_simulation/README.md) / [V6](v6_driver_in_loop/README.md) / [Performance Explorer](performance_explorer/README.md)):**
+  [V5 Lap-Time Simulation README](v5_lap_time_simulation/README.md) · [V5 Physics Model](v5_lap_time_simulation/docs/PHYSICS_MODEL.md) · [V5 Engineering Results](v5_lap_time_simulation/docs/ENGINEERING_RESULTS.md) · [V5 Validation Report](v5_lap_time_simulation/docs/VALIDATION_REPORT.md) · [V6 Vehicle Dynamics README](v6_driver_in_loop/README.md) · [V6 Physics Audit](v6_driver_in_loop/docs/PHYSICS_AUDIT.md) · [V6 Vehicle Dynamics Equations](v6_driver_in_loop/docs/VEHICLE_DYNAMICS.md) · [V6 Virtual Driver Design](v6_driver_in_loop/docs/CONTROLLER_DESIGN.md) · [V6 Robustness Matrix](v6_driver_in_loop/reports/ROBUSTNESS_RESULTS.md) · [V6 Convergence Study](v6_driver_in_loop/reports/CONVERGENCE_RESULTS.md) · [Performance Explorer README](performance_explorer/README.md) · [Explorer Data Contract](performance_explorer/docs/DATA_CONTRACT.md) · [Explorer Data Audit](performance_explorer/docs/DATA_AUDIT.md) · [Explorer Validation](performance_explorer/docs/VALIDATION.md) · [Demo Media Inventory & Provenance](docs/media/README.md)
+
+**Author:** Fengzhe Li · Independent research and software engineering project; not affiliated with INDYCAR or the Indianapolis Motor Speedway. [Citation (`CITATION.cff`)](CITATION.cff).
